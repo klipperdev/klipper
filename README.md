@@ -1,5 +1,5 @@
 <p align="center"><a href="https://klipper.dev" target="_blank">
-    <img src="https://static.klipper.dev/logo.svg">
+    <img src="https://static.klipper.dev/logo.svg" style="max-width: 300px;">
 </a></p>
 
 [Klipper][1] is a **PHP Platform** for API applications and a set of reusable
