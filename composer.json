@@ -1,0 +1,23 @@
+{
+    "name": "klipper/klipper",
+    "type": "library",
+    "description": "The Klipper PHP Platform",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "François Pluchino",
+            "email": "francois.pluchino@klipper.dev"
+        }
+    ],
+    "require": {
+        "php": "^7.4.0",
+        "klipper/recipes": "^2.0.0"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.0-dev"
+        }
+    }
+}
