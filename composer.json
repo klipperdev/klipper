@@ -43,6 +43,7 @@
         }
     },
     "replace": {
+        "klipper/doctrine-extra": "self.version",
         "klipper/system": "self.version"
     }
 }
