@@ -45,6 +45,7 @@
     "replace": {
         "klipper/config": "self.version",
         "klipper/doctrine-extra": "self.version",
+        "klipper/session-bundle": "self.version",
         "klipper/system": "self.version"
     }
 }

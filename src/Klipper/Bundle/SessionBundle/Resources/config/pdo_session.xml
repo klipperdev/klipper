@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="klipper_session.command.init_session_pdo" class="Klipper\Bundle\SessionBundle\Command\InitSessionPdoCommand" public="false">
+            <tag name="console.command" />
+            <argument type="service" id="klipper_session.handler.pdo"/>
+        </service>
+
+        <service id="klipper_session.handler.pdo" class="Symfony\Component\HttpFoundation\Session\Storage\Handler\PdoSessionHandler" public="true">
+            <argument>%klipper_session.pdo.dsn%</argument>
+            <argument>%klipper_session.pdo.db_options%</argument>
+        </service>
+    </services>
+</container>
