@@ -1,0 +1,34 @@
+{
+    "name": "klipper/routing-extra-bundle",
+    "type": "symfony-bundle",
+    "description": "Routing Extra bundle of Klipper",
+    "keywords": ["routing", "extra", "bundle"],
+    "homepage": "https://github.com/klipperdev/routing-extra-bundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "François Pluchino",
+            "email": "francois.pluchino@klipper.dev"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": "^7.4.0",
+        "symfony/framework-bundle": "^4.3.0",
+        "symfony/routing": "^4.3.0",
+        "symfony/property-access": "^4.3.0",
+        "klipper/routing-extra": "^2.0.0"
+    },
+    "autoload": {
+        "psr-4": { "Klipper\\Bundle\\RoutingExtraBundle\\": "" },
+        "exclude-from-classmap": [
+            "/Tests/"
+        ]
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.0-dev"
+        }
+    }
+}
