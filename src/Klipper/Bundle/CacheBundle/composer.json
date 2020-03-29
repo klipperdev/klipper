@@ -1,0 +1,32 @@
+{
+    "name": "klipper/cache-bundle",
+    "type": "symfony-bundle",
+    "description": "Cache bundle of Klipper",
+    "keywords": ["cache", "psr-6", "namespace", "prefix"],
+    "homepage": "https://github.com/klipperdev/cache-bundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "François Pluchino",
+            "email": "francois.pluchino@klipper.dev"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": "^7.4.0",
+        "symfony/framework-bundle": "^4.3.0",
+        "klipper/cache": "^2.0.0"
+    },
+    "autoload": {
+        "psr-4": { "Klipper\\Bundle\\CacheBundle\\": "" },
+        "exclude-from-classmap": [
+            "/Tests/"
+        ]
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.0-dev"
+        }
+    }
+}
