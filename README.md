@@ -23,7 +23,7 @@ Klipper is an Open Source, community-driven project.
 
 Issues and feature requests are tracked in the [Github issue tracker][6].
 
-Pull Requests must be sent in each repository of the components.
+Pull Requests are tracked in the [Github pull request tracker][9].
 
 License
 -------
@@ -43,3 +43,4 @@ Klipper was originally created by [François Pluchino][5].
 [6]: https://github.com/klipperdev/klipper/issues
 [7]: LICENSE
 [8]: https://doc.klipper.dev/current/setup
+[9]: https://github.com/klipperdev/klipper/pulls
