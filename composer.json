@@ -43,5 +43,6 @@
         }
     },
     "replace": {
+        "klipper/system": "self.version"
     }
 }
