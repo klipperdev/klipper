@@ -47,6 +47,7 @@
         "klipper/cache-bundle": "self.version",
         "klipper/config": "self.version",
         "klipper/default-value": "self.version",
+        "klipper/default-value-bundle": "self.version",
         "klipper/doctrine-extra": "self.version",
         "klipper/routing-extra": "self.version",
         "klipper/routing-extra-bundle": "self.version",
