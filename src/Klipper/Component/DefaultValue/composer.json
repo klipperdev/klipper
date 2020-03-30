@@ -1,0 +1,36 @@
+{
+    "name": "klipper/default-value",
+    "type": "library",
+    "description": "Default Value component of Klipper",
+    "keywords": ["default value", "object", "entity", "document"],
+    "homepage": "https://github.com/klipperdev/default-value",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "François Pluchino",
+            "email": "francois.pluchino@klipper.dev"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": "^7.4.0",
+        "symfony/options-resolver": "^4.2.0",
+        "symfony/property-access": "^4.2.0"
+    },
+    "require-dev": {
+        "symfony/dependency-injection": "^4.2.0",
+        "symfony/security": "^4.2.0"
+    },
+    "autoload": {
+        "psr-4": { "Klipper\\Component\\DefaultValue\\": "" },
+        "exclude-from-classmap": [
+            "/Tests/"
+        ]
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.0-dev"
+        }
+    }
+}
