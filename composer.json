@@ -49,6 +49,7 @@
         "klipper/default-value": "self.version",
         "klipper/default-value-bundle": "self.version",
         "klipper/doctrine-extra": "self.version",
+        "klipper/doctrine-extensions": "self.version",
         "klipper/routing-extra": "self.version",
         "klipper/routing-extra-bundle": "self.version",
         "klipper/session-bundle": "self.version",
