@@ -52,6 +52,8 @@ final class KlipperCacheExtensionTest extends TestCase
                 'FrameworkBundle' => FrameworkBundle::class,
                 'KlipperCacheBundle' => KlipperCacheBundle::class,
             ],
+            'kernel.bundles_metadata' => [],
+            'kernel.project_dir' => sys_get_temp_dir().'/klipper_cache_bundle',
             'kernel.cache_dir' => sys_get_temp_dir().'/klipper_cache_bundle',
             'kernel.debug' => true,
             'kernel.environment' => 'test',
@@ -75,13 +77,15 @@ final class KlipperCacheExtensionTest extends TestCase
             $container->setDefinition($id, $definition);
         }
 
-        $sfExt->load([['annotations' => false]], $container);
+        $sfExt->load([], $container);
         $extension->load($configs, $container);
 
         $bundle = new KlipperCacheBundle();
         $bundle->build($container);
 
+        $container->getCompilerPassConfig()->setOptimizationPasses([]);
         $container->getCompilerPassConfig()->setRemovingPasses([]);
+        $container->getCompilerPassConfig()->setAfterRemovingPasses([]);
         $container->compile();
 
         return $container;

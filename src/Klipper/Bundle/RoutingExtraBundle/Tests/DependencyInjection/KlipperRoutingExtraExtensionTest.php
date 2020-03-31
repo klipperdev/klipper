@@ -47,6 +47,8 @@ final class KlipperRoutingExtraExtensionTest extends TestCase
                 'FrameworkBundle' => FrameworkBundle::class,
                 'KlipperRoutingExtraBundle' => KlipperRoutingExtraBundle::class,
             ],
+            'kernel.bundles_metadata' => [],
+            'kernel.project_dir' => sys_get_temp_dir().'/klipper_routing_extra_bundle',
             'kernel.cache_dir' => sys_get_temp_dir().'/klipper_routing_extra_bundle',
             'kernel.debug' => false,
             'kernel.environment' => 'test',
@@ -74,6 +76,7 @@ final class KlipperRoutingExtraExtensionTest extends TestCase
 
         $container->getCompilerPassConfig()->setOptimizationPasses([]);
         $container->getCompilerPassConfig()->setRemovingPasses([]);
+        $container->getCompilerPassConfig()->setAfterRemovingPasses([]);
         $container->compile();
 
         return $container;
