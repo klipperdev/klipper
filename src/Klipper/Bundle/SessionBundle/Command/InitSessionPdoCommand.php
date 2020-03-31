@@ -50,7 +50,7 @@ class InitSessionPdoCommand extends Command
     /**
      * {@inheritdoc}
      */
-    protected function execute(InputInterface $input, OutputInterface $output): void
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         try {
             $this->handler->createTable();
@@ -63,5 +63,7 @@ class InitSessionPdoCommand extends Command
 
             $output->writeln(['', '  The table for PDO session is already exists.']);
         }
+
+        return 0;
     }
 }
