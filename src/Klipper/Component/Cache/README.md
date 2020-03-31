@@ -1,8 +1,7 @@
 Klipper Cache Component
 =======================
 
-The Cache component of [Klipper](https://klipper.dev).
-It adds extra features to [Symfony PSR-6 Cache Component](https://github.com/symfony/cache).
+The Cache component provides to add extra features to [Symfony PSR-6 Cache Component](https://github.com/symfony/cache).
 
 Features include:
 
@@ -28,8 +27,7 @@ Features include:
 Resources
 ---------
 
-- [Documentation](https://doc.klipper.dev)
-- [Report issues](https://github.com/klipperdev/klipper/issues) in the
-  [main Klipper repository](https://github.com/klipperdev/klipper)
-- [Send Pull Requests](https://github.com/klipperdev/klipper/pulls) in the
-  [main Klipper repository](https://github.com/klipperdev/klipper)
+- [Documentation](https://doc.klipper.dev/components/cache)
+- [Report issues](https://github.com/klipperdev/klipper/issues)
+  and [send Pull Requests](https://github.com/klipperdev/klipper/pulls)
+  in the [main Klipper repository](https://github.com/klipperdev/klipper)
