@@ -11,14 +11,14 @@
 
 namespace Klipper\Component\DefaultValue\Tests\Fixtures\Object;
 
-use Symfony\Component\Security\Core\User\AdvancedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * User is the user implementation used by the in-memory user provider.
  *
  * @author François Pluchino <francois.pluchino@klipper.dev>
  */
-final class User implements AdvancedUserInterface
+final class User implements UserInterface
 {
     private $username;
     private $password;
