@@ -14,7 +14,7 @@
         </service>
 
         <service id="klipper_sms_sender.transport_factory.amazon"
-                 class="Klipper\Component\SmsSender\Bridge\Amazon\Transport\SnsTransportFactory"
+                 class="Klipper\Bridge\SmsSender\Amazon\Transport\SnsTransportFactory"
                  parent="klipper_sms_sender.transport_factory.abstract">
             <tag name="klipper_sms_sender.transport_factory" />
         </service>
@@ -26,7 +26,7 @@
         </service>
 
         <service id="klipper_sms_sender.transport_factory.twilio"
-                 class="Klipper\Component\SmsSender\Bridge\Twilio\Transport\TwilioTransportFactory"
+                 class="Klipper\Bridge\SmsSender\Twilio\Transport\TwilioTransportFactory"
                  parent="klipper_sms_sender.transport_factory.abstract">
             <tag name="klipper_sms_sender.transport_factory" />
         </service>

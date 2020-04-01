@@ -48,9 +48,6 @@ final class KlipperSmsSenderExtensionTest extends TestCase
 
         static::assertTrue($container->hasDefinition('klipper_sms_sender.twig.message_listener'));
         static::assertTrue($container->hasDefinition('klipper_sms_sender.twig.mime_body_renderer'));
-
-        static::assertFalse($container->hasDefinition('klipper_sms_sender.transport_factory.amazon'));
-        static::assertFalse($container->hasDefinition('klipper_sms_sender.transport_factory.twilio'));
     }
 
     protected function createContainer(array $configs = [], array $parameters = []): ContainerBuilder
