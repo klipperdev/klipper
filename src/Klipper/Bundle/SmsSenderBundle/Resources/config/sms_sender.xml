@@ -1,0 +1,38 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="klipper_sms_sender.sender"
+                 class="Klipper\Component\SmsSender\SmsSender"
+                 public="true">
+            <argument type="service" id="klipper_sms_sender.default_transport" />
+            <argument type="service" id="messenger.default_bus" on-invalid="ignore" />
+        </service>
+
+        <service id="sms_sender" alias="klipper_sms_sender.sender" />
+        <service id="Klipper\Component\SmsSender\SmsSenderInterface" alias="klipper_sms_sender.sender" />
+
+        <service id="klipper_sms_sender.transport_factory" class="Klipper\Component\SmsSender\Transport">
+            <argument type="tagged" tag="klipper_sms_sender.transport_factory" />
+        </service>
+
+        <service id="klipper_sms_sender.default_transport"
+                 class="Klipper\Component\SmsSender\Transport\TransportInterface"
+                 public="false">
+            <factory service="klipper_sms_sender.transport_factory" method="fromString" />
+            <argument /> <!-- env(SMS_SENDER_DSN) -->
+        </service>
+
+        <service id="Klipper\Component\SmsSender\Transport\TransportInterface" alias="klipper_sms_sender.default_transport" />
+
+        <service id="klipper_sms_sender.messenger.message_handler"
+                 class="Klipper\Component\SmsSender\Messenger\MessageHandler"
+                 public="false">
+            <tag name="messenger.message_handler" />
+            <argument type="service" id="klipper_sms_sender.default_transport" />
+        </service>
+    </services>
+</container>

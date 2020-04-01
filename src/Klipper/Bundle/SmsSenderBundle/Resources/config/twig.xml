@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="klipper_sms_sender.twig.message_listener"
+                 class="Klipper\Component\SmsSender\EventListener\MessageListener"
+                 public="false">
+            <argument>null</argument>
+            <argument type="service" id="klipper_sms_sender.twig.mime_body_renderer" />
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+        <service id="klipper_sms_sender.twig.mime_body_renderer"
+                 class="Klipper\Bridge\SmsSender\Twig\Mime\BodyRenderer" public="false">
+            <argument type="service" id="twig" />
+        </service>
+    </services>
+</container>
