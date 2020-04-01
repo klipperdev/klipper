@@ -18,6 +18,7 @@
     },
     "autoload": {
         "psr-4": {
+            "Klipper\\Bridge\\": "src/Klipper/Bridge/",
             "Klipper\\Bundle\\": "src/Klipper/Bundle/",
             "Klipper\\Component\\": "src/Klipper/Component/"
         },
@@ -37,6 +38,7 @@
             "merge-extra-deep": false,
             "merge-scripts": false,
             "require": [
+                "src/Klipper/Bridge/*/*/composer.json",
                 "src/Klipper/Bundle/*/composer.json",
                 "src/Klipper/Component/*/composer.json"
             ]
@@ -62,6 +64,7 @@
         "klipper/security-bundle": "self.version",
         "klipper/session-bundle": "self.version",
         "klipper/sms-sender": "self.version",
-        "klipper/system": "self.version"
+        "klipper/system": "self.version",
+        "klipper/twig-sms-sender": "self.version"
     }
 }
