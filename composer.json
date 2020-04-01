@@ -48,6 +48,7 @@
         }
     },
     "replace": {
+        "klipper/amazon-sms-sender": "self.version",
         "klipper/cache": "self.version",
         "klipper/cache-bundle": "self.version",
         "klipper/config": "self.version",
