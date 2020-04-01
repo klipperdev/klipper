@@ -11,8 +11,8 @@
 
 namespace Klipper\Component\Mailer\Twig\Mime;
 
-use Klipper\Component\Mailer\Mime\SandboxInterface;
 use Klipper\Bridge\SmsSender\Twig\Mime\TemplatedSms;
+use Klipper\Component\Mailer\Mime\SandboxInterface;
 
 /**
  * Templated sms to enable the sandbox.

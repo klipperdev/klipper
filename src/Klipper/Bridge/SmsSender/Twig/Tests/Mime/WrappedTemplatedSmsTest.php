@@ -11,9 +11,9 @@
 
 namespace Klipper\Bridge\SmsSender\Twig\Tests\Mime;
 
-use Klipper\Component\SmsSender\Mime\Phone;
 use Klipper\Bridge\SmsSender\Twig\Mime\TemplatedSms;
 use Klipper\Bridge\SmsSender\Twig\Mime\WrappedTemplatedSms;
+use Klipper\Component\SmsSender\Mime\Phone;
 use PHPUnit\Framework\TestCase;
 
 /**

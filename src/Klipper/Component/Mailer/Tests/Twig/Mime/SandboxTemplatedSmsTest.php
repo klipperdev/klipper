@@ -11,8 +11,8 @@
 
 namespace Klipper\Component\Mailer\Tests\Twig\Mime;
 
-use Klipper\Component\Mailer\Twig\Mime\SandboxTemplatedSms;
 use Klipper\Bridge\SmsSender\Twig\Mime\TemplatedSms;
+use Klipper\Component\Mailer\Twig\Mime\SandboxTemplatedSms;
 use PHPUnit\Framework\TestCase;
 
 /**

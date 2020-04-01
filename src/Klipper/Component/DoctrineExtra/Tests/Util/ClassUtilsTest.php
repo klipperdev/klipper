@@ -11,6 +11,7 @@
 
 namespace Klipper\Component\DoctrineExtra\Tests\Util
 {
+
     use Klipper\Component\DoctrineExtra\Util\ClassUtils;
     use PHPUnit\Framework\TestCase;
 

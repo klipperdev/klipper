@@ -12,9 +12,9 @@
 namespace Klipper\Bundle\SmsSenderBundle\DependencyInjection;
 
 use Klipper\Bridge\SmsSender\Amazon\Transport\SnsTransportFactory;
+use Klipper\Bridge\SmsSender\Twig\Mime\TemplatedSms;
 use Klipper\Bridge\SmsSender\Twilio\Transport\TwilioTransportFactory;
 use Klipper\Component\SmsSender\SmsSender;
-use Klipper\Bridge\SmsSender\Twig\Mime\TemplatedSms;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;

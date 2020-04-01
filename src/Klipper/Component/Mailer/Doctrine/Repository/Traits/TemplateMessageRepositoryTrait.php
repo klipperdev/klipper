@@ -14,10 +14,10 @@ namespace Klipper\Component\Mailer\Doctrine\Repository\Traits;
 use Doctrine\ORM\AbstractQuery;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
-use Klipper\Component\Mailer\Model\TemplateMessageInterface;
 use Gedmo\Translatable\Query\TreeWalker\TranslationWalker;
 use Gedmo\Translatable\Translatable;
 use Gedmo\Translatable\TranslatableListener;
+use Klipper\Component\Mailer\Model\TemplateMessageInterface;
 
 /**
  * @author François Pluchino <francois.pluchino@klipper.dev>

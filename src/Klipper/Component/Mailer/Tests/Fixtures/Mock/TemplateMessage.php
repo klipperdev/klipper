@@ -11,9 +11,9 @@
 
 namespace Klipper\Component\Mailer\Tests\Fixtures\Mock;
 
+use Gedmo\Translatable\Translatable;
 use Klipper\Component\Mailer\Model\TemplateMessageInterface;
 use Klipper\Component\Mailer\Model\Traits\TemplateMessageTrait;
-use Gedmo\Translatable\Translatable;
 
 /**
  * @author François Pluchino <francois.pluchino@klipper.dev>

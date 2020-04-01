@@ -14,10 +14,10 @@ namespace Klipper\Component\Mailer\Tests\Doctrine\Repository\Traits;
 use Doctrine\ORM\AbstractQuery;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
-use Klipper\Component\Mailer\Doctrine\Repository\Traits\TemplateMessageRepositoryTrait;
-use Klipper\Component\Mailer\Tests\Fixtures\Mock\TemplateMessage;
 use Gedmo\Translatable\Query\TreeWalker\TranslationWalker;
 use Gedmo\Translatable\TranslatableListener;
+use Klipper\Component\Mailer\Doctrine\Repository\Traits\TemplateMessageRepositoryTrait;
+use Klipper\Component\Mailer\Tests\Fixtures\Mock\TemplateMessage;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 

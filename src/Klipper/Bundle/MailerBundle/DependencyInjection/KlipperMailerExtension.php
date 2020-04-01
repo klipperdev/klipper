@@ -11,10 +11,10 @@
 
 namespace Klipper\Bundle\MailerBundle\DependencyInjection;
 
+use Klipper\Bridge\SmsSender\Twig\Mime\TemplatedSms;
 use Klipper\Bundle\SmsSenderBundle\KlipperSmsSenderBundle;
 use Klipper\Component\Mailer\TwigSecurityPolicies;
 use Klipper\Component\SmsSender\SmsSender;
-use Klipper\Bridge\SmsSender\Twig\Mime\TemplatedSms;
 use Symfony\Bundle\TwigBundle\TwigBundle;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Config\Loader\LoaderInterface;
