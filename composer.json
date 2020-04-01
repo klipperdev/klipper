@@ -61,6 +61,7 @@
         "klipper/security": "self.version",
         "klipper/security-bundle": "self.version",
         "klipper/session-bundle": "self.version",
+        "klipper/sms-sender": "self.version",
         "klipper/system": "self.version"
     }
 }
