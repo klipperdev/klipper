@@ -67,17 +67,15 @@ final class RouterExtraTest extends TestCase
      * @dataProvider getMatcherConfig
      *
      * @param array|object $data
-     * @param array        $parameters
-     * @param array        $validParameters
      */
     public function testGenerate($data, array $parameters, array $validParameters): void
     {
-        $this->router->expects($this->once())
+        $this->router->expects(static::once())
             ->method('generate')
             ->with('test', $validParameters)
             ->willReturn('path')
         ;
 
-        $this->assertSame('path', $this->routerExtra->generate('test', $parameters, $data));
+        static::assertSame('path', $this->routerExtra->generate('test', $parameters, $data));
     }
 }

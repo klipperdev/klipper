@@ -54,8 +54,8 @@ final class AbstractExtensionTest extends TestCase
         $ext = $this->getMockForAbstractClass('Klipper\Component\DefaultValue\AbstractExtension');
         $typeExts = $ext->getTypeExtensions('unexisting_type_extension');
 
-        $this->assertIsArray($typeExts);
-        $this->assertCount(0, $typeExts);
+        static::assertIsArray($typeExts);
+        static::assertCount(0, $typeExts);
     }
 
     public function testGetType(): void
@@ -63,14 +63,14 @@ final class AbstractExtensionTest extends TestCase
         $ext = new TestExtension();
         $type = $ext->getType('Klipper\Component\DefaultValue\Tests\Fixtures\Object\User');
 
-        $this->assertInstanceOf('Klipper\Component\DefaultValue\ObjectTypeInterface', $type);
+        static::assertInstanceOf('Klipper\Component\DefaultValue\ObjectTypeInterface', $type);
     }
 
     public function testHasType(): void
     {
         $ext = new TestExtension();
 
-        $this->assertTrue($ext->hasType('Klipper\Component\DefaultValue\Tests\Fixtures\Object\User'));
+        static::assertTrue($ext->hasType('Klipper\Component\DefaultValue\Tests\Fixtures\Object\User'));
     }
 
     public function testGetTypeExtensions(): void
@@ -78,15 +78,15 @@ final class AbstractExtensionTest extends TestCase
         $ext = new TestExtension();
         $typeExts = $ext->getTypeExtensions('Klipper\Component\DefaultValue\Tests\Fixtures\Object\User');
 
-        $this->assertIsArray($typeExts);
-        $this->assertCount(1, $typeExts);
-        $this->assertInstanceOf('Klipper\Component\DefaultValue\ObjectTypeExtensionInterface', $typeExts[0]);
+        static::assertIsArray($typeExts);
+        static::assertCount(1, $typeExts);
+        static::assertInstanceOf('Klipper\Component\DefaultValue\ObjectTypeExtensionInterface', $typeExts[0]);
     }
 
     public function testHasTypeExtensions(): void
     {
         $ext = new TestExtension();
 
-        $this->assertTrue($ext->hasTypeExtensions('Klipper\Component\DefaultValue\Tests\Fixtures\Object\User'));
+        static::assertTrue($ext->hasTypeExtensions('Klipper\Component\DefaultValue\Tests\Fixtures\Object\User'));
     }
 }

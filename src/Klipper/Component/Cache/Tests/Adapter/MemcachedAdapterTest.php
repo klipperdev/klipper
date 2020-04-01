@@ -25,7 +25,7 @@ final class MemcachedAdapterTest extends AbstractAdapterTest
     protected function setUp(): void
     {
         if (!MemcachedAdapter::isSupported()) {
-            $this->markTestSkipped('Extension memcached >=2.2.0 required.');
+            static::markTestSkipped('Extension memcached >=2.2.0 required.');
         }
 
         $client = new \Memcached();

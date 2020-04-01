@@ -28,8 +28,6 @@ interface SandboxTemplaterInterface
 
     /**
      * Check if the sandbox is enabled.
-     *
-     * @return bool
      */
     public function isSandboxed(): bool;
 }

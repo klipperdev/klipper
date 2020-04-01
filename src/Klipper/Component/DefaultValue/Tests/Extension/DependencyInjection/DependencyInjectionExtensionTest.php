@@ -62,16 +62,16 @@ final class DependencyInjectionExtensionTest extends TestCase
 
     public function testGetType(): void
     {
-        $this->container->expects($this->once())
+        $this->container->expects(static::once())
             ->method('get')
             ->with('service.foo.type')
-            ->will($this->returnValue(new FooType()))
+            ->willReturn(new FooType())
         ;
 
-        $this->assertTrue($this->ext->hasType(Foo::class));
+        static::assertTrue($this->ext->hasType(Foo::class));
         $type = $this->ext->getType(Foo::class);
 
-        $this->assertInstanceOf(ObjectTypeInterface::class, $type);
+        static::assertInstanceOf(ObjectTypeInterface::class, $type);
     }
 
     public function testGetInvalidType(): void
@@ -87,40 +87,40 @@ final class DependencyInjectionExtensionTest extends TestCase
         $this->expectException(\Klipper\Component\DefaultValue\Exception\InvalidArgumentException::class);
         $this->expectExceptionMessageRegExp('/The object default value type class name specified for the service "([\\w\\.\\_]+)" does not match the actual class name. Expected "([\\w\\\\]+)", given "([\\w\\\\]+)"/');
 
-        $this->container->expects($this->once())
+        $this->container->expects(static::once())
             ->method('get')
             ->with('service.foo.type')
-            ->will($this->returnValue(new UserType()))
+            ->willReturn(new UserType())
         ;
 
-        $this->assertTrue($this->ext->hasType(Foo::class));
+        static::assertTrue($this->ext->hasType(Foo::class));
         $this->ext->getType(Foo::class);
     }
 
     public function testHasType(): void
     {
-        $this->assertTrue($this->ext->hasType(Foo::class));
-        $this->assertFalse($this->ext->hasType(\stdClass::class));
+        static::assertTrue($this->ext->hasType(Foo::class));
+        static::assertFalse($this->ext->hasType(\stdClass::class));
     }
 
     public function testGetTypeExtensions(): void
     {
-        $this->container->expects($this->once())
+        $this->container->expects(static::once())
             ->method('get')
             ->with('service.user.type_extension')
-            ->will($this->returnValue(new UserExtension()))
+            ->willReturn(new UserExtension())
         ;
 
-        $this->assertTrue($this->ext->hasTypeExtensions(User::class));
+        static::assertTrue($this->ext->hasTypeExtensions(User::class));
         $typeExtensions = $this->ext->getTypeExtensions(User::class);
 
-        $this->assertCount(1, $typeExtensions);
-        $this->assertInstanceOf(ObjectTypeExtensionInterface::class, current($typeExtensions));
+        static::assertCount(1, $typeExtensions);
+        static::assertInstanceOf(ObjectTypeExtensionInterface::class, current($typeExtensions));
     }
 
     public function testHasTypeExtensions(): void
     {
-        $this->assertTrue($this->ext->hasTypeExtensions(User::class));
-        $this->assertFalse($this->ext->hasTypeExtensions(\stdClass::class));
+        static::assertTrue($this->ext->hasTypeExtensions(User::class));
+        static::assertFalse($this->ext->hasTypeExtensions(\stdClass::class));
     }
 }

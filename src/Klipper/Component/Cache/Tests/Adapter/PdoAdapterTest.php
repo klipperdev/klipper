@@ -34,7 +34,7 @@ final class PdoAdapterTest extends AbstractAdapterTest
     protected function setUp(): void
     {
         if (!\extension_loaded('pdo_sqlite')) {
-            $this->markTestSkipped('Extension pdo_sqlite required.');
+            static::markTestSkipped('Extension pdo_sqlite required.');
         }
 
         $this->dbFile = tempnam(sys_get_temp_dir(), 'st_sqlite_cache');
@@ -45,7 +45,7 @@ final class PdoAdapterTest extends AbstractAdapterTest
                     'driver' => 'pdo_sqlite',
                     'path' => $this->dbFile,
                 ]
-        ),
+            ),
             '',
             0
         );

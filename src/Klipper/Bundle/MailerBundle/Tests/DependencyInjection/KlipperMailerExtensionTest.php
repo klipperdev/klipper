@@ -119,10 +119,6 @@ final class KlipperMailerExtensionTest extends TestCase
 
     /**
      * @dataProvider getFallbackLocales
-     *
-     * @param string      $expected
-     * @param null|string $value
-     * @param null|string $parameter
      */
     public function testExtensionLoaderWithCustomFallbackForFilesystemTemplate(
         string $expected,

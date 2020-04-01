@@ -50,9 +50,9 @@ final class ObjectRegistryTest extends TestCase
         $classname = 'Klipper\Component\DefaultValue\Tests\Fixtures\Object\User';
         $classname2 = 'Klipper\Component\DefaultValue\Tests\Fixtures\Object\UnexistingType';
 
-        $this->assertTrue($this->registry->hasType($classname));
-        $this->assertTrue($this->registry->hasType($classname)); // uses cache in class
-        $this->assertFalse($this->registry->hasType($classname2));
+        static::assertTrue($this->registry->hasType($classname));
+        static::assertTrue($this->registry->hasType($classname)); // uses cache in class
+        static::assertFalse($this->registry->hasType($classname2));
     }
 
     public function testGetTypeObject(): void
@@ -60,8 +60,8 @@ final class ObjectRegistryTest extends TestCase
         $classname = 'Klipper\Component\DefaultValue\Tests\Fixtures\Object\User';
         $resolvedType = $this->registry->getType($classname);
 
-        $this->assertInstanceOf('Klipper\Component\DefaultValue\ResolvedObjectTypeInterface', $resolvedType);
-        $this->assertEquals($classname, $resolvedType->getClass());
+        static::assertInstanceOf('Klipper\Component\DefaultValue\ResolvedObjectTypeInterface', $resolvedType);
+        static::assertEquals($classname, $resolvedType->getClass());
     }
 
     public function testGetDefaultTypeObject(): void
@@ -69,9 +69,9 @@ final class ObjectRegistryTest extends TestCase
         $classname = 'Klipper\Component\DefaultValue\Tests\Fixtures\Object\Foo';
         $resolvedType = $this->registry->getType($classname);
 
-        $this->assertInstanceOf('Klipper\Component\DefaultValue\ResolvedObjectTypeInterface', $resolvedType);
-        $this->assertEquals($classname, $resolvedType->getClass());
-        $this->assertInstanceOf('Klipper\Component\DefaultValue\Extension\Core\Type\DefaultType', $resolvedType->getInnerType());
+        static::assertInstanceOf('Klipper\Component\DefaultValue\ResolvedObjectTypeInterface', $resolvedType);
+        static::assertEquals($classname, $resolvedType->getClass());
+        static::assertInstanceOf('Klipper\Component\DefaultValue\Extension\Core\Type\DefaultType', $resolvedType->getInnerType());
     }
 
     public function testGetTypeObjectUnexpectedTypeException(): void
@@ -84,7 +84,7 @@ final class ObjectRegistryTest extends TestCase
     public function testGetExtensions(): void
     {
         $exts = $this->registry->getExtensions();
-        $this->assertIsArray($exts);
-        $this->assertCount(1, $exts);
+        static::assertIsArray($exts);
+        static::assertCount(1, $exts);
     }
 }

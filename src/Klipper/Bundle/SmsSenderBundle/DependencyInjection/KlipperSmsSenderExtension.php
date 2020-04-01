@@ -42,10 +42,6 @@ class KlipperSmsSenderExtension extends Extension
     }
 
     /**
-     * @param ContainerBuilder $container
-     * @param LoaderInterface  $loader
-     * @param array            $config
-     *
      * @throws
      */
     private function configureSmsSender(ContainerBuilder $container, LoaderInterface $loader, array $config): void

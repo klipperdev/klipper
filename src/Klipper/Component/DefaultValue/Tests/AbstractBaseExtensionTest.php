@@ -37,22 +37,22 @@ abstract class AbstractBaseExtensionTest extends TestCase
 
     public function testHasType(): void
     {
-        $this->assertTrue($this->extension->hasType('Klipper\Component\DefaultValue\Tests\Fixtures\Object\User'));
-        $this->assertFalse($this->extension->hasType('Foo'));
+        static::assertTrue($this->extension->hasType('Klipper\Component\DefaultValue\Tests\Fixtures\Object\User'));
+        static::assertFalse($this->extension->hasType('Foo'));
     }
 
     public function testHasTypeExtension(): void
     {
-        $this->assertTrue($this->extension->hasTypeExtensions('Klipper\Component\DefaultValue\Tests\Fixtures\Object\User'));
-        $this->assertFalse($this->extension->hasTypeExtensions('Foo'));
+        static::assertTrue($this->extension->hasTypeExtensions('Klipper\Component\DefaultValue\Tests\Fixtures\Object\User'));
+        static::assertFalse($this->extension->hasTypeExtensions('Foo'));
     }
 
     public function testGetType(): void
     {
         $type = $this->extension->getType('Klipper\Component\DefaultValue\Tests\Fixtures\Object\User');
 
-        $this->assertInstanceOf('Klipper\Component\DefaultValue\ObjectTypeInterface', $type);
-        $this->assertEquals('Klipper\Component\DefaultValue\Tests\Fixtures\Object\User', $type->getClass());
+        static::assertInstanceOf('Klipper\Component\DefaultValue\ObjectTypeInterface', $type);
+        static::assertEquals('Klipper\Component\DefaultValue\Tests\Fixtures\Object\User', $type->getClass());
     }
 
     public function testGetUnexistingType(): void
@@ -66,12 +66,12 @@ abstract class AbstractBaseExtensionTest extends TestCase
     {
         $exts = $this->extension->getTypeExtensions('Klipper\Component\DefaultValue\Tests\Fixtures\Object\User');
 
-        $this->assertIsArray($exts);
-        $this->assertCount(1, $exts);
+        static::assertIsArray($exts);
+        static::assertCount(1, $exts);
 
         /** @var ObjectTypeExtensionInterface $ext */
         $ext = $exts[0];
-        $this->assertInstanceOf('Klipper\Component\DefaultValue\ObjectTypeExtensionInterface', $ext);
-        $this->assertEquals('Klipper\Component\DefaultValue\Tests\Fixtures\Object\User', $ext->getExtendedType());
+        static::assertInstanceOf('Klipper\Component\DefaultValue\ObjectTypeExtensionInterface', $ext);
+        static::assertEquals('Klipper\Component\DefaultValue\Tests\Fixtures\Object\User', $ext->getExtendedType());
     }
 }

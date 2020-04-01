@@ -70,8 +70,6 @@ class CacheCollectorPass implements CompilerPassInterface
      *
      * @param Definition $def        The service definition of adapter
      * @param string     $validClass The valid class name
-     *
-     * @return bool
      */
     private function isValidAdapter(Definition $def, string $validClass): bool
     {

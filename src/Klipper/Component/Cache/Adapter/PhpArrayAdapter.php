@@ -60,8 +60,6 @@ class PhpArrayAdapter extends BasePhpArrayAdapter implements AdapterInterface
      *
      * @param AdapterInterface $fallbackPool The fallback pool
      * @param string[]         $prefixes     The prefixes
-     *
-     * @return bool
      */
     private function clearItems(AdapterInterface $fallbackPool, array $prefixes): bool
     {

@@ -37,8 +37,6 @@ class WrappedTemplatedSms
 
     /**
      * Get the from phone.
-     *
-     * @return Phone
      */
     public function getFrom(): Phone
     {

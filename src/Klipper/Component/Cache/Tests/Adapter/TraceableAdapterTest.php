@@ -33,13 +33,13 @@ final class TraceableAdapterTest extends AbstractAdapterTest
     public function testClearByPrefix(): void
     {
         $res = $this->adapter->clearByPrefix(static::PREFIX_1);
-        $this->assertTrue($res);
+        static::assertTrue($res);
     }
 
     public function testClearByPrefixWithDeferredItem(): void
     {
         $res = $this->adapter->clearByPrefix(static::PREFIX_1);
-        $this->assertTrue($res);
+        static::assertTrue($res);
     }
 
     public function getAdapters(): array
@@ -58,7 +58,7 @@ final class TraceableAdapterTest extends AbstractAdapterTest
     public function testClearByPrefixWithDifferentAdapter(TraceableAdapter $adapter): void
     {
         $res = $adapter->clearByPrefix(static::PREFIX_1);
-        $this->assertTrue($res);
+        static::assertTrue($res);
     }
 
     /**
@@ -69,6 +69,6 @@ final class TraceableAdapterTest extends AbstractAdapterTest
     public function testClearByPrefixesWithDifferentAdapter(TraceableAdapter $adapter): void
     {
         $res = $adapter->clearByPrefixes([static::PREFIX_1, static::PREFIX_2]);
-        $this->assertTrue($res);
+        static::assertTrue($res);
     }
 }

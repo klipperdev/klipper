@@ -64,8 +64,6 @@ class TemplatedSms extends Sms
 
     /**
      * Get the template path.
-     *
-     * @return null|string
      */
     public function getTemplate(): ?string
     {
@@ -88,8 +86,6 @@ class TemplatedSms extends Sms
 
     /**
      * Get the template context.
-     *
-     * @return array
      */
     public function getContext(): array
     {

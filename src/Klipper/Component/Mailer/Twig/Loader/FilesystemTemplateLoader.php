@@ -28,11 +28,6 @@ class FilesystemTemplateLoader extends FilesystemLoader
     /**
      * Constructor.
      *
-     * @param null|string $rootPath
-     * @param string      $fallback
-     * @param string      $path
-     * @param string      $namespace
-     *
      * @throws \Twig\Error\LoaderError
      */
     public function __construct(
@@ -83,8 +78,6 @@ class FilesystemTemplateLoader extends FilesystemLoader
      * @param bool        $replace Check if the locale in template name must be replaced
      *
      * @throws LoaderError
-     *
-     * @return null|string
      */
     private function findLocalizedTemplate(string $name, ?string $locale, bool $replace = false): ?string
     {

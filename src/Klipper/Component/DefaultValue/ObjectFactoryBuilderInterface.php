@@ -21,8 +21,6 @@ interface ObjectFactoryBuilderInterface
     /**
      * Sets the factory for creating ResolvedObjectTypeInterface instances.
      *
-     * @param ResolvedObjectTypeFactoryInterface $resolvedTypeFactory
-     *
      * @return ObjectFactoryBuilderInterface The builder
      */
     public function setResolvedTypeFactory(ResolvedObjectTypeFactoryInterface $resolvedTypeFactory);

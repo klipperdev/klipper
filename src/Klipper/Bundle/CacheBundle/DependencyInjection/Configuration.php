@@ -42,8 +42,6 @@ class Configuration implements ConfigurationInterface
 
     /**
      * Get override cache services node.
-     *
-     * @return ArrayNodeDefinition
      */
     protected function getOverrideCacheServicesNode(): ArrayNodeDefinition
     {

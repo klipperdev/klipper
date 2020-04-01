@@ -25,10 +25,6 @@ interface ResolvedObjectTypeFactoryInterface
     /**
      * Resolves a object default value type.
      *
-     * @param ObjectTypeInterface              $type
-     * @param array                            $typeExtensions
-     * @param null|ResolvedObjectTypeInterface $parent
-     *
      * @throws Exception\UnexpectedTypeException  When unexpected type of argument
      * @throws Exception\InvalidArgumentException When the object default value type classname does not exist
      *

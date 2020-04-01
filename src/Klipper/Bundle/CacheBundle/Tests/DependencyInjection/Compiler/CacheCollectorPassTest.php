@@ -69,10 +69,10 @@ final class CacheCollectorPassTest extends TestCase
 
         $this->compiler->process($this->container);
 
-        $this->assertSame(TraceableAdapter::class, $poolDefinitions['cache.adapter.filesystem']->getClass());
-        $this->assertSame(TraceableTagAwareAdapter::class, $poolDefinitions['cache.adapter.tag_adapter']->getClass());
-        $this->assertSame(SymfonyTraceableAdapter::class, $poolDefinitions['cache.adapter.apcu']->getClass());
-        $this->assertSame(SymfonyTraceableAdapter::class, $poolDefinitions['cache.adapter.abstract_adapter']->getClass());
+        static::assertSame(TraceableAdapter::class, $poolDefinitions['cache.adapter.filesystem']->getClass());
+        static::assertSame(TraceableTagAwareAdapter::class, $poolDefinitions['cache.adapter.tag_adapter']->getClass());
+        static::assertSame(SymfonyTraceableAdapter::class, $poolDefinitions['cache.adapter.apcu']->getClass());
+        static::assertSame(SymfonyTraceableAdapter::class, $poolDefinitions['cache.adapter.abstract_adapter']->getClass());
     }
 
     private function createCacheDefinition($class, $referenceId = null)

@@ -35,7 +35,7 @@ final class ConfigurationTest extends TestCase
             'override_cache_services' => [],
         ];
 
-        $this->assertSame($valid, $res);
+        static::assertSame($valid, $res);
     }
 
     public function testOverrideCacheServicesConfig(): void
@@ -55,7 +55,7 @@ final class ConfigurationTest extends TestCase
             ],
         ];
 
-        $this->assertSame($valid, $res);
+        static::assertSame($valid, $res);
     }
 
     public function testOverrideCacheServicesConfigWithTrueValue(): void
@@ -71,7 +71,7 @@ final class ConfigurationTest extends TestCase
             'override_cache_services' => [],
         ];
 
-        $this->assertSame($valid, $res);
+        static::assertSame($valid, $res);
     }
 
     public function testOverrideCacheServicesConfigWithFalseValue(): void
@@ -89,6 +89,6 @@ final class ConfigurationTest extends TestCase
             ],
         ];
 
-        $this->assertSame($valid, $res);
+        static::assertSame($valid, $res);
     }
 }

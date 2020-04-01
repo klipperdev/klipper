@@ -64,8 +64,6 @@ abstract class AdapterUtil
      * @param string           $property        The property name
      *
      * @throws
-     *
-     * @return \ReflectionProperty
      */
     public static function getPrivateProperty(\ReflectionClass $reflectionClass, string $property): \ReflectionProperty
     {

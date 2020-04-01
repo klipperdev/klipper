@@ -38,8 +38,6 @@ interface MailerInterface
      * @param null|object $envelope The envelope
      *
      * @throws TransporterNotFoundException
-     *
-     * @return bool
      */
     public function hasRequiredFrom(RawMessage $message, $envelope = null): bool;
 }

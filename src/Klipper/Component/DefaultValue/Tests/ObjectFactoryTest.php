@@ -58,12 +58,12 @@ final class ObjectFactoryTest extends TestCase
         $type->configureOptions(new OptionsResolver());
         $builder = $this->factory->createBuilder($type, null, ['bar' => 'hello world']);
 
-        $this->assertInstanceOf('Klipper\Component\DefaultValue\ObjectConfigBuilderInterface', $builder);
-        $this->assertNull($builder->getData());
+        static::assertInstanceOf('Klipper\Component\DefaultValue\ObjectConfigBuilderInterface', $builder);
+        static::assertNull($builder->getData());
 
         $instance = $builder->getObject();
-        $this->assertInstanceOf('Klipper\Component\DefaultValue\Tests\Fixtures\Object\Foo', $instance);
-        $this->assertEquals('hello world', $instance->getBar());
+        static::assertInstanceOf('Klipper\Component\DefaultValue\Tests\Fixtures\Object\Foo', $instance);
+        static::assertEquals('hello world', $instance->getBar());
     }
 
     public function testCreateBuilderWithObjectTypeInstanceWithSpecialValueOfBarField(): void
@@ -73,8 +73,8 @@ final class ObjectFactoryTest extends TestCase
         $builder = $this->factory->createBuilder($type, null, ['bar' => 'the answer to life, the universe, and everything']);
         $instance = $builder->getObject();
 
-        $this->assertInstanceOf('Klipper\Component\DefaultValue\Tests\Fixtures\Object\Foo', $instance);
-        $this->assertEquals('42', $instance->getBar());
+        static::assertInstanceOf('Klipper\Component\DefaultValue\Tests\Fixtures\Object\Foo', $instance);
+        static::assertEquals('42', $instance->getBar());
     }
 
     public function testCreateBuilderWithObjectTypeInstanceAndData(): void
@@ -85,8 +85,8 @@ final class ObjectFactoryTest extends TestCase
         $builder = $this->factory->createBuilder($type, $data, ['bar' => 'hello world']);
         $instance = $builder->getObject();
 
-        $this->assertEquals($data, $instance);
-        $this->assertEquals('hello world', $instance->getBar());
+        static::assertEquals($data, $instance);
+        static::assertEquals('hello world', $instance->getBar());
     }
 
     public function testCreateBuilderWithObjectTypeInstanceAndDataWithValueInField(): void
@@ -98,8 +98,8 @@ final class ObjectFactoryTest extends TestCase
         $builder = $this->factory->createBuilder($type, $data, ['bar' => 'hello world']);
         $instance = $builder->getObject();
 
-        $this->assertEquals($data, $instance);
-        $this->assertEquals('has value', $instance->getBar());
+        static::assertEquals($data, $instance);
+        static::assertEquals('has value', $instance->getBar());
     }
 
     public function testCreateBuilderWithObjectTypeInstanceAndDataWithValueInFieldWithSpecialValueOfBarField(): void
@@ -111,8 +111,8 @@ final class ObjectFactoryTest extends TestCase
         $builder = $this->factory->createBuilder($type, $data, ['bar' => 'hello world']);
         $instance = $builder->getObject();
 
-        $this->assertEquals($data, $instance);
-        $this->assertEquals('42', $instance->getBar());
+        static::assertEquals($data, $instance);
+        static::assertEquals('42', $instance->getBar());
     }
 
     public function testCreateBuilderWithObjectTypeInstanceWithoutOptions(): void
@@ -129,12 +129,12 @@ final class ObjectFactoryTest extends TestCase
     {
         $builder = $this->factory->createBuilder('Klipper\Component\DefaultValue\Tests\Fixtures\Object\Foo', null, ['bar' => 'hello world']);
 
-        $this->assertInstanceOf('Klipper\Component\DefaultValue\ObjectConfigBuilderInterface', $builder);
-        $this->assertNull($builder->getData());
+        static::assertInstanceOf('Klipper\Component\DefaultValue\ObjectConfigBuilderInterface', $builder);
+        static::assertNull($builder->getData());
 
         $instance = $builder->getObject();
-        $this->assertInstanceOf('Klipper\Component\DefaultValue\Tests\Fixtures\Object\Foo', $instance);
-        $this->assertEquals('hello world', $instance->getBar());
+        static::assertInstanceOf('Klipper\Component\DefaultValue\Tests\Fixtures\Object\Foo', $instance);
+        static::assertEquals('hello world', $instance->getBar());
     }
 
     public function testCreateBuilderWithTypeIsNotAResolvedObjectTypeInstance(): void
@@ -148,8 +148,8 @@ final class ObjectFactoryTest extends TestCase
     {
         $instance = $this->factory->create('Klipper\Component\DefaultValue\Tests\Fixtures\Object\Foo', null, ['bar' => 'hello world']);
 
-        $this->assertInstanceOf('Klipper\Component\DefaultValue\Tests\Fixtures\Object\Foo', $instance);
-        $this->assertEquals('hello world', $instance->getBar());
+        static::assertInstanceOf('Klipper\Component\DefaultValue\Tests\Fixtures\Object\Foo', $instance);
+        static::assertEquals('hello world', $instance->getBar());
     }
 
     public function testCreateObjectWithData(): void
@@ -158,8 +158,8 @@ final class ObjectFactoryTest extends TestCase
         $data->setBar('has value');
         $instance = $this->factory->create('Klipper\Component\DefaultValue\Tests\Fixtures\Object\Foo', $data, ['bar' => 'hello world']);
 
-        $this->assertEquals($data, $instance);
-        $this->assertEquals('has value', $instance->getBar());
+        static::assertEquals($data, $instance);
+        static::assertEquals('has value', $instance->getBar());
     }
 
     public function testInjectDefaultValueInObject(): void
@@ -167,8 +167,8 @@ final class ObjectFactoryTest extends TestCase
         $data = new Foo();
         $instance = $this->factory->inject($data, ['bar' => 'hello world']);
 
-        $this->assertEquals($data, $instance);
-        $this->assertEquals('hello world', $instance->getBar());
+        static::assertEquals($data, $instance);
+        static::assertEquals('hello world', $instance->getBar());
     }
 
     public function testInjectDefaultValueInNonObject(): void

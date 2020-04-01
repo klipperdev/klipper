@@ -52,15 +52,15 @@ final class ObjectBuilderTest extends TestCase
 
     public function testGetObjectFactory(): void
     {
-        $this->assertInstanceOf('Klipper\Component\DefaultValue\ObjectFactoryInterface', $this->builder->getObjectFactory());
+        static::assertInstanceOf('Klipper\Component\DefaultValue\ObjectFactoryInterface', $this->builder->getObjectFactory());
     }
 
     public function testGetObjectWithoutData(): void
     {
         $instance = $this->builder->getObject();
 
-        $this->assertInstanceOf('Klipper\Component\DefaultValue\Tests\Fixtures\Object\Foo', $instance);
-        $this->assertEquals('hello world', $instance->getBar());
+        static::assertInstanceOf('Klipper\Component\DefaultValue\Tests\Fixtures\Object\Foo', $instance);
+        static::assertEquals('hello world', $instance->getBar());
     }
 
     public function testGetObjectWithoutDataWithEditionOnFinishMethod(): void
@@ -78,8 +78,8 @@ final class ObjectBuilderTest extends TestCase
 
         $instance = $this->builder->getObject();
 
-        $this->assertInstanceOf('Klipper\Component\DefaultValue\Tests\Fixtures\Object\Foo', $instance);
-        $this->assertEquals('42', $instance->getBar());
+        static::assertInstanceOf('Klipper\Component\DefaultValue\Tests\Fixtures\Object\Foo', $instance);
+        static::assertEquals('42', $instance->getBar());
     }
 
     public function testGetObjectWithData(): void
@@ -89,8 +89,8 @@ final class ObjectBuilderTest extends TestCase
         $this->builder->setData($data);
         $instance = $this->builder->getObject();
 
-        $this->assertEquals($data, $instance);
-        $this->assertEquals('new value', $instance->getBar());
+        static::assertEquals($data, $instance);
+        static::assertEquals('new value', $instance->getBar());
     }
 
     public function testGetObjectWithDataWithEditionOnFinishMethod(): void
@@ -100,7 +100,7 @@ final class ObjectBuilderTest extends TestCase
         $this->builder->setData($data);
         $instance = $this->builder->getObject();
 
-        $this->assertInstanceOf('Klipper\Component\DefaultValue\Tests\Fixtures\Object\Foo', $instance);
-        $this->assertEquals('42', $instance->getBar());
+        static::assertInstanceOf('Klipper\Component\DefaultValue\Tests\Fixtures\Object\Foo', $instance);
+        static::assertEquals('42', $instance->getBar());
     }
 }

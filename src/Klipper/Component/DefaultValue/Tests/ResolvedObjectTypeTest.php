@@ -32,9 +32,9 @@ final class ResolvedObjectTypeTest extends TestCase
         $this->expectException(\Klipper\Component\DefaultValue\Exception\InvalidArgumentException::class);
 
         $type = $this->getMockBuilder('Klipper\Component\DefaultValue\ObjectTypeInterface')->getMock();
-        $type->expects($this->any())
+        $type->expects(static::any())
             ->method('getClass')
-            ->will($this->returnValue('Klipper\Component\DefaultValue\Tests\Fixtures\Object\UnexistClass'))
+            ->willReturn('Klipper\Component\DefaultValue\Tests\Fixtures\Object\UnexistClass')
         ;
 
         /* @var ObjectTypeInterface $type */
@@ -56,16 +56,16 @@ final class ResolvedObjectTypeTest extends TestCase
         $type = new UserType();
         $rType = new ResolvedObjectType($type, [new UserExtension()], new ResolvedObjectType($parentType));
 
-        $this->assertEquals($type->getClass(), $rType->getClass());
-        $this->assertInstanceOf('Klipper\Component\DefaultValue\ResolvedObjectTypeInterface', $rType->getParent());
-        $this->assertEquals($type, $rType->getInnerType());
+        static::assertEquals($type->getClass(), $rType->getClass());
+        static::assertInstanceOf('Klipper\Component\DefaultValue\ResolvedObjectTypeInterface', $rType->getParent());
+        static::assertEquals($type, $rType->getInnerType());
 
         $exts = $rType->getTypeExtensions();
-        $this->assertIsArray($exts);
-        $this->assertCount(1, $exts);
+        static::assertIsArray($exts);
+        static::assertCount(1, $exts);
 
         $options = $rType->getOptionsResolver();
-        $this->assertInstanceOf('Symfony\Component\OptionsResolver\OptionsResolver', $options);
+        static::assertInstanceOf('Symfony\Component\OptionsResolver\OptionsResolver', $options);
     }
 
     public function testInstanceBuilder(): void
@@ -75,17 +75,17 @@ final class ResolvedObjectTypeTest extends TestCase
         $factory = $this->getMockBuilder('Klipper\Component\DefaultValue\ObjectFactoryInterface')->getMock();
         $builder = $rType->createBuilder($factory, []);
 
-        $this->assertInstanceOf('Klipper\Component\DefaultValue\ObjectBuilderInterface', $builder);
-        $this->assertEquals($rType, $builder->getType());
+        static::assertInstanceOf('Klipper\Component\DefaultValue\ObjectBuilderInterface', $builder);
+        static::assertEquals($rType, $builder->getType());
 
         $instance = $rType->newInstance($builder, $builder->getOptions());
 
         $rType->buildObject($builder, $builder->getOptions());
         $rType->finishObject($builder, $builder->getOptions());
 
-        $this->assertInstanceOf($rType->getClass(), $instance);
-        $this->assertEquals('test', $instance->getUsername());
-        $this->assertEquals('password', $instance->getPassword());
+        static::assertInstanceOf($rType->getClass(), $instance);
+        static::assertEquals('test', $instance->getUsername());
+        static::assertEquals('password', $instance->getPassword());
     }
 
     public function testInstanceBuilderWithDefaultType(): void
@@ -98,15 +98,15 @@ final class ResolvedObjectTypeTest extends TestCase
         $factory = $this->getMockBuilder('Klipper\Component\DefaultValue\ObjectFactoryInterface')->getMock();
         $builder = $rType->createBuilder($factory, []);
 
-        $this->assertInstanceOf('Klipper\Component\DefaultValue\ObjectBuilderInterface', $builder);
-        $this->assertEquals($rType, $builder->getType());
+        static::assertInstanceOf('Klipper\Component\DefaultValue\ObjectBuilderInterface', $builder);
+        static::assertEquals($rType, $builder->getType());
 
         $instance = $rType->newInstance($builder, $builder->getOptions());
 
         $rType->buildObject($builder, $builder->getOptions());
         $rType->finishObject($builder, $builder->getOptions());
 
-        $this->assertInstanceOf($rType->getClass(), $instance);
+        static::assertInstanceOf($rType->getClass(), $instance);
     }
 
     /**

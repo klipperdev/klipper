@@ -45,7 +45,6 @@ class ResolvedObjectType implements ResolvedObjectTypeInterface
     /**
      * Constructor.
      *
-     * @param ObjectTypeInterface            $innerType
      * @param ObjectTypeExtensionInterface[] $typeExtensions
      * @param ResolvedObjectTypeInterface    $parent
      *
@@ -173,9 +172,7 @@ class ResolvedObjectType implements ResolvedObjectTypeInterface
     /**
      * Build or finish the object.
      *
-     * @param string                 $method  The buildObject or finishObject method name
-     * @param ObjectBuilderInterface $builder
-     * @param array                  $options
+     * @param string $method The buildObject or finishObject method name
      */
     protected function doActionObject($method, ObjectBuilderInterface $builder, array $options): void
     {

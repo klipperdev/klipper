@@ -65,7 +65,7 @@ final class PhpArrayAdapterTest extends AbstractAdapterTest
         $this->adapter = new PhpArrayAdapter(self::$file, new ArrayAdapter());
         $this->adapter->clearByPrefix('foo');
 
-        $this->assertFalse($this->adapter->hasItem('foo_bar'));
+        static::assertFalse($this->adapter->hasItem('foo_bar'));
     }
 
     /**
@@ -78,22 +78,22 @@ final class PhpArrayAdapterTest extends AbstractAdapterTest
             self::PREFIX_2.'foo' => 'bar2',
         ];
 
-        $this->assertFileNotExists(self::$file);
+        static::assertFileNotExists(self::$file);
         $this->adapter->warmUp($values);
-        $this->assertFileExists(self::$file);
+        static::assertFileExists(self::$file);
 
         $item1 = $this->adapter->getItem(self::PREFIX_1.'foo');
-        $this->assertTrue($item1->isHit());
-        $this->assertSame('bar1', $item1->get());
+        static::assertTrue($item1->isHit());
+        static::assertSame('bar1', $item1->get());
 
         $item2 = $this->adapter->getItem(self::PREFIX_2.'foo');
-        $this->assertTrue($item2->isHit());
-        $this->assertSame('bar2', $item2->get());
+        static::assertTrue($item2->isHit());
+        static::assertSame('bar2', $item2->get());
 
         $res = $this->adapter->clearByPrefix(self::PREFIX_1);
-        $this->assertTrue($res);
+        static::assertTrue($res);
 
-        $this->assertFalse($this->adapter->hasItem(self::PREFIX_1.'foo'));
-        $this->assertTrue($this->adapter->hasItem(self::PREFIX_2.'foo'));
+        static::assertFalse($this->adapter->hasItem(self::PREFIX_1.'foo'));
+        static::assertTrue($this->adapter->hasItem(self::PREFIX_2.'foo'));
     }
 }

@@ -21,9 +21,6 @@ interface ObjectTypeInterface
     /**
      * Constructs a new object instance.
      *
-     * @param ObjectBuilderInterface $builder
-     * @param array                  $options
-     *
      * @return object
      */
     public function newInstance(ObjectBuilderInterface $builder, array $options);

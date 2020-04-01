@@ -255,8 +255,6 @@ class ObjectConfigBuilder implements ObjectConfigBuilderInterface
 
     /**
      * Finds all properties in class.
-     *
-     * @param \ReflectionClass $reflection
      */
     protected function findProperties(\ReflectionClass $reflection): void
     {
@@ -270,8 +268,7 @@ class ObjectConfigBuilder implements ObjectConfigBuilderInterface
     /**
      * Finds the reflection property.
      *
-     * @param string           $property
-     * @param \ReflectionClass $reflection
+     * @param string $property
      *
      * @throws InvalidArgumentException When the property is not found
      *

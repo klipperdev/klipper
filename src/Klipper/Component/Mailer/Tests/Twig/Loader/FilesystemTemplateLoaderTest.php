@@ -72,9 +72,6 @@ final class FilesystemTemplateLoaderTest extends TestCase
 
     /**
      * @dataProvider getExistsArguments
-     *
-     * @param bool   $expected
-     * @param string $templateName
      */
     public function testExists(bool $expected, string $templateName): void
     {
@@ -96,9 +93,6 @@ final class FilesystemTemplateLoaderTest extends TestCase
 
     /**
      * @dataProvider getGetSourceContextArguments
-     *
-     * @param string $templateName
-     * @param string $expectedPath
      *
      * @throws
      */

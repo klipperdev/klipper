@@ -48,9 +48,6 @@ class DoctrineTemplateLoader implements LoaderInterface, SourceContextLoaderInte
 
     /**
      * Constructor.
-     *
-     * @param ManagerRegistry $doctrine
-     * @param string          $namespace
      */
     public function __construct(
         ManagerRegistry $doctrine,
@@ -110,8 +107,6 @@ class DoctrineTemplateLoader implements LoaderInterface, SourceContextLoaderInte
      * @param bool   $throw Check if the exception must be thrown
      *
      * @throws LoaderError
-     *
-     * @return null|DoctrineTemplate
      */
     protected function getTemplate(string $name, bool $throw = true): ?DoctrineTemplate
     {
@@ -204,9 +199,6 @@ class DoctrineTemplateLoader implements LoaderInterface, SourceContextLoaderInte
         ];
     }
 
-    /**
-     * @return null|TemplateMessageRepositoryInterface
-     */
     protected function getRepository(): ?TemplateMessageRepositoryInterface
     {
         $repo = $this->doctrine->getRepository(TemplateMessageInterface::class);

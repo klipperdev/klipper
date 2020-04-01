@@ -29,15 +29,13 @@ final class KlipperDoctrineExtensionsExtensionTest extends TestCase
     {
         $container = $this->createContainer();
 
-        $this->assertTrue($container->hasExtension('klipper_doctrine_extensions'));
-        $this->assertTrue($container->hasDefinition('klipper.doctrine_extensions.orm.validator.unique'));
-        $this->assertTrue($container->hasDefinition('klipper_doctrine_extensions.orm.validator.doctrine_callback'));
+        static::assertTrue($container->hasExtension('klipper_doctrine_extensions'));
+        static::assertTrue($container->hasDefinition('klipper.doctrine_extensions.orm.validator.unique'));
+        static::assertTrue($container->hasDefinition('klipper_doctrine_extensions.orm.validator.doctrine_callback'));
     }
 
     /**
      * @throws
-     *
-     * @return ContainerBuilder
      */
     protected function createContainer(): ContainerBuilder
     {

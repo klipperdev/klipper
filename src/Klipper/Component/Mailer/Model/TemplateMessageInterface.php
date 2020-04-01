@@ -36,8 +36,6 @@ interface TemplateMessageInterface
 
     /**
      * Gets the unique template name.
-     *
-     * @return null|string
      */
     public function getName(): ?string;
 
@@ -52,8 +50,6 @@ interface TemplateMessageInterface
 
     /**
      * Get the type.
-     *
-     * @return null|string
      */
     public function getType(): ?string;
 
@@ -68,8 +64,6 @@ interface TemplateMessageInterface
 
     /**
      * Get the label.
-     *
-     * @return null|string
      */
     public function getLabel(): ?string;
 
@@ -84,8 +78,6 @@ interface TemplateMessageInterface
 
     /**
      * Get the description.
-     *
-     * @return null|string
      */
     public function getDescription(): ?string;
 
@@ -100,8 +92,6 @@ interface TemplateMessageInterface
 
     /**
      * Check if the template is enabled.
-     *
-     * @return bool
      */
     public function isEnabled(): bool;
 
@@ -116,8 +106,6 @@ interface TemplateMessageInterface
 
     /**
      * Get the body.
-     *
-     * @return null|string
      */
     public function getBody(): ?string;
 
@@ -132,8 +120,6 @@ interface TemplateMessageInterface
 
     /**
      * Get the date of create of model.
-     *
-     * @return null|\DateTime
      */
     public function getCreatedAt(): ?\DateTime;
 
@@ -148,8 +134,6 @@ interface TemplateMessageInterface
 
     /**
      * Get the date of update of model.
-     *
-     * @return null|\DateTime
      */
     public function getUpdatedAt(): ?\DateTime;
 }

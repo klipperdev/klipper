@@ -26,15 +26,11 @@ interface TransporterInterface
      *
      * @param RawMessage  $message  The message
      * @param null|object $envelope The envelope
-     *
-     * @return bool
      */
     public function supports(RawMessage $message, $envelope = null): bool;
 
     /**
      * Check if the from is required.
-     *
-     * @return bool
      */
     public function hasRequiredFrom(): bool;
 

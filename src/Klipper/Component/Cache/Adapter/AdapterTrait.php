@@ -42,8 +42,6 @@ trait AdapterTrait
      *
      * @param string $namespace The namespace
      * @param string $prefix    The prefix
-     *
-     * @return bool
      */
     abstract protected function doClearByPrefix(string $namespace, string $prefix): bool;
 }

@@ -25,8 +25,6 @@ interface TemplateMessageRepositoryInterface extends ObjectRepository
      * @param string      $name   The template message name
      * @param null|string $type   The template type
      * @param null|string $locale The locale
-     *
-     * @return null|TemplateMessageInterface
      */
     public function findTemplate(string $name, ?string $type = null, ?string $locale = null): ?TemplateMessageInterface;
 }

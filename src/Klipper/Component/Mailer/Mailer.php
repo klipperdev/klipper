@@ -69,8 +69,6 @@ class Mailer implements MailerInterface
      * @param null|object $envelope The envelope
      *
      * @throws TransporterNotFoundException
-     *
-     * @return TransporterInterface
      */
     private function findTransporter(RawMessage $message, $envelope = null): TransporterInterface
     {

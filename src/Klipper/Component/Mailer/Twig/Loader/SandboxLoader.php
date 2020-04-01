@@ -90,8 +90,6 @@ class SandboxLoader implements LoaderInterface, SourceContextLoaderInterface
      *
      * @param string      $name    The template name
      * @param null|string $default The default namespace
-     *
-     * @return null|string
      */
     private function parseNamespace(string $name, ?string $default = null): ?string
     {

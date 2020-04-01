@@ -41,13 +41,13 @@ final class TraceableTagAwareAdapterTest extends AbstractAdapterTest
     public function testClearByPrefix(): void
     {
         $res = $this->adapter->clearByPrefix(static::PREFIX_1);
-        $this->assertTrue($res);
+        static::assertTrue($res);
     }
 
     public function testClearByPrefixWithDeferredItem(): void
     {
         $res = $this->adapter->clearByPrefix(static::PREFIX_1);
-        $this->assertTrue($res);
+        static::assertTrue($res);
     }
 
     public function getAdapters(): array
@@ -70,7 +70,7 @@ final class TraceableTagAwareAdapterTest extends AbstractAdapterTest
     public function testClearByPrefixWithDifferentAdapter(TraceableTagAwareAdapter $adapter): void
     {
         $res = $adapter->clearByPrefix(static::PREFIX_1);
-        $this->assertTrue($res);
+        static::assertTrue($res);
     }
 
     /**
@@ -81,7 +81,7 @@ final class TraceableTagAwareAdapterTest extends AbstractAdapterTest
     public function testClearByPrefixesWithDifferentAdapter(TraceableTagAwareAdapter $adapter): void
     {
         $res = $adapter->clearByPrefixes([static::PREFIX_1, static::PREFIX_2]);
-        $this->assertTrue($res);
+        static::assertTrue($res);
     }
 
     /**
@@ -92,12 +92,12 @@ final class TraceableTagAwareAdapterTest extends AbstractAdapterTest
         $tagAwareAdapter = $this->getMockBuilder(TagAwareAdapterInterface::class)->getMock();
         $this->mockAdapter($tagAwareAdapter);
 
-        $tagAwareAdapter->expects($this->any())
+        $tagAwareAdapter->expects(static::any())
             ->method('clearByPrefix')
             ->willReturn(true)
         ;
 
-        $tagAwareAdapter->expects($this->any())
+        $tagAwareAdapter->expects(static::any())
             ->method('clearByPrefixes')
             ->willReturn(true)
         ;
@@ -111,7 +111,7 @@ final class TraceableTagAwareAdapterTest extends AbstractAdapterTest
     private function mockAdapter($adapter): void
     {
         $self = $this;
-        $adapter->expects($this->any())
+        $adapter->expects(static::any())
             ->method('getItem')
             ->willReturnCallback(function ($value) use ($self) {
                 $item = $self->getMockBuilder(CacheItemInterface::class)->getMock();
@@ -124,7 +124,7 @@ final class TraceableTagAwareAdapterTest extends AbstractAdapterTest
             })
         ;
 
-        $adapter->expects($this->any())
+        $adapter->expects(static::any())
             ->method('getItems')
             ->willReturnCallback(function ($values) use ($self) {
                 $res = [];
@@ -143,37 +143,37 @@ final class TraceableTagAwareAdapterTest extends AbstractAdapterTest
             })
         ;
 
-        $adapter->expects($this->any())
+        $adapter->expects(static::any())
             ->method('hasItem')
             ->willReturn(true)
         ;
 
-        $adapter->expects($this->any())
+        $adapter->expects(static::any())
             ->method('clear')
             ->willReturn(true)
         ;
 
-        $adapter->expects($this->any())
+        $adapter->expects(static::any())
             ->method('deleteItem')
             ->willReturn(true)
         ;
 
-        $adapter->expects($this->any())
+        $adapter->expects(static::any())
             ->method('deleteItems')
             ->willReturn(true)
         ;
 
-        $adapter->expects($this->any())
+        $adapter->expects(static::any())
             ->method('save')
             ->willReturn(true)
         ;
 
-        $adapter->expects($this->any())
+        $adapter->expects(static::any())
             ->method('saveDeferred')
             ->willReturn(true)
         ;
 
-        $adapter->expects($this->any())
+        $adapter->expects(static::any())
             ->method('commit')
             ->willReturn(true)
         ;

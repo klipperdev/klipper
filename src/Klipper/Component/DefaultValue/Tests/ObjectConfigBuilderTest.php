@@ -53,7 +53,7 @@ final class ObjectConfigBuilderTest extends TestCase
     {
         $config = $this->config->getObjectConfig();
 
-        $this->assertEquals($this->config, $config);
+        static::assertEquals($this->config, $config);
     }
 
     public function testGetObjectConfigWithConfigLocked(): void
@@ -69,24 +69,24 @@ final class ObjectConfigBuilderTest extends TestCase
     {
         $type = $this->config->getType();
 
-        $this->assertInstanceOf('Klipper\Component\DefaultValue\ResolvedObjectTypeInterface', $type);
-        $this->assertInstanceOf('Klipper\Component\DefaultValue\Tests\Fixtures\Type\FooCompletType', $type->getInnerType());
+        static::assertInstanceOf('Klipper\Component\DefaultValue\ResolvedObjectTypeInterface', $type);
+        static::assertInstanceOf('Klipper\Component\DefaultValue\Tests\Fixtures\Type\FooCompletType', $type->getInnerType());
     }
 
     public function testSetType(): void
     {
         $type = $this->config->getType();
 
-        $this->assertInstanceOf('Klipper\Component\DefaultValue\ResolvedObjectTypeInterface', $type);
-        $this->assertInstanceOf('Klipper\Component\DefaultValue\Tests\Fixtures\Type\FooCompletType', $type->getInnerType());
+        static::assertInstanceOf('Klipper\Component\DefaultValue\ResolvedObjectTypeInterface', $type);
+        static::assertInstanceOf('Klipper\Component\DefaultValue\Tests\Fixtures\Type\FooCompletType', $type->getInnerType());
 
         $rType = new ResolvedObjectType(new FooType());
         $config = $this->config->setType($rType);
         $type2 = $this->config->getType();
 
-        $this->assertInstanceOf('Klipper\Component\DefaultValue\ObjectConfigBuilderInterface', $config);
-        $this->assertInstanceOf('Klipper\Component\DefaultValue\ResolvedObjectTypeInterface', $type2);
-        $this->assertInstanceOf('Klipper\Component\DefaultValue\Tests\Fixtures\Type\FooType', $type2->getInnerType());
+        static::assertInstanceOf('Klipper\Component\DefaultValue\ObjectConfigBuilderInterface', $config);
+        static::assertInstanceOf('Klipper\Component\DefaultValue\ResolvedObjectTypeInterface', $type2);
+        static::assertInstanceOf('Klipper\Component\DefaultValue\Tests\Fixtures\Type\FooType', $type2->getInnerType());
     }
 
     public function testSetTypeWithConfigLocked(): void
@@ -103,19 +103,19 @@ final class ObjectConfigBuilderTest extends TestCase
     {
         $opts = $this->config->getOptions();
 
-        $this->assertIsArray($opts);
+        static::assertIsArray($opts);
     }
 
     public function testHasAndGetOption(): void
     {
-        $this->assertTrue($this->config->hasOption('username'));
-        $this->assertEquals('foo', $this->config->getOption('username', 'default value'));
+        static::assertTrue($this->config->hasOption('username'));
+        static::assertEquals('foo', $this->config->getOption('username', 'default value'));
 
-        $this->assertTrue($this->config->hasOption('password'));
-        $this->assertEquals('bar', $this->config->getOption('password', 'default value'));
+        static::assertTrue($this->config->hasOption('password'));
+        static::assertEquals('bar', $this->config->getOption('password', 'default value'));
 
-        $this->assertFalse($this->config->hasOption('invalidProperty'));
-        $this->assertEquals('default value', $this->config->getOption('invalidProperty', 'default value'));
+        static::assertFalse($this->config->hasOption('invalidProperty'));
+        static::assertEquals('default value', $this->config->getOption('invalidProperty', 'default value'));
     }
 
     public function testSetInvalidData(): void
@@ -130,9 +130,9 @@ final class ObjectConfigBuilderTest extends TestCase
         $data = new User('root', 'p@ssword');
         $config = $this->config->setData($data);
 
-        $this->assertEquals($this->config, $config);
-        $this->assertEquals($data, $this->config->getData());
-        $this->assertEquals(\get_class($data), $this->config->getDataClass());
+        static::assertEquals($this->config, $config);
+        static::assertEquals($data, $this->config->getData());
+        static::assertEquals(\get_class($data), $this->config->getDataClass());
     }
 
     public function testSetValidDataWithConfigLocked(): void
@@ -152,8 +152,8 @@ final class ObjectConfigBuilderTest extends TestCase
         $this->config->setData($data);
         $properties = $this->config->getProperties();
 
-        $this->assertIsArray($properties);
-        $this->assertCount(9, $properties);
+        static::assertIsArray($properties);
+        static::assertCount(9, $properties);
     }
 
     public function testGetProperty(): void
@@ -161,22 +161,22 @@ final class ObjectConfigBuilderTest extends TestCase
         $data = new User('root', 'p@ssword');
         $this->config->setData($data);
 
-        $this->assertTrue($this->config->hasProperty('username'));
-        $this->assertTrue($this->config->hasProperty('password'));
-        $this->assertFalse($this->config->hasProperty('foobar'));
+        static::assertTrue($this->config->hasProperty('username'));
+        static::assertTrue($this->config->hasProperty('password'));
+        static::assertFalse($this->config->hasProperty('foobar'));
 
-        $this->assertEquals('root', $this->config->getProperty('username'));
-        $this->assertTrue($this->config->getProperty('enabled'));
-        $this->assertTrue($this->config->getProperty('bar'));
-        $this->assertFalse($this->config->getProperty('foo'));
+        static::assertEquals('root', $this->config->getProperty('username'));
+        static::assertTrue($this->config->getProperty('enabled'));
+        static::assertTrue($this->config->getProperty('bar'));
+        static::assertFalse($this->config->getProperty('foo'));
     }
 
     public function testGetPropertyWithEmptyData(): void
     {
         $this->expectException(\Klipper\Component\DefaultValue\Exception\BadMethodCallException::class);
 
-        $this->assertNull($this->config->getData());
-        $this->assertNull($this->config->getDataClass());
+        static::assertNull($this->config->getData());
+        static::assertNull($this->config->getDataClass());
 
         $this->config->getProperty('property');
     }
@@ -198,9 +198,9 @@ final class ObjectConfigBuilderTest extends TestCase
         $data->setCustomField('42');
         $this->config->setData($data);
 
-        $this->assertEquals('hello world', $data->getBar());
-        $this->assertEquals('42', $data->getCustomField());
-        $this->assertFalse($this->config->getProperty('privateProperty'));
+        static::assertEquals('hello world', $data->getBar());
+        static::assertEquals('42', $data->getCustomField());
+        static::assertFalse($this->config->getProperty('privateProperty'));
 
         $config = $this->config->setProperties([
             'bar' => 'value edited',
@@ -208,10 +208,10 @@ final class ObjectConfigBuilderTest extends TestCase
             'privateProperty' => true,
         ]);
 
-        $this->assertInstanceOf('Klipper\Component\DefaultValue\ObjectConfigBuilderInterface', $config);
-        $this->assertEquals('value edited', $data->getBar());
-        $this->assertEquals('21', $data->getCustomField());
-        $this->assertTrue($this->config->getProperty('privateProperty'));
+        static::assertInstanceOf('Klipper\Component\DefaultValue\ObjectConfigBuilderInterface', $config);
+        static::assertEquals('value edited', $data->getBar());
+        static::assertEquals('21', $data->getCustomField());
+        static::assertTrue($this->config->getProperty('privateProperty'));
     }
 
     public function testSetPropertiesWithConfigLocked(): void
@@ -231,8 +231,8 @@ final class ObjectConfigBuilderTest extends TestCase
     {
         $this->expectException(\Klipper\Component\DefaultValue\Exception\BadMethodCallException::class);
 
-        $this->assertNull($this->config->getData());
-        $this->assertNull($this->config->getDataClass());
+        static::assertNull($this->config->getData());
+        static::assertNull($this->config->getDataClass());
 
         $this->config->setProperties([
             'property' => 'value',
@@ -257,20 +257,20 @@ final class ObjectConfigBuilderTest extends TestCase
         $data->setBar('hello world');
         $this->config->setData($data);
 
-        $this->assertEquals('hello world', $data->getBar());
+        static::assertEquals('hello world', $data->getBar());
 
         $config = $this->config->setProperty('bar', 'value edited');
 
-        $this->assertInstanceOf('Klipper\Component\DefaultValue\ObjectConfigBuilderInterface', $config);
-        $this->assertEquals('value edited', $data->getBar());
+        static::assertInstanceOf('Klipper\Component\DefaultValue\ObjectConfigBuilderInterface', $config);
+        static::assertEquals('value edited', $data->getBar());
     }
 
     public function testSetPropertyWithEmptyData(): void
     {
         $this->expectException(\Klipper\Component\DefaultValue\Exception\BadMethodCallException::class);
 
-        $this->assertNull($this->config->getData());
-        $this->assertNull($this->config->getDataClass());
+        static::assertNull($this->config->getData());
+        static::assertNull($this->config->getDataClass());
 
         $this->config->setProperty('property', 'value');
     }

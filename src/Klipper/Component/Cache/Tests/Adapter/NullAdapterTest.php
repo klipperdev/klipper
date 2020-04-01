@@ -31,12 +31,12 @@ final class NullAdapterTest extends AbstractAdapterTest
     public function testClearByPrefix(): void
     {
         $res = $this->adapter->clearByPrefix(static::PREFIX_1);
-        $this->assertTrue($res);
+        static::assertTrue($res);
     }
 
     public function testClearByPrefixWithDeferredItem(): void
     {
         $res = $this->adapter->clearByPrefix(static::PREFIX_1);
-        $this->assertTrue($res);
+        static::assertTrue($res);
     }
 }

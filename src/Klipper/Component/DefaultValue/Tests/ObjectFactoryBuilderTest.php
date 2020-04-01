@@ -48,7 +48,7 @@ final class ObjectFactoryBuilderTest extends TestCase
 
         $builder = $this->builder->setResolvedTypeFactory($typeFactory);
 
-        $this->assertInstanceOf('Klipper\Component\DefaultValue\ObjectFactoryBuilderInterface', $builder);
+        static::assertInstanceOf('Klipper\Component\DefaultValue\ObjectFactoryBuilderInterface', $builder);
     }
 
     public function testAddExtension(): void
@@ -58,7 +58,7 @@ final class ObjectFactoryBuilderTest extends TestCase
 
         $builder = $this->builder->addExtension($ext);
 
-        $this->assertInstanceOf('Klipper\Component\DefaultValue\ObjectFactoryBuilderInterface', $builder);
+        static::assertInstanceOf('Klipper\Component\DefaultValue\ObjectFactoryBuilderInterface', $builder);
     }
 
     public function testAddExtensions(): void
@@ -69,7 +69,7 @@ final class ObjectFactoryBuilderTest extends TestCase
 
         $builder = $this->builder->addExtensions($exts);
 
-        $this->assertInstanceOf('Klipper\Component\DefaultValue\ObjectFactoryBuilderInterface', $builder);
+        static::assertInstanceOf('Klipper\Component\DefaultValue\ObjectFactoryBuilderInterface', $builder);
     }
 
     public function testAddType(): void
@@ -79,7 +79,7 @@ final class ObjectFactoryBuilderTest extends TestCase
 
         $builder = $this->builder->addType($type);
 
-        $this->assertInstanceOf('Klipper\Component\DefaultValue\ObjectFactoryBuilderInterface', $builder);
+        static::assertInstanceOf('Klipper\Component\DefaultValue\ObjectFactoryBuilderInterface', $builder);
     }
 
     public function testAddTypes(): void
@@ -90,7 +90,7 @@ final class ObjectFactoryBuilderTest extends TestCase
 
         $builder = $this->builder->addTypes($types);
 
-        $this->assertInstanceOf('Klipper\Component\DefaultValue\ObjectFactoryBuilderInterface', $builder);
+        static::assertInstanceOf('Klipper\Component\DefaultValue\ObjectFactoryBuilderInterface', $builder);
     }
 
     public function testAddTypeExtension(): void
@@ -100,7 +100,7 @@ final class ObjectFactoryBuilderTest extends TestCase
 
         $builder = $this->builder->addTypeExtension($ext);
 
-        $this->assertInstanceOf('Klipper\Component\DefaultValue\ObjectFactoryBuilderInterface', $builder);
+        static::assertInstanceOf('Klipper\Component\DefaultValue\ObjectFactoryBuilderInterface', $builder);
     }
 
     public function testAddTypeExtensions(): void
@@ -111,7 +111,7 @@ final class ObjectFactoryBuilderTest extends TestCase
 
         $builder = $this->builder->addTypeExtensions($exts);
 
-        $this->assertInstanceOf('Klipper\Component\DefaultValue\ObjectFactoryBuilderInterface', $builder);
+        static::assertInstanceOf('Klipper\Component\DefaultValue\ObjectFactoryBuilderInterface', $builder);
     }
 
     public function testGetObjectFactory(): void
@@ -122,6 +122,6 @@ final class ObjectFactoryBuilderTest extends TestCase
 
         $of = $this->builder->getObjectFactory();
 
-        $this->assertInstanceOf('Klipper\Component\DefaultValue\ObjectFactory', $of);
+        static::assertInstanceOf('Klipper\Component\DefaultValue\ObjectFactory', $of);
     }
 }

@@ -41,8 +41,8 @@ class InitSessionPdoCommand extends Command
             ->setDescription('Initializes the PDO session storage')
             ->setHelp(
                 <<<'EOT'
-                The <info>init:session:pdo</info> command initializes the PDO Session.
-                EOT
+                    The <info>init:session:pdo</info> command initializes the PDO Session.
+                    EOT
             )
         ;
     }

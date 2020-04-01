@@ -30,9 +30,6 @@ class ObjectFactory implements ObjectFactoryInterface
 
     /**
      * Construcotr.
-     *
-     * @param ObjectRegistryInterface            $registry
-     * @param ResolvedObjectTypeFactoryInterface $resolvedTypeFactory
      */
     public function __construct(ObjectRegistryInterface $registry, ResolvedObjectTypeFactoryInterface $resolvedTypeFactory)
     {

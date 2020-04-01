@@ -104,11 +104,7 @@ final class DoctrineTemplateLoaderTest extends TestCase
     /**
      * @dataProvider getExistsArguments
      *
-     * @param bool        $expected
      * @param null|string $expectedName
-     * @param null|string $expectedType
-     * @param null|string $expectedLocale
-     * @param string      $templateName
      */
     public function testExists(
         bool $expected,

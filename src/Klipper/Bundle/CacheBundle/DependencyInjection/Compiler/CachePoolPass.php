@@ -53,8 +53,6 @@ class CachePoolPass implements CompilerPassInterface
      *
      * @param string $haystack The haystack
      * @param string $needle   The needle
-     *
-     * @return bool
      */
     protected function endsWith(string $haystack, string $needle): bool
     {

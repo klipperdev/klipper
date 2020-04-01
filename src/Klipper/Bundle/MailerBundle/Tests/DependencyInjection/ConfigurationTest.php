@@ -32,9 +32,6 @@ final class ConfigurationTest extends TestCase
         static::assertEquals(array_merge([], self::getBundleDefaultConfig()), $config);
     }
 
-    /**
-     * @return array
-     */
     protected static function getBundleDefaultConfig(): array
     {
         return [

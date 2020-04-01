@@ -45,19 +45,19 @@ final class DoctrineAdapterTest extends AbstractAdapterTest
         $key2 = static::PREFIX_2.'foo';
         $value2 = 'bar';
 
-        $this->assertFalse($this->adapter->hasItem($key1));
-        $this->assertFalse($this->adapter->hasItem($key2));
+        static::assertFalse($this->adapter->hasItem($key1));
+        static::assertFalse($this->adapter->hasItem($key2));
 
         // get
         $item1 = $this->adapter->getItem($key1);
-        $this->assertInstanceOf(CacheItem::class, $item1);
-        $this->assertFalse($item1->isHit());
-        $this->assertNull($item1->get());
+        static::assertInstanceOf(CacheItem::class, $item1);
+        static::assertFalse($item1->isHit());
+        static::assertNull($item1->get());
 
         $item2 = $this->adapter->getItem($key2);
-        $this->assertInstanceOf(CacheItem::class, $item2);
-        $this->assertFalse($item2->isHit());
-        $this->assertNull($item2->get());
+        static::assertInstanceOf(CacheItem::class, $item2);
+        static::assertFalse($item2->isHit());
+        static::assertNull($item2->get());
 
         // set
         $item1->set($value1);
@@ -68,24 +68,24 @@ final class DoctrineAdapterTest extends AbstractAdapterTest
 
         // refresh
         $item1 = $this->adapter->getItem($key1);
-        $this->assertTrue($item1->isHit());
-        $this->assertSame($value1, $item1->get());
+        static::assertTrue($item1->isHit());
+        static::assertSame($value1, $item1->get());
 
         $item2 = $this->adapter->getItem($key2);
-        $this->assertTrue($item2->isHit());
-        $this->assertSame($value2, $item2->get());
+        static::assertTrue($item2->isHit());
+        static::assertSame($value2, $item2->get());
 
         // clear
         $res = $this->adapter->clearByPrefix(static::PREFIX_1);
-        $this->assertTrue($res);
+        static::assertTrue($res);
 
         $item1 = $this->adapter->getItem($key1);
-        $this->assertFalse($item1->isHit());
-        $this->assertNull($item1->get());
+        static::assertFalse($item1->isHit());
+        static::assertNull($item1->get());
 
         // check
-        $this->assertFalse($this->adapter->hasItem($key1));
-        $this->assertFalse($this->adapter->hasItem($key2));
+        static::assertFalse($this->adapter->hasItem($key1));
+        static::assertFalse($this->adapter->hasItem($key2));
     }
 
     public function testClearByPrefixWithDeferredItem(): void
@@ -95,19 +95,19 @@ final class DoctrineAdapterTest extends AbstractAdapterTest
 
         $key2 = static::PREFIX_2.'foo';
 
-        $this->assertFalse($this->adapter->hasItem($key1));
-        $this->assertFalse($this->adapter->hasItem($key2));
+        static::assertFalse($this->adapter->hasItem($key1));
+        static::assertFalse($this->adapter->hasItem($key2));
 
         // get
         $item1 = $this->adapter->getItem($key1);
-        $this->assertInstanceOf(CacheItem::class, $item1);
-        $this->assertFalse($item1->isHit());
-        $this->assertNull($item1->get());
+        static::assertInstanceOf(CacheItem::class, $item1);
+        static::assertFalse($item1->isHit());
+        static::assertNull($item1->get());
 
         $item2 = $this->adapter->getItem($key2);
-        $this->assertInstanceOf(CacheItem::class, $item2);
-        $this->assertFalse($item2->isHit());
-        $this->assertNull($item2->get());
+        static::assertInstanceOf(CacheItem::class, $item2);
+        static::assertFalse($item2->isHit());
+        static::assertNull($item2->get());
 
         // set
         $item1->set($value1);
@@ -117,14 +117,14 @@ final class DoctrineAdapterTest extends AbstractAdapterTest
 
         // clear
         $res = $this->adapter->clearByPrefix(static::PREFIX_2);
-        $this->assertTrue($res);
+        static::assertTrue($res);
 
         $item1 = $this->adapter->getItem($key1);
-        $this->assertFalse($item1->isHit());
-        $this->assertNull($item1->get());
+        static::assertFalse($item1->isHit());
+        static::assertNull($item1->get());
 
         // check
-        $this->assertFalse($this->adapter->hasItem($key1));
-        $this->assertFalse($this->adapter->hasItem($key2));
+        static::assertFalse($this->adapter->hasItem($key1));
+        static::assertFalse($this->adapter->hasItem($key2));
     }
 }

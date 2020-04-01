@@ -37,9 +37,6 @@ class DependencyInjectionExtension implements ObjectExtensionInterface
 
     /**
      * Constructor.
-     *
-     * @param array $typeServiceIds
-     * @param array $typeExtensionServiceIds
      */
     public function __construct(array $typeServiceIds, array $typeExtensionServiceIds)
     {

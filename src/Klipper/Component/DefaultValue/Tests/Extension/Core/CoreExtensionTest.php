@@ -38,8 +38,8 @@ final class CoreExtensionTest extends TestCase
 
     public function testCoreExtension(): void
     {
-        $this->assertInstanceOf('Klipper\Component\DefaultValue\ObjectExtensionInterface', $this->extension);
-        $this->assertFalse($this->extension->hasType('default'));
-        $this->assertFalse($this->extension->hasTypeExtensions('default'));
+        static::assertInstanceOf('Klipper\Component\DefaultValue\ObjectExtensionInterface', $this->extension);
+        static::assertFalse($this->extension->hasType('default'));
+        static::assertFalse($this->extension->hasTypeExtensions('default'));
     }
 }

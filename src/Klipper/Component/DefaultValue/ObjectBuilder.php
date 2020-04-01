@@ -27,9 +27,6 @@ class ObjectBuilder extends ObjectConfigBuilder implements ObjectBuilderInterfac
 
     /**
      * Creates a new object default value builder.
-     *
-     * @param ObjectFactoryInterface $factory
-     * @param array                  $options
      */
     public function __construct(ObjectFactoryInterface $factory, array $options = [])
     {

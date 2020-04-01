@@ -69,8 +69,6 @@ class FilesystemAdapter extends BaseFilesystemAdapter implements AdapterInterfac
      * Get the key of file.
      *
      * @param \SplFileInfo $file The spl file info
-     *
-     * @return null|string
      */
     private function getFileKey(\SplFileInfo $file): ?string
     {

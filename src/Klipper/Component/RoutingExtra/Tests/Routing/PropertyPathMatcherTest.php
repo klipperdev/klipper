@@ -58,13 +58,11 @@ final class PropertyPathMatcherTest extends TestCase
      * @dataProvider getMatcherConfig
      *
      * @param array|object $data
-     * @param array        $parameters
-     * @param array        $validParameters
      */
     public function testMatcherParameters($data, array $parameters, array $validParameters): void
     {
         $result = $this->matcher->matchRouteParameters($parameters, $data);
 
-        $this->assertEquals($validParameters, $result);
+        static::assertEquals($validParameters, $result);
     }
 }

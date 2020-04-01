@@ -30,14 +30,14 @@ final class KlipperRoutingExtraExtensionTest extends TestCase
     {
         $container = $this->createContainer();
 
-        $this->assertTrue($container->hasExtension('klipper_routing_extra'));
+        static::assertTrue($container->hasExtension('klipper_routing_extra'));
     }
 
     public function testExtensionLoader(): void
     {
         $container = $this->createContainer();
 
-        $this->assertTrue($container->hasDefinition('klipper_routing_extra.router_extra'));
+        static::assertTrue($container->hasDefinition('klipper_routing_extra.router_extra'));
     }
 
     protected function createContainer(array $configs = []): ContainerBuilder

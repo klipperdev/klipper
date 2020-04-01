@@ -43,8 +43,6 @@ class ApcuAdapter extends BaseApcuAdapter implements AdapterInterface
      * @param string $prefix The full prefix
      *
      * @throws
-     *
-     * @return bool
      */
     protected function doClearItem(array $item, string $prefix): bool
     {

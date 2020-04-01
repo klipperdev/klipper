@@ -45,8 +45,6 @@ class MemcachedAdapter extends BaseMemcachedAdapter implements AdapterInterface
      * @param string $prefix The full prefix
      *
      * @throws
-     *
-     * @return bool
      */
     private function doClearItem(string $id, string $prefix): bool
     {
@@ -76,8 +74,6 @@ class MemcachedAdapter extends BaseMemcachedAdapter implements AdapterInterface
 
     /**
      * Get the client.
-     *
-     * @return \Memcached
      */
     private function getParentClient(): \Memcached
     {

@@ -75,8 +75,6 @@ final class TransporterPassTest extends KernelTestCase
 
     /**
      * Gets the container.
-     *
-     * @return ContainerBuilder
      */
     protected function getContainer(): ContainerBuilder
     {

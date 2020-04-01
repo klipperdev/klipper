@@ -61,9 +61,9 @@ final class CachePoolPassTest extends TestCase
 
         $this->compiler->process($this->container);
 
-        $this->assertSame(FilesystemAdapter::class, $poolDefinitions['cache.adapter.filesystem']->getClass());
-        $this->assertSame(SymfonyApcuAdapter::class, $poolDefinitions['cache.adapter.apcu']->getClass());
-        $this->assertSame(AdapterInterface::class, $poolDefinitions['cache.adapter.abstract_adapter']->getClass());
+        static::assertSame(FilesystemAdapter::class, $poolDefinitions['cache.adapter.filesystem']->getClass());
+        static::assertSame(SymfonyApcuAdapter::class, $poolDefinitions['cache.adapter.apcu']->getClass());
+        static::assertSame(AdapterInterface::class, $poolDefinitions['cache.adapter.abstract_adapter']->getClass());
     }
 
     private function createCacheDefinition($class)

@@ -26,7 +26,7 @@ final class RedisAdapterTest extends AbstractAdapterTest
     protected function setUp(): void
     {
         if (!class_exists(Client::class)) {
-            $this->markTestSkipped('Predis is not installed');
+            static::markTestSkipped('Predis is not installed');
         }
 
         $redisHost = 'localhost';
@@ -36,7 +36,7 @@ final class RedisAdapterTest extends AbstractAdapterTest
         socket_close($socket);
 
         if (!$result) {
-            $this->markTestSkipped('Redis is not running');
+            static::markTestSkipped('Redis is not running');
         }
 
         $redis = RedisAdapter::createConnection('redis://'.$redisHost.'/1', [
@@ -44,7 +44,7 @@ final class RedisAdapterTest extends AbstractAdapterTest
             'timeout' => 3,
         ]);
 
-        $this->assertInstanceOf(Client::class, $redis);
+        static::assertInstanceOf(Client::class, $redis);
 
         $this->adapter = new RedisAdapter($redis, static::PREFIX_GLOBAL);
         $this->adapter->clear();

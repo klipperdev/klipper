@@ -68,8 +68,6 @@ class DoctrineTemplate
 
     /**
      * Gets the unique template name.
-     *
-     * @return string
      */
     public function getName(): string
     {
@@ -78,8 +76,6 @@ class DoctrineTemplate
 
     /**
      * Get the type.
-     *
-     * @return null|string
      */
     public function getType(): ?string
     {
@@ -88,8 +84,6 @@ class DoctrineTemplate
 
     /**
      * Get the body.
-     *
-     * @return string
      */
     public function getBody(): string
     {
@@ -98,8 +92,6 @@ class DoctrineTemplate
 
     /**
      * Get the date of update of model.
-     *
-     * @return null|\DateTime
      */
     public function getUpdatedAt(): ?\DateTime
     {

@@ -46,8 +46,6 @@ class KlipperMailerExtension extends Extension
     }
 
     /**
-     * @param LoaderInterface $loader
-     *
      * @throws
      */
     private function configureMailer(LoaderInterface $loader): void
@@ -60,8 +58,6 @@ class KlipperMailerExtension extends Extension
     }
 
     /**
-     * @param LoaderInterface $loader
-     *
      * @throws
      */
     private function configureSmsSender(LoaderInterface $loader): void
@@ -76,10 +72,6 @@ class KlipperMailerExtension extends Extension
     }
 
     /**
-     * @param ContainerBuilder $container
-     * @param LoaderInterface  $loader
-     * @param array            $config
-     *
      * @throws
      */
     private function configureTwig(ContainerBuilder $container, LoaderInterface $loader, array $config): void
@@ -111,10 +103,6 @@ class KlipperMailerExtension extends Extension
     }
 
     /**
-     * @param ContainerBuilder $container
-     * @param LoaderInterface  $loader
-     * @param array            $config
-     *
      * @throws
      */
     private function configureTwigEmail(ContainerBuilder $container, LoaderInterface $loader, array $config): void
@@ -148,9 +136,6 @@ class KlipperMailerExtension extends Extension
     }
 
     /**
-     * @param LoaderInterface $loader
-     * @param array           $config
-     *
      * @throws
      */
     private function configureTwigLoaders(LoaderInterface $loader, array $config): void

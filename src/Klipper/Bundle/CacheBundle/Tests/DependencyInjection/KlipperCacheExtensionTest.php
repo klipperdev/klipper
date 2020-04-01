@@ -33,7 +33,7 @@ final class KlipperCacheExtensionTest extends TestCase
     {
         $container = $this->createContainer();
 
-        $this->assertFalse($container->hasParameter('klipper_cache.override_cache_services'));
+        static::assertFalse($container->hasParameter('klipper_cache.override_cache_services'));
     }
 
     /**

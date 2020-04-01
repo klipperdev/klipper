@@ -25,13 +25,13 @@ final class ObjectsTest extends TestCase
     {
         $of = Objects::createObjectFactoryBuilder();
 
-        $this->assertInstanceOf('Klipper\Component\DefaultValue\ObjectFactoryBuilderInterface', $of);
+        static::assertInstanceOf('Klipper\Component\DefaultValue\ObjectFactoryBuilderInterface', $of);
     }
 
     public function testObjectFactoryCreator(): void
     {
         $of = Objects::createObjectFactory();
 
-        $this->assertInstanceOf('Klipper\Component\DefaultValue\ObjectFactoryInterface', $of);
+        static::assertInstanceOf('Klipper\Component\DefaultValue\ObjectFactoryInterface', $of);
     }
 }
