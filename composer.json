@@ -59,6 +59,7 @@
         "klipper/routing-extra": "self.version",
         "klipper/routing-extra-bundle": "self.version",
         "klipper/security": "self.version",
+        "klipper/security-bundle": "self.version",
         "klipper/session-bundle": "self.version",
         "klipper/system": "self.version"
     }
