@@ -58,6 +58,7 @@
         "klipper/doctrine-extensions": "self.version",
         "klipper/doctrine-extensions-bundle": "self.version",
         "klipper/mailer": "self.version",
+        "klipper/mailer-bundle": "self.version",
         "klipper/resource": "self.version",
         "klipper/resource-bundle": "self.version",
         "klipper/routing-extra": "self.version",

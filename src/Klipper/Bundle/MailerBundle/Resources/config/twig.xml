@@ -1,0 +1,50 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="klipper_mailer.twig.loader.sandbox"
+                 class="Klipper\Component\Mailer\Twig\Loader\SandboxLoader"
+                 public="false">
+            <tag name="twig.loader" priority="900" />
+            <argument type="service" id="klipper_mailer.sandbox_templater" />
+            <argument type="collection" />
+        </service>
+
+        <service id="klipper_mailer.twig.loader.filesystem_template"
+                 class="Klipper\Component\Mailer\Twig\Loader\FilesystemTemplateLoader"
+                 public="false">
+            <tag name="twig.loader" priority="800" />
+            <argument>%kernel.project_dir%</argument>
+            <argument>en</argument>
+        </service>
+
+        <service id="klipper_mailer.sandbox_templater"
+                 class="Klipper\Component\Mailer\Mime\SandboxTemplater"
+                 public="true">
+            <argument type="service" id="klipper_mailer.twig.extension.sandbox" />
+        </service>
+
+        <service id="Klipper\Component\Mailer\Mime\SandboxTemplater" alias="klipper_mailer.sandbox_templater" />
+        <service id="Klipper\Component\Mailer\Mime\SandboxTemplaterInterface" alias="klipper_mailer.sandbox_templater" />
+
+        <service id="klipper_mailer.twig.extension.sandbox"
+                 class="Twig\Extension\SandboxExtension"
+                 public="false">
+            <tag name="twig.extension" />
+            <argument type="service" id="klipper_mailer.twig.sandbox.security_policy" />
+        </service>
+
+        <service id="klipper_mailer.twig.sandbox.security_policy"
+                 class="Twig\Sandbox\SecurityPolicy"
+                 public="false">
+            <argument type="collection"/>
+            <argument type="collection"/>
+            <argument type="collection"/>
+            <argument type="collection"/>
+            <argument type="collection"/>
+        </service>
+    </services>
+</container>
