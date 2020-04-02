@@ -1,0 +1,27 @@
+{
+    "name": "klipper/batch",
+    "type": "library",
+    "description": "Batch component of Klipper",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "François Pluchino",
+            "email": "francois.pluchino@klipper.dev"
+        }
+    ],
+    "require": {
+        "php": "^7.4.0",
+        "symfony/validator": "^4.3.0"
+    },
+    "autoload": {
+        "psr-4": { "Klipper\\Component\\Batch\\": "" },
+        "exclude-from-classmap": [
+            "**/Tests/"
+        ]
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.0-dev"
+        }
+    }
+}
