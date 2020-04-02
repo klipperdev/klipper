@@ -1,0 +1,34 @@
+{
+    "name": "klipper/expression-language",
+    "type": "library",
+    "description": "Expression Language component of Klipper",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "François Pluchino",
+            "email": "francois.pluchino@klipper.dev"
+        }
+    ],
+    "require": {
+        "php": "^7.4.0",
+        "symfony/expression-language": "^4.3.0"
+    },
+    "require-dev": {
+        "klipper/intl": "^2.0.0",
+        "klipper/security": "^2.0.0",
+        "psr/cache": "^1.0.0",
+        "symfony/dependency-injection": "^4.3.0",
+        "symfony/translation": "^4.3.0"
+    },
+    "autoload": {
+        "psr-4": { "Klipper\\Component\\ExpressionLanguage\\": "" },
+        "exclude-from-classmap": [
+            "**/Tests/"
+        ]
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.0-dev"
+        }
+    }
+}

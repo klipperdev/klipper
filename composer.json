@@ -58,6 +58,7 @@
         "klipper/doctrine-extra": "self.version",
         "klipper/doctrine-extensions": "self.version",
         "klipper/doctrine-extensions-bundle": "self.version",
+        "klipper/expression-language": "self.version",
         "klipper/geocoder": "self.version",
         "klipper/http-foundation": "self.version",
         "klipper/http-kernel": "self.version",
