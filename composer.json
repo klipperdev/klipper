@@ -72,6 +72,7 @@
         "klipper/sms-sender-bundle": "self.version",
         "klipper/system": "self.version",
         "klipper/twig-sms-sender": "self.version",
-        "klipper/twilio-sms-sender": "self.version"
+        "klipper/twilio-sms-sender": "self.version",
+        "klipper/uuid": "self.version"
     }
 }

@@ -1,0 +1,27 @@
+{
+    "name": "klipper/uuid",
+    "type": "library",
+    "description": "Uuid component of Klipper",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "François Pluchino",
+            "email": "francois.pluchino@klipper.dev"
+        }
+    ],
+    "require": {
+        "php": "^7.4.0",
+        "ramsey/uuid": "^3.7.0"
+    },
+    "autoload": {
+        "psr-4": { "Klipper\\Component\\Uuid\\": "" },
+        "exclude-from-classmap": [
+            "**/Tests/"
+        ]
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.0-dev"
+        }
+    }
+}
