@@ -1,0 +1,30 @@
+{
+    "name": "klipper/geocoder",
+    "type": "library",
+    "description": "Geocoder component of Klipper",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "François Pluchino",
+            "email": "francois.pluchino@klipper.dev"
+        }
+    ],
+    "require": {
+        "php": "^7.4.0",
+        "symfony/form": "^4.3.0",
+        "symfony/property-access": "^4.3.0",
+        "symfony/options-resolver": "^4.3.0",
+        "creof/doctrine2-spatial": "^1.2.0"
+    },
+    "autoload": {
+        "psr-4": { "Klipper\\Component\\Geocoder\\": "" },
+        "exclude-from-classmap": [
+            "**/Tests/"
+        ]
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.0-dev"
+        }
+    }
+}
