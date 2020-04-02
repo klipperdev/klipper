@@ -57,6 +57,7 @@
         "klipper/doctrine-extra": "self.version",
         "klipper/doctrine-extensions": "self.version",
         "klipper/doctrine-extensions-bundle": "self.version",
+        "klipper/http-foundation": "self.version",
         "klipper/mailer": "self.version",
         "klipper/mailer-bundle": "self.version",
         "klipper/resource": "self.version",
