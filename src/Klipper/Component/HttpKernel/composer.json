@@ -1,0 +1,27 @@
+{
+    "name": "klipper/http-kernel",
+    "type": "library",
+    "description": "System component of Klipper",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "François Pluchino",
+            "email": "francois.pluchino@klipper.dev"
+        }
+    ],
+    "require": {
+        "php": "^7.4.0",
+        "symfony/http-kernel": "^4.3.0"
+    },
+    "autoload": {
+        "psr-4": { "Klipper\\Component\\HttpKernel\\": "" },
+        "exclude-from-classmap": [
+            "**/Tests/"
+        ]
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.0-dev"
+        }
+    }
+}
