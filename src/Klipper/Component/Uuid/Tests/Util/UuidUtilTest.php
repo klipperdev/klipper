@@ -46,6 +46,6 @@ final class UuidUtilTest extends TestCase
      */
     public function testIsV4($string, $valid): void
     {
-        $this->assertSame($valid, UuidUtil::isV4($string));
+        static::assertSame($valid, UuidUtil::isV4($string));
     }
 }

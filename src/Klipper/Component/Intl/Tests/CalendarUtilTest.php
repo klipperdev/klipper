@@ -28,16 +28,16 @@ final class CalendarUtilTest extends TestCase
 {
     public function testGetWeekDay(): void
     {
-        $this->assertSame('Sunday', CalendarUtil::getWeekDay(0));
-        $this->assertSame('Monday', CalendarUtil::getWeekDay(1));
-        $this->assertSame('Tuesday', CalendarUtil::getWeekDay(2));
-        $this->assertSame('Wednesday', CalendarUtil::getWeekDay(3));
-        $this->assertSame('Thursday', CalendarUtil::getWeekDay(4));
-        $this->assertSame('Friday', CalendarUtil::getWeekDay(5));
-        $this->assertSame('Saturday', CalendarUtil::getWeekDay(6));
+        static::assertSame('Sunday', CalendarUtil::getWeekDay(0));
+        static::assertSame('Monday', CalendarUtil::getWeekDay(1));
+        static::assertSame('Tuesday', CalendarUtil::getWeekDay(2));
+        static::assertSame('Wednesday', CalendarUtil::getWeekDay(3));
+        static::assertSame('Thursday', CalendarUtil::getWeekDay(4));
+        static::assertSame('Friday', CalendarUtil::getWeekDay(5));
+        static::assertSame('Saturday', CalendarUtil::getWeekDay(6));
 
-        $this->assertSame('Sunday', CalendarUtil::getWeekDay(-1));
-        $this->assertSame('Saturday', CalendarUtil::getWeekDay(7));
+        static::assertSame('Sunday', CalendarUtil::getWeekDay(-1));
+        static::assertSame('Saturday', CalendarUtil::getWeekDay(7));
     }
 
     public function testGetWeekDays(): void
@@ -52,7 +52,7 @@ final class CalendarUtilTest extends TestCase
             6 => 'Saturday',
         ];
 
-        $this->assertSame($valid, CalendarUtil::getWeekDays());
+        static::assertSame($valid, CalendarUtil::getWeekDays());
     }
 
     public function getLocalizedDays(): array
@@ -77,9 +77,9 @@ final class CalendarUtilTest extends TestCase
      */
     public function testGetLocalizedWeekDay($day, $validEnglish, $validFrench): void
     {
-        $this->assertSame($validEnglish, CalendarUtil::getLocalizedWeekDay($day, 'en_US'));
-        $this->assertSame($validFrench, CalendarUtil::getLocalizedWeekDay($day, 'fr_CA'));
-        $this->assertSame($validFrench, CalendarUtil::getLocalizedWeekDay($day, 'fr_FR'));
+        static::assertSame($validEnglish, CalendarUtil::getLocalizedWeekDay($day, 'en_US'));
+        static::assertSame($validFrench, CalendarUtil::getLocalizedWeekDay($day, 'fr_CA'));
+        static::assertSame($validFrench, CalendarUtil::getLocalizedWeekDay($day, 'fr_FR'));
     }
 
     public function getWeekDaysLocales(): array
@@ -122,6 +122,6 @@ final class CalendarUtilTest extends TestCase
      */
     public function testGetLocalizedWeekDays($locale, array $validDays): void
     {
-        $this->assertSame($validDays, CalendarUtil::getLocalizedWeekDays($locale));
+        static::assertSame($validDays, CalendarUtil::getLocalizedWeekDays($locale));
     }
 }
