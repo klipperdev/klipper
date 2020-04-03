@@ -9,6 +9,8 @@
             "email": "francois.pluchino@klipper.dev"
         }
     ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "require": {
         "klipper/choice": "^2.0.0",
         "symfony/framework-bundle": "^4.3.0"
