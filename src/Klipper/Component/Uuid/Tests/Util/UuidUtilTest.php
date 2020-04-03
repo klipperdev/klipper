@@ -29,8 +29,6 @@ final class UuidUtilTest extends TestCase
 {
     /**
      * @throws \Exception
-     *
-     * @return array
      */
     public function getUuidStrings(): array
     {

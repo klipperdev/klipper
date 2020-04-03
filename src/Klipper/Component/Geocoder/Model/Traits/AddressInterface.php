@@ -31,8 +31,6 @@ interface AddressInterface
 
     /**
      * Get the street.
-     *
-     * @return null|string
      */
     public function getStreet(): ?string;
 
@@ -47,8 +45,6 @@ interface AddressInterface
 
     /**
      * Get the complement of street.
-     *
-     * @return null|string
      */
     public function getStreetComplement(): ?string;
 
@@ -63,8 +59,6 @@ interface AddressInterface
 
     /**
      * Get the postal code.
-     *
-     * @return null|string
      */
     public function getPostalCode(): ?string;
 
@@ -79,8 +73,6 @@ interface AddressInterface
 
     /**
      * Get the city.
-     *
-     * @return null|string
      */
     public function getCity(): ?string;
 
@@ -95,8 +87,6 @@ interface AddressInterface
 
     /**
      * Get the state.
-     *
-     * @return null|string
      */
     public function getState(): ?string;
 
@@ -111,8 +101,6 @@ interface AddressInterface
 
     /**
      * Get the country.
-     *
-     * @return null|string
      */
     public function getCountry(): ?string;
 
@@ -127,8 +115,6 @@ interface AddressInterface
 
     /**
      * Get the geometry location of address.
-     *
-     * @return null|Point
      */
     public function getAddressLocation(): ?Point;
 }

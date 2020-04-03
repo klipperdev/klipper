@@ -23,8 +23,6 @@ abstract class ChoiceAvailableUtil
      *
      * @param array $items      The items
      * @param array $availables The available items
-     *
-     * @return array
      */
     public static function generateAvailableList(array $items, array $availables = []): array
     {

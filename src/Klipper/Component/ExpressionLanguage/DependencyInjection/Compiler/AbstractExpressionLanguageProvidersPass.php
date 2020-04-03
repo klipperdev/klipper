@@ -44,22 +44,16 @@ abstract class AbstractExpressionLanguageProvidersPass implements CompilerPassIn
 
     /**
      * Get the service id of expression language.
-     *
-     * @return string
      */
     abstract protected function getExpressionLanguageId(): string;
 
     /**
      * Get the tag name for provider.
-     *
-     * @return string
      */
     abstract protected function getProviderTagName(): string;
 
     /**
      * Get the tag name for provider.
-     *
-     * @return string
      */
     abstract protected function getFunctionTagName(): string;
 }

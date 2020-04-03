@@ -26,8 +26,6 @@ abstract class UuidUtil
      * Check if the string is a UUID v4.
      *
      * @param string $string The string
-     *
-     * @return bool
      */
     public static function isV4(string $string): bool
     {
@@ -38,8 +36,6 @@ abstract class UuidUtil
      * Validate the string uuid.
      *
      * @param string $string The string
-     *
-     * @return string
      */
     public static function validate(string $string): string
     {

@@ -20,8 +20,6 @@ interface NameableChoiceInterface extends ChoiceInterface
 {
     /**
      * Get the unique name.
-     *
-     * @return string
      */
     public static function getName(): string;
 }

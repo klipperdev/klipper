@@ -65,8 +65,6 @@ class TranslatableExpressionLanguage extends BaseExpressionLanguage
 
     /**
      * Get the functions.
-     *
-     * @return array
      */
     public function getFunctions(): array
     {
@@ -77,8 +75,6 @@ class TranslatableExpressionLanguage extends BaseExpressionLanguage
      * Check if the value can be evaluated with the expression language.
      *
      * @param null|mixed $value The value
-     *
-     * @return bool
      */
     public function isEvaluable($value): bool
     {
@@ -120,8 +116,6 @@ class TranslatableExpressionLanguage extends BaseExpressionLanguage
      * Get the translated message of error.
      *
      * @param string $message The error message
-     *
-     * @return string
      */
     protected function getTranslatedMessage(string $message): string
     {

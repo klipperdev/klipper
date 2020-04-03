@@ -58,8 +58,6 @@ class ArrayToPointTransformer implements DataTransformerInterface
      * @param array $value The array value
      *
      * @throws TransformationFailedException If the given value is not a array
-     *
-     * @return null|Point
      */
     public function reverseTransform($value): ?Point
     {
@@ -82,8 +80,6 @@ class ArrayToPointTransformer implements DataTransformerInterface
      * Check if the value of reverse transformer is empty.
      *
      * @param mixed $value The value of reverse transformer
-     *
-     * @return bool
      */
     private function isEmpty($value): bool
     {

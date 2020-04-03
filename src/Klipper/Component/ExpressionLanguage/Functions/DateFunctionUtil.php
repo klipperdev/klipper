@@ -62,8 +62,6 @@ abstract class DateFunctionUtil
      * Get the date formatter.
      *
      * @param null|\IntlDateFormatter $formatter The date formatter
-     *
-     * @return \IntlDateFormatter
      */
     public static function getFormatter(?\IntlDateFormatter $formatter = null): \IntlDateFormatter
     {

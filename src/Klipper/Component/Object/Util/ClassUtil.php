@@ -23,8 +23,6 @@ abstract class ClassUtil
      *
      * @param object|\ReflectionClass|string $object The object instance or the reflection class or the class name
      * @param string                         $class  The class name
-     *
-     * @return bool
      */
     public static function isInstanceOf($object, string $class): bool
     {
@@ -40,8 +38,6 @@ abstract class ClassUtil
      *
      * @param object|\ReflectionClass|string $object  The object instance or the reflection class or the class name
      * @param string[]                       $classes The class names
-     *
-     * @return bool
      */
     public static function isOneInstancesOf($object, array $classes): bool
     {

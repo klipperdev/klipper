@@ -20,8 +20,6 @@ interface ChoiceInterface
 {
     /**
      * Get the list of choice.
-     *
-     * @return array
      */
     public static function listIdentifiers(): array;
 
@@ -34,8 +32,6 @@ interface ChoiceInterface
 
     /**
      * Get the translation domain name.
-     *
-     * @return string
      */
     public static function getTranslationDomain(): string;
 }

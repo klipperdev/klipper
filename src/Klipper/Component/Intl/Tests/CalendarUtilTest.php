@@ -119,7 +119,6 @@ final class CalendarUtilTest extends TestCase
      * @dataProvider getWeekDaysLocales
      *
      * @param string $locale
-     * @param array  $validDays
      */
     public function testGetLocalizedWeekDays($locale, array $validDays): void
     {

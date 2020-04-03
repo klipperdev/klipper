@@ -20,8 +20,6 @@ abstract class CalendarUtil
      * Get the name of day of week.
      *
      * @param int $day The number of day of week
-     *
-     * @return string
      */
     public static function getWeekDay(int $day): string
     {
@@ -58,8 +56,6 @@ abstract class CalendarUtil
      * @param null|string $timezone The timezone of IntlDateFormatter
      *
      * @throws
-     *
-     * @return string
      */
     public static function getLocalizedWeekDay(int $day, ?string $locale = null, ?string $timezone = null): string
     {
@@ -107,8 +103,6 @@ abstract class CalendarUtil
      *
      * @param null|string $locale   The locale of IntlDateFormatter
      * @param null|string $timezone The timezone of IntlDateFormatter
-     *
-     * @return int
      */
     public static function getFirstDayOfWeek(?string $locale = null, ?string $timezone = null): int
     {
@@ -124,8 +118,6 @@ abstract class CalendarUtil
      *
      * @param null|string $locale   The locale of IntlDateFormatter
      * @param null|string $timezone The timezone of IntlDateFormatter
-     *
-     * @return string
      */
     public static function getFirstDayOfWeekName(?string $locale = null, ?string $timezone = null): string
     {
@@ -141,8 +133,6 @@ abstract class CalendarUtil
      * @param null|string $timezone The timezone of IntlDateFormatter
      *
      * @throws
-     *
-     * @return int
      */
     public static function getLastDayOfWeek(?string $locale = null, ?string $timezone = null): int
     {
@@ -161,8 +151,6 @@ abstract class CalendarUtil
      *
      * @param null|string $locale   The locale of IntlDateFormatter
      * @param null|string $timezone The timezone of IntlDateFormatter
-     *
-     * @return string
      */
     public static function getLastDayOfWeekName(?string $locale = null, ?string $timezone = null): string
     {
@@ -174,8 +162,6 @@ abstract class CalendarUtil
      *
      * @param null|string $locale   The locale of IntlDateFormatter
      * @param null|string $timezone The timezone of IntlDateFormatter
-     *
-     * @return \IntlDateFormatter
      */
     protected static function createFormatter(?string $locale = null, ?string $timezone = null): \IntlDateFormatter
     {
@@ -197,8 +183,6 @@ abstract class CalendarUtil
      *
      * @param null|string $locale   The locale of IntlDateFormatter
      * @param null|string $timezone The timezone of IntlDateFormatter
-     *
-     * @return \IntlCalendar
      */
     protected static function createCalendar(?string $locale = null, ?string $timezone = null): \IntlCalendar
     {
@@ -213,8 +197,6 @@ abstract class CalendarUtil
      * Generate the next timestamp.
      *
      * @param string $value The time value
-     *
-     * @return int
      */
     protected static function generateNextTimestamp(string $value): int
     {

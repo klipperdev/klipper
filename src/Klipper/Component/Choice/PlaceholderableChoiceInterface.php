@@ -20,8 +20,6 @@ interface PlaceholderableChoiceInterface extends ChoiceInterface
 {
     /**
      * Get the placeholder.
-     *
-     * @return string
      */
     public static function getPlaceholder(): string;
 }

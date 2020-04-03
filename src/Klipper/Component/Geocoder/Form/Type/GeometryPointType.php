@@ -105,8 +105,6 @@ class GeometryPointType extends AbstractType
      * Get the property path.
      *
      * @param FormEvent $event The form event
-     *
-     * @return string
      */
     private function getPropertyPath(FormEvent $event): string
     {

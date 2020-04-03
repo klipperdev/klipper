@@ -20,8 +20,6 @@ interface JobResultInterface
 {
     /**
      * Check if the job is valid.
-     *
-     * @return bool
      */
     public function isValid(): bool;
 
@@ -36,15 +34,11 @@ interface JobResultInterface
 
     /**
      * Check if the job is retryable.
-     *
-     * @return bool
      */
     public function isRetryable(): bool;
 
     /**
      * Get the constraint violation list.
-     *
-     * @return ConstraintViolationListInterface
      */
     public function getConstraintViolationList(): ConstraintViolationListInterface;
 
@@ -59,8 +53,6 @@ interface JobResultInterface
 
     /**
      * Get the exception.
-     *
-     * @return null|\Exception
      */
     public function getException(): ?\Exception;
 }

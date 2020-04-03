@@ -20,8 +20,6 @@ abstract class LanguageUtil
 {
     /**
      * Get the languages.
-     *
-     * @return array
      */
     public static function getLanguages(): array
     {

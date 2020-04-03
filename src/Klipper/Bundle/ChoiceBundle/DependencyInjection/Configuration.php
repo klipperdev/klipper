@@ -40,9 +40,6 @@ class Configuration implements ConfigurationInterface
         return $treeBuilder;
     }
 
-    /**
-     * @return ArrayNodeDefinition
-     */
     protected function getExtendableChoicesNode(): ArrayNodeDefinition
     {
         $treeBuilder = new TreeBuilder('extendable_choices');
