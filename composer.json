@@ -71,6 +71,7 @@
         "klipper/object": "self.version",
         "klipper/resource": "self.version",
         "klipper/resource-bundle": "self.version",
+        "klipper/routing": "self.version",
         "klipper/routing-extra": "self.version",
         "klipper/routing-extra-bundle": "self.version",
         "klipper/security": "self.version",
