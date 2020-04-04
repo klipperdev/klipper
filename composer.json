@@ -68,6 +68,7 @@
         "klipper/intl": "self.version",
         "klipper/mailer": "self.version",
         "klipper/mailer-bundle": "self.version",
+        "klipper/metadata": "self.version",
         "klipper/object": "self.version",
         "klipper/resource": "self.version",
         "klipper/resource-bundle": "self.version",
