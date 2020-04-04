@@ -1,0 +1,51 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <!-- Loader -->
+        <service id="klipper_routing.loader"
+                 class="Klipper\Component\Routing\Loader\PassDelegatingLoader"
+                 decorates="routing.loader"
+                 public="false">
+            <argument type="service" id="klipper_routing.loader.inner" />
+            <argument type="tagged" tag="klipper_routing.pass_loader" />
+        </service>
+
+        <service id="klipper_routing.loader.array_resource"
+                 class="Klipper\Component\Routing\Loader\ArrayResourceLoader"
+                 public="false">
+            <tag name="routing.loader" />
+        </service>
+
+        <!-- Array Config Resource -->
+        <service id="klipper_routing.resource.array_resource"
+                 class="Klipper\Component\Config\ArrayResource"
+                 public="true">
+            <argument type="collection" />
+        </service>
+
+        <!-- Pass Loader -->
+        <service id="klipper_routing.pass_loader.controller_host_auto_config"
+                 class="Klipper\Component\Routing\Loader\Pass\ControllerHostAutoConfigPassLoader"
+                 public="false">
+            <tag name="klipper_routing.pass_loader" />
+            <argument />
+        </service>
+
+        <service id="klipper_routing.pass_loader.host_auto_config"
+                 class="Klipper\Component\Routing\Loader\Pass\HostAutoConfigPassLoader"
+                 public="false">
+            <tag name="klipper_routing.pass_loader" />
+            <argument />
+        </service>
+
+        <service id="klipper_routing.pass_loader.priority"
+                 class="Klipper\Component\Routing\Loader\Pass\PriorityPassLoader"
+                 public="false">
+            <tag name="klipper_routing.pass_loader" />
+        </service>
+    </services>
+</container>
