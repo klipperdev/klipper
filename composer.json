@@ -92,6 +92,7 @@
         "klipper/routing-bundle": "self.version",
         "klipper/routing-extra": "self.version",
         "klipper/routing-extra-bundle": "self.version",
+        "klipper/search": "self.version",
         "klipper/security": "self.version",
         "klipper/security-bundle": "self.version",
         "klipper/security-extra": "self.version",
