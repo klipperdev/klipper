@@ -94,6 +94,7 @@
         "klipper/routing-extra-bundle": "self.version",
         "klipper/security": "self.version",
         "klipper/security-bundle": "self.version",
+        "klipper/security-extra": "self.version",
         "klipper/serializer-extra-bundle": "self.version",
         "klipper/session-bundle": "self.version",
         "klipper/sms-sender": "self.version",
