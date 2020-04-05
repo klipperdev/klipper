@@ -57,6 +57,7 @@
         "klipper/choice": "self.version",
         "klipper/choice-bundle": "self.version",
         "klipper/config": "self.version",
+        "klipper/content": "self.version",
         "klipper/data-loader": "self.version",
         "klipper/default-value": "self.version",
         "klipper/default-value-bundle": "self.version",
