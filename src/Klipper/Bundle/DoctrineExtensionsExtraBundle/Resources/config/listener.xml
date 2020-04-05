@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="klipper_doctrine_extensions_extra.html_cleaner" class="Klipper\Component\DoctrineExtensionsExtra\Htmlable\HtmlCleaner" public="false"/>
+
+        <!-- Doctrine listener Htmlable -->
+        <service id="klipper_doctrine_extensions_extra.listener.htmlable" class="%klipper_doctrine_extensions_extra.listener.htmlable.class%" public="false">
+            <argument type="service" id="klipper_doctrine_extensions_extra.html_cleaner"/>
+            <call method="setAnnotationReader">
+                <argument type="service" id="annotation_reader" />
+            </call>
+        </service>
+
+        <!-- Doctrine listener Auto Numberable -->
+        <service id="klipper_doctrine_extensions_extra.listener.auto_numberable" class="%klipper_doctrine_extensions_extra.listener.auto_numberable.class%" public="false">
+            <argument type="service" id="klipper_doctrine_extensions_extra.listener.auto_numberable.auto_number_generator"/>
+            <argument type="service" id="klipper_doctrine_extensions_extra.listener.auto_numberable.expression_language"/>
+            <call method="setAnnotationReader">
+                <argument type="service" id="annotation_reader" />
+            </call>
+        </service>
+
+        <service id="klipper_doctrine_extensions_extra.listener.auto_numberable.auto_number_generator" class="Klipper\Component\DoctrineExtensionsExtra\AutoNumberable\AutoNumberGenerator" public="false">
+            <argument type="service" id="klipper_doctrine_extensions_extra.listener.auto_numberable.number_generator" />
+        </service>
+
+        <service id="klipper_doctrine_extensions_extra.listener.auto_numberable.number_generator" class="Klipper\Component\DoctrineExtensionsExtra\AutoNumberable\NumberGenerator" public="false" />
+
+        <service id="klipper_doctrine_extensions_extra.listener.auto_numberable.expression_language" class="Klipper\Component\DoctrineExtensionsExtra\AutoNumberable\ExpressionLanguage" public="false" />
+
+        <!-- Doctrine listener Metadata -->
+        <service id="klipper_doctrine_extensions_extra.listener.metadata" class="%klipper_doctrine_extensions_extra.listener.metadata.class%" public="false">
+            <tag name="klipper_metadata.object_loader"/>
+            <argument type="service" id="doctrine"/>
+            <argument type="service" id="property_accessor"/>
+            <call method="setAnnotationReader">
+                <argument type="service" id="annotation_reader" />
+            </call>
+        </service>
+    </services>
+</container>

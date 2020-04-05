@@ -1,0 +1,7 @@
+Klipper\Component\DoctrineExtensionsExtra\Filterable\FilterConfig:
+    exclusion_policy: all
+    properties:
+        filters:
+            groups: [Default]
+        groups:
+            groups: [Default]

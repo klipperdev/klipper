@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="form.type_extension.klipper_doctrine_extensions_extra.entity_select2" class="Klipper\Component\DoctrineExtensionsExtra\Form\Extension\SymfonyTranslatableEntityExtension" public="true">
+            <tag name="form.type_extension" priority="200" />
+        </service>
+
+        <service id="form.type_extension.klipper_doctrine_extensions_extra.klipper_entity_select2" class="Klipper\Component\DoctrineExtensionsExtra\Form\Extension\KlipperTranslatableEntityExtension" public="true">
+            <tag name="form.type_extension" priority="200" />
+        </service>
+    </services>
+</container>

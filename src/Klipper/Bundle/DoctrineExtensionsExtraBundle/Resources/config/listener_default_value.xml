@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <!-- Doctrine listener Default Value -->
+        <service id="klipper_doctrine_extensions_extra.listener.default_value" class="%klipper_doctrine_extensions_extra.listener.default_value.class%" public="false">
+            <tag name="klipper_doctrine_extensions_extra.default_value.loader"/>
+            <argument type="service" id="doctrine" />
+            <call method="setAnnotationReader">
+                <argument type="service" id="annotation_reader" />
+            </call>
+        </service>
+
+        <service id="klipper_doctrine_extensions_extra.default_value.type_extension.default" class="Klipper\Component\DoctrineExtensionsExtra\DefaultValue\Extension\DoctrineDefaultValueTypeExtension" public="true">
+            <tag name="klipper_default_value.type_extension" class="default" />
+            <argument type="collection"/>
+            <argument type="service" id="klipper_doctrine_extensions_extra.default_value.expression_language" />
+            <argument type="service" id="property_accessor" on-invalid="ignore" />
+        </service>
+
+        <service id="klipper_doctrine_extensions_extra.default_value.expression_language" class="Klipper\Component\DoctrineExtensionsExtra\DefaultValue\ExpressionLanguage">
+            <argument type="service" id="translator" />
+        </service>
+    </services>
+</container>

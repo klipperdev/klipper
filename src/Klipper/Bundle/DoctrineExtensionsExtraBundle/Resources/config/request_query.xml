@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <!-- Request Pagination Query -->
+        <service id="klipper_doctrine_extensions_extra.request_query.pagination" class="Klipper\Component\DoctrineExtensionsExtra\Pagination\RequestPaginationQuery" public="true">
+            <argument type="service" id="request_stack" />
+            <argument>%klipper_doctrine_extensions_extra.pagination.default_size%</argument>
+            <argument>%klipper_doctrine_extensions_extra.pagination.max_size%</argument>
+        </service>
+
+        <service id="Klipper\Component\DoctrineExtensionsExtra\Pagination\RequestPaginationQuery" alias="klipper_doctrine_extensions_extra.request_query.pagination" />
+    </services>
+</container>

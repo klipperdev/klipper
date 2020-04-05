@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="klipper_expression_language.function.today" class="Klipper\Component\ExpressionLanguage\Functions\TodayFunction">
+            <tag name="klipper_doctrine_extensions_extra.filterable.expression_language_function" />
+            <tag name="klipper_doctrine_extensions_extra.default_value.expression_language_function" />
+        </service>
+
+        <service id="klipper_expression_language.function.now" class="Klipper\Component\ExpressionLanguage\Functions\NowFunction">
+            <tag name="klipper_doctrine_extensions_extra.filterable.expression_language_function" />
+            <tag name="klipper_doctrine_extensions_extra.default_value.expression_language_function" />
+        </service>
+
+        <service id="klipper_expression_language.function.datetime" class="Klipper\Component\ExpressionLanguage\Functions\DateTimeFunction">
+            <tag name="klipper_doctrine_extensions_extra.filterable.expression_language_function" />
+            <tag name="klipper_doctrine_extensions_extra.default_value.expression_language_function" />
+        </service>
+
+        <service id="klipper_expression_language.function.date_add" class="Klipper\Component\ExpressionLanguage\Functions\DateAddFunction">
+            <tag name="klipper_doctrine_extensions_extra.filterable.expression_language_function" />
+            <tag name="klipper_doctrine_extensions_extra.default_value.expression_language_function" />
+        </service>
+
+        <service id="klipper_expression_language.function.date_sub" class="Klipper\Component\ExpressionLanguage\Functions\DateSubFunction">
+            <tag name="klipper_doctrine_extensions_extra.filterable.expression_language_function" />
+            <tag name="klipper_doctrine_extensions_extra.default_value.expression_language_function" />
+        </service>
+
+        <service id="klipper_expression_language.function.date_diff" class="Klipper\Component\ExpressionLanguage\Functions\DateDiffFunction">
+            <tag name="klipper_doctrine_extensions_extra.filterable.expression_language_function" />
+            <tag name="klipper_doctrine_extensions_extra.default_value.expression_language_function" />
+        </service>
+
+        <service id="klipper_expression_language.function.year_begin" class="Klipper\Component\ExpressionLanguage\Functions\YearBeginFunction">
+            <tag name="klipper_doctrine_extensions_extra.filterable.expression_language_function" />
+            <tag name="klipper_doctrine_extensions_extra.default_value.expression_language_function" />
+        </service>
+
+        <service id="klipper_expression_language.function.year_end" class="Klipper\Component\ExpressionLanguage\Functions\YearEndFunction">
+            <tag name="klipper_doctrine_extensions_extra.filterable.expression_language_function" />
+            <tag name="klipper_doctrine_extensions_extra.default_value.expression_language_function" />
+        </service>
+
+        <service id="klipper_expression_language.function.month_begin" class="Klipper\Component\ExpressionLanguage\Functions\MonthBeginFunction">
+            <tag name="klipper_doctrine_extensions_extra.filterable.expression_language_function" />
+            <tag name="klipper_doctrine_extensions_extra.default_value.expression_language_function" />
+        </service>
+
+        <service id="klipper_expression_language.function.month_end" class="Klipper\Component\ExpressionLanguage\Functions\MonthEndFunction">
+            <tag name="klipper_doctrine_extensions_extra.filterable.expression_language_function" />
+            <tag name="klipper_doctrine_extensions_extra.default_value.expression_language_function" />
+        </service>
+
+        <service id="klipper_expression_language.function.week_begin" class="Klipper\Component\ExpressionLanguage\Functions\WeekBeginFunction">
+            <tag name="klipper_doctrine_extensions_extra.filterable.expression_language_function" />
+            <tag name="klipper_doctrine_extensions_extra.default_value.expression_language_function" />
+        </service>
+
+        <service id="klipper_expression_language.function.week_end" class="Klipper\Component\ExpressionLanguage\Functions\WeekEndFunction">
+            <tag name="klipper_doctrine_extensions_extra.filterable.expression_language_function" />
+            <tag name="klipper_doctrine_extensions_extra.default_value.expression_language_function" />
+        </service>
+
+        <service id="klipper_expression_language.function.current_user_id" class="Klipper\Component\ExpressionLanguage\Functions\CurrentUserIdFunction">
+            <tag name="klipper_doctrine_extensions_extra.filterable.expression_language_function" />
+            <tag name="klipper_doctrine_extensions_extra.default_value.expression_language_function" />
+            <argument type="service" id="security.token_storage" />
+        </service>
+
+        <service id="klipper_expression_language.function.me_id" class="Klipper\Component\ExpressionLanguage\Functions\CurrentUserIdFunction">
+            <tag name="klipper_doctrine_extensions_extra.filterable.expression_language_function" />
+            <tag name="klipper_doctrine_extensions_extra.default_value.expression_language_function" />
+            <argument type="service" id="security.token_storage" />
+            <argument>me_id</argument>
+        </service>
+    </services>
+</container>

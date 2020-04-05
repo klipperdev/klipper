@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                  http://raw.github.com/doctrine/doctrine2/master/doctrine-mapping.xsd">
+
+    <mapped-superclass name="Klipper\Component\DoctrineExtensionsExtra\AutoNumberable\Model\AutoNumberConfig">
+
+        <field name="type" column="type" type="string" nullable="false" length="255"/>
+
+        <field name="pattern" column="pattern" type="string" nullable="false" length="100"/>
+
+        <field name="number" column="number" type="integer" nullable="false"/>
+
+    </mapped-superclass>
+</doctrine-mapping>

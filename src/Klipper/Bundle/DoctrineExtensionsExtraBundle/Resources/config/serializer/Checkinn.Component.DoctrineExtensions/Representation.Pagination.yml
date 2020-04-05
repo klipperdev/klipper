@@ -1,0 +1,13 @@
+Klipper\Component\DoctrineExtensionsExtra\Representation\Pagination:
+    exclusion_policy: all
+    properties:
+        page:
+            groups: [Default]
+        limit:
+            groups: [Default]
+        pages:
+            groups: [Default]
+        total:
+            groups: [Default]
+        results:
+            groups: [Default]

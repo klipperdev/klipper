@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <!-- Request Sortable Query -->
+        <service id="klipper_doctrine_extensions_extra.request_query.sortable" class="Klipper\Component\DoctrineExtensionsExtra\Sortable\RequestSortableQuery" public="true">
+            <argument type="service" id="request_stack" />
+            <argument type="service" id="klipper_metadata.manager" />
+            <argument type="service" id="security.authorization_checker" on-invalid="ignore"/>
+        </service>
+
+        <!-- Request Searchable Query -->
+        <service id="klipper_doctrine_extensions_extra.request_query.searchable" class="Klipper\Component\DoctrineExtensionsExtra\Searchable\RequestSearchableQuery" public="true">
+            <argument type="service" id="request_stack" />
+            <argument type="service" id="klipper_metadata.manager" />
+            <argument type="service" id="security.authorization_checker" on-invalid="null" />
+        </service>
+
+        <!-- Request Filterable Query -->
+        <service id="klipper_doctrine_extensions_extra.request_query.filterable" class="Klipper\Component\DoctrineExtensionsExtra\Filterable\RequestFilterableQuery" public="true">
+            <argument type="service" id="request_stack" />
+            <argument type="service" id="klipper_metadata.manager" />
+            <argument type="service" id="klipper_doctrine_extensions_extra.request_query.filterable.parser" />
+            <argument type="service" id="form.factory" />
+            <argument type="service" id="translator" />
+            <argument type="service" id="klipper_doctrine_extensions_extra.request_query.filterable.expression_language"  on-invalid="null"/>
+            <argument type="service" id="security.authorization_checker" on-invalid="null" />
+        </service>
+
+        <service id="klipper_doctrine_extensions_extra.request_query.filter_manager" class="Klipper\Component\DoctrineExtensionsExtra\Filterable\FilterManager" public="true">
+            <argument type="service" id="klipper_metadata.manager" />
+            <argument type="service" id="security.authorization_checker" />
+            <argument type="service" id="translator" />
+        </service>
+
+        <service id="klipper_doctrine_extensions_extra.request_query.filterable.parser" class="Klipper\Component\DoctrineExtensionsExtra\Filterable\Parser\TranslatableParser">
+            <call method="setTranslator">
+                <argument type="service" id="translator" />
+            </call>
+        </service>
+
+        <service id="klipper_doctrine_extensions_extra.request_query.filterable.expression_language" class="Klipper\Component\DoctrineExtensionsExtra\Filterable\ExpressionLanguage">
+            <argument type="service" id="translator" />
+        </service>
+
+        <service id="Klipper\Component\DoctrineExtensionsExtra\Filterable\FilterManager" alias="klipper_doctrine_extensions_extra.request_query.filter_manager" />
+    </services>
+</container>

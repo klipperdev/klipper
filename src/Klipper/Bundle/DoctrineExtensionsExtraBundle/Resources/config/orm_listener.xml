@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="klipper_doctrine_extensions_extra.orm.subscriber.translatable" class="Klipper\Component\DoctrineExtensionsExtra\Listener\TranslatableSubscriber">
+            <tag name="doctrine.event_subscriber" />
+            <argument>%klipper_doctrine_extensions_extra.locale_fallback%</argument>
+        </service>
+
+        <service id="klipper_doctrine_extensions_extra.orm.subscriber.disable_filter" class="Klipper\Component\DoctrineExtensionsExtra\Listener\DoctrineDisableFilterSubscriber">
+            <tag name="kernel.event_subscriber" />
+            <argument type="service" id="doctrine" />
+            <argument>_disable_filters</argument>
+        </service>
+    </services>
+</container>
