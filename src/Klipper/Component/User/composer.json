@@ -1,0 +1,33 @@
+{
+    "name": "klipper/user",
+    "type": "library",
+    "description": "User component of Klipper",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "François Pluchino",
+            "email": "francois.pluchino@klipper.dev"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": "^7.4.0",
+        "klipper/choice": "^2.0.0",
+        "klipper/model": "^2.0.0",
+        "klipper/security": "^2.0.0",
+        "symfony/http-kernel": "^4.3.0",
+        "symfony/intl": "^4.3.0"
+    },
+    "autoload": {
+        "psr-4": { "Klipper\\Component\\User\\": "" },
+        "exclude-from-classmap": [
+            "**/Tests/"
+        ]
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.0-dev"
+        }
+    }
+}
