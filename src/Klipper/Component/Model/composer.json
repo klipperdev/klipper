@@ -1,0 +1,33 @@
+{
+    "name": "klipper/model",
+    "type": "library",
+    "description": "Model component of Klipper",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "François Pluchino",
+            "email": "francois.pluchino@klipper.dev"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require-dev": {
+        "php": "^7.4.0",
+        "klipper/doctrine-extensions-extra": "^2.0.0",
+        "klipper/resource": "^2.0.0",
+        "klipper/security": "^2.0.0",
+        "jms/serializer": "^3.0.0",
+        "symfony/validator": "^4.3.0"
+    },
+    "autoload": {
+        "psr-4": { "Klipper\\Component\\Model\\": "" },
+        "exclude-from-classmap": [
+            "**/Tests/"
+        ]
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.0-dev"
+        }
+    }
+}
