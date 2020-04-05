@@ -77,6 +77,8 @@
         "klipper/mailer-bundle": "self.version",
         "klipper/metadata": "self.version",
         "klipper/metadata-bundle": "self.version",
+        "klipper/metadata-extensions": "self.version",
+        "klipper/metadata-extensions-bundle": "self.version",
         "klipper/model": "self.version",
         "klipper/model-contracts": "self.version",
         "klipper/object": "self.version",
@@ -98,6 +100,7 @@
         "klipper/twig-sms-sender": "self.version",
         "klipper/twilio-sms-sender": "self.version",
         "klipper/user": "self.version",
+        "klipper/user-bundle": "self.version",
         "klipper/uuid": "self.version"
     }
 }
