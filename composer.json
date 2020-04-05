@@ -20,7 +20,8 @@
         "psr-4": {
             "Klipper\\Bridge\\": "src/Klipper/Bridge/",
             "Klipper\\Bundle\\": "src/Klipper/Bundle/",
-            "Klipper\\Component\\": "src/Klipper/Component/"
+            "Klipper\\Component\\": "src/Klipper/Component/",
+            "Klipper\\Contracts\\": "src/Klipper/Contracts/"
         },
         "exclude-from-classmap": [
             "**/Tests/"
@@ -40,7 +41,8 @@
             "require": [
                 "src/Klipper/Bridge/*/*/composer.json",
                 "src/Klipper/Bundle/*/composer.json",
-                "src/Klipper/Component/*/composer.json"
+                "src/Klipper/Component/*/composer.json",
+                "src/Klipper/Contracts/*/composer.json"
             ]
         },
         "branch-alias": {
@@ -70,6 +72,7 @@
         "klipper/mailer-bundle": "self.version",
         "klipper/metadata": "self.version",
         "klipper/metadata-bundle": "self.version",
+        "klipper/model-contracts": "self.version",
         "klipper/object": "self.version",
         "klipper/resource": "self.version",
         "klipper/resource-bundle": "self.version",

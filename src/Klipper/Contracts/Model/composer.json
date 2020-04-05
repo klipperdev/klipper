@@ -1,0 +1,28 @@
+{
+    "name": "klipper/model-contracts",
+    "type": "library",
+    "description": "Model contracts of Klipper",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "François Pluchino",
+            "email": "francois.pluchino@klipper.dev"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": "^7.4.0"
+    },
+    "autoload": {
+        "psr-4": { "Klipper\\Contracts\\Model\\": "" },
+        "exclude-from-classmap": [
+            "**/Tests/"
+        ]
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.0-dev"
+        }
+    }
+}
