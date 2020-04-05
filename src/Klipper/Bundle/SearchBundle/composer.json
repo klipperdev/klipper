@@ -1,0 +1,34 @@
+{
+    "name": "klipper/search-bundle",
+    "type": "symfony-bundle",
+    "description": "Search bundle of Klipper",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "François Pluchino",
+            "email": "francois.pluchino@klipper.dev"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": "^7.4.0",
+        "symfony/framework-bundle": "^4.3.0",
+        "symfony/security-core": "^4.3.0",
+        "klipper/security-extra-bundle": "^2.0.0",
+        "klipper/metadata-bundle": "^2.0.0",
+        "klipper/doctrine-extensions-extra-bundle": "^2.0.0",
+        "klipper/search": "^2.0.0"
+    },
+    "autoload": {
+        "psr-4": { "Klipper\\Bundle\\SearchBundle\\": "" },
+        "exclude-from-classmap": [
+            "**/Tests/"
+        ]
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.0-dev"
+        }
+    }
+}
