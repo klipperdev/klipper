@@ -65,6 +65,7 @@
         "klipper/doctrine-migrations-bundle": "self.version",
         "klipper/expression-language": "self.version",
         "klipper/form": "self.version",
+        "klipper/form-bundle": "self.version",
         "klipper/geocoder": "self.version",
         "klipper/http-foundation": "self.version",
         "klipper/http-kernel": "self.version",
