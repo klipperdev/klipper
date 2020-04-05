@@ -1,0 +1,34 @@
+{
+    "name": "klipper/phone-bundle",
+    "type": "symfony-bundle",
+    "description": "Phone bundle of Klipper",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "François Pluchino",
+            "email": "francois.pluchino@klipper.dev"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": "^7.4.0",
+        "symfony/framework-bundle": "^4.3.0",
+        "klipper/phone": "^2.0.0"
+    },
+    "suggest": {
+        "jms/serializer-bundle": "Serialize the objects",
+        "twig/twig": "^2.5.0"
+    },
+    "autoload": {
+        "psr-4": { "Klipper\\Bundle\\PhoneBundle\\": "" },
+        "exclude-from-classmap": [
+            "**/Tests/"
+        ]
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.0-dev"
+        }
+    }
+}

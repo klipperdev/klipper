@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="klipper_phone.serializer.handler"
+                 class="Klipper\Component\Phone\Serializer\Handler\PhoneHandler">
+            <tag name="jms_serializer.handler" type="libphonenumber\PhoneNumber" direction="serialization" format="json" method="serializePhoneNumber"/>
+            <tag name="jms_serializer.handler" type="libphonenumber\PhoneNumber" direction="deserialization" format="json" method="deserializePhoneNumberFromJson"/>
+            <tag name="jms_serializer.handler" type="libphonenumber\PhoneNumber" direction="serialization" format="xml" method="serializePhoneNumber"/>
+            <tag name="jms_serializer.handler" type="libphonenumber\PhoneNumber" direction="deserialization" format="xml" method="deserializePhoneNumberFromXml"/>
+            <argument type="service" id="libphonenumber.phone_number_util" />
+        </service>
+    </services>
+</container>
