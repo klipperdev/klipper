@@ -82,6 +82,7 @@
         "klipper/model": "self.version",
         "klipper/model-contracts": "self.version",
         "klipper/object": "self.version",
+        "klipper/phone": "self.version",
         "klipper/resource": "self.version",
         "klipper/resource-bundle": "self.version",
         "klipper/routing": "self.version",
