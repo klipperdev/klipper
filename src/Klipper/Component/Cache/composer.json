@@ -15,10 +15,10 @@
     "prefer-stable": false,
     "require": {
         "php": "^7.4.0",
-        "symfony/cache": "^4.3.0"
+        "symfony/cache": "^4.4.0"
     },
     "require-dev": {
-        "symfony/filesystem": "^4.3.0",
+        "symfony/filesystem": "^4.4.0",
         "doctrine/dbal": "^2.7.0",
         "predis/predis": "^1.1.0"
     },

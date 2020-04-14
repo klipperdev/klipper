@@ -16,9 +16,9 @@ use Klipper\Component\Mailer\Exception\TransporterException;
 use Klipper\Component\Mailer\Transporter\EmailTransporter;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Mailer\Envelope;
 use Symfony\Component\Mailer\Exception\TransportException;
 use Symfony\Component\Mailer\MailerInterface;
-use Symfony\Component\Mailer\SmtpEnvelope;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Mime\Message;
 use Symfony\Component\Mime\RawMessage;
@@ -27,6 +27,7 @@ use Symfony\Component\Mime\RawMessage;
  * @author François Pluchino <francois.pluchino@klipper.dev>
  *
  * @internal
+ * @group bug
  */
 final class EmailTransporterTest extends TestCase
 {
@@ -61,7 +62,7 @@ final class EmailTransporterTest extends TestCase
     public function testSend(): void
     {
         $message = new RawMessage('');
-        $envelope = $this->getMockBuilder(SmtpEnvelope::class)->disableOriginalConstructor()->getMock();
+        $envelope = $this->getMockBuilder(Envelope::class)->disableOriginalConstructor()->getMock();
 
         $this->sfMailer->expects(static::once())
             ->method('send')
@@ -74,7 +75,7 @@ final class EmailTransporterTest extends TestCase
     public function testSendWithInvalidEnvelope(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('The envelope of message must be an instance of Symfony\Component\Mailer\SmtpEnvelope ("stdClass" given)');
+        $this->expectExceptionMessage('The envelope of message must be an instance of Symfony\Component\Mailer\Envelope ("stdClass" given)');
 
         $this->sfMailer->expects(static::never())
             ->method('send')
@@ -90,7 +91,7 @@ final class EmailTransporterTest extends TestCase
 
         $exception = new TransportException('TRANSPORT MESSAGE EXCEPTION');
         $message = new RawMessage('');
-        $envelope = $this->getMockBuilder(SmtpEnvelope::class)->disableOriginalConstructor()->getMock();
+        $envelope = $this->getMockBuilder(Envelope::class)->disableOriginalConstructor()->getMock();
 
         $this->sfMailer->expects(static::once())
             ->method('send')

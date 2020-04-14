@@ -14,8 +14,8 @@
     "require": {
         "php": "^7.4.0",
         "imagine/imagine": "^1.2.0",
-        "symfony/http-kernel": "^4.3.0",
-        "symfony/filesystem": "^4.3.0"
+        "symfony/http-kernel": "^4.4.0",
+        "symfony/filesystem": "^4.4.0"
     },
     "require-dev": {
         "ankitpokhrel/tus-php": "1.0.*",
