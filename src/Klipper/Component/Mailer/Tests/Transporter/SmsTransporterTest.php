@@ -14,9 +14,9 @@ namespace Klipper\Component\Mailer\Tests\Transporter;
 use Klipper\Component\Mailer\Exception\InvalidArgumentException;
 use Klipper\Component\Mailer\Exception\TransporterException;
 use Klipper\Component\Mailer\Transporter\SmsTransporter;
+use Klipper\Component\SmsSender\Envelope;
 use Klipper\Component\SmsSender\Exception\TransportException;
 use Klipper\Component\SmsSender\Mime\Sms;
-use Klipper\Component\SmsSender\SmsEnvelope;
 use Klipper\Component\SmsSender\SmsSenderInterface;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
@@ -61,7 +61,7 @@ final class SmsTransporterTest extends TestCase
     public function testSend(): void
     {
         $message = new RawMessage('');
-        $envelope = $this->getMockBuilder(SmsEnvelope::class)->disableOriginalConstructor()->getMock();
+        $envelope = $this->getMockBuilder(Envelope::class)->disableOriginalConstructor()->getMock();
 
         $this->smsSender->expects(static::once())
             ->method('send')
@@ -74,7 +74,7 @@ final class SmsTransporterTest extends TestCase
     public function testSendWithInvalidEnvelope(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('The envelope of message must be an instance of Klipper\Component\SmsSender\SmsEnvelope ("stdClass" given)');
+        $this->expectExceptionMessage('The envelope of message must be an instance of Klipper\Component\SmsSender\Envelope ("stdClass" given)');
 
         $this->smsSender->expects(static::never())
             ->method('send')
@@ -90,7 +90,7 @@ final class SmsTransporterTest extends TestCase
 
         $exception = new TransportException('TRANSPORT MESSAGE EXCEPTION');
         $message = new RawMessage('');
-        $envelope = $this->getMockBuilder(SmsEnvelope::class)->disableOriginalConstructor()->getMock();
+        $envelope = $this->getMockBuilder(Envelope::class)->disableOriginalConstructor()->getMock();
 
         $this->smsSender->expects(static::once())
             ->method('send')

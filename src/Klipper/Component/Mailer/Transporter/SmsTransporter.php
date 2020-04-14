@@ -13,9 +13,9 @@ namespace Klipper\Component\Mailer\Transporter;
 
 use Klipper\Component\Mailer\Exception\InvalidArgumentException;
 use Klipper\Component\Mailer\Exception\TransporterException;
+use Klipper\Component\SmsSender\Envelope;
 use Klipper\Component\SmsSender\Exception\TransportExceptionInterface;
 use Klipper\Component\SmsSender\Mime\Sms;
-use Klipper\Component\SmsSender\SmsEnvelope;
 use Klipper\Component\SmsSender\SmsSenderInterface;
 use Symfony\Component\Mime\RawMessage;
 
@@ -54,10 +54,10 @@ class SmsTransporter implements TransporterInterface
      */
     public function send(RawMessage $message, $envelope = null): void
     {
-        if (null !== $envelope && !$envelope instanceof SmsEnvelope) {
+        if (null !== $envelope && !$envelope instanceof Envelope) {
             throw new InvalidArgumentException(sprintf(
                 'The envelope of message must be an instance of %s ("%s" given).',
-                SmsEnvelope::class,
+                Envelope::class,
                 \get_class($envelope)
             ));
         }
