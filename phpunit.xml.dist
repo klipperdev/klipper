@@ -18,6 +18,7 @@
 
     <testsuites>
         <testsuite name="Klipper Test Suite">
+            <directory>./src/Klipper/Bridge/*/*/Tests/</directory>
             <directory>./src/Klipper/Component/*/Tests/</directory>
             <directory>./src/Klipper/Bundle/*/Tests/</directory>
         </testsuite>
@@ -27,6 +28,7 @@
         <whitelist>
             <directory>./src/Klipper/</directory>
             <exclude>
+                <directory>./src/Klipper/Bridge/*/*/Tests</directory>
                 <directory>./src/Klipper/Component/*/Tests</directory>
                 <directory>./src/Klipper/Bundle/*/Tests</directory>
                 <directory>./src/Klipper/Component/*/Resources</directory>
