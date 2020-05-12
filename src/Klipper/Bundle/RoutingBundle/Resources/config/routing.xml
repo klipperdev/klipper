@@ -47,5 +47,16 @@
                  public="false">
             <tag name="klipper_routing.pass_loader" />
         </service>
+
+        <!-- Translatable routing -->
+        <service id="klipper_routing.translatable_routing"
+                 class="Klipper\Component\Routing\TranslatableRouting" public="true">
+            <argument type="service" id="router" />
+            <argument type="service" id="request_stack" />
+        </service>
+
+        <service id="klipper_routing" alias="klipper_routing.translatable_routing" />
+        <service id="Klipper\Component\Routing\TranslatableRouting" alias="klipper_routing.translatable_routing" />
+        <service id="Klipper\Component\Routing\TranslatableRoutingInterface" alias="klipper_routing.translatable_routing" />
     </services>
 </container>

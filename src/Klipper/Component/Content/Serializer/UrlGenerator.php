@@ -17,6 +17,8 @@ use Klipper\Component\Content\Serializer\Type\LangUrl;
 use Klipper\Component\Content\Serializer\Type\OrgUrl;
 use Klipper\Component\Content\Serializer\Type\Url;
 use Klipper\Component\Routing\OrganizationalRoutingInterface;
+use Klipper\Component\Routing\RoutingInterface;
+use Klipper\Component\Routing\TranslatableRoutingInterface;
 use Klipper\Component\RoutingExtra\Routing\PropertyPathMatcherInterface;
 use Symfony\Component\Yaml\Yaml;
 
@@ -33,7 +35,7 @@ class UrlGenerator
     ];
 
     /**
-     * @var OrganizationalRoutingInterface
+     * @var RoutingInterface
      */
     protected $routing;
 
@@ -45,11 +47,11 @@ class UrlGenerator
     /**
      * Constructor.
      *
-     * @param OrganizationalRoutingInterface $routing             The organizational routing
-     * @param PropertyPathMatcherInterface   $propertyPathMatcher The property path matcher
+     * @param RoutingInterface             $routing             The routing
+     * @param PropertyPathMatcherInterface $propertyPathMatcher The property path matcher
      */
     public function __construct(
-        OrganizationalRoutingInterface $routing,
+        RoutingInterface $routing,
         PropertyPathMatcherInterface $propertyPathMatcher
     ) {
         $this->routing = $routing;
@@ -123,7 +125,7 @@ class UrlGenerator
     }
 
     /**
-     * Escape the mapping parametter for yaml parser.
+     * Escape the mapping parameter for yaml parser.
      *
      * @param string $param The mapping parameter
      */
@@ -150,17 +152,26 @@ class UrlGenerator
      */
     protected function getUrl(string $type, string $route, array $parameters, object $object)
     {
+        $translatable = $this->routing instanceof TranslatableRoutingInterface;
+        $organizational = $this->routing instanceof OrganizationalRoutingInterface;
+
         switch ($type) {
             case LangOrgUrl::class:
-                $method = 'getLangOrgUrl';
+                if ($organizational && $translatable) {
+                    $method = 'getLangOrgUrl';
+                } elseif ($translatable) {
+                    $method = 'getLangUrl';
+                } else {
+                    $method = 'getUrl';
+                }
 
                 break;
             case OrgUrl::class:
-                $method = 'getOrgUrl';
+                $method = $organizational ? 'getOrgUrl' : 'getUrl';
 
                 break;
             case LangUrl::class:
-                $method = 'getLangUrl';
+                $method = $translatable ? 'getLangUrl' : 'getUrl';
 
                 break;
             case Url::class:

@@ -12,6 +12,7 @@
             <argument type="service" id="klipper_security.organizational_context" />
         </service>
 
+        <service id="klipper_routing" alias="klipper_routing.organizational_routing" />
         <service id="Klipper\Component\Routing\OrganizationalRouting" alias="klipper_routing.organizational_routing" />
         <service id="Klipper\Component\Routing\OrganizationalRoutingInterface" alias="klipper_routing.organizational_routing" />
     </services>

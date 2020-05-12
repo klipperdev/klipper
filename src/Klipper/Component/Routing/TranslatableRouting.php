@@ -12,7 +12,6 @@
 namespace Klipper\Component\Routing;
 
 use Klipper\Component\HttpFoundation\Util\RequestUtil;
-use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 /**
@@ -20,30 +19,8 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
  *
  * @author François Pluchino <francois.pluchino@klipper.dev>
  */
-class TranslatableRouting implements TranslatableRoutingInterface
+class TranslatableRouting extends Routing implements TranslatableRoutingInterface
 {
-    /**
-     * @var UrlGeneratorInterface
-     */
-    protected $generator;
-
-    /**
-     * @var RequestStack
-     */
-    protected $requestStack;
-
-    /**
-     * Constructor.
-     *
-     * @param UrlGeneratorInterface $generator    The url generator
-     * @param RequestStack          $requestStack The request stack
-     */
-    public function __construct(UrlGeneratorInterface $generator, RequestStack $requestStack)
-    {
-        $this->generator = $generator;
-        $this->requestStack = $requestStack;
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -55,25 +32,9 @@ class TranslatableRouting implements TranslatableRoutingInterface
     /**
      * {@inheritdoc}
      */
-    public function getPath(string $name, array $parameters = [], bool $relative = false): string
-    {
-        return $this->generator->generate($name, $parameters, $relative ? UrlGeneratorInterface::RELATIVE_PATH : UrlGeneratorInterface::ABSOLUTE_PATH);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function getLangPath(string $name, array $parameters = [], bool $relative = false): string
     {
         return $this->getPath($name, $this->getLangParameters($parameters), $relative);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getUrl(string $name, array $parameters = [], bool $schemeRelative = false): string
-    {
-        return $this->generator->generate($name, $parameters, $schemeRelative ? UrlGeneratorInterface::NETWORK_PATH : UrlGeneratorInterface::ABSOLUTE_URL);
     }
 
     /**
