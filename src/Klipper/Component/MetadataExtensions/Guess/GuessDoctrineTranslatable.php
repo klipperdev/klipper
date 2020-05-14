@@ -65,7 +65,7 @@ class GuessDoctrineTranslatable extends AbstractGuessDoctrine implements GuessFi
             $this->cacheTranslatableListener = false;
 
             foreach ($this->registry->getManagers() as $om) {
-                if ($om instanceof EntityManagerInterface) {
+                if ($om instanceof EntityManagerInterface && $om->getEventManager()->hasListeners(Events::postLoad)) {
                     foreach ($om->getEventManager()->getListeners(Events::postLoad) as $omListener) {
                         if ($omListener instanceof TranslatableListener) {
                             $this->cacheTranslatableListener = $omListener;
