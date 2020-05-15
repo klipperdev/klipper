@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="klipper_dependency_injection.env_var_processor.resolve"
+                 class="Klipper\Component\DependencyInjection\ResolveEnvVarProcessor">
+            <tag name="container.env_var_processor" />
+        </service>
+
+        <service id="klipper_dependency_injection.env_var_processor.url_encode"
+                 class="Klipper\Component\DependencyInjection\UrlencodeEnvVarProcessor">
+            <tag name="container.env_var_processor" />
+        </service>
+    </services>
+</container>

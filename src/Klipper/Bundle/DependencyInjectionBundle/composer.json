@@ -1,0 +1,32 @@
+{
+    "name": "klipper/dependency-injection-bundle",
+    "type": "symfony-bundle",
+    "description": "Dependency Injection bundle of Klipper",
+    "keywords": ["dependency", "injection", "processors"],
+    "homepage": "https://github.com/klipperdev/dependency-injection-bundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "François Pluchino",
+            "email": "francois.pluchino@klipper.dev"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": "^7.4.0",
+        "symfony/framework-bundle": "^4.4.0",
+        "klipper/dependency-injection": "^2.0.0"
+    },
+    "autoload": {
+        "psr-4": { "Klipper\\Bundle\\DependencyInjectionBundle\\": "" },
+        "exclude-from-classmap": [
+            "/Tests/"
+        ]
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.0-dev"
+        }
+    }
+}
