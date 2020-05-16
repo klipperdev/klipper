@@ -12,7 +12,7 @@
 namespace Klipper\Component\ExpressionLanguage\Functions;
 
 use Klipper\Component\Security\Model\UserInterface;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 /**
  * Current user id function.
@@ -24,10 +24,10 @@ class CurrentUserIdFunction extends BaseFunction
     /**
      * Constructor.
      *
-     * @param TokenStorage $tokenStorage The token storage
-     * @param string       $function     The name of function
+     * @param TokenStorageInterface $tokenStorage The token storage
+     * @param string                $function     The name of function
      */
-    public function __construct(TokenStorage $tokenStorage, $function = 'current_user_id')
+    public function __construct(TokenStorageInterface $tokenStorage, $function = 'current_user_id')
     {
         parent::__construct($function, static function () use ($tokenStorage) {
             $token = $tokenStorage->getToken();
