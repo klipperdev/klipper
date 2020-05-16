@@ -27,7 +27,6 @@ use Symfony\Component\Mime\RawMessage;
  * @author François Pluchino <francois.pluchino@klipper.dev>
  *
  * @internal
- * @group bug
  */
 final class EmailTransporterTest extends TestCase
 {
