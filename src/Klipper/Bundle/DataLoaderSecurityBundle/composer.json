@@ -1,5 +1,5 @@
 {
-    "name": "klipper/klipper/data-loader-security-bundle",
+    "name": "klipper/data-loader-security-bundle",
     "type": "symfony-bundle",
     "description": "Data Loader Security bundle of Klipper",
     "license": "MIT",
