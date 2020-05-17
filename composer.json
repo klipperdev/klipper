@@ -62,6 +62,7 @@
         "klipper/content-bundle": "self.version",
         "klipper/data-loader": "self.version",
         "klipper/data-loader-security": "self.version",
+        "klipper/data-loader-security-bundle": "self.version",
         "klipper/default-value": "self.version",
         "klipper/default-value-bundle": "self.version",
         "klipper/dependency-injection": "self.version",

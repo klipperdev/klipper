@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="klipper_data_loader_security.command.init_organization"
+                 class="Klipper\Component\DataLoaderSecurity\Command\InitOrganizationCommand">
+            <tag name="console.command" command="init:organization:system" />
+        </service>
+
+        <service id="klipper_data_loader_security.command.init_permissions"
+                 class="Klipper\Component\DataLoaderSecurity\Command\InitPermissionsCommand">
+            <tag name="console.command" command="init:permissions" />
+        </service>
+
+        <service id="klipper_data_loader_security.command.init_roles"
+                 class="Klipper\Component\DataLoaderSecurity\Command\InitRolesCommand">
+            <tag name="console.command" command="init:roles" />
+        </service>
+    </services>
+</container>
