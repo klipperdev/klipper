@@ -32,7 +32,7 @@ trait EmailableTrait
      *
      * @Serializer\Expose
      */
-    private ?string $email;
+    protected ?string $email;
 
     public function getEmail(): ?string
     {
