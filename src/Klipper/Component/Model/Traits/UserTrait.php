@@ -33,7 +33,7 @@ trait UserTrait
      *
      * @Serializer\Expose
      */
-    protected ?string $username;
+    protected ?string $username = null;
 
     /**
      * The hashed password.
@@ -42,5 +42,5 @@ trait UserTrait
      *
      * @Assert\NotBlank(groups={"edit"})
      */
-    protected ?string $password;
+    protected ?string $password = null;
 }
