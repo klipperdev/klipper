@@ -13,6 +13,7 @@ namespace Klipper\Component\User\Listener;
 
 use Klipper\Component\Model\Traits\TimezoneableInterface;
 use Klipper\Component\Security\Model\UserInterface;
+use Klipper\Component\User\RequestHeaders;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
@@ -55,7 +56,7 @@ class TimezoneSubscriber implements EventSubscriberInterface
         if ($request->hasSession() && ($session = $request->getSession())->isStarted()) {
             $timezone = $session->get('_timezone');
         } else {
-            $timezone = $request->headers->get('x-timezone');
+            $timezone = $request->headers->get(RequestHeaders::TIMEZONE);
         }
 
         if (!empty($timezone) && \in_array($timezone, \DateTimeZone::listIdentifiers(), false)) {
