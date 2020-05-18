@@ -1,0 +1,30 @@
+{
+    "name": "klipper/api-search-bundle",
+    "type": "symfony-bundle",
+    "description": "API Search bundle of Klipper",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "François Pluchino",
+            "email": "francois.pluchino@klipper.dev"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": "^7.4.0",
+        "klipper/api-bundle": "^2.0.0",
+        "klipper/search-bundle": "^2.0.0"
+    },
+    "autoload": {
+        "psr-4": { "Klipper\\Bundle\\ApiSearchBundle\\": "" },
+        "exclude-from-classmap": [
+            "**/Tests/"
+        ]
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.0-dev"
+        }
+    }
+}
