@@ -107,6 +107,7 @@
         "klipper/security-bundle": "self.version",
         "klipper/security-extra": "self.version",
         "klipper/security-extra-bundle": "self.version",
+        "klipper/security-oauth": "self.version",
         "klipper/security-oauth-bundle": "self.version",
         "klipper/serializer-extra-bundle": "self.version",
         "klipper/session-bundle": "self.version",
