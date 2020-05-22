@@ -35,7 +35,6 @@ class InitOauthServerCommand extends Command
         $this->passphrase = $passphrase;
     }
 
-
     protected function configure(): void
     {
         $this
@@ -86,7 +85,7 @@ class InitOauthServerCommand extends Command
         if (false !== strpos($this->privateKey, 'priv')) {
             $publicKey = sprintf(
                 '%s/%s',
-                dirname($this->privateKey),
+                \dirname($this->privateKey),
                 str_replace(['private', 'priv'], 'public', basename($this->privateKey))
             );
         } else {

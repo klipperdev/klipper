@@ -30,7 +30,7 @@ class Scope implements ScopeEntityInterface
 
     public static function hasScope($id): bool
     {
-        return $id === '*' || array_key_exists($id, static::$scopes);
+        return '*' === $id || \array_key_exists($id, static::$scopes);
     }
 
     public function jsonSerialize()

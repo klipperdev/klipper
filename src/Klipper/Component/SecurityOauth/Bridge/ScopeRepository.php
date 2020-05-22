@@ -39,5 +39,4 @@ class ScopeRepository implements ScopeRepositoryInterface
 
         return $filteredScopes;
     }
-
 }

@@ -32,7 +32,7 @@ class AuthCodeRepository implements AuthCodeRepositoryInterface
         return new AuthCode();
     }
 
-    public function persistNewAuthCode(AuthCodeEntityInterface $authCodeEntity)
+    public function persistNewAuthCode(AuthCodeEntityInterface $authCodeEntity): void
     {
         $this->repository->createAuthCode(
             $authCodeEntity->getIdentifier(),
@@ -52,8 +52,8 @@ class AuthCodeRepository implements AuthCodeRepositoryInterface
     public function isAuthCodeRevoked($codeId): bool
     {
         return null === $this->repository->findOneBy([
-                'token' => $codeId,
-            ]);
+            'token' => $codeId,
+        ]);
     }
 
     private function scopesToArray(array $scopes): array
