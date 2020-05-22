@@ -15,7 +15,6 @@ use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as Serializer;
 use Klipper\Component\SecurityOauth\Model\OauthAccessTokenInterface;
 use Klipper\Component\SecurityOauth\Model\OauthRefreshTokenInterface;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @author François Pluchino <francois.pluchino@klipper.dev>

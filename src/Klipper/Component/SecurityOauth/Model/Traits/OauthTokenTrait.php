@@ -14,7 +14,6 @@ namespace Klipper\Component\SecurityOauth\Model\Traits;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as Serializer;
 use Klipper\Component\SecurityOauth\Model\OauthTokenInterface;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @author François Pluchino <francois.pluchino@klipper.dev>
@@ -24,9 +23,9 @@ trait OauthTokenTrait
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      *
-     * @Assert\Type(type="string")
-     * @Assert\Length(max=255)
-     * @Assert\NotBlank
+     * @\Symfony\Component\Validator\Constraints\Type(type="string")
+     * @\Symfony\Component\Validator\Constraints\Length(max=255)
+     * @\Symfony\Component\Validator\Constraints\NotBlank
      *
      * @Serializer\Expose
      * @Serializer\Groups(groups={"Details"})
@@ -36,8 +35,8 @@ trait OauthTokenTrait
     /**
      * @ORM\Column(type="json")
      *
-     * @Assert\Type(type="datetime")
-     * @Assert\NotBlank
+     * @\Symfony\Component\Validator\Constraints\Type(type="datetime")
+     * @\Symfony\Component\Validator\Constraints\NotBlank
      *
      * @Serializer\Expose
      */
