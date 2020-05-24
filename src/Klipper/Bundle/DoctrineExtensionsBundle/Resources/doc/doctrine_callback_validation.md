@@ -39,7 +39,7 @@ Acme\BlogBundle\Entity\Author:
 // src/Acme/BlogBundle/Entity/Author.php
 namespace Acme\BlogBundle\Entity;
 
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Validator\ExecutionContextInterface;
 use Klipper\Component\DoctrineExtensions\Validator\Constraints as Assert;
 
@@ -96,7 +96,7 @@ determine to which field those errors should be attributed:
 
 ```php
 // ...
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Validator\ExecutionContextInterface;
 
 class Author
@@ -130,7 +130,7 @@ have access to the object instance, they receive the object as the first argumen
 
 ```php
 // ...
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Validator\ExecutionContextInterface;
 
 class MyCustomClassValidation
@@ -169,10 +169,10 @@ callback method:
 * A closure.
 
 Concrete callbacks receive an :class:`Symfony\Component\Validator\ExecutionContextInterface`
-instance as first argument, and the :class:`Doctrine\Common\Persistence\ManagerRegistry`
+instance as first argument, and the :class:`Doctrine\Persistence\ManagerRegistry`
 instance as the second argument.
 
 Static or closure callbacks receive the validated object as the first argument
 and the :class:`Symfony\Component\Validator\ExecutionContextInterface`
-instance as the second argument, and the :class:`Doctrine\Common\Persistence\ManagerRegistry`
+instance as the second argument, and the :class:`Doctrine\Persistence\ManagerRegistry`
 instance as the third argument.

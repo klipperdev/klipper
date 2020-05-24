@@ -11,9 +11,9 @@
 
 namespace Klipper\Component\MetadataExtensions\Guess;
 
-use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\Common\Persistence\Mapping\ClassMetadata;
 use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Persistence\ManagerRegistry;
 use Klipper\Component\DoctrineExtra\Util\ManagerUtils;
 
 /**

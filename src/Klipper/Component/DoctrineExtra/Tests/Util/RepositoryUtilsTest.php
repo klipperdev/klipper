@@ -11,9 +11,9 @@
 
 namespace Klipper\Component\DoctrineExtra\Tests\Util;
 
-use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\Persistence\ObjectRepository;
+use Doctrine\Persistence\ManagerRegistry;
 use Klipper\Component\DoctrineExtra\Util\RepositoryUtils;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;

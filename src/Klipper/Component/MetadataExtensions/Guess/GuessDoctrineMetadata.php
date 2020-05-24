@@ -11,10 +11,10 @@
 
 namespace Klipper\Component\MetadataExtensions\Guess;
 
-use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\Common\Persistence\Mapping\ClassMetadata;
 use Doctrine\DBAL\Types\Type;
 use Doctrine\ORM\Mapping\ClassMetadataInfo as OrmClassMetadata;
+use Doctrine\Persistence\ManagerRegistry;
 use Klipper\Component\Metadata\AssociationMetadataBuilder;
 use Klipper\Component\Metadata\AssociationMetadataBuilderInterface;
 use Klipper\Component\Metadata\Exception\InvalidArgumentException as MetadataInvalidArgumentException;

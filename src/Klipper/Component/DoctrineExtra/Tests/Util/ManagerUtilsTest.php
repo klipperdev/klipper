@@ -11,11 +11,11 @@
 
 namespace Klipper\Component\DoctrineExtra\Tests\Util;
 
-use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\Common\Persistence\Mapping\ClassMetadata;
 use Doctrine\Common\Persistence\Mapping\ClassMetadataFactory;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\Mapping\ClassMetadata as OrmClassMetadata;
+use Doctrine\Persistence\ManagerRegistry;
 use Klipper\Component\DoctrineExtra\Util\ManagerUtils;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;

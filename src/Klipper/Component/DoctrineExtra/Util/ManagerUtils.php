@@ -11,9 +11,9 @@
 
 namespace Klipper\Component\DoctrineExtra\Util;
 
-use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\Mapping\ClassMetadata as OrmClassMetadata;
+use Doctrine\Persistence\ManagerRegistry;
 use Klipper\Component\DoctrineExtra\Exception\ObjectManagerNotFoundException;
 
 /**
