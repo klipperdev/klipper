@@ -26,7 +26,6 @@ trait OauthClientTrait
      *
      * @Assert\Type(type="string")
      * @Assert\Length(max=255)
-     * @Assert\NotBlank
      *
      * @Serializer\Expose
      * @Serializer\Groups(groups={"Details"})
