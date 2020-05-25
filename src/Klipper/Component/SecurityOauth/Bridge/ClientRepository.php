@@ -40,11 +40,11 @@ class ClientRepository implements ClientRepositoryInterface
             return null;
         }
 
-        if (!$this->validateGrantType($appClient, $grantType)) {
+        if (null !== $clientSecret && !$this->validateGrantType($appClient, $grantType)) {
             return null;
         }
 
-        if ($mustValidateSecret && !hash_equals((string) $appClient->getSecret(), (string) $clientSecret)) {
+        if ($mustValidateSecret && null !== $clientSecret && !hash_equals((string) $appClient->getSecret(), (string) $clientSecret)) {
             return null;
         }
 
