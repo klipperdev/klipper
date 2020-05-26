@@ -11,6 +11,9 @@
 
 namespace Klipper\Component\Model\Traits;
 
+use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
+use Klipper\Component\Security\Model\OrganizationInterface;
 use Klipper\Component\Security\Model\Traits\OrganizationalRequiredTrait as BaseOrganizationalRequiredTrait;
 
 /**
@@ -21,4 +24,16 @@ use Klipper\Component\Security\Model\Traits\OrganizationalRequiredTrait as BaseO
 trait OrganizationalRequiredTrait
 {
     use BaseOrganizationalRequiredTrait;
+
+    /**
+     * @ORM\ManyToOne(
+     *     targetEntity="Klipper\Component\Security\Model\OrganizationInterface",
+     *     fetch="EXTRA_LAZY"
+     * )
+     * @ORM\JoinColumn(onDelete="CASCADE")
+     *
+     * @Serializer\Expose
+     * @Serializer\ReadOnly
+     */
+    protected ?OrganizationInterface $organization = null;
 }
