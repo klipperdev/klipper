@@ -11,7 +11,9 @@
 
 namespace Klipper\Component\Model\Traits;
 
+use Doctrine\ORM\Mapping as ORM;
 use Klipper\Component\Security\Model\Traits\OwnerableTrait as BaseOwnerableTrait;
+use Klipper\Component\Security\Model\UserInterface;
 
 /**
  * Trait of ownerable model.
@@ -21,4 +23,10 @@ use Klipper\Component\Security\Model\Traits\OwnerableTrait as BaseOwnerableTrait
 trait OwnerableTrait
 {
     use BaseOwnerableTrait;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Klipper\Component\Security\Model\UserInterface")
+     * @ORM\JoinColumn(onDelete="CASCADE", nullable=false)
+     */
+    protected ?UserInterface $owner = null;
 }
