@@ -72,7 +72,6 @@ class UserRepository implements UserRepositoryInterface
                 $this->tokenStorage->setToken($token);
             }
         } catch (\Throwable $e) {
-            var_dump('la', $e->getMessage()); //TODO remove
             $user = null;
         }
 
