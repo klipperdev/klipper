@@ -23,37 +23,31 @@ use Symfony\Component\Validator\Constraints as Assert;
 trait SettingTrait
 {
     /**
-     * @var null|string
-     *
      * @ORM\Column(type="string", nullable=true)
      *
      * @Assert\Choice(callback={"DateTimeZone", "listIdentifiers"})
      *
      * @Serializer\Expose
      */
-    protected $timezone;
+    protected ?string $timezone = null;
 
     /**
-     * @var null|string
-     *
      * @ORM\Column(type="string", length=5, nullable=true)
      *
      * @Assert\Choice(callback={"Klipper\Component\User\Choice\LocaleAvailable", "getValues"})
      *
      * @Serializer\Expose
      */
-    protected $locale;
+    protected ?string $locale = null;
 
     /**
-     * @var null|string
-     *
      * @ORM\Column(type="string", length=3, nullable=true)
      *
      * @Assert\Choice(callback={"Klipper\Component\User\Choice\CurrencyAvailable", "getValues"})
      *
      * @Serializer\Expose
      */
-    protected $currency;
+    protected ?string $currency = null;
 
     /**
      * {@inheritdoc}

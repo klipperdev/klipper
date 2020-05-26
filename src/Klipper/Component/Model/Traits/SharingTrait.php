@@ -25,73 +25,59 @@ trait SharingTrait
     use BaseSharingTrait;
 
     /**
-     * @var null|string
-     *
      * @ORM\Column(type="string", length=244)
      *
      * @Assert\Type(type="string")
      * @Assert\Length(max=244)
      * @Assert\NotBlank
      */
-    protected $subjectClass;
+    protected ?string $subjectClass = null;
 
     /**
-     * @var null|string
-     *
      * @ORM\Column(type="string", length=36)
      *
      * @Assert\Type(type="string")
      * @Assert\Length(max=36)
      * @Assert\NotBlank
      */
-    protected $subjectId;
+    protected ?string $subjectId = null;
 
     /**
-     * @var null|string
-     *
      * @ORM\Column(type="string", length=244)
      *
      * @Assert\Type(type="string")
      * @Assert\Length(max=244)
      * @Assert\NotBlank
      */
-    protected $identityClass;
+    protected ?string $identityClass = null;
 
     /**
-     * @var null|string
-     *
      * @ORM\Column(type="string", length=244)
      *
      * @Assert\Type(type="string")
      * @Assert\Length(max=244)
      * @Assert\NotBlank
      */
-    protected $identityName;
+    protected ?string $identityName = null;
 
     /**
-     * @var bool
-     *
      * @ORM\Column(type="boolean")
      *
      * @Assert\Type("boolean")
      */
-    protected $enabled = true;
+    protected bool $enabled = true;
 
     /**
-     * @var null|\DateTime
-     *
      * @ORM\Column(type="datetime", nullable=true)
      *
      * @Assert\Type(type="datetime")
      */
-    protected $startedAt;
+    protected ?\DateTimeInterface $startedAt = null;
 
     /**
-     * @var null|\DateTime
-     *
      * @ORM\Column(type="datetime", nullable=true)
      *
      * @Assert\Type(type="datetime")
      */
-    protected $endedAt;
+    protected ?\DateTimeInterface $endedAt = null;
 }

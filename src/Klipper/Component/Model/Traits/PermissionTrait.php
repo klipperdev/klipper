@@ -31,36 +31,30 @@ trait PermissionTrait
      *
      * @Assert\Choice(multiple=true, callback={"Klipper\Component\SecurityExtra\Choice\PermissionContext", "getValues"})
      */
-    protected $contexts = [];
+    protected array $contexts = [];
 
     /**
-     * @var null|string
-     *
      * @ORM\Column(type="string", length=255, nullable=true)
      *
      * @Assert\Type(type="string")
      * @Assert\Length(max=255)
      */
-    protected $class;
+    protected ?string $class = null;
 
     /**
-     * @var null|string
-     *
      * @ORM\Column(type="string", length=255, nullable=true)
      *
      * @Assert\Type(type="string")
      * @Assert\Length(max=255)
      */
-    protected $field;
+    protected ?string $field = null;
 
     /**
-     * @var null|string
-     *
      * @ORM\Column(type="string", length=255)
      *
      * @Assert\Type(type="string")
      * @Assert\Length(max=255)
      * @Assert\NotBlank
      */
-    protected $operation;
+    protected ?string $operation = null;
 }

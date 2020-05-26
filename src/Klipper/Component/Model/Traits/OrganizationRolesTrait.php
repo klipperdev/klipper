@@ -37,5 +37,5 @@ trait OrganizationRolesTrait
      *
      * @Assert\Valid
      */
-    protected $organizationRoles;
+    protected ?Collection $organizationRoles = null;
 }

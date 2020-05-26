@@ -26,8 +26,6 @@ trait RoleTrait
     use BaseRoleTrait;
 
     /**
-     * @var string
-     *
      * @ORM\Column(type="string", length=255, unique=true)
      *
      * @Assert\Type(type="string")
@@ -39,5 +37,5 @@ trait RoleTrait
      *
      * @Serializer\Expose
      */
-    protected $name;
+    protected ?string $name = null;
 }

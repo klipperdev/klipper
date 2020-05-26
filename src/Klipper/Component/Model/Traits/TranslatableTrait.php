@@ -32,5 +32,5 @@ trait TranslatableTrait
      * @Serializer\Expose
      * @Serializer\ReadOnly
      */
-    protected $availableLocales;
+    protected ?array $availableLocales = null;
 }

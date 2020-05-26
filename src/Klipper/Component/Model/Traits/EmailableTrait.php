@@ -32,14 +32,14 @@ trait EmailableTrait
      *
      * @Serializer\Expose
      */
-    protected ?string $email;
+    protected ?string $email = null;
 
     public function getEmail(): ?string
     {
         return $this->email;
     }
 
-    public function setEmail(string $email): self
+    public function setEmail(?string $email): self
     {
         $this->email = $email;
 

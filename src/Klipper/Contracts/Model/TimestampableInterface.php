@@ -21,28 +21,28 @@ interface TimestampableInterface
     /**
      * Set the date of update of model.
      *
-     * @param null|\DateTime $createdAt The created datetime
+     * @param null|\DateTimeInterface $createdAt The created datetime
      *
      * @return static
      */
-    public function setCreatedAt(?\DateTime $createdAt);
+    public function setCreatedAt(?\DateTimeInterface $createdAt);
 
     /**
      * Get the date of create of model.
      */
-    public function getCreatedAt(): ?\DateTime;
+    public function getCreatedAt(): ?\DateTimeInterface;
 
     /**
      * Set the date of update of model.
      *
-     * @param null|\DateTime $updatedAt The updated datetime
+     * @param null|\DateTimeInterface $updatedAt The updated datetime
      *
      * @return static
      */
-    public function setUpdatedAt(?\DateTime $updatedAt);
+    public function setUpdatedAt(?\DateTimeInterface $updatedAt);
 
     /**
      * Get the date of update of model.
      */
-    public function getUpdatedAt(): ?\DateTime;
+    public function getUpdatedAt(): ?\DateTimeInterface;
 }

@@ -22,13 +22,11 @@ use JMS\Serializer\Annotation as Serializer;
 trait ExternalableTrait
 {
     /**
-     * @var array
-     *
      * @ORM\Column(type="json")
      *
      * @Serializer\Expose
      */
-    protected $externalIds = [];
+    protected array $externalIds = [];
 
     /**
      * {@inheritdoc}

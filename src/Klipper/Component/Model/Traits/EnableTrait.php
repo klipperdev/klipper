@@ -23,15 +23,13 @@ use Symfony\Component\Validator\Constraints as Assert;
 trait EnableTrait
 {
     /**
-     * @var bool
-     *
      * @ORM\Column(type="boolean")
      *
      * @Assert\Type(type="boolean")
      *
      * @Serializer\Expose
      */
-    protected $enabled = true;
+    protected bool $enabled = true;
 
     /**
      * {@inheritdoc}

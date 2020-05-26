@@ -23,20 +23,18 @@ use Symfony\Component\Validator\Constraints as Assert;
 trait SoftDeletableTrait
 {
     /**
-     * @var null|\DateTime
-     *
      * @ORM\Column(type="datetime", nullable=true)
      *
      * @Assert\Type(type="datetime")
      */
-    protected $deletedAt;
+    protected ?\DateTimeInterface $deletedAt = null;
 
     /**
      * @see SoftDeletableInterface::setDeletedAt()
      *
      * @return static
      */
-    public function setDeletedAt(?\DateTime $deletedAt = null): self
+    public function setDeletedAt(?\DateTimeInterface $deletedAt = null): self
     {
         $this->deletedAt = $deletedAt;
 
@@ -46,7 +44,7 @@ trait SoftDeletableTrait
     /**
      * @see SoftDeletableInterface::getDeletedAt()
      */
-    public function getDeletedAt(): ?\DateTime
+    public function getDeletedAt(): ?\DateTimeInterface
     {
         return $this->deletedAt;
     }

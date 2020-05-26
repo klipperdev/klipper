@@ -26,8 +26,6 @@ trait GroupTrait
     use BaseGroupTrait;
 
     /**
-     * @var string
-     *
      * @ORM\Column(type="string", length=255, unique=true)
      *
      * @Assert\Type(type="string")
@@ -39,7 +37,7 @@ trait GroupTrait
      *
      * @Serializer\Expose
      */
-    protected $name;
+    protected ?string $name = null;
 
     /**
      * @var string[]
@@ -48,5 +46,5 @@ trait GroupTrait
      *
      * @Serializer\Expose
      */
-    protected $roles = [];
+    protected array $roles = [];
 }

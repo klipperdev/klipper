@@ -23,8 +23,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 trait LabelableTrait
 {
     /**
-     * @var null|string
-     *
      * @ORM\Column(type="string", length=255, nullable=true)
      *
      * @Assert\Type(type="string")
@@ -32,7 +30,7 @@ trait LabelableTrait
      *
      * @Serializer\Expose
      */
-    protected $label;
+    protected ?string $label = null;
 
     /**
      * {@inheritdoc}

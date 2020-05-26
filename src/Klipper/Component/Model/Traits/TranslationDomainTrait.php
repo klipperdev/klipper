@@ -22,8 +22,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 trait TranslationDomainTrait
 {
     /**
-     * @var null|string
-     *
      * @ORM\Column(type="string", length=255, nullable=true)
      *
      * @Assert\Type(type="string")
@@ -32,7 +30,7 @@ trait TranslationDomainTrait
      *
      * @Serializer\Expose
      */
-    protected $translationDomain;
+    protected ?string $translationDomain = null;
 
     /**
      * {@inheritdoc}

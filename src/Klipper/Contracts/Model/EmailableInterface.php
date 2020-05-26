@@ -28,5 +28,5 @@ interface EmailableInterface
      *
      * @return static
      */
-    public function setEmail(string $email);
+    public function setEmail(?string $email);
 }

@@ -23,8 +23,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 trait ImagePathTrait
 {
     /**
-     * @var null|string
-     *
      * @ORM\Column(type="string", length=255, nullable=true)
      *
      * @Assert\Type(type="string")
@@ -33,7 +31,7 @@ trait ImagePathTrait
      * @Serializer\Expose
      * @Serializer\ReadOnly
      */
-    protected $imagePath;
+    protected ?string $imagePath = null;
 
     /**
      * {@inheritdoc}

@@ -31,5 +31,5 @@ trait RoleableTrait
      *
      * @Serializer\Expose
      */
-    protected $roles = [];
+    protected array $roles = [];
 }

@@ -23,15 +23,13 @@ use Symfony\Component\Validator\Constraints as Assert;
 trait SortableTrait
 {
     /**
-     * @var int
-     *
      * @ORM\Column(type="integer")
      *
      * @Assert\Type(type="integer")
      *
      * @Serializer\Expose
      */
-    protected $position = -1;
+    protected int $position = -1;
 
     /**
      * {@inheritdoc}

@@ -33,7 +33,7 @@ trait TimestampableTrait
      * @Serializer\Expose
      * @Serializer\ReadOnly
      */
-    protected $createdAt;
+    protected ?\DateTimeInterface $createdAt = null;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
@@ -43,5 +43,5 @@ trait TimestampableTrait
      * @Serializer\Expose
      * @Serializer\ReadOnly
      */
-    protected $updatedAt;
+    protected ?\DateTimeInterface $updatedAt = null;
 }

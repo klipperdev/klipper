@@ -28,8 +28,6 @@ trait OrganizationTrait
     use BaseOrganizationTrait;
 
     /**
-     * @var string
-     *
      * @ORM\Column(type="string", length=255, unique=true)
      *
      * @Assert\Type(type="string")
@@ -39,7 +37,7 @@ trait OrganizationTrait
      *
      * @Serializer\Expose
      */
-    protected $name;
+    protected ?string $name = null;
 
     /**
      * @var null|Collection|OrganizationUserInterface[]
@@ -53,5 +51,5 @@ trait OrganizationTrait
      *
      * @Assert\Valid(traverse=false)
      */
-    protected $organizationUsers;
+    protected ?Collection $organizationUsers = null;
 }
