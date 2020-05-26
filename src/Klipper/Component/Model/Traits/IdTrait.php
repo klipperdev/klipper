@@ -25,8 +25,8 @@ trait IdTrait
      * @var null|int|string
      *
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="UUID")
-     * @ORM\Column(type="guid")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\Column(type="integer")
      *
      * @Serializer\Expose
      * @Serializer\ReadOnly
