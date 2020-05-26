@@ -22,8 +22,6 @@ use JMS\Serializer\Annotation as Serializer;
 trait IdTrait
 {
     /**
-     * @var null|int|string
-     *
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(type="integer")
@@ -31,12 +29,12 @@ trait IdTrait
      * @Serializer\Expose
      * @Serializer\ReadOnly
      */
-    protected $id;
+    protected ?int $id = null;
 
     /**
      * {@inheritdoc}
      */
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
