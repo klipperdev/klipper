@@ -12,7 +12,7 @@
 namespace Klipper\Component\Translation\Twig\Extension;
 
 use Klipper\Component\Translation\ExceptionMessageManager;
-use Symfony\Component\Debug\Exception\FlattenException;
+use Symfony\Component\ErrorHandler\Exception\FlattenException;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
