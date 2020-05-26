@@ -12,6 +12,7 @@
 namespace Klipper\Component\Model\Traits;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Klipper\Component\Security\Model\Traits\OwnerableTrait as BaseOwnerableTrait;
 use Klipper\Component\Security\Model\UserInterface;
 
@@ -27,6 +28,8 @@ trait OwnerableTrait
     /**
      * @ORM\ManyToOne(targetEntity="Klipper\Component\Security\Model\UserInterface")
      * @ORM\JoinColumn(onDelete="CASCADE", nullable=false)
+     *
+     * @Gedmo\Blameable(on="create")
      */
     protected ?UserInterface $owner = null;
 }
