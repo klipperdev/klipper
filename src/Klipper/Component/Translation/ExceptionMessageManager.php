@@ -11,7 +11,7 @@
 
 namespace Klipper\Component\Translation;
 
-use Symfony\Component\Debug\Exception\FlattenException;
+use Symfony\Component\ErrorHandler\Exception\FlattenException;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -56,7 +56,7 @@ class ExceptionMessageManager
     /**
      * Get the exception message.
      *
-     * @param \Exception|FlattenException $exception The exception
+     * @param FlattenException|\Throwable $exception The exception
      * @param string                      $message   The existing message
      */
     public function getMessage($exception, string $message): string
@@ -73,7 +73,7 @@ class ExceptionMessageManager
     /**
      * Resolves the value corresponding to an exception object.
      *
-     * @param \Exception|FlattenException $exception The exception
+     * @param FlattenException|\Throwable $exception The exception
      *
      * @return false|mixed Value found or false is not found
      */
@@ -85,7 +85,7 @@ class ExceptionMessageManager
     /**
      * Get the status code for exception.
      *
-     * @param \Exception|FlattenException $exception The exception
+     * @param FlattenException|\Throwable $exception The exception
      */
     public function getStatusCode($exception): int
     {
@@ -121,7 +121,7 @@ class ExceptionMessageManager
     /**
      * Get the exception class name.
      *
-     * @param \Exception|FlattenException $exception The exception
+     * @param FlattenException|\Throwable $exception The exception
      */
     private function getClassName($exception): string
     {
