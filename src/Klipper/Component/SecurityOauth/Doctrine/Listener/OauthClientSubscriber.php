@@ -51,9 +51,16 @@ class OauthClientSubscriber implements EventSubscriber
 
     private function updateLabel(UnitOfWork $uow, object $entity): void
     {
-        if ($entity instanceof OauthClientInterface && null === $entity->getSecret()) {
-            $entity->setSecret(Random::generateToken());
-            $uow->propertyChanged($entity, 'secret', null, $entity->getSecret());
+        if ($entity instanceof OauthClientInterface) {
+            if (null === $entity->getSecret()) {
+                $entity->setSecret(Random::generateToken());
+                $uow->propertyChanged($entity, 'secret', null, $entity->getSecret());
+            }
+
+            if (null === $entity->getClientId()) {
+                $entity->setClientId(Random::generateToken());
+                $uow->propertyChanged($entity, 'clientId', null, $entity->getClientId());
+            }
         }
     }
 }

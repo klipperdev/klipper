@@ -28,6 +28,16 @@ trait OauthClientTrait
      * @Assert\Length(max=255)
      *
      * @Serializer\Expose
+     */
+    protected ?string $clientId = null;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     *
+     * @Assert\Type(type="string")
+     * @Assert\Length(max=255)
+     *
+     * @Serializer\Expose
      * @Serializer\Groups(groups={"Details"})
      */
     protected ?string $secret = null;
@@ -63,6 +73,24 @@ trait OauthClientTrait
      * @Serializer\Expose
      */
     protected array $grantTypes = [];
+
+    /**
+     * @see OauthClientInterface::setClientId()
+     */
+    public function setClientId(?string $clientId): self
+    {
+        $this->clientId = $clientId;
+
+        return $this;
+    }
+
+    /**
+     * @see OauthClientInterface::getClientId()
+     */
+    public function getClientId(): ?string
+    {
+        return $this->clientId;
+    }
 
     /**
      * @see OauthClientInterface::setSecret()

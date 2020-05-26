@@ -22,6 +22,13 @@ interface OauthClientInterface extends NameableInterface, EnableInterface
     /**
      * @return static
      */
+    public function setClientId(?string $secret);
+
+    public function getClientId(): ?string;
+
+    /**
+     * @return static
+     */
     public function setSecret(?string $secret);
 
     public function getSecret(): ?string;
