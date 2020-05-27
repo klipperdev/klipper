@@ -23,14 +23,17 @@ use Symfony\Component\Process\Process;
  */
 class InitOauthServerCommand extends Command
 {
+    private string $publicKey;
+
     private string $privateKey;
 
     private ?string $passphrase;
 
-    public function __construct(string $privateKey, ?string $passphrase)
+    public function __construct(string $publicKey, string $privateKey, ?string $passphrase)
     {
         parent::__construct();
 
+        $this->publicKey = $publicKey;
         $this->privateKey = $privateKey;
         $this->passphrase = $passphrase;
     }
@@ -82,26 +85,16 @@ class InitOauthServerCommand extends Command
 
     protected function generatePublicKey(OutputInterface $output, bool $force): void
     {
-        if (false !== strpos($this->privateKey, 'priv')) {
-            $publicKey = sprintf(
-                '%s/%s',
-                \dirname($this->privateKey),
-                str_replace(['private', 'priv'], 'public', basename($this->privateKey))
-            );
-        } else {
-            $publicKey = str_replace('.key', 'public.key', $this->privateKey);
-        }
-
-        if (!$force && file_exists($publicKey)) {
+        if (!$force && file_exists($this->publicKey)) {
             $output->writeln('Public key for Oauth is already created');
 
             return;
         }
 
         if (!empty($this->passphrase)) {
-            $proc = new Process(['openssl', 'rsa', '-in', $this->privateKey, '-passin', 'pass:'.$this->passphrase, '-pubout', '-out', $publicKey]);
+            $proc = new Process(['openssl', 'rsa', '-in', $this->privateKey, '-passin', 'pass:'.$this->passphrase, '-pubout', '-out', $this->publicKey]);
         } else {
-            $proc = new Process(['openssl', 'rsa', '-in', $this->privateKey, '-pubout', '-out', $publicKey]);
+            $proc = new Process(['openssl', 'rsa', '-in', $this->privateKey, '-pubout', '-out', $this->publicKey]);
         }
 
         $proc->run();
