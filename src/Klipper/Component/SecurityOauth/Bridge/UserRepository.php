@@ -11,7 +11,7 @@
 
 namespace Klipper\Component\SecurityOauth\Bridge;
 
-use Klipper\Component\SecurityOauth\Authentication\AuthenticationManager;
+use Klipper\Component\SecurityOauth\Authentication\AuthenticationManagerInterface;
 use League\OAuth2\Server\Entities\ClientEntityInterface;
 use League\OAuth2\Server\Entities\UserEntityInterface;
 use League\OAuth2\Server\Repositories\UserRepositoryInterface;
@@ -24,16 +24,16 @@ use Symfony\Component\Security\Core\User\UserProviderInterface;
  */
 class UserRepository implements UserRepositoryInterface
 {
-    protected UserProviderInterface $userProvider;
+    private UserProviderInterface $userProvider;
 
-    protected UserPasswordEncoderInterface $userPasswordEncoder;
+    private UserPasswordEncoderInterface $userPasswordEncoder;
 
-    protected AuthenticationManager $authManager;
+    private AuthenticationManagerInterface $authManager;
 
     public function __construct(
         UserProviderInterface $userProvider,
         UserPasswordEncoderInterface $userPasswordEncoder,
-        AuthenticationManager $authManager
+        AuthenticationManagerInterface $authManager
     ) {
         $this->userProvider = $userProvider;
         $this->userPasswordEncoder = $userPasswordEncoder;
