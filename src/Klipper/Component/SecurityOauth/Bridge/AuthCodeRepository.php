@@ -40,7 +40,7 @@ class AuthCodeRepository implements AuthCodeRepositoryInterface
             $authCodeEntity->getClient()->getIdentifier(),
             $authCodeEntity->getRedirectUri(),
             $this->scopesToArray($authCodeEntity->getScopes()),
-            $authCodeEntity->getExpiryDateTime()
+            \DateTime::createFromImmutable($authCodeEntity->getExpiryDateTime())
         );
     }
 

@@ -43,7 +43,7 @@ class AccessTokenRepository implements AccessTokenRepositoryInterface
             $accessTokenEntity->getUserIdentifier(),
             $accessTokenEntity->getClient()->getIdentifier(),
             $this->scopesToArray($accessTokenEntity->getScopes()),
-            $accessTokenEntity->getExpiryDateTime()
+            \DateTime::createFromImmutable($accessTokenEntity->getExpiryDateTime())
         );
     }
 

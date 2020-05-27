@@ -33,7 +33,7 @@ trait OauthTokenTrait
     protected ?string $token = null;
 
     /**
-     * @ORM\Column(type="json")
+     * @ORM\Column(type="datetime")
      *
      * @\Symfony\Component\Validator\Constraints\Type(type="datetime")
      * @\Symfony\Component\Validator\Constraints\NotBlank

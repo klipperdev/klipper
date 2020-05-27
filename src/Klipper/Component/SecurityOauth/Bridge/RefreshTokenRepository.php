@@ -37,7 +37,7 @@ class RefreshTokenRepository implements RefreshTokenRepositoryInterface
         $this->repository->createRefreshToken(
             $refreshTokenEntity->getIdentifier(),
             $refreshTokenEntity->getAccessToken()->getIdentifier(),
-            $refreshTokenEntity->getExpiryDateTime()
+            \DateTime::createFromImmutable($refreshTokenEntity->getExpiryDateTime())
         );
     }
 
