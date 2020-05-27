@@ -18,9 +18,13 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Security\Core\Authentication\AuthenticationManagerInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
+use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
+use Symfony\Component\Security\Http\SecurityEvents;
+use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 
 /**
  * @author François Pluchino <francois.pluchino@klipper.dev>
@@ -37,18 +41,22 @@ class UserRepository implements UserRepositoryInterface
 
     protected RequestStack $requestStack;
 
+    protected ?EventDispatcherInterface $dispatcher;
+
     public function __construct(
         UserProviderInterface $userProvider,
         UserPasswordEncoderInterface $userPasswordEncoder,
         AuthenticationManagerInterface $authManager,
         TokenStorageInterface $tokenStorage,
-        RequestStack $requestStack
+        RequestStack $requestStack,
+        ?EventDispatcherInterface $dispatcher = null
     ) {
         $this->userProvider = $userProvider;
         $this->userPasswordEncoder = $userPasswordEncoder;
         $this->authManager = $authManager;
         $this->tokenStorage = $tokenStorage;
         $this->requestStack = $requestStack;
+        $this->dispatcher = $dispatcher;
     }
 
     public function getUserEntityByUserCredentials(
@@ -70,12 +78,23 @@ class UserRepository implements UserRepositoryInterface
                     []
                 ));
                 $this->tokenStorage->setToken($token);
+                $this->dispatchInteractiveLogin($token);
             }
         } catch (\Throwable $e) {
             $user = null;
         }
 
         return $user;
+    }
+
+    private function dispatchInteractiveLogin(TokenInterface $token): void
+    {
+        $request = $this->requestStack->getCurrentRequest();
+
+        if (null !== $this->dispatcher && $request instanceof Request) {
+            $loginEvent = new InteractiveLoginEvent($request, $token);
+            $this->dispatcher->dispatch($loginEvent, SecurityEvents::INTERACTIVE_LOGIN);
+        }
     }
 
     private function getProviderKey(): string
