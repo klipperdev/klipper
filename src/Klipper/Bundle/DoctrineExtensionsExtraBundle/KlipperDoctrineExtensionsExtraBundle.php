@@ -14,6 +14,7 @@ namespace Klipper\Bundle\DoctrineExtensionsExtraBundle;
 use Doctrine\Bundle\DoctrineBundle\DependencyInjection\Compiler\DoctrineOrmMappingsPass;
 use Klipper\Bundle\DoctrineExtensionsExtraBundle\DependencyInjection\Compiler\DefaultValueExpressionLanguagePass;
 use Klipper\Bundle\DoctrineExtensionsExtraBundle\DependencyInjection\Compiler\DefaultValueLoadersPass;
+use Klipper\Bundle\DoctrineExtensionsExtraBundle\DependencyInjection\Compiler\DoctrineBlameablePass;
 use Klipper\Bundle\DoctrineExtensionsExtraBundle\DependencyInjection\Compiler\DoctrineParamConverterExpressionLanguagePass;
 use Klipper\Bundle\DoctrineExtensionsExtraBundle\DependencyInjection\Compiler\DoctrineTranslatablePass;
 use Klipper\Bundle\DoctrineExtensionsExtraBundle\DependencyInjection\Compiler\RequestQueryFilterableExpressionLanguagePass;
@@ -36,6 +37,7 @@ class KlipperDoctrineExtensionsExtraBundle extends Bundle
         $container->addCompilerPass(new DoctrineParamConverterExpressionLanguagePass());
         $container->addCompilerPass(new DefaultValueLoadersPass());
         $container->addCompilerPass(new DoctrineTranslatablePass());
+        $container->addCompilerPass(new DoctrineBlameablePass());
 
         if (class_exists(AbstractExpressionLanguageProvidersPass::class)) {
             $container->addCompilerPass(new RequestQueryFilterableExpressionLanguagePass());
