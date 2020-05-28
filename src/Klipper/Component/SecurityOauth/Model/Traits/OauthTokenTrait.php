@@ -13,6 +13,7 @@ namespace Klipper\Component\SecurityOauth\Model\Traits;
 
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as Serializer;
+use Klipper\Component\Model\Traits\ExpirableTrait;
 use Klipper\Component\SecurityOauth\Model\OauthTokenInterface;
 
 /**
@@ -20,6 +21,8 @@ use Klipper\Component\SecurityOauth\Model\OauthTokenInterface;
  */
 trait OauthTokenTrait
 {
+    use ExpirableTrait;
+
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      *
@@ -31,16 +34,6 @@ trait OauthTokenTrait
      * @Serializer\Groups(groups={"Details"})
      */
     protected ?string $token = null;
-
-    /**
-     * @ORM\Column(type="datetime")
-     *
-     * @\Symfony\Component\Validator\Constraints\Type(type="datetime")
-     * @\Symfony\Component\Validator\Constraints\NotBlank
-     *
-     * @Serializer\Expose
-     */
-    protected ?\DateTimeInterface $expiresAt = null;
 
     /**
      * @see OauthTokenInterface::setToken()
@@ -58,23 +51,5 @@ trait OauthTokenTrait
     public function getToken(): ?string
     {
         return $this->token;
-    }
-
-    /**
-     * @see OauthTokenInterface::setExpiresAt()
-     */
-    public function setExpiresAt(?\DateTimeInterface $expiresAt): self
-    {
-        $this->expiresAt = $expiresAt;
-
-        return $this;
-    }
-
-    /**
-     * @see OauthTokenInterface::getExpiresAt()
-     */
-    public function getExpiresAt(): ?\DateTimeInterface
-    {
-        return $this->expiresAt;
     }
 }

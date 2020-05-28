@@ -9,19 +9,19 @@
  * file that was distributed with this source code.
  */
 
-namespace Klipper\Component\SecurityOauth\Model;
-
-use Klipper\Contracts\Model\ExpirableInterface;
+namespace Klipper\Contracts\Model;
 
 /**
+ * Expirable interface.
+ *
  * @author François Pluchino <francois.pluchino@klipper.dev>
  */
-interface OauthTokenInterface extends ExpirableInterface
+interface ExpirableInterface
 {
     /**
      * @return static
      */
-    public function setToken(?string $token);
+    public function setExpiresAt(?\DateTimeInterface $expiresAt);
 
-    public function getToken(): ?string;
+    public function getExpiresAt(): ?\DateTimeInterface;
 }
