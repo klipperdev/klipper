@@ -16,27 +16,16 @@ use League\OAuth2\Server\Entities\ClientEntityInterface;
 use League\OAuth2\Server\Entities\UserEntityInterface;
 use League\OAuth2\Server\Repositories\UserRepositoryInterface;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-use Symfony\Component\Security\Core\User\UserProviderInterface;
 
 /**
  * @author François Pluchino <francois.pluchino@klipper.dev>
  */
 class UserRepository implements UserRepositoryInterface
 {
-    private UserProviderInterface $userProvider;
-
-    private UserPasswordEncoderInterface $userPasswordEncoder;
-
     private AuthenticationManagerInterface $authManager;
 
-    public function __construct(
-        UserProviderInterface $userProvider,
-        UserPasswordEncoderInterface $userPasswordEncoder,
-        AuthenticationManagerInterface $authManager
-    ) {
-        $this->userProvider = $userProvider;
-        $this->userPasswordEncoder = $userPasswordEncoder;
+    public function __construct(AuthenticationManagerInterface $authManager)
+    {
         $this->authManager = $authManager;
     }
 
@@ -46,18 +35,12 @@ class UserRepository implements UserRepositoryInterface
         $grantType,
         ClientEntityInterface $clientEntity
     ): ?UserEntityInterface {
-        $pUser = $this->userProvider->loadUserByUsername($username);
-        $user = null;
+        $token = $this->authManager->authenticate(new UsernamePasswordToken(
+            $username,
+            $password,
+            $this->authManager->getProviderKey()
+        ));
 
-        if ($this->userPasswordEncoder->isPasswordValid($pUser, $password)) {
-            $token = $this->authManager->authenticate(new UsernamePasswordToken(
-                $username,
-                $password,
-                $this->authManager->getProviderKey()
-            ));
-            $user = null !== $token ? new User($pUser->getUsername()) : null;
-        }
-
-        return $user;
+        return null !== $token ? new User($username) : null;
     }
 }

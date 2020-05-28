@@ -11,6 +11,8 @@
 
 namespace Klipper\Component\SecurityOauth\Bridge;
 
+use Klipper\Component\SecurityOauth\Authentication\AuthenticationManagerInterface;
+use Klipper\Component\SecurityOauth\Authentication\Token\OauthToken;
 use Klipper\Component\SecurityOauth\Repository\OauthAccessTokenRepositoryInterface;
 use League\OAuth2\Server\Entities\AccessTokenEntityInterface;
 use League\OAuth2\Server\Entities\ClientEntityInterface;
@@ -23,9 +25,14 @@ class AccessTokenRepository implements AccessTokenRepositoryInterface
 {
     private OauthAccessTokenRepositoryInterface $repository;
 
-    public function __construct(OauthAccessTokenRepositoryInterface $repository)
-    {
+    private AuthenticationManagerInterface $authManager;
+
+    public function __construct(
+        OauthAccessTokenRepositoryInterface $repository,
+        AuthenticationManagerInterface $authManager
+    ) {
         $this->repository = $repository;
+        $this->authManager = $authManager;
     }
 
     public function getNewToken(ClientEntityInterface $clientEntity, array $scopes, $userIdentifier = null): AccessTokenEntityInterface
@@ -38,6 +45,12 @@ class AccessTokenRepository implements AccessTokenRepositoryInterface
 
     public function persistNewAccessToken(AccessTokenEntityInterface $accessTokenEntity): void
     {
+        $this->authManager->authenticate(new OauthToken(
+            $accessTokenEntity->getIdentifier(),
+            $accessTokenEntity->getUserIdentifier(),
+            $this->authManager->getProviderKey()
+        ));
+
         $this->repository->createAccessToken(
             $accessTokenEntity->getIdentifier(),
             $accessTokenEntity->getUserIdentifier(),

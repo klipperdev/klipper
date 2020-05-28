@@ -12,6 +12,7 @@
 namespace Klipper\Component\SecurityOauth\Authentication\Provider;
 
 use Klipper\Component\SecurityOauth\Authentication\Token\OauthToken;
+use Klipper\Component\SecurityOauth\Authentication\Token\RequestOauthToken;
 use Klipper\Component\SecurityOauth\Exception\RuntimeException;
 use League\OAuth2\Server\Exception\OAuthServerException;
 use League\OAuth2\Server\ResourceServer;
@@ -53,13 +54,18 @@ class OauthProvider implements AuthenticationProviderInterface
             ));
         }
 
-        /** @var OauthToken $token */
-        $request = $this->resourceServer->validateAuthenticatedRequest($token->getServerRequest());
-        $user = $this->getAuthenticatedUser($request->getAttribute('oauth_user_id'));
+        if ($token instanceof RequestOauthToken) {
+            $request = $this->resourceServer->validateAuthenticatedRequest($token->getServerRequest());
+            $accessToken = $request->getAttribute('oauth_access_token_id');
+            $user = $this->getAuthenticatedUser($request->getAttribute('oauth_user_id'));
+        } else {
+            /** @var OauthToken $token */
+            $accessToken = $token->getToken();
+            $user = $this->getAuthenticatedUser($token->getUsername());
+        }
 
         return new OauthToken(
-            $request,
-            $request->getAttribute('oauth_access_token_id'),
+            $accessToken,
             $user,
             $this->providerKey,
             $user->getRoles()

@@ -14,6 +14,7 @@ namespace Klipper\Component\SecurityOauth\Authentication;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Security\Core\Authentication\AuthenticationManagerInterface as SymfonyAuthenticationManagerInterface;
+use Symfony\Component\Security\Core\Authentication\Token\AnonymousToken;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
@@ -47,6 +48,12 @@ class AuthenticationManager implements AuthenticationManagerInterface
 
     public function authenticate(TokenInterface $token): ?TokenInterface
     {
+        $currentToken = $this->tokenStorage->getToken();
+
+        if (null !== $currentToken && !$currentToken instanceof AnonymousToken) {
+            return $currentToken;
+        }
+
         try {
             $token = $this->authManager->authenticate($token);
             $this->tokenStorage->setToken($token);

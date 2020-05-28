@@ -12,7 +12,7 @@
 namespace Klipper\Component\SecurityOauth\Firewall;
 
 use Klipper\Component\HttpFoundation\Psr7\Psr7WrappedRequest;
-use Klipper\Component\SecurityOauth\Authentication\Token\OauthToken;
+use Klipper\Component\SecurityOauth\Authentication\Token\RequestOauthToken;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\Security\Core\Authentication\AuthenticationManagerInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
@@ -56,7 +56,7 @@ class OauthListener
             return;
         }
 
-        $token = $this->authenticationManager->authenticate(new OauthToken(
+        $token = $this->authenticationManager->authenticate(new RequestOauthToken(
             new Psr7WrappedRequest($request),
             substr($authorization, 7),
             null,

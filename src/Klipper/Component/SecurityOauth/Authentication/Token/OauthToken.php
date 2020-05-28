@@ -11,7 +11,6 @@
 
 namespace Klipper\Component\SecurityOauth\Authentication\Token;
 
-use Psr\Http\Message\ServerRequestInterface;
 use Symfony\Component\Security\Core\Authentication\Token\AbstractToken;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -20,31 +19,30 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class OauthToken extends AbstractToken
 {
-    private ServerRequestInterface $serverRequest;
-
     private string $token;
 
     private string $providerKey;
 
     /**
-     * @param string[] $roles
+     * @param null|string|UserInterface $user
+     * @param string[]                  $roles
      */
     public function __construct(
-        ServerRequestInterface $serverRequest,
         string $token,
-        ?UserInterface $user,
+        $user,
         string $providerKey,
         array $roles = []
     ) {
         parent::__construct($roles);
 
-        $this->serverRequest = $serverRequest;
         $this->token = $token;
         $this->providerKey = $providerKey;
 
         if (null !== $user) {
             $this->setUser($user);
         }
+
+        parent::setAuthenticated(\count($roles) > 0);
     }
 
     public function __serialize(): array
@@ -57,6 +55,15 @@ class OauthToken extends AbstractToken
         [$this->providerKey, $parentData] = $data;
 
         parent::__unserialize($parentData);
+    }
+
+    public function setAuthenticated($isAuthenticated): void
+    {
+        if ($isAuthenticated) {
+            throw new \LogicException('Cannot set this token to trusted after instantiation.');
+        }
+
+        parent::setAuthenticated(false);
     }
 
     public function getCredentials(): string
@@ -72,10 +79,5 @@ class OauthToken extends AbstractToken
     public function getProviderKey(): string
     {
         return $this->providerKey;
-    }
-
-    public function getServerRequest(): ServerRequestInterface
-    {
-        return $this->serverRequest;
     }
 }
