@@ -10,5 +10,8 @@
             <tag name="klipper_security_oauth.scope_loader" />
             <argument type="service" id="klipper_metadata.manager" />
         </service>
+
+        <service id="Klipper\Bundle\ApiSecurityOauthBundle\Scope\Loader\ScopeLoaderResourcableInterface"
+                 alias="klipper_api_security_oauth.scope.loader.metadata" />
     </services>
 </container>

@@ -12,12 +12,12 @@
 namespace Klipper\Bundle\ApiSecurityOauthBundle\Scope\Loader;
 
 use Klipper\Component\Metadata\MetadataManagerInterface;
-use Klipper\Component\SecurityOauth\Scope\Loader\ScopeLoaderInterface;
+use Symfony\Component\Config\Resource\ResourceInterface;
 
 /**
  * @author François Pluchino <francois.pluchino@klipper.dev>
  */
-class MetadataScopeLoader implements ScopeLoaderInterface
+class MetadataScopeLoader implements ScopeLoaderResourcableInterface
 {
     public const READ_ACTIONS = [
         'list',
@@ -39,6 +39,11 @@ class MetadataScopeLoader implements ScopeLoaderInterface
 
     private MetadataManagerInterface $metadataManager;
 
+    /**
+     * @var null|ResourceInterface[]
+     */
+    private ?array $resources = null;
+
     public function __construct(MetadataManagerInterface $metadataManager)
     {
         $this->metadataManager = $metadataManager;
@@ -47,12 +52,15 @@ class MetadataScopeLoader implements ScopeLoaderInterface
     public function load(): array
     {
         $validScopes = [];
+        $resources = [];
 
         foreach ($this->metadataManager->all() as $metadata) {
             $read = false;
             $manage = false;
 
             if ($metadata->isPublic()) {
+                $resources[] = $metadata->getResources();
+
                 foreach ($metadata->getActions() as $action) {
                     if (\in_array($action->getName(), static::READ_ACTIONS, true)) {
                         $read = true;
@@ -70,7 +78,17 @@ class MetadataScopeLoader implements ScopeLoaderInterface
         }
 
         sort($validScopes);
+        $this->resources = empty($resources) ? [] : array_merge(...$resources);
 
         return $validScopes;
+    }
+
+    public function getResources(): array
+    {
+        if (null === $this->resources) {
+            $this->load();
+        }
+
+        return $this->resources;
     }
 }
