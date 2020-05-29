@@ -54,6 +54,7 @@
         "klipper/api-bundle": "self.version",
         "klipper/api-metadata-bundle": "self.version",
         "klipper/api-search-bundle": "self.version",
+        "klipper/api-security-oauth-bundle": "self.version",
         "klipper/batch": "self.version",
         "klipper/cache": "self.version",
         "klipper/cache-bundle": "self.version",
