@@ -14,7 +14,7 @@ namespace Klipper\Component\SecurityOauth\Scope\Loader;
 /**
  * @author François Pluchino <francois.pluchino@klipper.dev>
  */
-class SimpleScopeLoader implements ScopeLoaderInterface
+class SimpleScopeLoader extends AbstractScopeLoader
 {
     /**
      * @var string[]

@@ -11,6 +11,8 @@
 
 namespace Klipper\Component\SecurityOauth\Scope\Loader;
 
+use Symfony\Component\Config\Resource\ResourceInterface;
+
 /**
  * @author François Pluchino <francois.pluchino@klipper.dev>
  */
@@ -22,4 +24,19 @@ interface ScopeLoaderInterface
      * @return string[]
      */
     public function load(): array;
+
+    /**
+     * Returns an array of resources loaded to build this loader.
+     *
+     * @return ResourceInterface[] An array of resources
+     */
+    public function getResources(): array;
+
+    /**
+     * Adds a resource for this loader. If the resource already exists
+     * it is not added.
+     *
+     * @param ResourceInterface $resource The resource instance
+     */
+    public function addResource(ResourceInterface $resource);
 }

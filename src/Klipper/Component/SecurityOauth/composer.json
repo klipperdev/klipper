@@ -15,7 +15,8 @@
         "php": "^7.4.0",
         "doctrine/orm": "^2.6.0",
         "klipper/model": "^2.0.0",
-        "league/oauth2-server": "^8.1.0"
+        "league/oauth2-server": "^8.1.0",
+        "symfony/config": "^4.4.0"
     },
     "require-dev": {
         "symfony/console": "^4.4.0",

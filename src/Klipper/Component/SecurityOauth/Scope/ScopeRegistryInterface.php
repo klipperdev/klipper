@@ -12,6 +12,7 @@
 namespace Klipper\Component\SecurityOauth\Scope;
 
 use Klipper\Component\SecurityOauth\Scope\Loader\ScopeLoaderInterface;
+use Symfony\Component\Config\Resource\ResourceInterface;
 
 /**
  * @author François Pluchino <francois.pluchino@klipper.dev>
@@ -27,4 +28,11 @@ interface ScopeRegistryInterface
      * @return string[]
      */
     public function getScopes(): array;
+
+    /**
+     * Returns an array of resources loaded to build all scopes.
+     *
+     * @return ResourceInterface[] An array of resources
+     */
+    public function getResources(): array;
 }

@@ -12,6 +12,7 @@
 namespace Klipper\Component\SecurityOauth\Scope;
 
 use Klipper\Component\SecurityOauth\Scope\Loader\ScopeLoaderInterface;
+use Symfony\Component\Config\Resource\ResourceInterface;
 
 /**
  * @author François Pluchino <francois.pluchino@klipper.dev>
@@ -31,6 +32,11 @@ class ScopeRegistry implements ScopeRegistryInterface
     private array $scopes = [];
 
     /**
+     * @var ResourceInterface[]
+     */
+    private array $resources = [];
+
+    /**
      * @param ScopeLoaderInterface[] $loaders
      */
     public function __construct(array $loaders = [])
@@ -42,6 +48,9 @@ class ScopeRegistry implements ScopeRegistryInterface
 
     public function addLoader(ScopeLoaderInterface $loader): self
     {
+        $this->init = false;
+        $this->scopes = [];
+        $this->resources = [];
         $this->loaders[] = $loader;
 
         return $this;
@@ -54,6 +63,13 @@ class ScopeRegistry implements ScopeRegistryInterface
         return $this->scopes;
     }
 
+    public function getResources(): array
+    {
+        $this->init();
+
+        return array_values($this->resources);
+    }
+
     protected function init(): void
     {
         if (!$this->init) {
@@ -62,6 +78,14 @@ class ScopeRegistry implements ScopeRegistryInterface
 
             foreach ($this->loaders as $loader) {
                 $scopes[] = $loader->load();
+
+                foreach ($loader->getResources() as $resource) {
+                    $key = (string) $resource;
+
+                    if (!isset($this->resources[$key])) {
+                        $this->resources[$key] = $resource;
+                    }
+                }
             }
 
             $this->scopes = array_values(array_unique(array_merge(...$scopes)));
