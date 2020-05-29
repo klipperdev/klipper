@@ -21,16 +21,9 @@ class Scope implements ScopeEntityInterface
 {
     use EntityTrait;
 
-    public static array $scopes = [];
-
     public function __construct(string $name)
     {
         $this->setIdentifier($name);
-    }
-
-    public static function hasScope($id): bool
-    {
-        return '*' === $id || \array_key_exists($id, static::$scopes);
     }
 
     public function jsonSerialize()

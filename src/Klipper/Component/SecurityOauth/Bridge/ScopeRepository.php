@@ -11,7 +11,9 @@
 
 namespace Klipper\Component\SecurityOauth\Bridge;
 
+use Klipper\Component\SecurityOauth\Scope\ScopeManagerInterface;
 use League\OAuth2\Server\Entities\ClientEntityInterface;
+use League\OAuth2\Server\Entities\ScopeEntityInterface;
 use League\OAuth2\Server\Repositories\ScopeRepositoryInterface;
 
 /**
@@ -19,20 +21,31 @@ use League\OAuth2\Server\Repositories\ScopeRepositoryInterface;
  */
 class ScopeRepository implements ScopeRepositoryInterface
 {
-    public function getScopeEntityByIdentifier($identifier): ?Scope
+    private ScopeManagerInterface $scopeManager;
+
+    public function __construct(ScopeManagerInterface $scopeManager)
     {
-        return Scope::hasScope($identifier) ? new Scope($identifier) : null;
+        $this->scopeManager = $scopeManager;
     }
 
-    public function finalizeScopes(array $scopes, $grantType, ClientEntityInterface $clientEntity, $userIdentifier = null)
+    public function getScopeEntityByIdentifier($identifier): ?Scope
+    {
+        return $this->scopeManager->hasScope($identifier) ? new Scope($identifier) : null;
+    }
+
+    /**
+     * @param Scope[]   $scopes
+     * @param string    $grantType
+     * @param null|null $userIdentifier
+     *
+     * @return ScopeEntityInterface[]
+     */
+    public function finalizeScopes(array $scopes, $grantType, ClientEntityInterface $clientEntity, $userIdentifier = null): array
     {
         $filteredScopes = [];
 
-        /** @var Scope $scope */
         foreach ($scopes as $scope) {
-            $hasScope = Scope::hasScope($scope->getIdentifier());
-
-            if ($hasScope) {
+            if ($this->scopeManager->hasScope($scope->getIdentifier())) {
                 $filteredScopes[] = $scope;
             }
         }
