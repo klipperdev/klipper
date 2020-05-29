@@ -13,6 +13,7 @@ namespace Klipper\Bundle\ApiSecurityOauthBundle\DependencyInjection;
 
 use Klipper\Bundle\MetadataBundle\KlipperMetadataBundle;
 use Symfony\Component\Config\FileLocator;
+use Symfony\Component\Config\Loader\FileLoader;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
@@ -31,11 +32,20 @@ class KlipperApiSecurityOauthExtension extends Extension
      */
     public function load(array $configs, ContainerBuilder $container): void
     {
-        $ref = new \ReflectionClass($this);
-        $configPath = \dirname($ref->getFileName(), 2).'/Resources/config';
-        $loader = new Loader\XmlFileLoader($container, new FileLocator($configPath));
+        $configuration = new Configuration();
+        $config = $this->processConfiguration($configuration, $configs);
 
-        if (class_exists(KlipperMetadataBundle::class)) {
+        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+
+        $this->configureScopeLoader($loader, $config['scope_loader']);
+    }
+
+    /**
+     * @throws
+     */
+    private function configureScopeLoader(FileLoader $loader, array $config): void
+    {
+        if ($config['metadata']['enabled'] && class_exists(KlipperMetadataBundle::class)) {
             $loader->load('metadata_scope_loader.xml');
             $loader->load('cache_metadata_scope_loader.xml');
         }
