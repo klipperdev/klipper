@@ -292,7 +292,7 @@ class PermissionMetadataManager implements PermissionMetadataManagerInterface
     {
         $viewMeta = null;
 
-        if ($metadata->isPublic() && $this->authChecker->isGranted('perm_view', $metadata->getClass())) {
+        if ($metadata->isPublic() && $this->authChecker->isGranted('perm:view', $metadata->getClass())) {
             $config = $this->permissionManager->hasConfig($metadata->getClass())
                 ? $this->permissionManager->getConfig($metadata->getClass())
                 : null;
@@ -492,7 +492,7 @@ class PermissionMetadataManager implements PermissionMetadataManagerInterface
     private function isVisibleField(ObjectMetadataInterface $metadata, FieldMetadataInterface $fieldMetadata): bool
     {
         return $fieldMetadata->isPublic()
-            && $this->authChecker->isGranted('perm_read', new FieldVote($metadata->getClass(), $fieldMetadata->getField()));
+            && $this->authChecker->isGranted('perm:read', new FieldVote($metadata->getClass(), $fieldMetadata->getField()));
     }
 
     /**
@@ -504,6 +504,6 @@ class PermissionMetadataManager implements PermissionMetadataManagerInterface
     private function isVisibleAssociation(ObjectMetadataInterface $metadata, AssociationMetadataInterface $associationMetadata): bool
     {
         return $associationMetadata->isPublic()
-            && $this->authChecker->isGranted('perm_read', new FieldVote($metadata->getClass(), $associationMetadata->getAssociation()));
+            && $this->authChecker->isGranted('perm:read', new FieldVote($metadata->getClass(), $associationMetadata->getAssociation()));
     }
 }
