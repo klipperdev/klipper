@@ -23,33 +23,58 @@ class ScopeRepository implements ScopeRepositoryInterface
 {
     private ScopeManagerInterface $scopeManager;
 
-    public function __construct(ScopeManagerInterface $scopeManager)
+    private bool $allowAllScopes;
+
+    public function __construct(ScopeManagerInterface $scopeManager, bool $allowAllScopes = true)
     {
         $this->scopeManager = $scopeManager;
+        $this->allowAllScopes = $allowAllScopes;
     }
 
-    public function getScopeEntityByIdentifier($identifier): ?Scope
+    public function getScopeEntityByIdentifier($identifier): ?ScopeEntityInterface
     {
-        return $this->scopeManager->hasScope($identifier) ? new Scope($identifier) : null;
+        return ($this->allowAllScopes && '*' === $identifier) || $this->scopeManager->hasScope($identifier)
+            ? $this->createScope($identifier)
+            : null;
     }
 
     /**
-     * @param Scope[]   $scopes
-     * @param string    $grantType
-     * @param null|null $userIdentifier
+     * @param ScopeEntityInterface[] $scopes
+     * @param string                 $grantType
+     * @param null|string            $userIdentifier
      *
      * @return ScopeEntityInterface[]
      */
     public function finalizeScopes(array $scopes, $grantType, ClientEntityInterface $clientEntity, $userIdentifier = null): array
     {
         $filteredScopes = [];
+        $filteredScopeNames = [];
+        $allScopes = false;
 
         foreach ($scopes as $scope) {
-            if ($this->scopeManager->hasScope($scope->getIdentifier())) {
+            $identifier = $scope->getIdentifier();
+
+            if ('*' === $identifier) {
+                $allScopes = true;
+            } elseif ($this->scopeManager->hasScope($identifier)) {
                 $filteredScopes[] = $scope;
+                $filteredScopeNames[] = $identifier;
+            }
+        }
+
+        if ($allScopes) {
+            foreach ($this->scopeManager->getScopes() as $scopeName) {
+                if (!\in_array($scopeName, $filteredScopeNames, true)) {
+                    $filteredScopes[] = $this->createScope($scopeName);
+                }
             }
         }
 
         return $filteredScopes;
+    }
+
+    private function createScope(string $identifier): ScopeEntityInterface
+    {
+        return new Scope($identifier);
     }
 }
