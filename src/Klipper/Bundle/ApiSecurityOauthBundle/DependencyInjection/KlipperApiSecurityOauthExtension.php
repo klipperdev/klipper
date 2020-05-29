@@ -47,7 +47,6 @@ class KlipperApiSecurityOauthExtension extends Extension
     {
         if ($config['metadata']['enabled'] && class_exists(KlipperMetadataBundle::class)) {
             $loader->load('metadata_scope_loader.xml');
-            $loader->load('cache_metadata_scope_loader.xml');
         }
     }
 }
