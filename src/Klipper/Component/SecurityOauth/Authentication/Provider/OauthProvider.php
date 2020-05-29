@@ -58,17 +58,20 @@ class OauthProvider implements AuthenticationProviderInterface
             $request = $this->resourceServer->validateAuthenticatedRequest($token->getServerRequest());
             $accessToken = $request->getAttribute('oauth_access_token_id');
             $user = $this->getAuthenticatedUser($request->getAttribute('oauth_user_id'));
+            $scopes = $request->getAttribute('oauth_scopes', []);
         } else {
             /** @var OauthToken $token */
             $accessToken = $token->getToken();
             $user = $this->getAuthenticatedUser($token->getUsername());
+            $scopes = $token->getScopes();
         }
 
         return new OauthToken(
             $accessToken,
             $user,
             $this->providerKey,
-            $user->getRoles()
+            $user->getRoles(),
+            $scopes
         );
     }
 

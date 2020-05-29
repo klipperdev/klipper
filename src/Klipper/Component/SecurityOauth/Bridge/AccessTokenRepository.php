@@ -16,6 +16,7 @@ use Klipper\Component\SecurityOauth\Authentication\Token\OauthToken;
 use Klipper\Component\SecurityOauth\Repository\OauthAccessTokenRepositoryInterface;
 use League\OAuth2\Server\Entities\AccessTokenEntityInterface;
 use League\OAuth2\Server\Entities\ClientEntityInterface;
+use League\OAuth2\Server\Entities\ScopeEntityInterface;
 use League\OAuth2\Server\Repositories\AccessTokenRepositoryInterface;
 
 /**
@@ -48,7 +49,11 @@ class AccessTokenRepository implements AccessTokenRepositoryInterface
         $this->authManager->authenticate(new OauthToken(
             $accessTokenEntity->getIdentifier(),
             $accessTokenEntity->getUserIdentifier(),
-            $this->authManager->getProviderKey()
+            $this->authManager->getProviderKey(),
+            [],
+            array_map(static function (ScopeEntityInterface $scope) {
+                return $scope->getIdentifier();
+            }, $accessTokenEntity->getScopes())
         ));
 
         $this->repository->createAccessToken(

@@ -23,20 +23,25 @@ class OauthToken extends AbstractToken
 
     private string $providerKey;
 
+    private array $scopes;
+
     /**
      * @param null|string|UserInterface $user
      * @param string[]                  $roles
+     * @param string[]                  $scopes
      */
     public function __construct(
         string $token,
         $user,
         string $providerKey,
-        array $roles = []
+        array $roles = [],
+        array $scopes = []
     ) {
         parent::__construct($roles);
 
         $this->token = $token;
         $this->providerKey = $providerKey;
+        $this->scopes = $scopes;
 
         if (null !== $user) {
             $this->setUser($user);
@@ -79,5 +84,13 @@ class OauthToken extends AbstractToken
     public function getProviderKey(): string
     {
         return $this->providerKey;
+    }
+
+    /**
+     * @return string[]
+     */
+    public function getScopes(): array
+    {
+        return $this->scopes;
     }
 }
