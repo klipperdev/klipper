@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Klipper\Bundle\ApiSecurityOauthBundle\DependencyInjection;
+namespace Klipper\Bundle\SecurityOauthMetadataBundle\DependencyInjection;
 
 use Klipper\Bundle\SecurityBundle\DependencyInjection\NodeUtils;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
@@ -29,7 +29,7 @@ class Configuration implements ConfigurationInterface
      */
     public function getConfigTreeBuilder(): TreeBuilder
     {
-        $treeBuilder = new TreeBuilder('klipper_api_security_oauth');
+        $treeBuilder = new TreeBuilder('klipper_security_oauth_metadata');
         /** @var ArrayNodeDefinition $rootNode */
         $rootNode = $treeBuilder->getRootNode();
         $rootNode

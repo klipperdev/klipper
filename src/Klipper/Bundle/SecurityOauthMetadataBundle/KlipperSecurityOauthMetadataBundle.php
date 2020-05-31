@@ -9,13 +9,13 @@
  * file that was distributed with this source code.
  */
 
-namespace Klipper\Bundle\ApiSecurityOauthBundle;
+namespace Klipper\Bundle\SecurityOauthMetadataBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
  * @author François Pluchino <francois.pluchino@klipper.dev>
  */
-class KlipperApiSecurityOauthBundle extends Bundle
+class KlipperSecurityOauthMetadataBundle extends Bundle
 {
 }

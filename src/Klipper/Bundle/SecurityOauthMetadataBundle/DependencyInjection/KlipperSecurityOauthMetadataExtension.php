@@ -9,9 +9,8 @@
  * file that was distributed with this source code.
  */
 
-namespace Klipper\Bundle\ApiSecurityOauthBundle\DependencyInjection;
+namespace Klipper\Bundle\SecurityOauthMetadataBundle\DependencyInjection;
 
-use Klipper\Bundle\MetadataBundle\KlipperMetadataBundle;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Config\Loader\FileLoader;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -23,7 +22,7 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
  *
  * @author François Pluchino <francois.pluchino@klipper.dev>
  */
-class KlipperApiSecurityOauthExtension extends Extension
+class KlipperSecurityOauthMetadataExtension extends Extension
 {
     /**
      * {@inheritdoc}
@@ -45,7 +44,7 @@ class KlipperApiSecurityOauthExtension extends Extension
      */
     private function configureScopeLoader(FileLoader $loader, array $config): void
     {
-        if ($config['metadata']['enabled'] && class_exists(KlipperMetadataBundle::class)) {
+        if ($config['metadata']['enabled']) {
             $loader->load('metadata_scope_loader.xml');
         }
     }

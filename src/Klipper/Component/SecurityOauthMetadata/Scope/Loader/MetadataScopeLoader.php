@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Klipper\Bundle\ApiSecurityOauthBundle\Scope\Loader;
+namespace Klipper\Component\SecurityOauthMetadata\Scope\Loader;
 
 use Klipper\Component\Metadata\MetadataManagerInterface;
 use Klipper\Component\SecurityOauth\Scope\Loader\AbstractScopeLoader;
