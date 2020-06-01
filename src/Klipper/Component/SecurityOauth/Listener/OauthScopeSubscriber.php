@@ -33,7 +33,7 @@ class OauthScopeSubscriber implements EventSubscriberInterface
     {
         $request = $event->getRequest();
         $userScopes = (array) $request->attributes->get('oauth_scopes', []);
-        /** @var OauthScope[] $requiredScopes */
+        /** @var array[]|OauthScope[] $requiredScopes */
         $requiredScopes = (array) $request->attributes->get('_required_oauth_scopes', []);
 
         if (empty($userScopes) || empty($requiredScopes)) {
@@ -41,6 +41,10 @@ class OauthScopeSubscriber implements EventSubscriberInterface
         }
 
         foreach ($requiredScopes as $requiredScope) {
+            $requiredScope = $requiredScope instanceof OauthScope
+                ? $requiredScope
+                : new OauthScope($requiredScope);
+
             if ($requiredScope->isAllRequired()) {
                 foreach ($requiredScope->getScope() as $scope) {
                     if (!\in_array($scope, $userScopes, true)) {
