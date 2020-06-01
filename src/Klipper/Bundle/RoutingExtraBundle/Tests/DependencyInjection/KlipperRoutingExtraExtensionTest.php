@@ -66,6 +66,7 @@ final class KlipperRoutingExtraExtensionTest extends TestCase
 
         $sfExt->load([[
             'router' => [
+                'utf8' => true,
                 'resource' => '.',
             ],
         ]], $container);
