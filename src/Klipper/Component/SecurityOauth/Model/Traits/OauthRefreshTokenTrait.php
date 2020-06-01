@@ -28,7 +28,7 @@ trait OauthRefreshTokenTrait
      *     targetEntity="Klipper\Component\SecurityOauth\Model\OauthAccessTokenInterface",
      *     fetch="EXTRA_LAZY"
      * )
-     * @ORM\JoinColumn(onDelete="CASCADE")
+     * @ORM\JoinColumn(onDelete="SET NULL")
      *
      * @Serializer\Expose
      * @Serializer\ReadOnly
