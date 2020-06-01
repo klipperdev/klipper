@@ -32,6 +32,7 @@ use Klipper\Component\Security\Model\PermissionInterface;
 use Klipper\Component\Security\Model\RoleInterface;
 use Klipper\Component\Security\Permission\FieldVote;
 use Klipper\Component\Security\Permission\PermissionManagerInterface;
+use Klipper\Component\Security\Permission\PermVote;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
@@ -292,7 +293,7 @@ class PermissionMetadataManager implements PermissionMetadataManagerInterface
     {
         $viewMeta = null;
 
-        if ($metadata->isPublic() && $this->authChecker->isGranted('perm:view', $metadata->getClass())) {
+        if ($metadata->isPublic() && $this->authChecker->isGranted(new PermVote('view'), $metadata->getClass())) {
             $config = $this->permissionManager->hasConfig($metadata->getClass())
                 ? $this->permissionManager->getConfig($metadata->getClass())
                 : null;
@@ -492,7 +493,7 @@ class PermissionMetadataManager implements PermissionMetadataManagerInterface
     private function isVisibleField(ObjectMetadataInterface $metadata, FieldMetadataInterface $fieldMetadata): bool
     {
         return $fieldMetadata->isPublic()
-            && $this->authChecker->isGranted('perm:read', new FieldVote($metadata->getClass(), $fieldMetadata->getField()));
+            && $this->authChecker->isGranted(new PermVote('read'), new FieldVote($metadata->getClass(), $fieldMetadata->getField()));
     }
 
     /**
@@ -504,6 +505,6 @@ class PermissionMetadataManager implements PermissionMetadataManagerInterface
     private function isVisibleAssociation(ObjectMetadataInterface $metadata, AssociationMetadataInterface $associationMetadata): bool
     {
         return $associationMetadata->isPublic()
-            && $this->authChecker->isGranted('perm:read', new FieldVote($metadata->getClass(), $associationMetadata->getAssociation()));
+            && $this->authChecker->isGranted(new PermVote('read'), new FieldVote($metadata->getClass(), $associationMetadata->getAssociation()));
     }
 }
