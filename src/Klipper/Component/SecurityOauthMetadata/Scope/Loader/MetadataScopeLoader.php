@@ -13,30 +13,14 @@ namespace Klipper\Component\SecurityOauthMetadata\Scope\Loader;
 
 use Klipper\Component\Metadata\MetadataManagerInterface;
 use Klipper\Component\SecurityOauth\Scope\Loader\AbstractScopeLoader;
+use Klipper\Component\SecurityOauthMetadata\Scope\ScopeMetadata;
+use Klipper\Component\SecurityOauthMetadata\Scope\ScopeTypes;
 
 /**
  * @author François Pluchino <francois.pluchino@klipper.dev>
  */
 class MetadataScopeLoader extends AbstractScopeLoader
 {
-    public const READ_ACTIONS = [
-        'list',
-        'view',
-    ];
-
-    public const MANAGE_ACTIONS = [
-        'create',
-        'upsert',
-        'update',
-        'delete',
-        'undelete',
-        'creates',
-        'upserts',
-        'updates',
-        'deletes',
-        'undeletes',
-    ];
-
     private MetadataManagerInterface $metadataManager;
 
     public function __construct(MetadataManagerInterface $metadataManager)
@@ -58,12 +42,12 @@ class MetadataScopeLoader extends AbstractScopeLoader
                 }
 
                 foreach ($metadata->getActions() as $action) {
-                    if (\in_array($action->getName(), static::READ_ACTIONS, true)) {
+                    if (\in_array($action->getName(), ScopeTypes::READ_ACTIONS, true)) {
                         $read = true;
-                        $validScopes[] = sprintf('meta/%s.readonly', $metadata->getName());
-                    } elseif (\in_array($action->getName(), static::MANAGE_ACTIONS, true)) {
+                        $validScopes[] = ScopeMetadata::getRead($metadata);
+                    } elseif (\in_array($action->getName(), ScopeTypes::MANAGE_ACTIONS, true)) {
                         $manage = true;
-                        $validScopes[] = sprintf('meta/%s', $metadata->getName());
+                        $validScopes[] = ScopeMetadata::getManage($metadata);
                     }
 
                     if ($read && $manage) {
