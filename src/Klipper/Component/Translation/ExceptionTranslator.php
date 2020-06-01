@@ -82,7 +82,6 @@ class ExceptionTranslator implements ExceptionTranslatorInterface
             Response::$statusTexts[403],
             Response::$statusTexts[404],
             Response::$statusTexts[415],
-            Response::$statusTexts[422],
         ];
     }
 }
