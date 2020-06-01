@@ -37,6 +37,7 @@ class KlipperSecurityOauthMetadataExtension extends Extension
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
 
         $this->configureScopeLoader($loader, $config['scope_loader']);
+        $this->configureMetadataLoader($loader, $config['metadata']);
     }
 
     /**
@@ -46,6 +47,16 @@ class KlipperSecurityOauthMetadataExtension extends Extension
     {
         if ($config['metadata']['enabled']) {
             $loader->load('metadata_scope_loader.xml');
+        }
+    }
+
+    /**
+     * @throws
+     */
+    private function configureMetadataLoader(FileLoader $loader, array $config): void
+    {
+        if ($config['guesser']['oauth_scope']['enabled']) {
+            $loader->load('scope_metadata_guesser.xml');
         }
     }
 }

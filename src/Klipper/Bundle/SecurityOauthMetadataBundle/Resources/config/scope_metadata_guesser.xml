@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="klipper_security_oauth_metadata.metadata.guess.scope"
+                 class="Klipper\Component\SecurityOauthMetadata\Metadata\Guess\GuessScopeMetadata">
+            <tag name="klipper_metadata.guess" priority="-900"/>
+        </service>
+    </services>
+</container>

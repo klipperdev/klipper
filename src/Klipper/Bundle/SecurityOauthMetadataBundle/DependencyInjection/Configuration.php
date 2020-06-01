@@ -35,6 +35,7 @@ class Configuration implements ConfigurationInterface
         $rootNode
             ->addDefaultsIfNotSet()
             ->append($this->getScopeLoaderNode())
+            ->append($this->getMetadataGuesserNode())
         ;
 
         return $treeBuilder;
@@ -47,6 +48,23 @@ class Configuration implements ConfigurationInterface
             ->children()
             ->arrayNode('metadata')
             ->canBeDisabled()
+            ->end()
+            ->end()
+        ;
+    }
+
+    private function getMetadataGuesserNode(): NodeDefinition
+    {
+        return NodeUtils::createArrayNode('metadata')
+            ->addDefaultsIfNotSet()
+            ->children()
+            ->arrayNode('guesser')
+            ->addDefaultsIfNotSet()
+            ->children()
+            ->arrayNode('oauth_scope')
+            ->canBeDisabled()
+            ->end()
+            ->end()
             ->end()
             ->end()
         ;
