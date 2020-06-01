@@ -13,8 +13,8 @@
     "prefer-stable": true,
     "require": {
         "php": "^7.4.0",
-        "symfony/framework-bundle": "^4.4.0",
-        "symfony/security-core": "^4.4.0",
+        "symfony/framework-bundle": "^5.1.0",
+        "symfony/security-core": "^5.1.0",
         "klipper/security-extra-bundle": "^2.0.0",
         "klipper/metadata-bundle": "^2.0.0",
         "klipper/doctrine-extensions-extra-bundle": "^2.0.0",

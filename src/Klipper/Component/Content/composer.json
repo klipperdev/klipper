@@ -14,11 +14,11 @@
     "require": {
         "php": "^7.4.0",
         "imagine/imagine": "^1.2.0",
-        "symfony/http-kernel": "^4.4.0",
-        "symfony/filesystem": "^4.4.0"
+        "symfony/http-kernel": "^5.1.0",
+        "symfony/filesystem": "^5.1.0"
     },
     "require-dev": {
-        "ankitpokhrel/tus-php": "1.0.*",
+        "ankitpokhrel/tus-php": "^2.0.0",
         "klipper/routing": "^2.0.0",
         "jms/serializer": "^3.0.0"
     },

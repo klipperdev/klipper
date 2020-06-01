@@ -15,8 +15,8 @@
     "prefer-stable": true,
     "require": {
         "php": "^7.4.0",
-        "symfony/routing": "^4.4.0",
-        "symfony/property-access": "^4.4.0"
+        "symfony/routing": "^5.1.0",
+        "symfony/property-access": "^5.1.0"
 
     },
     "autoload": {
