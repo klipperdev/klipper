@@ -48,7 +48,7 @@ class CacheMetadataFactory implements MetadataFactoryInterface, WarmableInterfac
      */
     private ?array $choices = null;
 
-    private ?array $choiceNames = null;
+    private ?ChoiceNameCollection $choiceNames = null;
 
     /**
      * @param MetadataFactoryInterface $factory The metadata factory
