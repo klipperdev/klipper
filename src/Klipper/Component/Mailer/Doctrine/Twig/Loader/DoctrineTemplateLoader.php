@@ -11,7 +11,7 @@
 
 namespace Klipper\Component\Mailer\Doctrine\Twig\Loader;
 
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 use Klipper\Component\Mailer\Doctrine\Repository\TemplateMessageRepositoryInterface;
 use Klipper\Component\Mailer\Doctrine\Twig\DoctrineTemplate;
 use Klipper\Component\Mailer\Model\TemplateMessageInterface;

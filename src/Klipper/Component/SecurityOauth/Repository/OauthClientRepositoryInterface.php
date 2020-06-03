@@ -11,7 +11,7 @@
 
 namespace Klipper\Component\SecurityOauth\Repository;
 
-use Doctrine\Common\Persistence\ObjectRepository;
+use Doctrine\Persistence\ObjectRepository;
 use Klipper\Component\SecurityOauth\Model\OauthClientInterface;
 
 /**

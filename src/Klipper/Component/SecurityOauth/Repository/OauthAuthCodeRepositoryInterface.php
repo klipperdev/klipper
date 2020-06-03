@@ -11,9 +11,9 @@
 
 namespace Klipper\Component\SecurityOauth\Repository;
 
-use Doctrine\Common\Persistence\ObjectRepository;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
+use Doctrine\Persistence\ObjectRepository;
 use Klipper\Component\SecurityOauth\Model\OauthAuthCodeInterface;
 
 /**

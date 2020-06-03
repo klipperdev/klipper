@@ -11,7 +11,7 @@
 
 namespace Klipper\Component\Mailer\Doctrine\Repository;
 
-use Doctrine\Common\Persistence\ObjectRepository;
+use Doctrine\Persistence\ObjectRepository;
 use Klipper\Component\Mailer\Model\TemplateMessageInterface;
 
 /**

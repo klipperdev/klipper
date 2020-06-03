@@ -11,8 +11,8 @@
 
 namespace Klipper\Component\Mailer\Tests\Doctrine\Twig\Loader;
 
-use Doctrine\Common\Persistence\ManagerRegistry;
-use Doctrine\Common\Persistence\ObjectRepository;
+use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ObjectRepository;
 use Klipper\Component\Mailer\Doctrine\Repository\TemplateMessageRepositoryInterface;
 use Klipper\Component\Mailer\Doctrine\Twig\Loader\DoctrineTemplateLoader;
 use Klipper\Component\Mailer\Model\TemplateMessageInterface;
