@@ -25,9 +25,6 @@ class DefaultValueLoadersPass implements CompilerPassInterface
 {
     use PriorityTaggedServiceTrait;
 
-    /**
-     * {@inheritdoc}
-     */
     public function process(ContainerBuilder $container): void
     {
         if ($container->hasDefinition('klipper_doctrine_extensions_extra.default_value.type_extension.default')) {

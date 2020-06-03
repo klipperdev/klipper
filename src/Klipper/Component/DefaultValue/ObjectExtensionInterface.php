@@ -27,7 +27,7 @@ interface ObjectExtensionInterface
      *
      * @return ObjectTypeInterface The type
      */
-    public function getType($classname);
+    public function getType(string $classname): ObjectTypeInterface;
 
     /**
      * Returns whether the given type is supported.
@@ -36,7 +36,7 @@ interface ObjectExtensionInterface
      *
      * @return bool Whether the type is supported by this extension
      */
-    public function hasType($classname);
+    public function hasType(string $classname): bool;
 
     /**
      * Returns the extensions for the given type.
@@ -45,7 +45,7 @@ interface ObjectExtensionInterface
      *
      * @return ObjectTypeExtensionInterface[] An array of extensions as ObjectTypeExtensionInterface instances
      */
-    public function getTypeExtensions($classname);
+    public function getTypeExtensions(string $classname): array;
 
     /**
      * Returns whether this extension provides type extensions for the given type.
@@ -54,5 +54,5 @@ interface ObjectExtensionInterface
      *
      * @return bool Whether the given type has extensions
      */
-    public function hasTypeExtensions($classname);
+    public function hasTypeExtensions(string $classname): bool;
 }

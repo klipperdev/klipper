@@ -23,10 +23,7 @@ use Klipper\Component\Cache\Adapter\PdoAdapter;
  */
 final class PdoAdapterTest extends AbstractAdapterTest
 {
-    /**
-     * @var string
-     */
-    protected $dbFile;
+    protected string $dbFile = '';
 
     /**
      * @throws

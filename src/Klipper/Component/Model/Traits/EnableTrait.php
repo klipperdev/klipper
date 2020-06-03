@@ -31,9 +31,6 @@ trait EnableTrait
      */
     protected bool $enabled = true;
 
-    /**
-     * {@inheritdoc}
-     */
     public function setEnabled(bool $enabled): self
     {
         $this->enabled = $enabled;
@@ -41,9 +38,6 @@ trait EnableTrait
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function isEnabled(): bool
     {
         return $this->enabled;

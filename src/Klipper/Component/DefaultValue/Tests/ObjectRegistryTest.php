@@ -74,13 +74,6 @@ final class ObjectRegistryTest extends TestCase
         static::assertInstanceOf('Klipper\Component\DefaultValue\Extension\Core\Type\DefaultType', $resolvedType->getInnerType());
     }
 
-    public function testGetTypeObjectUnexpectedTypeException(): void
-    {
-        $this->expectException(\Klipper\Component\DefaultValue\Exception\UnexpectedTypeException::class);
-
-        $this->registry->getType(42);
-    }
-
     public function testGetExtensions(): void
     {
         $exts = $this->registry->getExtensions();

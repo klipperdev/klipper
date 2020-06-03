@@ -22,12 +22,10 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 class CurrentUserIdFunction extends BaseFunction
 {
     /**
-     * Constructor.
-     *
      * @param TokenStorageInterface $tokenStorage The token storage
      * @param string                $function     The name of function
      */
-    public function __construct(TokenStorageInterface $tokenStorage, $function = 'current_user_id')
+    public function __construct(TokenStorageInterface $tokenStorage, string $function = 'current_user_id')
     {
         parent::__construct($function, static function () use ($tokenStorage) {
             $token = $tokenStorage->getToken();

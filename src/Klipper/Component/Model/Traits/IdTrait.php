@@ -31,9 +31,6 @@ trait IdTrait
      */
     protected ?int $id = null;
 
-    /**
-     * {@inheritdoc}
-     */
     public function getId(): ?int
     {
         return $this->id;

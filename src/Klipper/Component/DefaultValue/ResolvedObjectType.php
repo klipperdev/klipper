@@ -22,37 +22,28 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class ResolvedObjectType implements ResolvedObjectTypeInterface
 {
-    /**
-     * @var ObjectTypeInterface
-     */
-    protected $innerType;
+    protected ObjectTypeInterface $innerType;
 
     /**
      * @var ObjectTypeExtensionInterface[]
      */
-    protected $typeExtensions;
+    protected array $typeExtensions;
+
+    protected ?ResolvedObjectTypeInterface $parent;
+
+    protected ?OptionsResolver $optionsResolver = null;
 
     /**
-     * @var ResolvedObjectTypeInterface
-     */
-    protected $parent;
-
-    /**
-     * @var OptionsResolver
-     */
-    protected $optionsResolver;
-
-    /**
-     * Constructor.
-     *
      * @param ObjectTypeExtensionInterface[] $typeExtensions
-     * @param ResolvedObjectTypeInterface    $parent
      *
      * @throws InvalidArgumentException When the object default value type classname does not exist
      * @throws UnexpectedTypeException  When unexpected type of argument
      */
-    public function __construct(ObjectTypeInterface $innerType, array $typeExtensions = [], ResolvedObjectTypeInterface $parent = null)
-    {
+    public function __construct(
+        ObjectTypeInterface $innerType,
+        array $typeExtensions = [],
+        ?ResolvedObjectTypeInterface $parent = null
+    ) {
         if ('default' !== $innerType->getClass() && !class_exists($innerType->getClass())) {
             throw new InvalidArgumentException(sprintf(
                 'The "%s" object default value type class name ("%s") does not exists.',
@@ -72,42 +63,27 @@ class ResolvedObjectType implements ResolvedObjectTypeInterface
         $this->parent = $parent;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getClass()
+    public function getClass(): string
     {
         return $this->innerType->getClass();
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getParent()
+    public function getParent(): ResolvedObjectTypeInterface
     {
         return $this->parent;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getInnerType()
+    public function getInnerType(): ObjectTypeInterface
     {
         return $this->innerType;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getTypeExtensions()
+    public function getTypeExtensions(): iterable
     {
         return $this->typeExtensions;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function createBuilder(ObjectFactoryInterface $factory, array $options = [])
+    public function createBuilder(ObjectFactoryInterface $factory, array $options = []): ObjectBuilderInterface
     {
         $options = $this->getOptionsResolver()->resolve($options);
         $builder = new ObjectBuilder($factory, $options);
@@ -116,10 +92,7 @@ class ResolvedObjectType implements ResolvedObjectTypeInterface
         return $builder;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function newInstance(ObjectBuilderInterface $builder, array $options)
+    public function newInstance(ObjectBuilderInterface $builder, array $options): ?object
     {
         $data = $this->innerType->newInstance($builder, $options);
 
@@ -130,26 +103,17 @@ class ResolvedObjectType implements ResolvedObjectTypeInterface
         return $data;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function buildObject(ObjectBuilderInterface $builder, array $options): void
     {
         $this->doActionObject('buildObject', $builder, $options);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function finishObject(ObjectBuilderInterface $builder, array $options): void
     {
         $this->doActionObject('finishObject', $builder, $options);
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getOptionsResolver()
+    public function getOptionsResolver(): OptionsResolver
     {
         if (null === $this->optionsResolver) {
             if (null !== $this->parent) {
@@ -174,7 +138,7 @@ class ResolvedObjectType implements ResolvedObjectTypeInterface
      *
      * @param string $method The buildObject or finishObject method name
      */
-    protected function doActionObject($method, ObjectBuilderInterface $builder, array $options): void
+    protected function doActionObject(string $method, ObjectBuilderInterface $builder, array $options): void
     {
         if (null !== $this->parent) {
             $this->parent->{$method}($builder, $options);

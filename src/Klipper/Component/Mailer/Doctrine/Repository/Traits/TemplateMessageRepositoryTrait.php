@@ -28,8 +28,6 @@ use Klipper\Component\Mailer\Model\TemplateMessageInterface;
 trait TemplateMessageRepositoryTrait
 {
     /**
-     * {@inheritdoc}
-     *
      * @see TemplateMessageRepositoryInterface::findTemplate()
      *
      * @throws

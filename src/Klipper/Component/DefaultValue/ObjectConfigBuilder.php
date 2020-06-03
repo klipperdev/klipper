@@ -21,40 +21,22 @@ use Klipper\Component\DefaultValue\Exception\InvalidArgumentException;
  */
 class ObjectConfigBuilder implements ObjectConfigBuilderInterface
 {
-    /**
-     * @var bool
-     */
-    protected $locked = false;
+    protected bool $locked = false;
 
-    /**
-     * @var ResolvedObjectTypeInterface
-     */
-    protected $type;
+    protected ResolvedObjectTypeInterface $type;
 
     /**
      * @var mixed
      */
     protected $data;
 
-    /**
-     * @var string
-     */
-    protected $dataClass;
+    protected ?string $dataClass = null;
 
-    /**
-     * @var array
-     */
-    protected $methods;
+    protected array $methods = [];
 
-    /**
-     * @var array
-     */
-    protected $properties;
+    protected array $properties = [];
 
-    /**
-     * @var array
-     */
-    protected $options;
+    protected array $options;
 
     /**
      * Creates an empty object default value configuration.
@@ -66,34 +48,22 @@ class ObjectConfigBuilder implements ObjectConfigBuilderInterface
         $this->options = $options;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getType()
+    public function getType(): ResolvedObjectTypeInterface
     {
         return $this->type;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getProperties()
+    public function getProperties(): array
     {
         return $this->properties;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function hasProperty($name)
+    public function hasProperty(string $name): bool
     {
         return \in_array($name, $this->properties, true);
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getProperty($name)
+    public function getProperty(string $name)
     {
         if (null === $this->data) {
             throw new BadMethodCallException('BlockConfigBuilder methods cannot be accessed when the data is empty.');
@@ -124,50 +94,32 @@ class ObjectConfigBuilder implements ObjectConfigBuilderInterface
         return $ref->getValue($this->getData());
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getData()
     {
         return $this->data;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getDataClass()
+    public function getDataClass(): ?string
     {
         return $this->dataClass;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getOptions()
+    public function getOptions(): array
     {
         return $this->options;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function hasOption($name)
+    public function hasOption(string $name): bool
     {
         return \array_key_exists($name, $this->options);
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getOption($name, $default = null)
+    public function getOption(string $name, $default = null)
     {
         return $this->hasOption($name) ? $this->options[$name] : $default;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function setType(ResolvedObjectTypeInterface $type)
+    public function setType(ResolvedObjectTypeInterface $type): self
     {
         if ($this->locked) {
             throw new BadMethodCallException('BlockConfigBuilder methods cannot be accessed anymore once the builder is turned into a BlockConfigInterface instance.');
@@ -178,10 +130,7 @@ class ObjectConfigBuilder implements ObjectConfigBuilderInterface
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function setData($data)
+    public function setData($data): self
     {
         if ($this->locked) {
             throw new BadMethodCallException('BlockConfigBuilder methods cannot be accessed anymore once the builder is turned into a BlockConfigInterface instance.');
@@ -200,20 +149,14 @@ class ObjectConfigBuilder implements ObjectConfigBuilderInterface
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function setProperty($name, $value)
+    public function setProperty(string $name, $value): self
     {
         $this->setProperties([$name => $value]);
 
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function setProperties(array $properties)
+    public function setProperties(array $properties): self
     {
         if (null === $this->data) {
             throw new BadMethodCallException('BlockConfigBuilder methods cannot be accessed when the data is empty.');
@@ -239,10 +182,7 @@ class ObjectConfigBuilder implements ObjectConfigBuilderInterface
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getObjectConfig()
+    public function getObjectConfig(): ObjectConfigInterface
     {
         if ($this->locked) {
             throw new BadMethodCallException('BlockConfigBuilder methods cannot be accessed anymore once the builder is turned into a BlockConfigInterface instance.');
@@ -268,13 +208,9 @@ class ObjectConfigBuilder implements ObjectConfigBuilderInterface
     /**
      * Finds the reflection property.
      *
-     * @param string $property
-     *
      * @throws InvalidArgumentException When the property is not found
-     *
-     * @return \ReflectionProperty
      */
-    protected function findReflectionProperty($property, \ReflectionClass $reflection)
+    protected function findReflectionProperty(string $property, \ReflectionClass $reflection): \ReflectionProperty
     {
         if ($reflection->hasProperty($property)) {
             $refProp = $reflection->getProperty($property);

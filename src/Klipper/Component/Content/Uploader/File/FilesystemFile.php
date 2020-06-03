@@ -19,11 +19,6 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  */
 class FilesystemFile extends UploadedFile implements FileInterface
 {
-    /**
-     * Constructor.
-     *
-     * @param File $file The file
-     */
     public function __construct(File $file)
     {
         if ($file instanceof UploadedFile) {
@@ -33,9 +28,6 @@ class FilesystemFile extends UploadedFile implements FileInterface
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getExtension(): string
     {
         return $this->getClientOriginalExtension();

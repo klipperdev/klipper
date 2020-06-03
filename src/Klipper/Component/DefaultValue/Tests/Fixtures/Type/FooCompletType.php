@@ -18,9 +18,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class FooCompletType extends AbstractType
 {
-    /**
-     * {@inheritdoc}
-     */
     public function buildObject(ObjectBuilderInterface $builder, array $options): void
     {
         /** @var Foo $data */
@@ -31,9 +28,6 @@ class FooCompletType extends AbstractType
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function finishObject(ObjectBuilderInterface $builder, array $options): void
     {
         /** @var Foo $data */
@@ -44,9 +38,6 @@ class FooCompletType extends AbstractType
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
@@ -56,10 +47,7 @@ class FooCompletType extends AbstractType
         $resolver->addAllowedTypes('bar', 'string');
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getClass()
+    public function getClass(): string
     {
         return 'Klipper\Component\DefaultValue\Tests\Fixtures\Object\Foo';
     }

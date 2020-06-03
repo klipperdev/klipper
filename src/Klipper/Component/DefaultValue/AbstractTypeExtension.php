@@ -18,23 +18,14 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 abstract class AbstractTypeExtension implements ObjectTypeExtensionInterface
 {
-    /**
-     * {@inheritdoc}
-     */
     public function buildObject(ObjectBuilderInterface $builder, array $options): void
     {
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function finishObject(ObjectBuilderInterface $builder, array $options): void
     {
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function configureOptions(OptionsResolver $resolver): void
     {
     }

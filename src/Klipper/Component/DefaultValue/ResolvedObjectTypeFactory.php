@@ -16,10 +16,7 @@ namespace Klipper\Component\DefaultValue;
  */
 class ResolvedObjectTypeFactory implements ResolvedObjectTypeFactoryInterface
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function createResolvedType(ObjectTypeInterface $type, array $typeExtensions, ResolvedObjectTypeInterface $parent = null)
+    public function createResolvedType(ObjectTypeInterface $type, array $typeExtensions, ResolvedObjectTypeInterface $parent = null): ResolvedObjectTypeInterface
     {
         return new ResolvedObjectType($type, $typeExtensions, $parent);
     }

@@ -18,9 +18,6 @@ namespace Klipper\Component\ExpressionLanguage\Functions;
  */
 class YearBeginFunction extends BaseFunction
 {
-    /**
-     * Constructor.
-     */
     public function __construct()
     {
         parent::__construct('year_begin', static function () {

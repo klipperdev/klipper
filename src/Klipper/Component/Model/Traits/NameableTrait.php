@@ -33,9 +33,6 @@ trait NameableTrait
      */
     protected ?string $name = null;
 
-    /**
-     * {@inheritdoc}
-     */
     public function setName(?string $name): self
     {
         $this->name = $name;
@@ -43,9 +40,6 @@ trait NameableTrait
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getName(): ?string
     {
         return $this->name;

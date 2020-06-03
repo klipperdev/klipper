@@ -37,39 +37,22 @@ class ImageManipulator implements ImageManipulatorInterface
         'XPM',
     ];
 
-    /**
-     * @var ImagineInterface
-     */
-    protected $imagine;
+    protected ImagineInterface $imagine;
 
-    /**
-     * @var CacheInterface
-     */
-    protected $cache;
+    protected CacheInterface $cache;
 
-    /**
-     * @var string
-     */
-    protected $tempPath;
+    protected string $tempPath;
 
-    /**
-     * @var array
-     */
-    protected $options;
+    protected array $options;
 
-    /**
-     * @var Filesystem
-     */
-    protected $filesystem;
+    protected Filesystem $filesystem;
 
     /**
      * @var string[]
      */
-    protected $availableExtensions;
+    protected array $availableExtensions;
 
     /**
-     * Constructor.
-     *
      * @param ImagineInterface $imagine             The imagine engine
      * @param CacheInterface   $cache               The cache
      * @param string           $tempPath            The path of the temporary directory
@@ -93,17 +76,12 @@ class ImageManipulator implements ImageManipulatorInterface
         $this->availableExtensions = $this->buildAvailableExtensions($availableExtensions);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function supports(?string $extension): bool
     {
         return \in_array(strtoupper($extension), $this->availableExtensions, true);
     }
 
     /**
-     * {@inheritdoc}
-     *
      * @throws
      */
     public function create(string $path, ?ConfigInterface $config = null): ManipulatorImageInterface

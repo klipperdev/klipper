@@ -23,29 +23,15 @@ use Twig\TwigFunction;
  */
 class PhoneFormatExtension extends AbstractExtension
 {
-    /**
-     * @var PhoneNumberUtil
-     */
-    protected $phoneNumberUtil;
+    protected PhoneNumberUtil $phoneNumberUtil;
 
-    /**
-     * @var string
-     */
-    protected $charset = 'UTF-8';
+    protected string $charset = 'UTF-8';
 
-    /**
-     * Constructor.
-     *
-     * @param PhoneNumberUtil $phoneNumberUtil The Phone number utility
-     */
     public function __construct(PhoneNumberUtil $phoneNumberUtil)
     {
         $this->phoneNumberUtil = $phoneNumberUtil;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getFunctions(): array
     {
         return [

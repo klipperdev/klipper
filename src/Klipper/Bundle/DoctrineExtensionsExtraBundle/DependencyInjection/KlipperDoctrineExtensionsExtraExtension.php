@@ -34,19 +34,11 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
  */
 class KlipperDoctrineExtensionsExtraExtension extends Extension
 {
-    /**
-     * @var array
-     */
-    private $entityManagers = [];
+    private array $entityManagers = [];
+
+    private array $documentManagers = [];
 
     /**
-     * @var array
-     */
-    private $documentManagers = [];
-
-    /**
-     * {@inheritdoc}
-     *
      * @throws \Exception
      */
     public function load(array $configs, ContainerBuilder $container): void

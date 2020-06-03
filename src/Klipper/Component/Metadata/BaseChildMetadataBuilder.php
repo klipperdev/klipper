@@ -18,34 +18,16 @@ use Klipper\Component\Metadata\Exception\BadMethodCallException;
  */
 abstract class BaseChildMetadataBuilder extends BaseMetadataBuilder implements ChildMetadataBuilderInterface
 {
-    /**
-     * @var null|ObjectMetadataBuilderInterface
-     */
-    protected $parent;
+    protected ?ObjectMetadataBuilderInterface $parent = null;
 
-    /**
-     * @var null|bool
-     */
-    protected $readOnly;
+    protected ?bool $readOnly = null;
 
-    /**
-     * @var null|bool
-     */
-    protected $required;
+    protected ?bool $required = null;
 
-    /**
-     * @var null|string
-     */
-    protected $input;
+    protected ?string $input = null;
 
-    /**
-     * @var null|array
-     */
-    protected $inputConfig;
+    protected ?array $inputConfig = null;
 
-    /**
-     * {@inheritdoc}
-     */
     public function setParent(ObjectMetadataBuilderInterface $parent): self
     {
         $this->parent = $parent;
@@ -53,9 +35,6 @@ abstract class BaseChildMetadataBuilder extends BaseMetadataBuilder implements C
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getParent(): ObjectMetadataBuilderInterface
     {
         if (null === $this->parent) {
@@ -65,9 +44,6 @@ abstract class BaseChildMetadataBuilder extends BaseMetadataBuilder implements C
         return $this->parent;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setReadOnly(?bool $readOnly): self
     {
         $this->readOnly = $readOnly;
@@ -75,17 +51,11 @@ abstract class BaseChildMetadataBuilder extends BaseMetadataBuilder implements C
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function isReadOnly(): ?bool
     {
         return $this->readOnly;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setRequired(?bool $required): self
     {
         $this->required = $required;
@@ -93,17 +63,11 @@ abstract class BaseChildMetadataBuilder extends BaseMetadataBuilder implements C
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function isRequired(): ?bool
     {
         return $this->required;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setInput(?string $input): self
     {
         $this->input = $input;
@@ -111,17 +75,11 @@ abstract class BaseChildMetadataBuilder extends BaseMetadataBuilder implements C
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getInput(): ?string
     {
         return $this->input;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setInputConfig(?array $inputConfig): self
     {
         $this->inputConfig = $inputConfig;
@@ -129,9 +87,6 @@ abstract class BaseChildMetadataBuilder extends BaseMetadataBuilder implements C
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getInputConfig(): ?array
     {
         return $this->inputConfig;

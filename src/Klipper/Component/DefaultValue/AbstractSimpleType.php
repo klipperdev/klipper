@@ -16,25 +16,17 @@ namespace Klipper\Component\DefaultValue;
  */
 abstract class AbstractSimpleType extends AbstractType
 {
-    /**
-     * @var string
-     */
-    protected $class;
+    protected string $class;
 
     /**
-     * Constructor.
-     *
      * @param string $class The class name
      */
-    public function __construct($class)
+    public function __construct(string $class)
     {
         $this->class = $class;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getClass()
+    public function getClass(): string
     {
         return $this->class;
     }

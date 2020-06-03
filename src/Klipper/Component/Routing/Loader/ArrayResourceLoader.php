@@ -21,11 +21,10 @@ use Symfony\Component\Routing\RouteCollection;
 class ArrayResourceLoader extends Loader
 {
     /**
-     * {@inheritdoc}
-     *
      * @param ArrayResource $resource
+     * @param null|mixed    $type
      */
-    public function load($resource, $type = null): RouteCollection
+    public function load($resource, string $type = null): RouteCollection
     {
         $resources = new RouteCollection();
 
@@ -37,9 +36,10 @@ class ArrayResourceLoader extends Loader
     }
 
     /**
-     * {@inheritdoc}
+     * @param mixed      $resource
+     * @param null|mixed $type
      */
-    public function supports($resource, $type = null): bool
+    public function supports($resource, string $type = null): bool
     {
         return \is_object($resource) && $resource instanceof ArrayResource;
     }

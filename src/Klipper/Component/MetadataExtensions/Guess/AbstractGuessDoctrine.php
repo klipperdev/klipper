@@ -11,9 +11,9 @@
 
 namespace Klipper\Component\MetadataExtensions\Guess;
 
-use Doctrine\Common\Persistence\Mapping\ClassMetadata;
-use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Persistence\Mapping\ClassMetadata;
+use Doctrine\Persistence\ObjectManager;
 use Klipper\Component\DoctrineExtra\Util\ManagerUtils;
 
 /**
@@ -21,19 +21,14 @@ use Klipper\Component\DoctrineExtra\Util\ManagerUtils;
  */
 abstract class AbstractGuessDoctrine
 {
-    /**
-     * @var ManagerRegistry
-     */
-    protected $registry;
+    protected ManagerRegistry $registry;
 
     /**
      * @var false[]|ObjectManager[]
      */
-    protected $cacheManagers = [];
+    protected array $cacheManagers = [];
 
     /**
-     * Constructor.
-     *
      * @param ManagerRegistry $registry The doctrine registry
      */
     public function __construct(ManagerRegistry $registry)

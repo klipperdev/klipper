@@ -17,10 +17,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class UserType extends AbstractType
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function newInstance(ObjectBuilderInterface $builder, array $options)
+    public function newInstance(ObjectBuilderInterface $builder, array $options): ?object
     {
         $class = $this->getClass();
 
@@ -35,7 +32,7 @@ class UserType extends AbstractType
         ]);
     }
 
-    public function getClass()
+    public function getClass(): string
     {
         return 'Klipper\Component\DefaultValue\Tests\Fixtures\Object\User';
     }

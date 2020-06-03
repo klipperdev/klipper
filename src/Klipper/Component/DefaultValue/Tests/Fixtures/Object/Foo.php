@@ -18,36 +18,21 @@ namespace Klipper\Component\DefaultValue\Tests\Fixtures\Object;
  */
 class Foo
 {
-    /**
-     * @var string
-     */
-    private $bar;
+    private ?string $bar = null;
 
-    /**
-     * @var bool
-     */
-    private $privateProperty = false;
+    private bool $privateProperty = false;
 
-    /**
-     * @param string $value
-     */
-    public function setBar($value): void
+    public function setBar(?string $value): void
     {
         $this->bar = $value;
     }
 
-    /**
-     * @return string
-     */
-    public function getBar()
+    public function getBar(): ?string
     {
         return $this->bar;
     }
 
-    /**
-     * @return bool
-     */
-    public function getPrivateProperty()
+    public function getPrivateProperty(): bool
     {
         return $this->privateProperty;
     }

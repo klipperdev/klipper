@@ -33,9 +33,6 @@ class PhoneType extends AbstractType
     public const WIDGET_SINGLE_TEXT = 'single_text';
     public const WIDGET_COUNTRY_CHOICE = 'country_choice';
 
-    /**
-     * {@inheritdoc}
-     */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         if (self::WIDGET_COUNTRY_CHOICE === $options['widget']) {
@@ -45,9 +42,6 @@ class PhoneType extends AbstractType
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function buildView(FormView $view, FormInterface $form, array $options): void
     {
         $view->vars = array_merge($view->vars, [
@@ -56,9 +50,6 @@ class PhoneType extends AbstractType
         ]);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
@@ -89,9 +80,6 @@ class PhoneType extends AbstractType
         ]);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getBlockPrefix(): string
     {
         return 'phone';

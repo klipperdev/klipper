@@ -31,9 +31,6 @@ trait UuidIdTrait
      */
     protected ?string $id = null;
 
-    /**
-     * {@inheritdoc}
-     */
     public function getId(): ?string
     {
         return $this->id;

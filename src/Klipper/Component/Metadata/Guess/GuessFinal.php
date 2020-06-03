@@ -27,9 +27,6 @@ class GuessFinal implements
     GuessFieldConfigInterface,
     GuessAssociationConfigInterface
 {
-    /**
-     * {@inheritdoc}
-     */
     public function guessObjectConfig(ObjectMetadataBuilderInterface $builder): void
     {
         $class = $builder->getClass();
@@ -57,9 +54,6 @@ class GuessFinal implements
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function guessFieldConfig(FieldMetadataBuilderInterface $builder): void
     {
         $builder->setSortable($builder->isSortable() ?? false);
@@ -70,9 +64,6 @@ class GuessFinal implements
         $this->guessChildConfig($builder, $builder->getField());
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function guessAssociationConfig(AssociationMetadataBuilderInterface $builder): void
     {
         $builder->setTarget($builder->getTarget() ?? '');

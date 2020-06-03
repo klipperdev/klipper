@@ -20,19 +20,11 @@ use Twig\Environment;
  */
 class UnstrictBodyRenderer implements BodyRendererInterface
 {
-    /**
-     * @var BodyRendererInterface
-     */
-    private $renderer;
+    private BodyRendererInterface $renderer;
+
+    private Environment $twig;
 
     /**
-     * @var Environment
-     */
-    private $twig;
-
-    /**
-     * Constructor.
-     *
      * @param BodyRendererInterface $renderer The body renderer
      * @param Environment           $twig     The twig environment
      */
@@ -42,9 +34,6 @@ class UnstrictBodyRenderer implements BodyRendererInterface
         $this->twig = $twig;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function render(Message $message): void
     {
         $isStrict = $this->twig->isStrictVariables();

@@ -23,13 +23,11 @@ use Symfony\Component\Config\Loader\Loader;
 abstract class AbstractArrayResourceLoader extends Loader
 {
     /**
-     * {@inheritdoc}
-     *
      * @param ArrayResource $resource
      *
      * @return ConfigCollectionInterface
      */
-    public function load($resource, $type = null)
+    public function load($resource, string $type = null)
     {
         $resources = $this->createConfigCollection();
 
@@ -40,10 +38,7 @@ abstract class AbstractArrayResourceLoader extends Loader
         return $resources;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function supports($resource, $type = null): bool
+    public function supports($resource, string $type = null): bool
     {
         return \is_object($resource) && $resource instanceof ArrayResource;
     }

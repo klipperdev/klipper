@@ -32,51 +32,37 @@ class MetadataRegistry implements MetadataRegistryInterface
     /**
      * @var ObjectMetadataBuilderInterface[]
      */
-    protected $builders = [];
+    protected array $builders = [];
 
-    /**
-     * @var array
-     */
-    protected $dynamicLoadBuilders = [];
+    protected array $dynamicLoadBuilders = [];
 
     /**
      * @var MetadataCompleteLoaderInterface[]
      */
-    protected $completeLoaders = [];
+    protected array $completeLoaders = [];
 
     /**
      * @var MetadataDynamicLoaderInterface[]
      */
-    protected $dynamicLoaders = [];
+    protected array $dynamicLoaders = [];
 
     /**
      * @var GuessConfigInterface[]
      */
-    protected $guesserConfigs = [];
+    protected array $guesserConfigs = [];
 
-    /**
-     * @var ObjectMetadataNameCollection
-     */
-    protected $names;
+    protected ObjectMetadataNameCollection $names;
 
     /**
      * @var ChoiceBuilderInterface[]
      */
-    protected $choices = [];
+    protected array $choices = [];
+
+    protected ChoiceNameCollection $choiceNames;
+
+    protected bool $init = false;
 
     /**
-     * @var ChoiceNameCollection
-     */
-    protected $choiceNames;
-
-    /**
-     * @var bool
-     */
-    protected $init = false;
-
-    /**
-     * Constructor.
-     *
      * @param ObjectMetadataBuilderInterface[] $builders     The object metadata builders
      * @param MetadataLoaderInterface[]        $loaders      The metadata loaders
      * @param GuessConfigInterface[]           $guessConfigs The metadata guess configs
@@ -99,9 +85,6 @@ class MetadataRegistry implements MetadataRegistryInterface
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function addLoader(MetadataLoaderInterface $loader): self
     {
         if ($loader instanceof MetadataCompleteLoaderInterface) {
@@ -113,9 +96,6 @@ class MetadataRegistry implements MetadataRegistryInterface
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function addGuessConfig(GuessConfigInterface $guessConfig): self
     {
         if ($guessConfig instanceof GuessObjectConfigInterface) {
@@ -141,9 +121,6 @@ class MetadataRegistry implements MetadataRegistryInterface
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function addBuilder(ObjectMetadataBuilderInterface $metadata): self
     {
         $class = $metadata->getClass();
@@ -153,9 +130,6 @@ class MetadataRegistry implements MetadataRegistryInterface
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getBuilder(string $class): ?ObjectMetadataBuilderInterface
     {
         $this->init();
@@ -245,9 +219,6 @@ class MetadataRegistry implements MetadataRegistryInterface
         return $builder;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getNames(): ObjectMetadataNameCollection
     {
         $this->init();
@@ -255,9 +226,6 @@ class MetadataRegistry implements MetadataRegistryInterface
         return $this->names;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function addChoice(ChoiceBuilderInterface $choiceBuilder): self
     {
         $name = $choiceBuilder->getName();
@@ -276,17 +244,11 @@ class MetadataRegistry implements MetadataRegistryInterface
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getChoice(string $name): ?ChoiceBuilderInterface
     {
         return $this->choices[$name] ?? null;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getChoiceNames(): ChoiceNameCollection
     {
         return $this->choiceNames;

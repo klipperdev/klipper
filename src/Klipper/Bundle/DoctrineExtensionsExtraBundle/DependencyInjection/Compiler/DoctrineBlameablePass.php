@@ -24,9 +24,6 @@ use Symfony\Component\DependencyInjection\Reference;
  */
 class DoctrineBlameablePass implements CompilerPassInterface
 {
-    /**
-     * {@inheritdoc}
-     */
     public function process(ContainerBuilder $container): void
     {
         if ($container->hasDefinition('stof_doctrine_extensions.listener.blameable')) {

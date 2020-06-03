@@ -23,22 +23,14 @@ use Symfony\Component\Config\ConfigCacheInterface;
  */
 abstract class AbstractCache
 {
-    /**
-     * @var array
-     */
-    protected $options = [
+    protected array $options = [
         'cache_dir' => null,
         'debug' => false,
     ];
 
-    /**
-     * @var null|ConfigCacheFactoryInterface
-     */
-    protected $configCacheFactory;
+    protected ?ConfigCacheFactoryInterface $configCacheFactory = null;
 
     /**
-     * Constructor.
-     *
      * @param array $options An array of options
      */
     public function __construct(array $options = [])
@@ -48,8 +40,6 @@ abstract class AbstractCache
 
     /**
      * Set the config cache factory.
-     *
-     * @param ConfigCacheFactoryInterface $configCacheFactory The config cache factory
      */
     public function setConfigCacheFactory(ConfigCacheFactoryInterface $configCacheFactory): void
     {
@@ -75,7 +65,7 @@ abstract class AbstractCache
      * @param string   $name              The file cache name
      * @param callable $getConfigurations The callable to retrieve the configurations
      */
-    protected function loadConfigurationFromCache($name, callable $getConfigurations): ConfigCollectionInterface
+    protected function loadConfigurationFromCache(string $name, callable $getConfigurations): ConfigCollectionInterface
     {
         $cache = $this->getConfigCacheFactory()->cache(
             $this->options['cache_dir'].'/'.$name.'_configs.php',

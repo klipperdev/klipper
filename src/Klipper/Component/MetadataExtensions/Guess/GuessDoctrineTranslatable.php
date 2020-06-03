@@ -29,8 +29,6 @@ class GuessDoctrineTranslatable extends AbstractGuessDoctrine implements GuessFi
     private $cacheTranslatableListener;
 
     /**
-     * {@inheritdoc}
-     *
      * @throws
      */
     public function guessFieldConfig(FieldMetadataBuilderInterface $builder): void

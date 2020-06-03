@@ -32,8 +32,6 @@ class ViewAssociationMetadata extends BaseViewChildMetadata implements ViewAssoc
     protected $masterDetails;
 
     /**
-     * Constructor.
-     *
      * @param string      $association         The association name in class
      * @param string      $name                The name of metadata association
      * @param string      $type                The type of metadata association
@@ -68,25 +66,16 @@ class ViewAssociationMetadata extends BaseViewChildMetadata implements ViewAssoc
         $this->masterDetails = $masterDetails;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getAssociation(): string
     {
         return $this->association;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getTarget(): string
     {
         return $this->target;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function isMasterDetails(): bool
     {
         return $this->masterDetails;

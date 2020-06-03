@@ -19,30 +19,20 @@ use Symfony\Component\Routing\RouterInterface;
  */
 class RouterExtra implements RouterExtraInterface
 {
-    /**
-     * @var RouterInterface
-     */
-    private $router;
+    private RouterInterface $router;
 
-    /**
-     * @var PropertyPathMatcherInterface
-     */
-    private $matcher;
+    private PropertyPathMatcherInterface $matcher;
 
-    /**
-     * Constructor.
-     *
-     * @param RouterInterface              $router              The rooter
-     * @param PropertyPathMatcherInterface $propertyPathMatcher The property path matcher
-     */
-    public function __construct(RouterInterface $router, PropertyPathMatcherInterface $propertyPathMatcher)
-    {
+    public function __construct(
+        RouterInterface $router,
+        PropertyPathMatcherInterface $propertyPathMatcher
+    ) {
         $this->router = $router;
         $this->matcher = $propertyPathMatcher;
     }
 
     /**
-     * {@inheritdoc}
+     * @param mixed $data
      */
     public function generate(string $name, array $parameters, $data, int $referenceType = UrlGeneratorInterface::ABSOLUTE_PATH): string
     {

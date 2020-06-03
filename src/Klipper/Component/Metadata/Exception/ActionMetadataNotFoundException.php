@@ -17,8 +17,6 @@ namespace Klipper\Component\Metadata\Exception;
 class ActionMetadataNotFoundException extends MetadataNotFoundException
 {
     /**
-     * Constructor.
-     *
      * @param string $action The action name
      */
     public function __construct(string $action)

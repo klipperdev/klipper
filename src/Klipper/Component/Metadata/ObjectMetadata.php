@@ -23,95 +23,62 @@ class ObjectMetadata extends BaseMetadata implements ObjectMetadataInterface
 {
     public const SORTABLE_DIRECTION = ['asc', 'desc'];
 
-    /**
-     * @var string
-     */
-    protected $pluralName;
+    protected string $pluralName;
 
-    /**
-     * @var string
-     */
-    protected $class;
+    protected string $class;
 
     /**
      * @var FieldMetadataInterface[]
      */
-    protected $fields = [];
+    protected array $fields = [];
 
     /**
      * @var string[]
      */
-    protected $fieldNames = [];
+    protected array $fieldNames = [];
 
     /**
      * @var AssociationMetadataInterface[]
      */
-    protected $associations = [];
+    protected array $associations = [];
 
     /**
      * @var string[]
      */
-    protected $associationNames = [];
+    protected array $associationNames = [];
 
-    /**
-     * @var bool
-     */
-    protected $sortable = false;
+    protected bool $sortable = false;
 
-    /**
-     * @var bool
-     */
-    protected $multiSortable;
+    protected bool $multiSortable;
 
-    /**
-     * @var array
-     */
-    protected $defaultSortable;
+    protected array $defaultSortable;
 
-    /**
-     * @var bool
-     */
-    protected $filterable = false;
+    protected bool $filterable = false;
 
-    /**
-     * @var bool
-     */
-    protected $searchable = false;
+    protected bool $searchable = false;
 
-    /**
-     * @var bool
-     */
-    protected $translatable = false;
+    protected bool $translatable = false;
 
     /**
      * @var string[]
      */
-    protected $availableContexts;
+    protected array $availableContexts;
 
-    /**
-     * @var string
-     */
-    protected $fieldIdentifier;
+    protected string $fieldIdentifier;
 
-    /**
-     * @var string
-     */
-    protected $fieldLabel;
+    protected string $fieldLabel;
 
-    /**
-     * @var bool
-     */
-    protected $buildDefaultActions = true;
+    protected bool $buildDefaultActions = true;
 
     /**
      * @var ActionMetadataInterface[]
      */
-    protected $actions = [];
+    protected array $actions = [];
 
     /**
      * @var ResourceInterface[]
      */
-    protected $resources = [];
+    protected array $resources = [];
 
     public function __construct(
         string $class,
@@ -170,49 +137,31 @@ class ObjectMetadata extends BaseMetadata implements ObjectMetadataInterface
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getPluralName(): string
     {
         return $this->pluralName;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getClass(): string
     {
         return $this->class;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getFields(): array
     {
         return $this->fields;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function hasField(string $name): bool
     {
         return isset($this->fields[$name]);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function hasFieldByName(string $name): bool
     {
         return isset($this->fieldNames[$name]);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getField(string $name): FieldMetadataInterface
     {
         if (!$this->hasField($name)) {
@@ -222,9 +171,6 @@ class ObjectMetadata extends BaseMetadata implements ObjectMetadataInterface
         return $this->fields[$name];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getFieldByName(string $name): FieldMetadataInterface
     {
         $name = $this->fieldNames[$name] ?? $name;
@@ -232,33 +178,21 @@ class ObjectMetadata extends BaseMetadata implements ObjectMetadataInterface
         return $this->getField($name);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getAssociations(): array
     {
         return $this->associations;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function hasAssociation(string $name): bool
     {
         return isset($this->associations[$name]);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function hasAssociationByName(string $name): bool
     {
         return isset($this->associationNames[$name]);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getAssociation(string $name): AssociationMetadataInterface
     {
         if (!$this->hasAssociation($name)) {
@@ -268,9 +202,6 @@ class ObjectMetadata extends BaseMetadata implements ObjectMetadataInterface
         return $this->associations[$name];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getAssociationByName(string $name): AssociationMetadataInterface
     {
         $name = $this->associationNames[$name] ?? $name;
@@ -278,89 +209,56 @@ class ObjectMetadata extends BaseMetadata implements ObjectMetadataInterface
         return $this->getAssociation($name);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function isSortable(): bool
     {
         return $this->sortable;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function isMultiSortable(): bool
     {
         return$this->multiSortable;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getDefaultSortable(): array
     {
         return $this->defaultSortable;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function isFilterable(): bool
     {
         return $this->filterable;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function isSearchable(): bool
     {
         return $this->searchable;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getAvailableContexts(): array
     {
         return $this->availableContexts;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getFieldIdentifier(): string
     {
         return $this->fieldIdentifier;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getFieldLabel(): string
     {
         return $this->fieldLabel;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getActions(): array
     {
         return $this->actions;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function hasAction(string $action): bool
     {
         return isset($this->actions[$action]);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getAction(string $action): ActionMetadataInterface
     {
         if (!$this->hasAction($action)) {
@@ -370,17 +268,11 @@ class ObjectMetadata extends BaseMetadata implements ObjectMetadataInterface
         return $this->actions[$action];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getBuildDefaultActions(): bool
     {
         return $this->buildDefaultActions;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getResources(): array
     {
         return $this->resources;

@@ -20,14 +20,14 @@ use Klipper\Component\DefaultValue\AbstractExtension;
  */
 class TestExpectedExtension extends AbstractExtension
 {
-    protected function loadTypes()
+    protected function loadTypes(): array
     {
         return [
             'foo',
         ];
     }
 
-    protected function loadTypeExtensions()
+    protected function loadTypeExtensions(): array
     {
         return [
             'bar',

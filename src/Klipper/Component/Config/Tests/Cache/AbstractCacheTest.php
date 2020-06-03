@@ -25,7 +25,7 @@ use Symfony\Component\Config\ConfigCacheInterface;
  */
 final class AbstractCacheTest extends TestCase
 {
-    protected $cacheDir;
+    protected ?string $cacheDir = null;
 
     protected function setUp(): void
     {

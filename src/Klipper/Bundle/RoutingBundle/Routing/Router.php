@@ -21,31 +21,18 @@ use Symfony\Contracts\Service\ServiceSubscriberInterface;
  */
 class Router extends KlipperRouter implements WarmableInterface, ServiceSubscriberInterface
 {
-    /**
-     * @var BaseRouter
-     */
-    protected $router;
-
-    /**
-     * Constructor.
-     *
-     * @param BaseRouter $router The router
-     */
     public function __construct(BaseRouter $router)
     {
         parent::__construct($router);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public static function getSubscribedServices(): array
     {
         return BaseRouter::getSubscribedServices();
     }
 
     /**
-     * {@inheritdoc}
+     * @param mixed $cacheDir
      */
     public function warmUp($cacheDir): void
     {

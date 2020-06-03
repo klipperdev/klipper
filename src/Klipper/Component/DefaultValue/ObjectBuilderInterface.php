@@ -21,12 +21,12 @@ interface ObjectBuilderInterface extends ObjectConfigBuilderInterface
      *
      * @return ObjectFactoryInterface The factory
      */
-    public function getObjectFactory();
+    public function getObjectFactory(): ObjectFactoryInterface;
 
     /**
      * Creates the block.
      *
      * @return object The object instance
      */
-    public function getObject();
+    public function getObject(): object;
 }

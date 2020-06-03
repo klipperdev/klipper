@@ -32,8 +32,6 @@ class ViewChoice implements ViewChoiceInterface
     protected $placeholder;
 
     /**
-     * Constructor.
-     *
      * @param string      $name        The choice name
      * @param array       $identifiers The translated identifiers
      * @param null|string $placeholder The translated placeholder
@@ -45,25 +43,16 @@ class ViewChoice implements ViewChoiceInterface
         $this->placeholder = $placeholder;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getIdentifiers(): array
     {
         return $this->identifiers;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getPlaceholder(): ?string
     {
         return $this->placeholder;

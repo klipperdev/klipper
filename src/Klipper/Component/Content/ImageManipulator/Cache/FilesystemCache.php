@@ -21,19 +21,11 @@ use Symfony\Component\Filesystem\Filesystem;
  */
 class FilesystemCache implements CacheInterface
 {
-    /**
-     * @var string
-     */
-    protected $cachePath;
+    protected string $cachePath;
+
+    protected Filesystem $filesystem;
 
     /**
-     * @var Filesystem
-     */
-    protected $filesystem;
-
-    /**
-     * Constructor.
-     *
      * @param string          $cachePath  The path of the cache
      * @param null|Filesystem $filesystem The filesystem
      */
@@ -43,16 +35,13 @@ class FilesystemCache implements CacheInterface
         $this->filesystem = $filesystem ?? new Filesystem();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function has(string $path, ConfigInterface $config): bool
     {
         return $this->filesystem->exists($this->getCachePath($path, $config));
     }
 
     /**
-     * {@inheritdoc}
+     * @param mixed $resource
      *
      * @throws
      */
@@ -72,9 +61,6 @@ class FilesystemCache implements CacheInterface
         return \is_int(file_put_contents($cachePath, $resource));
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function get(string $path, ConfigInterface $config)
     {
         $cachePath = $this->getCachePath($path, $config);
@@ -87,16 +73,13 @@ class FilesystemCache implements CacheInterface
                     return new Image($stream, mime_content_type($cachePath));
                 }
             }
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             // do nothing
         }
 
         return false;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function clear(string $path): bool
     {
         $this->filesystem->remove($this->getBaseCachePath($path));
@@ -152,8 +135,6 @@ class FilesystemCache implements CacheInterface
 
     /**
      * Clean the name.
-     *
-     * @param string $name The name
      */
     protected function cleanName(string $name): string
     {

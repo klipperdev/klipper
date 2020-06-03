@@ -18,34 +18,17 @@ use Klipper\Component\Metadata\Util\BuilderUtil;
  */
 class FieldMetadataBuilder extends BaseChildMetadataBuilder implements FieldMetadataBuilderInterface
 {
-    /**
-     * @var string
-     */
-    protected $field;
+    protected string $field;
+
+    protected ?bool $sortable = null;
+
+    protected ?bool $filterable = null;
+
+    protected ?bool $searchable = null;
+
+    protected ?bool $translatable = null;
 
     /**
-     * @var null|bool
-     */
-    protected $sortable;
-
-    /**
-     * @var null|bool
-     */
-    protected $filterable;
-
-    /**
-     * @var null|bool
-     */
-    protected $searchable;
-
-    /**
-     * @var null|bool
-     */
-    protected $translatable;
-
-    /**
-     * Constructor.
-     *
      * @param string      $field The field name
      * @param null|string $type  The type
      */
@@ -56,17 +39,11 @@ class FieldMetadataBuilder extends BaseChildMetadataBuilder implements FieldMeta
         $this->field = $field;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getField(): string
     {
         return $this->field;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setSortable(?bool $sortable): self
     {
         $this->sortable = $sortable;
@@ -74,17 +51,11 @@ class FieldMetadataBuilder extends BaseChildMetadataBuilder implements FieldMeta
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function isSortable(): ?bool
     {
         return $this->sortable;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setFilterable(?bool $filterable): self
     {
         $this->filterable = $filterable;
@@ -92,17 +63,11 @@ class FieldMetadataBuilder extends BaseChildMetadataBuilder implements FieldMeta
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function isFilterable(): ?bool
     {
         return $this->filterable;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setSearchable(?bool $searchable): self
     {
         $this->searchable = $searchable;
@@ -110,17 +75,11 @@ class FieldMetadataBuilder extends BaseChildMetadataBuilder implements FieldMeta
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function isSearchable(): ?bool
     {
         return $this->searchable;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setTranslatable(?bool $translatable): self
     {
         $this->translatable = $translatable;
@@ -128,17 +87,11 @@ class FieldMetadataBuilder extends BaseChildMetadataBuilder implements FieldMeta
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function isTranslatable(): ?bool
     {
         return $this->translatable;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function merge(FieldMetadataBuilderInterface $builder): self
     {
         BuilderUtil::mergeValues($this, $builder);
@@ -146,9 +99,6 @@ class FieldMetadataBuilder extends BaseChildMetadataBuilder implements FieldMeta
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function build(ObjectMetadataInterface $parent): FieldMetadataInterface
     {
         BuilderUtil::validate($this, ['name', 'type', 'label']);

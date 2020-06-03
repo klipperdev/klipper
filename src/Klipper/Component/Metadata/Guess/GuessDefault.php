@@ -40,8 +40,6 @@ class GuessDefault implements
     protected $defaults;
 
     /**
-     * Constructor.
-     *
      * @param array                          $defaults The default values
      * @param null|PropertyAccessorInterface $accessor The property accessor
      */
@@ -58,17 +56,11 @@ class GuessDefault implements
         ], $defaults);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function guessObjectConfig(ObjectMetadataBuilderInterface $builder): void
     {
         $this->mergeDefaultValues($this->defaults['global'], $builder);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function guessActionConfig(ActionMetadataBuilderInterface $builder): void
     {
         $action = $builder->getName();
@@ -82,9 +74,6 @@ class GuessDefault implements
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function guessFieldConfig(FieldMetadataBuilderInterface $builder): void
     {
         $field = $builder->getField();
@@ -96,9 +85,6 @@ class GuessDefault implements
         $this->mergeDefaultValues($this->defaults['global'], $builder);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function guessAssociationConfig(AssociationMetadataBuilderInterface $builder): void
     {
         $association = $builder->getAssociation();

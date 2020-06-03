@@ -41,7 +41,7 @@ abstract class UuidUtil
     {
         try {
             $string = Uuid::fromString($string)->toString();
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             $string = Uuid::NIL;
         }
 

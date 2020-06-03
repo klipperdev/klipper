@@ -22,7 +22,7 @@ class TemplateMessage implements TemplateMessageInterface, Translatable
 {
     use TemplateMessageTrait;
 
-    protected $id;
+    protected ?int $id = null;
 
     public function getId()
     {

@@ -18,43 +18,25 @@ namespace Klipper\Component\Choice;
  */
 abstract class AbstractExtendableChoice extends AbstractChoice implements ExtendableChoiceInterface
 {
-    /**
-     * @var string
-     */
-    protected static $translationDomain = 'choices';
+    protected static string $translationDomain = 'choices';
 
-    /**
-     * @var array
-     */
-    protected static $identifiers = [];
+    protected static array $identifiers = [];
 
-    /**
-     * {@inheritdoc}
-     */
     public static function setTranslationDomain(string $translationDomain): void
     {
         self::$translationDomain = $translationDomain;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public static function getTranslationDomain(): string
     {
         return self::$translationDomain;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public static function setIdentifiers(array $identifiers, bool $override = false): void
     {
         self::$identifiers = $identifiers;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public static function listIdentifiers(): array
     {
         return self::$identifiers;

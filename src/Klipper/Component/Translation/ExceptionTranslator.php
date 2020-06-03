@@ -22,19 +22,11 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  */
 class ExceptionTranslator implements ExceptionTranslatorInterface
 {
-    /**
-     * @var TranslatorInterface
-     */
-    protected $translator;
+    protected TranslatorInterface $translator;
+
+    protected bool $debug;
 
     /**
-     * @var bool
-     */
-    protected $debug;
-
-    /**
-     * Constructor.
-     *
      * @param TranslatorInterface $translator The translator
      * @param bool                $debug      The debug mode
      */
@@ -44,9 +36,6 @@ class ExceptionTranslator implements ExceptionTranslatorInterface
         $this->debug = $debug;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function trans(string $message): string
     {
         if (\in_array($message, $this->getAvailableMessage(), true)) {
@@ -58,20 +47,14 @@ class ExceptionTranslator implements ExceptionTranslatorInterface
         return $message;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function transMessage(string $message, array $params = []): string
     {
         return $this->translator->trans($message, $params, 'exceptions');
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function transDomainException(\Exception $exception): string
+    public function transDomainThrowable(\Throwable $throwable): string
     {
-        return DomainUtil::getExceptionMessage($this->translator, $exception, $this->debug);
+        return DomainUtil::getThrowableMessage($this->translator, $throwable, $this->debug);
     }
 
     protected function getAvailableMessage(): array

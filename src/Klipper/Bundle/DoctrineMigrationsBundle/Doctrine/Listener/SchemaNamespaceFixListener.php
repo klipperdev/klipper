@@ -18,21 +18,10 @@ use Doctrine\ORM\Tools\Event\GenerateSchemaEventArgs;
  */
 class SchemaNamespaceFixListener
 {
-    /**
-     * @var null|string
-     */
-    private $namespace;
+    private ?string $namespace = null;
 
-    /**
-     * @var bool
-     */
-    private $enabled = false;
+    private bool $enabled = false;
 
-    /**
-     * Constructor.
-     *
-     * @param null|string $namespace The namespace
-     */
     public function __construct(?string $namespace = null)
     {
         $this->namespace = $namespace;

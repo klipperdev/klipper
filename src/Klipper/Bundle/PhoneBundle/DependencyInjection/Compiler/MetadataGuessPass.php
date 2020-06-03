@@ -20,9 +20,6 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
  */
 class MetadataGuessPass implements CompilerPassInterface
 {
-    /**
-     * {@inheritdoc}
-     */
     public function process(ContainerBuilder $container): void
     {
         // Doctrine Guesser

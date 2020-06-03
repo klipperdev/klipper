@@ -17,8 +17,6 @@ namespace Klipper\Component\Metadata\Exception;
 class ChoiceNotFoundException extends MetadataNotFoundException
 {
     /**
-     * Constructor.
-     *
      * @param string $name The choice name
      */
     public function __construct(string $name)

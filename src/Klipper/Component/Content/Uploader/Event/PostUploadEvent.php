@@ -20,24 +20,18 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class PostUploadEvent extends AbstractUploadEvent
 {
-    /**
-     * @var Response
-     */
-    private $response;
+    private Response $response;
 
-    /**
-     * {@inheritdoc}
-     */
-    public function __construct(UploaderConfigurationInterface $config, Request $request, Response $response)
-    {
+    public function __construct(
+        UploaderConfigurationInterface $config,
+        Request $request,
+        Response $response
+    ) {
         parent::__construct($config, $request);
 
         $this->response = $response;
     }
 
-    /**
-     * Get the response.
-     */
     public function getResponse(): Response
     {
         return $this->response;

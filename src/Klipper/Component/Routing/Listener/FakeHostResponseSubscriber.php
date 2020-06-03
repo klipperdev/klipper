@@ -22,9 +22,6 @@ use Symfony\Component\HttpKernel\KernelEvents;
  */
 class FakeHostResponseSubscriber implements EventSubscriberInterface
 {
-    /**
-     * {@inheritdoc}
-     */
     public static function getSubscribedEvents(): array
     {
         return [

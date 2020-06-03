@@ -30,9 +30,6 @@ use Symfony\Component\Mailer\Mailer;
  */
 class KlipperMailerExtension extends Extension
 {
-    /**
-     * {@inheritdoc}
-     */
     public function load(array $configs, ContainerBuilder $container): void
     {
         $configuration = new Configuration();

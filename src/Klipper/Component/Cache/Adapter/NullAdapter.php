@@ -22,9 +22,6 @@ class NullAdapter extends BaseNullAdapter implements AdapterInterface
 {
     use AdapterPrefixesTrait;
 
-    /**
-     * {@inheritdoc}
-     */
     public function clearByPrefixes(array $prefixes): bool
     {
         return true;

@@ -16,19 +16,10 @@ namespace Klipper\Component\Metadata;
  */
 class AssociationMetadata extends BaseChildMetadata implements AssociationMetadataInterface
 {
-    /**
-     * @var string
-     */
-    protected $association;
+    protected string $association;
 
-    /**
-     * @var string
-     */
-    protected $target;
+    protected string $target;
 
-    /**
-     * Constructor.
-     */
     public function __construct(
         ObjectMetadataInterface $parent,
         string $association,
@@ -69,17 +60,11 @@ class AssociationMetadata extends BaseChildMetadata implements AssociationMetada
         $this->groups = $groups;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getAssociation(): string
     {
         return $this->association;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getTarget(): string
     {
         return $this->target;

@@ -16,34 +16,16 @@ namespace Klipper\Component\Metadata;
  */
 class FieldMetadata extends BaseChildMetadata implements FieldMetadataInterface
 {
-    /**
-     * @var string
-     */
-    protected $field;
+    protected string $field;
 
-    /**
-     * @var bool
-     */
-    protected $sortable;
+    protected bool $sortable;
 
-    /**
-     * @var bool
-     */
-    protected $filterable;
+    protected bool $filterable;
 
-    /**
-     * @var bool
-     */
-    protected $searchable;
+    protected bool $searchable;
 
-    /**
-     * @var bool
-     */
-    protected $translatable;
+    protected bool $translatable;
 
-    /**
-     * Constructor.
-     */
     public function __construct(
         ObjectMetadataInterface $parent,
         string $field,
@@ -89,41 +71,26 @@ class FieldMetadata extends BaseChildMetadata implements FieldMetadataInterface
         $this->groups = $groups;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getField(): string
     {
         return $this->field;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function isSortable(): bool
     {
         return $this->sortable;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function isFilterable(): bool
     {
         return $this->filterable;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function isSearchable(): bool
     {
         return $this->searchable;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function isTranslatable(): bool
     {
         return $this->translatable;

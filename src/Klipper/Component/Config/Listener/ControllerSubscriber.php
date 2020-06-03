@@ -25,24 +25,13 @@ use Symfony\Component\HttpKernel\KernelEvents;
  */
 class ControllerSubscriber implements EventSubscriberInterface
 {
-    /**
-     * @var Reader
-     */
-    private $reader;
+    private Reader $reader;
 
-    /**
-     * Constructor.
-     *
-     * @param Reader $reader The annotation reader
-     */
     public function __construct(Reader $reader)
     {
         $this->reader = $reader;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public static function getSubscribedEvents(): array
     {
         return [

@@ -16,39 +16,19 @@ namespace Klipper\Component\Content\ImageManipulator;
  */
 class Config implements ConfigInterface
 {
-    /**
-     * @var string
-     */
-    protected $mode;
+    protected string $mode;
+
+    protected int $scale;
+
+    protected ?int $width;
+
+    protected ?int $height;
+
+    protected ?string $extension;
+
+    protected bool $keepOriginal;
 
     /**
-     * @var int
-     */
-    protected $scale;
-
-    /**
-     * @var null|int
-     */
-    protected $width;
-
-    /**
-     * @var null|int
-     */
-    protected $height;
-
-    /**
-     * @var null|string
-     */
-    protected $extension;
-
-    /**
-     * @var bool
-     */
-    protected $keepOriginal;
-
-    /**
-     * Constructor.
-     *
      * @param null|string $mode         The mode defined by ConfigInterface::MODE_*
      * @param null|int    $width        The width in pixel
      * @param null|int    $height       The height in pixel
@@ -72,12 +52,9 @@ class Config implements ConfigInterface
         $this->setKeepOriginal($keepOriginal);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setMode(?string $mode): self
     {
-        $this->mode = $mode;
+        $this->mode = (string) $mode;
 
         if (!\in_array($this->mode, [self::MODE_CONTAINER, self::MODE_COVER], true)) {
             $this->mode = self::MODE_CONTAINER;
@@ -86,40 +63,28 @@ class Config implements ConfigInterface
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getMode(): string
     {
         return $this->mode;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setScale(?int $scale): self
     {
-        $this->scale = $scale;
-
-        if ((!\is_int($this->scale) && !\is_float($this->scale)) || 0 === $this->scale || null === $this->scale) {
-            $this->scale = 1;
+        if ((!\is_int($scale) && !\is_float($scale)) || 0 === $scale || null === $scale) {
+            $scale = 1;
         }
+
+        $this->scale = (int) $scale;
 
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getScale(): int
     {
         return $this->scale;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function setWidth(?int $width)
+    public function setWidth(?int $width): self
     {
         $this->width = $width;
 
@@ -130,18 +95,12 @@ class Config implements ConfigInterface
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getWidth(): ?int
     {
         return $this->width;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function setHeight(?int $height)
+    public function setHeight(?int $height): self
     {
         $this->height = $height;
 
@@ -152,18 +111,12 @@ class Config implements ConfigInterface
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getHeight(): ?int
     {
         return $this->height;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function setExtension(?string $extension)
+    public function setExtension(?string $extension): self
     {
         $this->extension = $extension;
 
@@ -174,17 +127,11 @@ class Config implements ConfigInterface
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getExtension(): ?string
     {
         return $this->extension;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setKeepOriginal(bool $keepOriginal)
     {
         $this->keepOriginal = $keepOriginal;
@@ -192,9 +139,6 @@ class Config implements ConfigInterface
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getKeepOriginal(): bool
     {
         return $this->keepOriginal;

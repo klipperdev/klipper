@@ -22,64 +22,46 @@ use Klipper\Component\Mailer\Model\TemplateMessageInterface;
 trait TemplateMessageTrait
 {
     /**
-     * @var null|string
-     *
      * @ORM\Column(type="string", length=255, unique=true)
      */
-    protected $name;
+    protected ?string $name = null;
 
     /**
-     * @var null|string
-     *
      * @ORM\Column(type="string", length=10)
      */
-    protected $type;
+    protected ?string $type = null;
 
     /**
-     * @var bool
-     *
      * @ORM\Column(type="boolean")
      */
-    protected $enabled = true;
+    protected bool $enabled = true;
 
     /**
-     * @var null|string
-     *
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    protected $label;
+    protected ?string $label = null;
 
     /**
-     * @var null|string
-     *
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    protected $description;
+    protected ?string $description = null;
 
     /**
-     * @var null|string
-     *
      * @ORM\Column(type="text", nullable=true)
      */
-    protected $body;
+    protected ?string $body = null;
 
     /**
-     * @var null|\DateTime
-     *
      * @ORM\Column(type="datetime", nullable=true)
      */
-    protected $createdAt;
+    protected ?\DateTime $createdAt = null;
 
     /**
-     * @var null|\DateTime
-     *
      * @ORM\Column(type="datetime", nullable=true)
      */
-    protected $updatedAt;
+    protected ?\DateTime $updatedAt = null;
 
     /**
-     * {@inheritdoc}
-     *
      * @see TemplateMessageInterface::setName()
      */
     public function setName(?string $name): self
@@ -90,8 +72,6 @@ trait TemplateMessageTrait
     }
 
     /**
-     * {@inheritdoc}
-     *
      * @see TemplateMessageInterface::getName()
      */
     public function getName(): ?string
@@ -100,8 +80,6 @@ trait TemplateMessageTrait
     }
 
     /**
-     * {@inheritdoc}
-     *
      * @see TemplateMessageInterface::setType()
      */
     public function setType(?string $type): self
@@ -112,8 +90,6 @@ trait TemplateMessageTrait
     }
 
     /**
-     * {@inheritdoc}
-     *
      * @see TemplateMessageInterface::getType()
      */
     public function getType(): ?string
@@ -121,9 +97,6 @@ trait TemplateMessageTrait
         return $this->type;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setEnabled(bool $enabled): self
     {
         $this->enabled = $enabled;
@@ -131,17 +104,12 @@ trait TemplateMessageTrait
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function isEnabled(): bool
     {
         return $this->enabled;
     }
 
     /**
-     * {@inheritdoc}
-     *
      * @see TemplateMessageInterface::setLabel()
      */
     public function setLabel(?string $label): self
@@ -152,8 +120,6 @@ trait TemplateMessageTrait
     }
 
     /**
-     * {@inheritdoc}
-     *
      * @see TemplateMessageInterface::getLabel()
      */
     public function getLabel(): ?string
@@ -162,8 +128,6 @@ trait TemplateMessageTrait
     }
 
     /**
-     * {@inheritdoc}
-     *
      * @see TemplateMessageInterface::setDescription()
      */
     public function setDescription(?string $description): self
@@ -174,8 +138,6 @@ trait TemplateMessageTrait
     }
 
     /**
-     * {@inheritdoc}
-     *
      * @see TemplateMessageInterface::getDescription()
      */
     public function getDescription(): ?string
@@ -184,8 +146,6 @@ trait TemplateMessageTrait
     }
 
     /**
-     * {@inheritdoc}
-     *
      * @see TemplateMessageInterface::setBody()
      */
     public function setBody(?string $body): self
@@ -196,8 +156,6 @@ trait TemplateMessageTrait
     }
 
     /**
-     * {@inheritdoc}
-     *
      * @see TemplateMessageInterface::getBody()
      */
     public function getBody(): ?string
@@ -206,8 +164,6 @@ trait TemplateMessageTrait
     }
 
     /**
-     * {@inheritdoc}
-     *
      * @see TemplateMessageInterface::setCreatedAt()
      */
     public function setCreatedAt(?\DateTime $createdAt): self
@@ -218,8 +174,6 @@ trait TemplateMessageTrait
     }
 
     /**
-     * {@inheritdoc}
-     *
      * @see TemplateMessageInterface::getCreatedAt()
      */
     public function getCreatedAt(): ?\DateTime
@@ -228,8 +182,6 @@ trait TemplateMessageTrait
     }
 
     /**
-     * {@inheritdoc}
-     *
      * @see TemplateMessageInterface::setUpdatedAt()
      */
     public function setUpdatedAt(?\DateTime $updatedAt): self
@@ -240,8 +192,6 @@ trait TemplateMessageTrait
     }
 
     /**
-     * {@inheritdoc}
-     *
      * @see TemplateMessageInterface::getUpdatedAt()
      */
     public function getUpdatedAt(): ?\DateTime

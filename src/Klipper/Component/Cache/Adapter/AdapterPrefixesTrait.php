@@ -20,9 +20,6 @@ namespace Klipper\Component\Cache\Adapter;
  */
 trait AdapterPrefixesTrait
 {
-    /**
-     * {@inheritdoc}
-     */
     public function clearByPrefix(string $prefix): bool
     {
         return $this->clearByPrefixes([$prefix]);

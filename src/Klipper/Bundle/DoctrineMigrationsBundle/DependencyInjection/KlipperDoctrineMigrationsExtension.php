@@ -25,9 +25,6 @@ use Symfony\Component\HttpKernel\DependencyInjection\ConfigurableExtension;
  */
 class KlipperDoctrineMigrationsExtension extends ConfigurableExtension
 {
-    /**
-     * {@inheritdoc}
-     */
     protected function loadInternal(array $mergedConfig, ContainerBuilder $container): void
     {
         $listeners = [];

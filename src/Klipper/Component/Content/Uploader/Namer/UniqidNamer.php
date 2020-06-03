@@ -18,21 +18,17 @@ use Klipper\Component\Content\Uploader\File\FileInterface;
  */
 class UniqidNamer implements NamerInterface
 {
-    /**
-     * {@inheritdoc}
-     */
     public function getName(): string
     {
         return 'uniqid';
     }
 
-    /**
-     * {@inheritdoc}
-     *
-     * @throws
-     */
     public function name(FileInterface $file): string
     {
-        return sprintf('%s.%s', str_replace('.', '-', uniqid('', true)), $file->getExtension());
+        return sprintf(
+            '%s.%s',
+            str_replace('.', '-', uniqid('', true)),
+            $file->getExtension()
+        );
     }
 }

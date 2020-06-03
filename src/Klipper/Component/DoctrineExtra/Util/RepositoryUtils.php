@@ -11,8 +11,8 @@
 
 namespace Klipper\Component\DoctrineExtra\Util;
 
-use Doctrine\Common\Persistence\ObjectRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ObjectRepository;
 use Klipper\Component\DoctrineExtra\Exception\ObjectManagerNotFoundException;
 use Klipper\Component\DoctrineExtra\Exception\UnexpectedRepositoryException;
 

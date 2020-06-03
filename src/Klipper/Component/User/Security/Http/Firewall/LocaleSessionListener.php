@@ -20,19 +20,11 @@ use Klipper\Component\User\Listener\LocaleSubscriber;
  */
 class LocaleSessionListener
 {
-    /**
-     * @var LocaleSubscriber
-     */
-    protected $localeSubscriber;
+    protected LocaleSubscriber $localeSubscriber;
+
+    protected array $config;
 
     /**
-     * @var array
-     */
-    protected $config;
-
-    /**
-     * Constructor.
-     *
      * @param LocaleSubscriber $localeSubscriber The kernel request locale subscriber
      * @param array            $config           The config defined in firewall
      */

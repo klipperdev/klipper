@@ -17,8 +17,6 @@ namespace Klipper\Component\Metadata\Exception;
 class FieldMetadataNotFoundException extends MetadataNotFoundException
 {
     /**
-     * Constructor.
-     *
      * @param string $field The field name
      */
     public function __construct(string $field)

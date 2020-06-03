@@ -28,25 +28,16 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  */
 class LocaleSubscriber implements EventSubscriberInterface
 {
-    /**
-     * @var TranslatorInterface
-     */
-    protected $translator;
+    protected TranslatorInterface $translator;
+
+    protected bool $sessionEnabled = false;
 
     /**
-     * @var bool
-     */
-    protected $sessionEnabled;
-
-    /**
-     * Constructor.
-     *
      * @param TranslatorInterface $translator The translator instance
      */
     public function __construct(TranslatorInterface $translator)
     {
         $this->translator = $translator;
-        $this->sessionEnabled = false;
     }
 
     /**
@@ -65,9 +56,6 @@ class LocaleSubscriber implements EventSubscriberInterface
         $this->sessionEnabled = false;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public static function getSubscribedEvents(): array
     {
         return [

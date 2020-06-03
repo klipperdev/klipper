@@ -19,9 +19,6 @@ use Symfony\Component\Routing\RouteCollection;
  */
 class PriorityPassLoader implements PassLoaderInterface
 {
-    /**
-     * {@inheritdoc}
-     */
     public function load(RouteCollection $collection): RouteCollection
     {
         $routes = [];

@@ -46,104 +46,65 @@ final class User implements UserInterface
         $this->foo = false;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getRoles()
     {
         return $this->roles;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getPassword()
     {
         return $this->password;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getSalt(): void
     {
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getUsername()
     {
         return $this->username;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function isAccountNonExpired()
     {
         return $this->accountNonExpired;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function isAccountNonLocked()
     {
         return $this->accountNonLocked;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function isCredentialsNonExpired()
     {
         return $this->credentialsNonExpired;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function isEnabled()
     {
         return $this->enabled;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function eraseCredentials(): void
     {
     }
 
-    /**
-     * @param string $value
-     */
-    public function setCustomField($value): void
+    public function setCustomField(string $value): void
     {
         $this->customField = $value;
     }
 
-    /**
-     * @return string
-     */
-    public function getCustomField()
+    public function getCustomField(): string
     {
         return $this->customField;
     }
 
-    /**
-     * @return bool
-     */
-    public function hasBar()
+    public function hasBar(): bool
     {
         return true;
     }
 
-    /**
-     * @return bool
-     */
-    public function foo()
+    public function foo(): bool
     {
         return $this->foo;
     }

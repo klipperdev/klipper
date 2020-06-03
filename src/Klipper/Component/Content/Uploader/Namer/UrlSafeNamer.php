@@ -18,23 +18,22 @@ use Klipper\Component\Content\Uploader\File\FileInterface;
  */
 class UrlSafeNamer implements NamerInterface
 {
-    /**
-     * {@inheritdoc}
-     */
     public function getName(): string
     {
         return 'url_safe';
     }
 
     /**
-     * {@inheritdoc}
-     *
      * @throws
      */
     public function name(FileInterface $file): string
     {
         $bytes = random_bytes(256 / 8);
 
-        return sprintf('%s.%s', rtrim(strtr(base64_encode($bytes), '+/', '-_'), '='), $file->getExtension());
+        return sprintf(
+            '%s.%s',
+            rtrim(strtr(base64_encode($bytes), '+/', '-_'), '='),
+            $file->getExtension()
+        );
     }
 }

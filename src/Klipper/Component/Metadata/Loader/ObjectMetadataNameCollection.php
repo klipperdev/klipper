@@ -44,8 +44,6 @@ class ObjectMetadataNameCollection extends AbstractConfigCollection
     }
 
     /**
-     * {@inheritdoc}
-     *
      * @return string[]
      */
     public function all(): array
@@ -74,8 +72,6 @@ class ObjectMetadataNameCollection extends AbstractConfigCollection
     }
 
     /**
-     * {@inheritdoc}
-     *
      * @param ConfigCollectionInterface|ObjectMetadataNameCollection $collection The collection
      */
     public function addCollection(ConfigCollectionInterface $collection): void

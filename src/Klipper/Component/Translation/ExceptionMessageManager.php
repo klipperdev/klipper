@@ -21,24 +21,13 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class ExceptionMessageManager
 {
-    /**
-     * @var ExceptionTranslatorInterface
-     */
-    private $exceptionTranslator;
+    private ExceptionTranslatorInterface $exceptionTranslator;
+
+    private array $messages;
+
+    private array $codes;
 
     /**
-     * @var array
-     */
-    private $messages;
-
-    /**
-     * @var array
-     */
-    private $codes;
-
-    /**
-     * Constructor.
-     *
      * @param ExceptionTranslatorInterface $exceptionTranslator The exception translator
      * @param array                        $messages            The message map
      * @param array                        $codes               The status code map

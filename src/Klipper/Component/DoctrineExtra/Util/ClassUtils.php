@@ -39,7 +39,7 @@ class ClassUtils
      *
      * @param object $object The object
      */
-    public static function getClass($object): string
+    public static function getClass(object $object): string
     {
         return self::getRealClass(\get_class($object));
     }

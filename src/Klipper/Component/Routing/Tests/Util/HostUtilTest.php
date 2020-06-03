@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Klipper\Component\Uuid\Tests\Util;
+namespace Klipper\Component\Routing\Tests\Util;
 
 use Klipper\Component\Routing\Util\HostUtil;
 use PHPUnit\Framework\TestCase;

@@ -72,24 +72,13 @@ class GuessFormType implements
         ],
     ];
 
-    /**
-     * @var array
-     */
-    protected $mappingTypes;
+    protected array $mappingTypes;
+
+    protected array $formOptions;
+
+    protected ?MetadataRegistryInterface $metadataRegistry = null;
 
     /**
-     * @var array
-     */
-    protected $formOptions;
-
-    /**
-     * @var MetadataRegistryInterface
-     */
-    protected $metadataRegistry;
-
-    /**
-     * Constructor.
-     *
      * @param array $mappingInputTypes The mapping between metadata input types and form types
      * @param array $formOptions       The default options of forms
      */
@@ -99,25 +88,16 @@ class GuessFormType implements
         $this->formOptions = array_merge(static::FORM_OPTIONS, $formOptions);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setRegistry(MetadataRegistryInterface $registry): void
     {
         $this->metadataRegistry = $registry;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function guessFieldConfig(FieldMetadataBuilderInterface $builder): void
     {
         $this->guessChildConfig($builder);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function guessAssociationConfig(AssociationMetadataBuilderInterface $builder): void
     {
         $this->guessChildConfig($builder);

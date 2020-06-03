@@ -21,12 +21,10 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
  */
 class KlipperUserBundle extends Bundle
 {
-    /**
-     * {@inheritdoc}
-     */
     public function build(ContainerBuilder $container): void
     {
-        if (class_exists(SecurityExtension::class) && $container->hasExtension('security')) {
+        if (class_exists(SecurityExtension::class)
+                && $container->hasExtension('security')) {
             /** @var SecurityExtension $extension */
             $extension = $container->getExtension('security');
             $extension->addSecurityListenerFactory(new LocaleSessionFactory());

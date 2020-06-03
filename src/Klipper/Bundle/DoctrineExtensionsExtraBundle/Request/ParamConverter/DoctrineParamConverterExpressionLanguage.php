@@ -24,25 +24,18 @@ use Symfony\Component\HttpFoundation\RequestStack;
  */
 class DoctrineParamConverterExpressionLanguage extends BaseExpressionLanguage
 {
-    /**
-     * @var RequestStack
-     */
-    private $requestStack;
+    private RequestStack $requestStack;
 
     /**
-     * @param CacheItemPoolInterface                $cache
      * @param ExpressionFunctionProviderInterface[] $providers
      */
-    public function __construct(RequestStack $requestStack, $cache = null, array $providers = [])
+    public function __construct(RequestStack $requestStack, ?CacheItemPoolInterface $cache = null, array $providers = [])
     {
         $this->requestStack = $requestStack;
 
         parent::__construct($cache, $providers);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function registerFunctions(): void
     {
         parent::registerFunctions();

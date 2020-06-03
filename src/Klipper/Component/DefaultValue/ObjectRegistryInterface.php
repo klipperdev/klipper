@@ -29,7 +29,7 @@ interface ObjectRegistryInterface
      *
      * @return ResolvedObjectTypeInterface The type
      */
-    public function getType($classname);
+    public function getType(string $classname): ResolvedObjectTypeInterface;
 
     /**
      * Returns whether the given object default value type is supported.
@@ -38,12 +38,12 @@ interface ObjectRegistryInterface
      *
      * @return bool Whether the type is supported
      */
-    public function hasType($classname);
+    public function hasType(string $classname): bool;
 
     /**
      * Returns the extensions loaded by the framework.
      *
      * @return array
      */
-    public function getExtensions();
+    public function getExtensions(): iterable;
 }

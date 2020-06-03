@@ -18,19 +18,14 @@ use Klipper\Component\Metadata\View\ViewFieldMetadataInterface;
  */
 class FieldPermissionMetadata implements FieldPermissionMetadataInterface
 {
-    /**
-     * @var ViewFieldMetadataInterface
-     */
-    protected $metadata;
+    protected ViewFieldMetadataInterface $metadata;
 
     /**
      * @var PermissionMetadataInterface[]
      */
-    protected $permissions;
+    protected array $permissions;
 
     /**
-     * Constructor.
-     *
      * @param ViewFieldMetadataInterface    $metadata    The view field metadata
      * @param PermissionMetadataInterface[] $permissions The field permissions
      */
@@ -40,57 +35,36 @@ class FieldPermissionMetadata implements FieldPermissionMetadataInterface
         $this->permissions = $permissions;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getField(): string
     {
         return $this->metadata->getField();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getName(): string
     {
         return $this->metadata->getName();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getType(): string
     {
         return $this->metadata->getType();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getLabel(): string
     {
         return $this->metadata->getLabel();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getDescription(): ?string
     {
         return $this->metadata->getDescription();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function hasEditablePermissions(): bool
     {
         return $this->metadata->hasEditablePermissions();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getPermissions(): array
     {
         return $this->permissions;

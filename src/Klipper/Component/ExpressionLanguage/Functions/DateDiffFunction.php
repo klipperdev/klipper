@@ -18,9 +18,6 @@ namespace Klipper\Component\ExpressionLanguage\Functions;
  */
 class DateDiffFunction extends BaseFunction
 {
-    /**
-     * Constructor.
-     */
     public function __construct()
     {
         parent::__construct('date_diff', static function ($arguments, $datetime = 'now', $diff = '') {

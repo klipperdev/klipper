@@ -26,14 +26,14 @@ interface ObjectConfigInterface
      *
      * @return ResolvedObjectTypeInterface The object default value's type
      */
-    public function getType();
+    public function getType(): ResolvedObjectTypeInterface;
 
     /**
      * Returns the properties of the object.
      *
      * @return array An array of key-value combinations
      */
-    public function getProperties();
+    public function getProperties(): array;
 
     /**
      * Returns whether the property with the given name exists.
@@ -42,7 +42,7 @@ interface ObjectConfigInterface
      *
      * @return bool Whether the property exists
      */
-    public function hasProperty($name);
+    public function hasProperty(string $name): bool;
 
     /**
      * Returns the value of the given property.
@@ -54,7 +54,7 @@ interface ObjectConfigInterface
      *
      * @return mixed The property value
      */
-    public function getProperty($name);
+    public function getProperty(string $name);
 
     /**
      * Returns the data of the object default value.
@@ -68,14 +68,14 @@ interface ObjectConfigInterface
      *
      * @return string The data class
      */
-    public function getDataClass();
+    public function getDataClass(): ?string;
 
     /**
      * Returns all options passed during the construction of the block.
      *
      * @return array The passed options
      */
-    public function getOptions();
+    public function getOptions(): array;
 
     /**
      * Returns whether a specific option exists.
@@ -84,7 +84,7 @@ interface ObjectConfigInterface
      *
      * @return bool Whether the option exists
      */
-    public function hasOption($name);
+    public function hasOption(string $name): bool;
 
     /**
      * Returns the value of a specific option.
@@ -94,5 +94,5 @@ interface ObjectConfigInterface
      *
      * @return mixed The option value
      */
-    public function getOption($name, $default = null);
+    public function getOption(string $name, $default = null);
 }

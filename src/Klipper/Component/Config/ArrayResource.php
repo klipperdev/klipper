@@ -21,11 +21,9 @@ class ArrayResource implements \IteratorAggregate
     /**
      * @var ConfigResource[]
      */
-    private $resources = [];
+    private array $resources = [];
 
     /**
-     * Constructor.
-     *
      * @param ConfigResource[] $resources The config resources
      */
     public function __construct(array $resources = [])

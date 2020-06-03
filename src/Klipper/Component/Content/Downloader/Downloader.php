@@ -28,22 +28,10 @@ use Symfony\Component\HttpKernel\Exception\UnsupportedMediaTypeHttpException;
  */
 class Downloader implements DownloaderInterface
 {
-    /**
-     * @var ImageManipulatorInterface
-     */
-    protected $imageManipulator;
+    protected ImageManipulatorInterface $imageManipulator;
 
-    /**
-     * @var RequestStack
-     */
-    protected $requestStack;
+    protected RequestStack $requestStack;
 
-    /**
-     * Constructor.
-     *
-     * @param ImageManipulatorInterface $imageManipulator The image manipulator
-     * @param RequestStack              $requestStack     The request stack
-     */
     public function __construct(
         ImageManipulatorInterface $imageManipulator,
         RequestStack $requestStack
@@ -52,9 +40,6 @@ class Downloader implements DownloaderInterface
         $this->requestStack = $requestStack;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function download(string $path, ?string $contentDisposition = null, array $headers = [], string $mode = self::MODE_AUTO): Response
     {
         $ext = pathinfo($path, PATHINFO_EXTENSION);
@@ -89,9 +74,6 @@ class Downloader implements DownloaderInterface
         return $this->downloadStream($stream, $mimeType, $contentDisposition, $headers);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function buildConfig(?Request $request = null): Config
     {
         $config = new Config();

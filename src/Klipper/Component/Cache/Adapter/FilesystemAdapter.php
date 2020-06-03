@@ -22,9 +22,6 @@ class FilesystemAdapter extends BaseFilesystemAdapter implements AdapterInterfac
 {
     use AdapterTrait;
 
-    /**
-     * {@inheritdoc}
-     */
     protected function doClearByPrefix(string $namespace, string $prefix): bool
     {
         $ok = true;

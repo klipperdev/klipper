@@ -26,8 +26,6 @@ class FilesystemTemplateLoader extends FilesystemLoader
     private $fallback;
 
     /**
-     * Constructor.
-     *
      * @throws \Twig\Error\LoaderError
      */
     public function __construct(
@@ -43,7 +41,8 @@ class FilesystemTemplateLoader extends FilesystemLoader
     }
 
     /**
-     * {@inheritdoc}
+     * @param mixed $name
+     * @param mixed $throw
      *
      * @throws
      */

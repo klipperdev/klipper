@@ -25,8 +25,6 @@ interface NamerInterface
 
     /**
      * Name the file.
-     *
-     * @param FileInterface $file The file
      */
     public function name(FileInterface $file): string;
 }

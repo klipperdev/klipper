@@ -25,9 +25,6 @@ use Symfony\Component\Security\Http\SecurityEvents;
  */
 class TimezoneSubscriber implements EventSubscriberInterface
 {
-    /**
-     * {@inheritdoc}
-     */
     public static function getSubscribedEvents(): array
     {
         return [

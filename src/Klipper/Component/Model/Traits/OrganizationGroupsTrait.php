@@ -12,6 +12,7 @@
 namespace Klipper\Component\Model\Traits;
 
 use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping as ORM;
 use Klipper\Component\Security\Model\GroupInterface;
 use Klipper\Component\Security\Model\Traits\OrganizationGroupsTrait as BaseOrganizationGroupsTrait;
 use Symfony\Component\Validator\Constraints as Assert;

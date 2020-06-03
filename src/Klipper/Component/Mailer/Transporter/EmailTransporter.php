@@ -26,7 +26,7 @@ use Symfony\Component\Mime\RawMessage;
  */
 class EmailTransporter implements TransporterInterface
 {
-    private $mailer;
+    private MailerInterface $mailer;
 
     public function __construct(MailerInterface $mailer)
     {
@@ -34,23 +34,20 @@ class EmailTransporter implements TransporterInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @param null|mixed $envelope
      */
     public function supports(RawMessage $message, $envelope = null): bool
     {
         return $message instanceof Email;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function hasRequiredFrom(): bool
     {
         return true;
     }
 
     /**
-     * {@inheritdoc}
+     * @param null|mixed $envelope
      */
     public function send(RawMessage $message, $envelope = null): void
     {

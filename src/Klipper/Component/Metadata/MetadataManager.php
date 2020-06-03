@@ -18,24 +18,19 @@ use Klipper\Component\Metadata\Exception\ObjectMetadataNotFoundException;
  */
 class MetadataManager implements MetadataManagerInterface
 {
-    /**
-     * @var MetadataFactoryInterface
-     */
-    protected $factory;
+    protected MetadataFactoryInterface $factory;
 
     /**
-     * @var null|ObjectMetadataInterface[]
+     * @var ObjectMetadataInterface[]
      */
-    protected $objects;
+    protected array $objects = [];
 
     /**
      * @var null|ChoiceInterface[]
      */
-    protected $choices;
+    protected ?array $choices;
 
     /**
-     * Constructor.
-     *
      * @param MetadataFactoryInterface $factory The metadata factory
      */
     public function __construct(MetadataFactoryInterface $factory)
@@ -43,9 +38,6 @@ class MetadataManager implements MetadataManagerInterface
         $this->factory = $factory;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function all(): array
     {
         if (null === $this->objects) {
@@ -59,25 +51,16 @@ class MetadataManager implements MetadataManagerInterface
         return $this->objects;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function has(string $class): bool
     {
         return $this->factory->isManagedClass($class);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function hasByName(string $name): bool
     {
         return $this->factory->isManagedByName($name);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function get(string $class): ObjectMetadataInterface
     {
         $class = $this->factory->getManagedClass($class);
@@ -90,9 +73,6 @@ class MetadataManager implements MetadataManagerInterface
         return $this->objects[$class];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getByName(string $name): ObjectMetadataInterface
     {
         if ($this->hasByName($name)) {
@@ -102,9 +82,6 @@ class MetadataManager implements MetadataManagerInterface
         throw new ObjectMetadataNotFoundException($name);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function allChoices(): array
     {
         if (null === $this->choices) {
@@ -118,17 +95,11 @@ class MetadataManager implements MetadataManagerInterface
         return $this->choices;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function hasChoice(string $name): bool
     {
         return $this->factory->isChoiceManaged($name);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getChoice(string $name): ChoiceInterface
     {
         if (!isset($this->choices[$name])) {

@@ -41,5 +41,5 @@ interface ConfigCollectionInterface extends \IteratorAggregate, \Countable
      *
      * @param ResourceInterface $resource The resource instance
      */
-    public function addResource(ResourceInterface $resource);
+    public function addResource(ResourceInterface $resource): void;
 }

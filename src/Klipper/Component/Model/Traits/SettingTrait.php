@@ -49,9 +49,6 @@ trait SettingTrait
      */
     protected ?string $currency = null;
 
-    /**
-     * {@inheritdoc}
-     */
     public function setTimezone(?string $timezone): self
     {
         $this->timezone = $timezone;
@@ -59,17 +56,11 @@ trait SettingTrait
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getTimezone(): ?string
     {
         return $this->timezone;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setLocale(?string $locale): self
     {
         $this->locale = $locale;
@@ -77,17 +68,11 @@ trait SettingTrait
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getLocale(): ?string
     {
         return $this->locale;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setCurrency(?string $currency): self
     {
         $this->currency = $currency;
@@ -95,9 +80,6 @@ trait SettingTrait
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getCurrency(): ?string
     {
         return $this->currency;

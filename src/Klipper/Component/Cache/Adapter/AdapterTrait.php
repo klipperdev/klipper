@@ -21,9 +21,6 @@ trait AdapterTrait
     use AdapterPrefixesTrait;
     use AdapterDeferredTrait;
 
-    /**
-     * {@inheritdoc}
-     */
     public function clearByPrefixes(array $prefixes): bool
     {
         $this->clearDeferredByPrefixes($prefixes);

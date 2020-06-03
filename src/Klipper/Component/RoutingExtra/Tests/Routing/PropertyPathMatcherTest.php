@@ -23,17 +23,14 @@ use PHPUnit\Framework\TestCase;
  */
 final class PropertyPathMatcherTest extends TestCase
 {
-    /**
-     * @var PropertyPathMatcherInterface
-     */
-    protected $matcher;
+    protected ?PropertyPathMatcherInterface $matcher = null;
 
     protected function setUp(): void
     {
         $this->matcher = new PropertyPathMatcher();
     }
 
-    public function getMatcherConfig()
+    public function getMatcherConfig(): array
     {
         $dataArray = [
             'custom_id' => 42,

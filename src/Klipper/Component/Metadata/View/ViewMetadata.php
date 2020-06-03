@@ -107,8 +107,6 @@ class ViewMetadata implements ViewMetadataInterface
     protected $associations;
 
     /**
-     * Constructor.
-     *
      * @param string                                  $class               The class name
      * @param string                                  $name                The name of metadata object
      * @param string                                  $fieldIdentifier     The name of the field used for identifier
@@ -183,145 +181,91 @@ class ViewMetadata implements ViewMetadataInterface
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getClass(): string
     {
         return $this->class;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getLabel(): string
     {
         return $this->label;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getDescription(): ?string
     {
         return $this->description;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function isSortable(): bool
     {
         return $this->sortable;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function isMultiSortable(): bool
     {
         return$this->multiSortable;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getDefaultSortable(): array
     {
         return $this->defaultSortable;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function isFilterable(): bool
     {
         return $this->filterable;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function isSearchable(): bool
     {
         return $this->searchable;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function isTranslatable(): bool
     {
         return $this->translatable;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getAvailableContexts(): array
     {
         return $this->availableContexts;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getFieldIdentifier(): string
     {
         return $this->fieldIdentifier;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getFieldLabel(): string
     {
         return $this->fieldLabel;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function hasEditablePermissions(): bool
     {
         return $this->editablePermissions;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function isMaster(): bool
     {
         return $this->master;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getAvailableActions(): array
     {
         return $this->availableActions ?? [];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getFields(): array
     {
         return $this->fields ?? [];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getAssociations(): array
     {
         return $this->associations ?? [];

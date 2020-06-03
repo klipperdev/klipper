@@ -30,22 +30,13 @@ class GuessTranslator implements
     GuessFieldConfigInterface,
     GuessAssociationConfigInterface
 {
-    /**
-     * @var TranslatorBagInterface
-     */
-    private $translator;
+    private TranslatorBagInterface $translator;
 
-    /**
-     * Constructor.
-     */
     public function __construct(TranslatorBagInterface $translator)
     {
         $this->translator = $translator;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function guessObjectConfig(ObjectMetadataBuilderInterface $builder): void
     {
         $name = $builder->getName() ?? MetadataUtil::getObjectName($builder->getClass());
@@ -53,9 +44,6 @@ class GuessTranslator implements
         $this->guessTranslations($builder, [$name.'.name'], [$name.'.description']);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function guessFieldConfig(FieldMetadataBuilderInterface $builder): void
     {
         $parentBuilder = $builder->getParent();
@@ -76,9 +64,6 @@ class GuessTranslator implements
         ]);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function guessAssociationConfig(AssociationMetadataBuilderInterface $builder): void
     {
         $parentBuilder = $builder->getParent();

@@ -24,9 +24,6 @@ use Symfony\Component\Cache\Adapter\TraceableAdapterEvent;
  */
 trait TraceableTrait
 {
-    /**
-     * {@inheritdoc}
-     */
     public function clearByPrefix(string $prefix): bool
     {
         $event = $this->start(__FUNCTION__);
@@ -41,9 +38,6 @@ trait TraceableTrait
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function clearByPrefixes(array $prefixes): bool
     {
         $event = $this->start(__FUNCTION__);

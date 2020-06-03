@@ -28,33 +28,21 @@ trait ExternalableTrait
      */
     protected array $externalIds = [];
 
-    /**
-     * {@inheritdoc}
-     */
     public function getExternalIds(): array
     {
         return $this->externalIds ?? [];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function hasExternalId(string $service): bool
     {
         return isset($this->externalIds[$service]);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getExternalId(string $service): ?string
     {
         return $this->externalIds[$service] ?? null;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setExternalIds(array $serviceIds): void
     {
         $this->externalIds = [];
@@ -64,17 +52,11 @@ trait ExternalableTrait
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function addExternalId(string $service, string $id): void
     {
         $this->externalIds[$service] = $id;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function removeExternalId(string $service): void
     {
         unset($this->externalIds[$service]);

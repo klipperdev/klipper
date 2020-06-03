@@ -18,9 +18,6 @@ namespace Klipper\Component\ExpressionLanguage\Functions;
  */
 class NowFunction extends BaseFunction
 {
-    /**
-     * Constructor.
-     */
     public function __construct()
     {
         parent::__construct('now', static function () {

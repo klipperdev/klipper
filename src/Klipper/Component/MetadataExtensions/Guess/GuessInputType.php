@@ -25,22 +25,13 @@ class GuessInputType implements
     GuessRegistryAwareInterface,
     GuessFieldConfigInterface
 {
-    /**
-     * @var MetadataRegistryInterface
-     */
-    protected $metadataRegistry;
+    protected ?MetadataRegistryInterface $metadataRegistry = null;
 
-    /**
-     * {@inheritdoc}
-     */
     public function setRegistry(MetadataRegistryInterface $registry): void
     {
         $this->metadataRegistry = $registry;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function guessFieldConfig(FieldMetadataBuilderInterface $builder): void
     {
         if (null === $builder->getFormType()) {

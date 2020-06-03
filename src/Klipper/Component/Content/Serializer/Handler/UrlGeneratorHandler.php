@@ -19,16 +19,8 @@ use Klipper\Component\Content\Serializer\UrlGenerator;
  */
 class UrlGeneratorHandler
 {
-    /**
-     * @var UrlGenerator
-     */
-    protected $urlGenerator;
+    protected UrlGenerator $urlGenerator;
 
-    /**
-     * Constructor.
-     *
-     * @param UrlGenerator $urlGenerator The serializer url generator
-     */
     public function __construct(UrlGenerator $urlGenerator)
     {
         $this->urlGenerator = $urlGenerator;

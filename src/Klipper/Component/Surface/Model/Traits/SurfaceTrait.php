@@ -23,13 +23,10 @@ trait SurfaceTrait
      */
     protected $surface;
 
-    /**
-     * @var null|string
-     */
-    protected $surfaceUnit;
+    protected ?string $surfaceUnit = null;
 
     /**
-     * {@inheritdoc}
+     * @param mixed $surface
      */
     public function setSurface($surface): self
     {
@@ -38,17 +35,11 @@ trait SurfaceTrait
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getSurface(): ?float
     {
         return $this->surface;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setSurfaceUnit(?string $surfaceUnit): self
     {
         $this->surfaceUnit = $surfaceUnit;
@@ -56,9 +47,6 @@ trait SurfaceTrait
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getSurfaceUnit(): ?string
     {
         return $this->surfaceUnit;

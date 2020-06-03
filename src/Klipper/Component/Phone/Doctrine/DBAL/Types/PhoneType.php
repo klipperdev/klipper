@@ -26,17 +26,11 @@ class PhoneType extends Type
 {
     public const NAME = 'phone';
 
-    /**
-     * {@inheritdoc}
-     */
     public function getName(): string
     {
         return self::NAME;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform): string
     {
         return $platform->getVarcharTypeDeclarationSQL([
@@ -45,7 +39,7 @@ class PhoneType extends Type
     }
 
     /**
-     * {@inheritdoc}
+     * @param mixed $value
      *
      * @throws ConversionException
      */
@@ -65,7 +59,7 @@ class PhoneType extends Type
     }
 
     /**
-     * {@inheritdoc}
+     * @param mixed $value
      *
      * @throws ConversionException
      */
@@ -84,9 +78,6 @@ class PhoneType extends Type
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function requiresSQLCommentHint(AbstractPlatform $platform): bool
     {
         return true;

@@ -16,54 +16,28 @@ namespace Klipper\Component\Metadata;
  */
 abstract class BaseMetadataBuilder implements MetadataBuilderInterface
 {
-    /**
-     * @var null|string
-     */
-    protected $name;
+    protected ?string $name = null;
 
-    /**
-     * @var string
-     */
-    protected $type;
+    protected ?string $type;
 
-    /**
-     * @var null|string
-     */
-    protected $label;
+    protected ?string $label = null;
 
-    /**
-     * @var null|string
-     */
-    protected $description;
+    protected ?string $description = null;
 
-    /**
-     * @var null|string
-     */
-    protected $translationDomain;
+    protected ?string $translationDomain = null;
 
-    /**
-     * @var null|bool
-     */
-    protected $public;
+    protected ?bool $public = null;
 
-    /**
-     * @var null|string
-     */
-    protected $formType;
+    protected ?string $formType = null;
 
-    /**
-     * @var array
-     */
-    protected $formOptions = [];
+    protected array $formOptions = [];
 
     /**
      * @var string[]
      */
-    protected $groups = [];
+    protected array $groups = [];
 
     /**
-     * Constructor.
-     *
      * @param string $type The type
      */
     public function __construct(?string $type)
@@ -71,9 +45,6 @@ abstract class BaseMetadataBuilder implements MetadataBuilderInterface
         $this->type = $type;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setName(?string $name): self
     {
         $this->name = $name;
@@ -81,17 +52,11 @@ abstract class BaseMetadataBuilder implements MetadataBuilderInterface
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getName(): ?string
     {
         return $this->name;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -99,17 +64,11 @@ abstract class BaseMetadataBuilder implements MetadataBuilderInterface
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getType(): ?string
     {
         return $this->type;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setLabel(?string $label): self
     {
         $this->label = $label;
@@ -117,17 +76,11 @@ abstract class BaseMetadataBuilder implements MetadataBuilderInterface
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getLabel(): ?string
     {
         return $this->label;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setDescription(?string $description): self
     {
         $this->description = $description;
@@ -135,17 +88,11 @@ abstract class BaseMetadataBuilder implements MetadataBuilderInterface
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getDescription(): ?string
     {
         return $this->description;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setTranslationDomain(?string $translationDomain): self
     {
         $this->translationDomain = $translationDomain;
@@ -153,17 +100,11 @@ abstract class BaseMetadataBuilder implements MetadataBuilderInterface
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getTranslationDomain(): ?string
     {
         return $this->translationDomain;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setPublic(?bool $public): self
     {
         $this->public = $public;
@@ -171,17 +112,11 @@ abstract class BaseMetadataBuilder implements MetadataBuilderInterface
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function isPublic(): ?bool
     {
         return $this->public;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setFormType(?string $formTypeType): self
     {
         $this->formType = $formTypeType;
@@ -189,17 +124,11 @@ abstract class BaseMetadataBuilder implements MetadataBuilderInterface
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getFormType(): ?string
     {
         return $this->formType;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setFormOptions(array $options): self
     {
         $this->formOptions = $options;
@@ -207,17 +136,11 @@ abstract class BaseMetadataBuilder implements MetadataBuilderInterface
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getFormOptions(): array
     {
         return $this->formOptions;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setGroups(array $groups): self
     {
         $this->groups = $groups;
@@ -225,9 +148,6 @@ abstract class BaseMetadataBuilder implements MetadataBuilderInterface
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getGroups(): array
     {
         return $this->groups;

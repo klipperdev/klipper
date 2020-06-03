@@ -44,20 +44,18 @@ class TranslatableExpressionLanguage extends BaseExpressionLanguage
         'Unexpected character "(.+)"' => 'lexer.unexpected_character',
     ];
 
-    /**
-     * @var TranslatorInterface
-     */
-    protected $translator;
+    protected TranslatorInterface $translator;
 
     /**
-     * Constructor.
-     *
      * @param TranslatorInterface                   $translator The translator
-     * @param CacheItemPoolInterface                $cache      The cache
+     * @param null|CacheItemPoolInterface           $cache      The cache
      * @param ExpressionFunctionProviderInterface[] $providers  The expression function providers
      */
-    public function __construct(TranslatorInterface $translator, ?CacheItemPoolInterface $cache = null, array $providers = [])
-    {
+    public function __construct(
+        TranslatorInterface $translator,
+        ?CacheItemPoolInterface $cache = null,
+        array $providers = []
+    ) {
         parent::__construct($cache, $providers);
 
         $this->translator = $translator;
@@ -65,6 +63,8 @@ class TranslatableExpressionLanguage extends BaseExpressionLanguage
 
     /**
      * Get the functions.
+     *
+     * @return ExpressionFunction[]
      */
     public function getFunctions(): array
     {
@@ -88,9 +88,6 @@ class TranslatableExpressionLanguage extends BaseExpressionLanguage
         return false;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function addFunction(ExpressionFunction $function): void
     {
         if (!$function instanceof BaseFunction) {
@@ -101,7 +98,8 @@ class TranslatableExpressionLanguage extends BaseExpressionLanguage
     }
 
     /**
-     * {@inheritdoc}
+     * @param mixed $expression
+     * @param mixed $names
      */
     public function parse($expression, $names): ParsedExpression
     {
@@ -140,9 +138,6 @@ class TranslatableExpressionLanguage extends BaseExpressionLanguage
         return $message;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function registerFunctions(): void
     {
         // remove all default functions

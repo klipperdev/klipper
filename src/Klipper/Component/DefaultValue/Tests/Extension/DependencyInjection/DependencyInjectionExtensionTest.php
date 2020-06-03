@@ -19,6 +19,7 @@ use Klipper\Component\DefaultValue\Tests\Fixtures\Object\Foo;
 use Klipper\Component\DefaultValue\Tests\Fixtures\Object\User;
 use Klipper\Component\DefaultValue\Tests\Fixtures\Type\FooType;
 use Klipper\Component\DefaultValue\Tests\Fixtures\Type\UserType;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -29,13 +30,10 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  */
 final class DependencyInjectionExtensionTest extends TestCase
 {
-    /**
-     * @var DependencyInjectionExtension
-     */
-    protected $ext;
+    protected ?DependencyInjectionExtension $ext = null;
 
     /**
-     * @var ContainerInterface|\PHPUnit_Framework_MockObject_MockObject
+     * @var ContainerInterface|MockObject
      */
     protected $container;
 

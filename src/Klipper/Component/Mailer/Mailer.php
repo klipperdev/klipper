@@ -26,7 +26,7 @@ class Mailer implements MailerInterface
     /**
      * @var TransporterInterface[]
      */
-    protected $transporters = [];
+    protected array $transporters = [];
 
     /**
      * @param TransporterInterface[] $transporters The transporters
@@ -46,17 +46,11 @@ class Mailer implements MailerInterface
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function send(RawMessage $message, $envelope = null): void
     {
         $this->findTransporter($message, $envelope)->send($message, $envelope);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function hasRequiredFrom(RawMessage $message, $envelope = null): bool
     {
         return $this->findTransporter($message, $envelope)->hasRequiredFrom();

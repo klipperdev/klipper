@@ -16,50 +16,26 @@ namespace Klipper\Component\Metadata;
  */
 abstract class BaseMetadata implements MetadataInterface
 {
-    /**
-     * @var string
-     */
-    protected $name;
+    protected string $name;
 
-    /**
-     * @var string
-     */
-    protected $type;
+    protected string $type;
 
-    /**
-     * @var string
-     */
-    protected $label;
+    protected string $label;
 
-    /**
-     * @var null|string
-     */
-    protected $description;
+    protected ?string $description;
 
-    /**
-     * @var null|string
-     */
-    protected $translationDomain;
+    protected ?string $translationDomain;
 
-    /**
-     * @var bool
-     */
-    protected $public;
+    protected bool $public;
 
-    /**
-     * @var null|string
-     */
-    protected $formType;
+    protected ?string $formType = null;
 
-    /**
-     * @var array
-     */
-    protected $formOptions = [];
+    protected array $formOptions = [];
 
     /**
      * @var string[]
      */
-    protected $groups = [];
+    protected array $groups = [];
 
     /**
      * @param string      $name              The unique name
@@ -85,73 +61,46 @@ abstract class BaseMetadata implements MetadataInterface
         $this->public = $public;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getLabel(): string
     {
         return $this->label;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getDescription(): ?string
     {
         return $this->description;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getTranslationDomain(): ?string
     {
         return $this->translationDomain;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function isPublic(): bool
     {
         return $this->public;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getFormType(): ?string
     {
         return $this->formType;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getFormOptions(): array
     {
         return $this->formOptions;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getGroups(): array
     {
         return $this->groups;

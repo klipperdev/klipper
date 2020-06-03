@@ -19,8 +19,6 @@ use Klipper\Component\Config\Exception\RuntimeException;
 abstract class AbstractAnnotation implements AnnotationInterface
 {
     /**
-     * Constructor.
-     *
      * @param array $values The annotation values
      */
     public function __construct(array $values = [])
@@ -34,17 +32,11 @@ abstract class AbstractAnnotation implements AnnotationInterface
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getAliasName(): ?string
     {
         return null;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function allowArray(): bool
     {
         return false;

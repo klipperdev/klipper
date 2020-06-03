@@ -18,10 +18,8 @@ interface FileInterface
 {
     /**
      * Returns the size of the file.
-     *
-     * @return int
      */
-    public function getSize();
+    public function getSize(): int;
 
     /**
      * Returns the path of the file.
@@ -32,10 +30,8 @@ interface FileInterface
 
     /**
      * Return the path of the file without the filename.
-     *
-     * @return string
      */
-    public function getPath();
+    public function getPath(): string;
 
     /**
      * Returns the guessed mime type of the file.
@@ -46,15 +42,11 @@ interface FileInterface
 
     /**
      * Returns the basename of the file.
-     *
-     * @return string
      */
-    public function getBasename();
+    public function getBasename(): ?string;
 
     /**
      * Returns the guessed extension of the file.
-     *
-     * @return string
      */
-    public function getExtension();
+    public function getExtension(): string;
 }

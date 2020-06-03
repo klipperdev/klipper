@@ -23,9 +23,6 @@ use Klipper\Component\DoctrineExtra\Util\ClassUtils;
  */
 class UrlSerializerSubscriber implements EventSubscriberInterface
 {
-    /**
-     * {@inheritdoc}
-     */
     public static function getSubscribedEvents(): array
     {
         return [
@@ -44,8 +41,6 @@ class UrlSerializerSubscriber implements EventSubscriberInterface
 
     /**
      * Replace url generator aliases by her real classname and inject object in property meta.
-     *
-     * @param ObjectEvent $event The event
      */
     public function onPreSerialize(ObjectEvent $event): void
     {
@@ -83,8 +78,6 @@ class UrlSerializerSubscriber implements EventSubscriberInterface
 
     /**
      * Clean the property metadatas.
-     *
-     * @param ObjectEvent $event The event
      */
     public function onPostSerialize(ObjectEvent $event): void
     {

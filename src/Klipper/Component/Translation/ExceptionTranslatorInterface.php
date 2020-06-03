@@ -36,7 +36,7 @@ interface ExceptionTranslatorInterface
     /**
      * Translate the message of resource domain exception.
      *
-     * @param \Exception $exception The exception
+     * @param \Throwable $throwable The exception
      */
-    public function transDomainException(\Exception $exception): string;
+    public function transDomainThrowable(\Throwable $throwable): string;
 }

@@ -23,32 +23,24 @@ use Klipper\Component\DefaultValue\Extension\Core\Type\DefaultType;
 class ObjectRegistry implements ObjectRegistryInterface
 {
     /**
-     * Extensions.
-     *
-     * @var array An array of ObjectExtensionInterface
+     * @var ObjectExtensionInterface[]
      */
-    protected $extensions = [];
+    protected array $extensions = [];
+
+    protected array $types = [];
+
+    protected ResolvedObjectTypeFactoryInterface $resolvedTypeFactory;
 
     /**
-     * @var array
-     */
-    protected $types = [];
-
-    /**
-     * @var ResolvedObjectTypeFactoryInterface
-     */
-    protected $resolvedTypeFactory;
-
-    /**
-     * Constructor.
-     *
-     * @param array                              $extensions          An array of ObjectExtensionInterface
+     * @param ObjectExtensionInterface[]         $extensions          An array of ObjectExtensionInterface
      * @param ResolvedObjectTypeFactoryInterface $resolvedTypeFactory The factory for resolved object default value types
      *
      * @throws UnexpectedTypeException if any extension does not implement ObjectExtensionInterface
      */
-    public function __construct(array $extensions, ResolvedObjectTypeFactoryInterface $resolvedTypeFactory)
-    {
+    public function __construct(
+        array $extensions,
+        ResolvedObjectTypeFactoryInterface $resolvedTypeFactory
+    ) {
         foreach ($extensions as $extension) {
             if (!$extension instanceof ObjectExtensionInterface) {
                 throw new UnexpectedTypeException($extension, 'Klipper\Component\DefaultValue\ObjectExtensionInterface');
@@ -59,23 +51,16 @@ class ObjectRegistry implements ObjectRegistryInterface
         $this->resolvedTypeFactory = $resolvedTypeFactory;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getType($name)
+    public function getType(string $classname): ResolvedObjectTypeInterface
     {
-        if (!\is_string($name)) {
-            throw new UnexpectedTypeException($name, 'string');
-        }
-
-        if (!isset($this->types[$name])) {
+        if (!isset($this->types[$classname])) {
             /** @var ObjectTypeInterface $type */
             $type = null;
 
             foreach ($this->extensions as $extension) {
                 /** @var ObjectExtensionInterface $extension */
-                if ($extension->hasType($name)) {
-                    $type = $extension->getType($name);
+                if ($extension->hasType($classname)) {
+                    $type = $extension->getType($classname);
 
                     break;
                 }
@@ -83,26 +68,23 @@ class ObjectRegistry implements ObjectRegistryInterface
 
             // fallback to default type
             if (!$type) {
-                $type = new DefaultType($name);
+                $type = new DefaultType($classname);
             }
 
             $this->resolveAndAddType($type);
         }
 
-        return $this->types[$name];
+        return $this->types[$classname];
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function hasType($name)
+    public function hasType(string $classname): bool
     {
-        if (isset($this->types[$name])) {
+        if (isset($this->types[$classname])) {
             return true;
         }
 
         try {
-            $this->getType($name);
+            $this->getType($classname);
         } catch (ExceptionInterface $e) {
             return false;
         }
@@ -110,10 +92,7 @@ class ObjectRegistry implements ObjectRegistryInterface
         return true;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getExtensions()
+    public function getExtensions(): iterable
     {
         return $this->extensions;
     }

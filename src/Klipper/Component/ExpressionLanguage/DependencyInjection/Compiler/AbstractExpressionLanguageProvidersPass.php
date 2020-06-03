@@ -22,9 +22,6 @@ use Symfony\Component\DependencyInjection\Reference;
  */
 abstract class AbstractExpressionLanguageProvidersPass implements CompilerPassInterface
 {
-    /**
-     * {@inheritdoc}
-     */
     public function process(ContainerBuilder $container): void
     {
         $id = $this->getExpressionLanguageId();

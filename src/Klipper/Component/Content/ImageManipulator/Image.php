@@ -21,15 +21,9 @@ class Image implements ImageInterface
      */
     protected $resource;
 
-    /**
-     * @var string
-     */
-    protected $typeMime;
+    protected string $typeMime;
 
-    /**
-     * @var int
-     */
-    protected $size;
+    protected int $size;
 
     /**
      * @var null|callable
@@ -37,8 +31,6 @@ class Image implements ImageInterface
     protected $callback;
 
     /**
-     * Constructor.
-     *
      * @param resource $resource The stream resource
      * @param string   $typeMime The type mime
      * @param callable $callback A valid PHP callback
@@ -51,33 +43,21 @@ class Image implements ImageInterface
         $this->callback = $callback;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getResource()
     {
         return $this->resource;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getTypeMime(): string
     {
         return $this->typeMime;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getSize(): int
     {
         return $this->size;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getCallback(): ?callable
     {
         return $this->callback;

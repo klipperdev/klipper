@@ -31,9 +31,6 @@ trait SortableTrait
      */
     protected int $position = -1;
 
-    /**
-     * {@inheritdoc}
-     */
     public function setPosition(int $position): self
     {
         $this->position = $position;
@@ -41,9 +38,6 @@ trait SortableTrait
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getPosition(): int
     {
         return $this->position;

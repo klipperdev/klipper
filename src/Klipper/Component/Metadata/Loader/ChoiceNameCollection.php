@@ -33,8 +33,6 @@ class ChoiceNameCollection extends AbstractConfigCollection
     }
 
     /**
-     * {@inheritdoc}
-     *
      * @return string[]
      */
     public function all(): array
@@ -63,8 +61,6 @@ class ChoiceNameCollection extends AbstractConfigCollection
     }
 
     /**
-     * {@inheritdoc}
-     *
      * @param ChoiceNameCollection|ConfigCollectionInterface $collection The collection
      */
     public function addCollection(ConfigCollectionInterface $collection): void

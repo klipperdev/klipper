@@ -23,16 +23,8 @@ use libphonenumber\PhoneNumberUtil;
  */
 class PhoneHandler
 {
-    /**
-     * @var PhoneNumberUtil
-     */
-    private $phoneNumberUtil;
+    private PhoneNumberUtil $phoneNumberUtil;
 
-    /**
-     * Constructor.
-     *
-     * @param PhoneNumberUtil $phoneNumberUtil The phone number utility
-     */
     public function __construct(PhoneNumberUtil $phoneNumberUtil)
     {
         $this->phoneNumberUtil = $phoneNumberUtil;

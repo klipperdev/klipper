@@ -18,19 +18,14 @@ use Klipper\Component\Metadata\View\ViewAssociationMetadataInterface;
  */
 class AssociationPermissionMetadata implements AssociationPermissionMetadataInterface
 {
-    /**
-     * @var ViewAssociationMetadataInterface
-     */
-    protected $metadata;
+    protected ViewAssociationMetadataInterface $metadata;
 
     /**
      * @var PermissionMetadataInterface[]
      */
-    protected $permissions;
+    protected array $permissions;
 
     /**
-     * Constructor.
-     *
      * @param ViewAssociationMetadataInterface $metadata    The view association metadata
      * @param PermissionMetadataInterface[]    $permissions The association permissions
      */
@@ -40,65 +35,41 @@ class AssociationPermissionMetadata implements AssociationPermissionMetadataInte
         $this->permissions = $permissions;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getAssociation(): string
     {
         return $this->metadata->getAssociation();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getName(): string
     {
         return $this->metadata->getName();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getType(): string
     {
         return $this->metadata->getType();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getTarget(): string
     {
         return $this->metadata->getTarget();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getLabel(): string
     {
         return $this->metadata->getLabel();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getDescription(): ?string
     {
         return $this->metadata->getDescription();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function hasEditablePermissions(): bool
     {
         return $this->metadata->hasEditablePermissions();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getPermissions(): array
     {
         return $this->permissions;

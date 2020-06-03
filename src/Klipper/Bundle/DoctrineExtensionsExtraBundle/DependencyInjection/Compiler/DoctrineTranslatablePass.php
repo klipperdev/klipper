@@ -24,9 +24,6 @@ use Symfony\Component\DependencyInjection\Reference;
  */
 class DoctrineTranslatablePass implements CompilerPassInterface
 {
-    /**
-     * {@inheritdoc}
-     */
     public function process(ContainerBuilder $container): void
     {
         if ($container->hasDefinition('stof_doctrine_extensions.listener.translatable')) {

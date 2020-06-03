@@ -23,24 +23,13 @@ use Twig\TwigFunction;
  */
 class ExceptionMessageExtension extends AbstractExtension
 {
-    /**
-     * @var ExceptionMessageManager
-     */
-    protected $exceptionMessageManager;
+    protected ExceptionMessageManager $exceptionMessageManager;
 
-    /**
-     * Constructor.
-     *
-     * @param ExceptionMessageManager $exceptionMessageManager The exception message manager
-     */
     public function __construct(ExceptionMessageManager $exceptionMessageManager)
     {
         $this->exceptionMessageManager = $exceptionMessageManager;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getFunctions(): array
     {
         return [
@@ -52,10 +41,10 @@ class ExceptionMessageExtension extends AbstractExtension
     /**
      * Get the exception message.
      *
-     * @param FlattenException $exception The flatten exception
-     * @param string           $message   The existing message
+     * @param FlattenException|\Throwable $exception The flatten exception
+     * @param string                      $message   The existing message
      */
-    public function getExceptionMessage(FlattenException $exception, string $message): string
+    public function getExceptionMessage($exception, string $message): string
     {
         return $this->exceptionMessageManager->getMessage($exception, $message);
     }
@@ -63,11 +52,11 @@ class ExceptionMessageExtension extends AbstractExtension
     /**
      * Resolves the value corresponding to an exception object.
      *
-     * @param FlattenException $exception The flatten exception
+     * @param FlattenException|\Throwable $exception The flatten exception
      *
      * @return false|mixed Value found or false is not found
      */
-    public function resolveException(FlattenException $exception)
+    public function resolveException($exception)
     {
         return $this->exceptionMessageManager->resolve($exception);
     }

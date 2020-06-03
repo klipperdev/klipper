@@ -19,9 +19,6 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
  */
 class KlipperChoiceBundle extends Bundle
 {
-    /**
-     * {@inheritdoc}
-     */
     public function boot(): void
     {
         if ($this->container->hasParameter('klipper_choice.extendable_choice.configs')) {

@@ -34,22 +34,10 @@ class UrlGenerator
         'LangOrgUrl' => LangOrgUrl::class,
     ];
 
-    /**
-     * @var RoutingInterface
-     */
-    protected $routing;
+    protected RoutingInterface $routing;
 
-    /**
-     * @var PropertyPathMatcherInterface
-     */
-    protected $propertyPathMatcher;
+    protected PropertyPathMatcherInterface $propertyPathMatcher;
 
-    /**
-     * Constructor.
-     *
-     * @param RoutingInterface             $routing             The routing
-     * @param PropertyPathMatcherInterface $propertyPathMatcher The property path matcher
-     */
     public function __construct(
         RoutingInterface $routing,
         PropertyPathMatcherInterface $propertyPathMatcher

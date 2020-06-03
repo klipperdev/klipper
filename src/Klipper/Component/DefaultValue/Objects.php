@@ -55,7 +55,7 @@ final class Objects
      *
      * @return ObjectFactoryInterface The object default value factory
      */
-    public static function createObjectFactory()
+    public static function createObjectFactory(): ObjectFactoryInterface
     {
         return self::createObjectFactoryBuilder()->getObjectFactory();
     }
@@ -65,7 +65,7 @@ final class Objects
      *
      * @return ObjectFactoryBuilderInterface The object default value factory builder
      */
-    public static function createObjectFactoryBuilder()
+    public static function createObjectFactoryBuilder(): ObjectFactoryBuilderInterface
     {
         $builder = new ObjectFactoryBuilder();
         $builder->addExtension(new CoreExtension());

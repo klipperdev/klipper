@@ -18,12 +18,7 @@ namespace Klipper\Component\DefaultValue;
  */
 class ObjectBuilder extends ObjectConfigBuilder implements ObjectBuilderInterface
 {
-    /**
-     * The object default value factory.
-     *
-     * @var ObjectFactoryInterface
-     */
-    private $factory;
+    private ObjectFactoryInterface $factory;
 
     /**
      * Creates a new object default value builder.
@@ -35,18 +30,12 @@ class ObjectBuilder extends ObjectConfigBuilder implements ObjectBuilderInterfac
         $this->factory = $factory;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getObjectFactory()
+    public function getObjectFactory(): ObjectFactoryInterface
     {
         return $this->factory;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getObject()
+    public function getObject(): object
     {
         if (null === $this->getData()) {
             $this->setData($this->getType()->newInstance($this, $this->getOptions()));

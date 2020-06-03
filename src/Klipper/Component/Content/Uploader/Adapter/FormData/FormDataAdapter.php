@@ -32,31 +32,18 @@ use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
  */
 class FormDataAdapter implements AdapterInterface
 {
-    /**
-     * @var EventDispatcherInterface
-     */
-    private $dispatcher;
+    private EventDispatcherInterface $dispatcher;
 
-    /**
-     * @var NamerManagerInterface
-     */
-    private $namerManager;
+    private NamerManagerInterface $namerManager;
 
-    /**
-     * Constructor.
-     *
-     * @param EventDispatcherInterface $dispatcher   The event dispatcher
-     * @param NamerManagerInterface    $namerManager The namer manager
-     */
-    public function __construct(EventDispatcherInterface $dispatcher, NamerManagerInterface $namerManager)
-    {
+    public function __construct(
+        EventDispatcherInterface $dispatcher,
+        NamerManagerInterface $namerManager
+    ) {
         $this->dispatcher = $dispatcher;
         $this->namerManager = $namerManager;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function supports(Request $request, UploaderConfigurationInterface $uploader): bool
     {
         return Request::METHOD_POST === $request->getMethod()
@@ -64,8 +51,6 @@ class FormDataAdapter implements AdapterInterface
     }
 
     /**
-     * {@inheritdoc}
-     *
      * @throws
      */
     public function upload(Request $request, UploaderConfigurationInterface $uploader): Response

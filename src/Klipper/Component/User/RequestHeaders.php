@@ -18,8 +18,6 @@ abstract class RequestHeaders
 {
     /**
      * The timezone request header.
-     *
-     * @var string
      */
     public const TIMEZONE = 'X-Timezone';
 }

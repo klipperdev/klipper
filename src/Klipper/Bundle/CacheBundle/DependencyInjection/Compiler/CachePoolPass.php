@@ -27,9 +27,6 @@ class CachePoolPass implements CompilerPassInterface
      */
     private static $stBase = 'Klipper\Component\Cache\Adapter\\';
 
-    /**
-     * {@inheritdoc}
-     */
     public function process(ContainerBuilder $container): void
     {
         $availables = $this->getAvailableServices($container);

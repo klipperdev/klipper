@@ -32,9 +32,6 @@ class InitSessionPdoCommand extends Command
         $this->handler = $pdoHandler;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function configure(): void
     {
         $this->setName('init:session:pdo')
@@ -47,9 +44,6 @@ class InitSessionPdoCommand extends Command
         ;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         try {

@@ -20,9 +20,6 @@ use Klipper\Component\Choice\PlaceholderableChoiceInterface;
  */
 final class Gender implements PlaceholderableChoiceInterface
 {
-    /**
-     * {@inheritdoc}
-     */
     public static function listIdentifiers(): array
     {
         return [
@@ -32,17 +29,11 @@ final class Gender implements PlaceholderableChoiceInterface
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public static function getValues(): array
     {
         return array_keys(static::listIdentifiers());
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public static function getTranslationDomain(): string
     {
         return 'choices';

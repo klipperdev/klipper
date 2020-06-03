@@ -13,6 +13,7 @@ namespace Klipper\Component\DefaultValue\Extension\DependencyInjection;
 
 use Klipper\Component\DefaultValue\Exception\InvalidArgumentException;
 use Klipper\Component\DefaultValue\ObjectExtensionInterface;
+use Klipper\Component\DefaultValue\ObjectTypeInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -20,67 +21,47 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  */
 class DependencyInjectionExtension implements ObjectExtensionInterface
 {
-    /**
-     * @var ContainerInterface
-     */
-    public $container;
+    public ?ContainerInterface $container = null;
 
-    /**
-     * @var array
-     */
-    protected $typeServiceIds;
+    protected array $typeServiceIds;
 
-    /**
-     * @var array
-     */
-    protected $typeExtensionServiceIds;
+    protected array $typeExtensionServiceIds;
 
-    /**
-     * Constructor.
-     */
     public function __construct(array $typeServiceIds, array $typeExtensionServiceIds)
     {
         $this->typeServiceIds = $typeServiceIds;
         $this->typeExtensionServiceIds = $typeExtensionServiceIds;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getType($name)
+    public function getType(string $classname): ObjectTypeInterface
     {
-        if (!isset($this->typeServiceIds[$name])) {
-            throw new InvalidArgumentException(sprintf('The object default value type "%s" is not registered with the service container.', $name));
+        if (!isset($this->typeServiceIds[$classname])) {
+            throw new InvalidArgumentException(sprintf('The object default value type "%s" is not registered with the service container.', $classname));
         }
 
-        $type = $this->container->get($this->typeServiceIds[$name]);
+        /** @var ObjectTypeInterface $type */
+        $type = $this->container->get($this->typeServiceIds[$classname]);
 
-        if ($type->getClass() !== $name) {
+        if ($type->getClass() !== $classname) {
             throw new InvalidArgumentException(
-                sprintf('The object default value type class name specified for the service "%s" does not match the actual class name. Expected "%s", given "%s"', $this->typeServiceIds[$name], $name, $type->getClass())
+                sprintf('The object default value type class name specified for the service "%s" does not match the actual class name. Expected "%s", given "%s"', $this->typeServiceIds[$classname], $classname, $type->getClass())
             );
         }
 
         return $type;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function hasType($name)
+    public function hasType(string $classname): bool
     {
-        return isset($this->typeServiceIds[$name]);
+        return isset($this->typeServiceIds[$classname]);
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getTypeExtensions($name)
+    public function getTypeExtensions(string $classname): array
     {
         $extensions = [];
 
-        if (isset($this->typeExtensionServiceIds[$name])) {
-            foreach ($this->typeExtensionServiceIds[$name] as $serviceId) {
+        if (isset($this->typeExtensionServiceIds[$classname])) {
+            foreach ($this->typeExtensionServiceIds[$classname] as $serviceId) {
                 $extensions[] = $this->container->get($serviceId);
             }
         }
@@ -88,11 +69,8 @@ class DependencyInjectionExtension implements ObjectExtensionInterface
         return $extensions;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function hasTypeExtensions($name)
+    public function hasTypeExtensions(string $classname): bool
     {
-        return isset($this->typeExtensionServiceIds[$name]);
+        return isset($this->typeExtensionServiceIds[$classname]);
     }
 }

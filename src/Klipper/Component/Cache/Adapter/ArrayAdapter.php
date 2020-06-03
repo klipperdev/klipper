@@ -22,9 +22,6 @@ class ArrayAdapter extends BaseArrayAdapter implements AdapterInterface
 {
     use AdapterPrefixesTrait;
 
-    /**
-     * {@inheritdoc}
-     */
     public function clearByPrefixes(array $prefixes): bool
     {
         $values = AdapterUtil::getPropertyValue($this, 'values');

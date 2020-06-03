@@ -11,6 +11,7 @@
 
 namespace Klipper\Component\Model\Traits;
 
+use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as Serializer;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -32,9 +33,6 @@ trait TranslationDomainTrait
      */
     protected ?string $translationDomain = null;
 
-    /**
-     * {@inheritdoc}
-     */
     public function setTranslationDomain(?string $translationDomain): self
     {
         $this->translationDomain = $translationDomain;
@@ -42,9 +40,6 @@ trait TranslationDomainTrait
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getTranslationDomain(): ?string
     {
         return $this->translationDomain;

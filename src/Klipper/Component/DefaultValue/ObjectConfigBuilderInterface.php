@@ -23,7 +23,7 @@ interface ObjectConfigBuilderInterface extends ObjectConfigInterface
      *
      * @param ResolvedObjectTypeInterface $type The type of the object default value
      *
-     * @return ObjectConfigBuilderInterface
+     * @return static
      */
     public function setType(ResolvedObjectTypeInterface $type);
 
@@ -32,7 +32,7 @@ interface ObjectConfigBuilderInterface extends ObjectConfigInterface
      *
      * @param mixed $data The data of the object default value
      *
-     * @return ObjectConfigBuilderInterface
+     * @return static
      */
     public function setData($data);
 
@@ -40,13 +40,13 @@ interface ObjectConfigBuilderInterface extends ObjectConfigInterface
      * Sets the value for an property.
      *
      * @param string $name  The name of the property
-     * @param string $value The value of the property
+     * @param mixed  $value The value of the property
      *
      * @throws BadMethodCallException When the data is empty
      *
-     * @return ObjectConfigBuilderInterface
+     * @return static
      */
-    public function setProperty($name, $value);
+    public function setProperty(string $name, $value);
 
     /**
      * Sets the properties.
@@ -55,14 +55,12 @@ interface ObjectConfigBuilderInterface extends ObjectConfigInterface
      *
      * @throws BadMethodCallException When the data is empty
      *
-     * @return ObjectConfigBuilderInterface
+     * @return static
      */
     public function setProperties(array $properties);
 
     /**
      * Builds and returns the object default value configuration.
-     *
-     * @return ObjectConfigInterface
      */
-    public function getObjectConfig();
+    public function getObjectConfig(): ObjectConfigInterface;
 }

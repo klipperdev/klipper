@@ -22,15 +22,9 @@ use Twig\Error\LoaderError;
  */
 final class FilesystemTemplateLoaderTest extends TestCase
 {
-    /**
-     * @var FilesystemTemplateLoader
-     */
-    protected $loader;
+    protected ?FilesystemTemplateLoader $loader = null;
 
-    /**
-     * @var string
-     */
-    protected $rootPath;
+    protected ?string $rootPath = null;
 
     /**
      * @throws

@@ -16,18 +16,14 @@ use Klipper\Component\DefaultValue\ObjectBuilderInterface;
 
 class FooType extends AbstractType
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function newInstance(ObjectBuilderInterface $builder, array $options): void
+    public function newInstance(ObjectBuilderInterface $builder, array $options): ?object
     {
         // force the test to create instance with the default type
+
+        return null;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getClass()
+    public function getClass(): string
     {
         return 'Klipper\Component\DefaultValue\Tests\Fixtures\Object\Foo';
     }

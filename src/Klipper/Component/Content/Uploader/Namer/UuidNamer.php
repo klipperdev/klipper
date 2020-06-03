@@ -19,17 +19,12 @@ use Ramsey\Uuid\Uuid;
  */
 class UuidNamer implements NamerInterface
 {
-    /**
-     * {@inheritdoc}
-     */
     public function getName(): string
     {
         return 'uuid';
     }
 
     /**
-     * {@inheritdoc}
-     *
      * @throws
      */
     public function name(FileInterface $file): string

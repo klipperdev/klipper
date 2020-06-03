@@ -25,8 +25,6 @@ class PassDelegatingLoader extends AbstractDelegatingLoader
     private $passLoaders;
 
     /**
-     * Constructor.
-     *
      * @param LoaderInterface       $delegatingLoader The route loader
      * @param PassLoaderInterface[] $passLoaders      The route pass loaders
      */
@@ -38,9 +36,10 @@ class PassDelegatingLoader extends AbstractDelegatingLoader
     }
 
     /**
-     * {@inheritdoc}
+     * @param mixed      $resource
+     * @param null|mixed $type
      */
-    public function load($resource, $type = null): RouteCollection
+    public function load($resource, string $type = null): RouteCollection
     {
         /** @var RouteCollection $collection */
         $collection = $this->routeLoader->load($resource, $type);

@@ -20,22 +20,10 @@ use Symfony\Contracts\EventDispatcher\Event;
  */
 abstract class AbstractUploadEvent extends Event
 {
-    /**
-     * @var UploaderConfigurationInterface
-     */
-    private $config;
+    private UploaderConfigurationInterface $config;
 
-    /**
-     * @var Request
-     */
-    private $request;
+    private Request $request;
 
-    /**
-     * Constructor.
-     *
-     * @param UploaderConfigurationInterface $config  The uploader configuration
-     * @param Request                        $request The request
-     */
     public function __construct(UploaderConfigurationInterface $config, Request $request)
     {
         $this->config = $config;

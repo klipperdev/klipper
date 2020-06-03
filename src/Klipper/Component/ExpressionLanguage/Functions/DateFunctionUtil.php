@@ -26,7 +26,7 @@ abstract class DateFunctionUtil
      *
      * @return bool|string
      */
-    public static function create($datetime, \IntlDateFormatter $formatter = null)
+    public static function create(string $datetime, \IntlDateFormatter $formatter = null)
     {
         $formatter = self::getFormatter($formatter);
         $value = self::createDateTime($datetime, $formatter);

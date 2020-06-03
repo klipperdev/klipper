@@ -27,8 +27,6 @@ interface ResolvedObjectTypeFactoryInterface
      *
      * @throws Exception\UnexpectedTypeException  When unexpected type of argument
      * @throws Exception\InvalidArgumentException When the object default value type classname does not exist
-     *
-     * @return ResolvedObjectTypeInterface
      */
-    public function createResolvedType(ObjectTypeInterface $type, array $typeExtensions, ResolvedObjectTypeInterface $parent = null);
+    public function createResolvedType(ObjectTypeInterface $type, array $typeExtensions, ResolvedObjectTypeInterface $parent = null): ResolvedObjectTypeInterface;
 }

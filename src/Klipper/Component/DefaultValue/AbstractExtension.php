@@ -22,49 +22,40 @@ abstract class AbstractExtension implements ObjectExtensionInterface
     /**
      * The types provided by this extension.
      *
-     * @var array An array of ObjectTypeInterface
+     * @var null|ObjectTypeInterface[]
      */
-    protected $types;
+    protected ?array $types = null;
 
     /**
      * The type extensions provided by this extension.
      *
-     * @var array An array of ObjectTypeExtensionInterface
+     * @var ObjectTypeExtensionInterface[]
      */
-    protected $typeExtensions;
+    protected ?array $typeExtensions = null;
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getType($name)
+    public function getType(string $classname): ObjectTypeInterface
     {
         if (null === $this->types) {
             $this->initTypes();
         }
 
-        if (!isset($this->types[$name])) {
-            throw new InvalidArgumentException(sprintf('The object default value type "%s" can not be loaded by this extension', $name));
+        if (!isset($this->types[$classname])) {
+            throw new InvalidArgumentException(sprintf('The object default value type "%s" can not be loaded by this extension', $classname));
         }
 
-        return $this->types[$name];
+        return $this->types[$classname];
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function hasType($name)
+    public function hasType(string $classname): bool
     {
         if (null === $this->types) {
             $this->initTypes();
         }
 
-        return isset($this->types[$name]);
+        return isset($this->types[$classname]);
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getTypeExtensions($name)
+    public function getTypeExtensions(string $name): array
     {
         if (null === $this->typeExtensions) {
             $this->initTypeExtensions();
@@ -75,12 +66,9 @@ abstract class AbstractExtension implements ObjectExtensionInterface
             : [];
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function hasTypeExtensions($name)
+    public function hasTypeExtensions(string $classname): bool
     {
-        return \count($this->getTypeExtensions($name)) > 0;
+        return \count($this->getTypeExtensions($classname)) > 0;
     }
 
     /**
@@ -88,7 +76,7 @@ abstract class AbstractExtension implements ObjectExtensionInterface
      *
      * @return array An array of ObjectTypeInterface instances
      */
-    protected function loadTypes()
+    protected function loadTypes(): array
     {
         return [];
     }
@@ -98,7 +86,7 @@ abstract class AbstractExtension implements ObjectExtensionInterface
      *
      * @return array An array of ObjectTypeExtensionInterface instances
      */
-    protected function loadTypeExtensions()
+    protected function loadTypeExtensions(): array
     {
         return [];
     }

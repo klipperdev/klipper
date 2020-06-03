@@ -17,8 +17,6 @@ namespace Klipper\Component\Metadata\Exception;
 class AssociationMetadataNotFoundException extends MetadataNotFoundException
 {
     /**
-     * Constructor.
-     *
      * @param string $association The association name
      */
     public function __construct(string $association)

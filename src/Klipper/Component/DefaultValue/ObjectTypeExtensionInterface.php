@@ -27,7 +27,7 @@ interface ObjectTypeExtensionInterface
      * @param ObjectBuilderInterface $builder The object builder
      * @param array                  $options The options
      */
-    public function buildObject(ObjectBuilderInterface $builder, array $options);
+    public function buildObject(ObjectBuilderInterface $builder, array $options): void;
 
     /**
      * Finishes the object.
@@ -38,19 +38,19 @@ interface ObjectTypeExtensionInterface
      * @param ObjectBuilderInterface $builder The object builder
      * @param array                  $options The options
      */
-    public function finishObject(ObjectBuilderInterface $builder, array $options);
+    public function finishObject(ObjectBuilderInterface $builder, array $options): void;
 
     /**
      * Configures the options for this type.
      *
      * @param OptionsResolver $resolver The resolver for the options
      */
-    public function configureOptions(OptionsResolver $resolver);
+    public function configureOptions(OptionsResolver $resolver): void;
 
     /**
      * Returns the class name of the type being extended.
      *
      * @return string The class name of the type being extended
      */
-    public function getExtendedType();
+    public function getExtendedType(): string;
 }

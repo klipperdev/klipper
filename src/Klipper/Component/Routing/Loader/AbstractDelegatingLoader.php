@@ -19,41 +19,28 @@ use Symfony\Component\Config\Loader\LoaderResolverInterface;
  */
 abstract class AbstractDelegatingLoader implements LoaderInterface
 {
-    /**
-     * @var LoaderInterface
-     */
-    protected $routeLoader;
+    protected LoaderInterface $routeLoader;
 
-    /**
-     * Constructor.
-     *
-     * @param LoaderInterface $routeLoader The route loader
-     */
     public function __construct(LoaderInterface $routeLoader)
     {
         $this->routeLoader = $routeLoader;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setResolver(LoaderResolverInterface $resolver): void
     {
         $this->routeLoader->setResolver($resolver);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getResolver(): LoaderResolverInterface
     {
         return $this->routeLoader->getResolver();
     }
 
     /**
-     * {@inheritdoc}
+     * @param mixed      $resource
+     * @param null|mixed $type
      */
-    public function supports($resource, $type = null): bool
+    public function supports($resource, string $type = null): bool
     {
         return $this->routeLoader->supports($resource, $type);
     }

@@ -16,66 +16,36 @@ namespace Klipper\Component\Metadata;
  */
 abstract class BaseChildMetadata extends BaseMetadata implements ChildMetadataInterface
 {
-    /**
-     * @var ObjectMetadataInterface
-     */
-    protected $parent;
+    protected ObjectMetadataInterface $parent;
 
-    /**
-     * @var bool
-     */
-    protected $readOnly;
+    protected bool $readOnly = false;
 
-    /**
-     * @var bool
-     */
-    protected $required;
+    protected bool $required = false;
 
-    /**
-     * @var null|string
-     */
-    protected $input;
+    protected ?string $input = null;
 
-    /**
-     * @var null|array
-     */
-    protected $inputConfig;
+    protected ?array $inputConfig = null;
 
-    /**
-     * {@inheritdoc}
-     */
     public function getParent(): ObjectMetadataInterface
     {
         return $this->parent;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function isReadOnly(): bool
     {
         return $this->readOnly;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function isRequired(): bool
     {
         return $this->required;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getInput(): ?string
     {
         return $this->input;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getInputConfig(): ?array
     {
         return $this->inputConfig;

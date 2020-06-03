@@ -23,9 +23,6 @@ class ChainAdapter extends BaseChainAdapter implements AdapterInterface
 {
     use AdapterPrefixesTrait;
 
-    /**
-     * {@inheritdoc}
-     */
     public function clearByPrefixes(array $prefixes): bool
     {
         /** @var BaseAdapterInterface[] $adapters */

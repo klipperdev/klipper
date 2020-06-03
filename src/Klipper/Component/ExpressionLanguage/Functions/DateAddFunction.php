@@ -18,9 +18,6 @@ namespace Klipper\Component\ExpressionLanguage\Functions;
  */
 class DateAddFunction extends BaseFunction
 {
-    /**
-     * Constructor.
-     */
     public function __construct()
     {
         parent::__construct('date_add', static function ($arguments, $datetime = 'now', $diff = '1day') {

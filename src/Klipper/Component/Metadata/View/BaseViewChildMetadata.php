@@ -62,8 +62,6 @@ abstract class BaseViewChildMetadata implements ViewChildMetadataInterface
     protected $editablePermissions;
 
     /**
-     * Constructor.
-     *
      * @param string      $name                The name of metadata field
      * @param string      $type                The type of metadata field
      * @param string      $label               The label of metadata field
@@ -96,73 +94,46 @@ abstract class BaseViewChildMetadata implements ViewChildMetadataInterface
         $this->editablePermissions = $editablePermissions;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getLabel(): string
     {
         return $this->label;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getDescription(): ?string
     {
         return $this->description;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function isReadOnly(): bool
     {
         return $this->readOnly;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function isRequired(): bool
     {
         return $this->required;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getInput(): ?string
     {
         return $this->input;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getInputConfig(): ?array
     {
         return $this->inputConfig;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function hasEditablePermissions(): bool
     {
         return $this->editablePermissions;

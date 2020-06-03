@@ -18,20 +18,13 @@ use Klipper\Component\DefaultValue\AbstractSimpleType;
  */
 class DefaultType extends AbstractSimpleType
 {
-    /**
-     * Constructor.
-     *
-     * @param string $class The class name
-     */
-    public function __construct($class = 'default')
+    public function __construct(string $class = 'default')
     {
         parent::__construct($class);
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getParent(): void
+    public function getParent(): ?string
     {
+        return null;
     }
 }

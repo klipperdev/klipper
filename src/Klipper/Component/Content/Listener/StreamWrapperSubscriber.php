@@ -21,11 +21,9 @@ use Symfony\Component\HttpKernel\KernelEvents;
  */
 class StreamWrapperSubscriber implements EventSubscriberInterface
 {
-    private $clients;
+    private array $clients;
 
     /**
-     * Constructor.
-     *
      * @param object[] $clients
      */
     public function __construct(array $clients)
@@ -33,9 +31,6 @@ class StreamWrapperSubscriber implements EventSubscriberInterface
         $this->clients = $clients;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public static function getSubscribedEvents(): array
     {
         return [

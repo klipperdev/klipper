@@ -23,25 +23,13 @@ class DoctrineTemplate
      */
     protected $id;
 
-    /**
-     * @var string
-     */
-    protected $name;
+    protected string $name;
 
-    /**
-     * @var null|string
-     */
-    protected $type;
+    protected ?string $type;
 
-    /**
-     * @var string
-     */
-    protected $body;
+    protected string $body;
 
-    /**
-     * @var null|\DateTime
-     */
-    protected $updatedAt;
+    protected ?\DateTime $updatedAt = null;
 
     public function __construct(TemplateMessageInterface $template)
     {

@@ -27,8 +27,6 @@ class ConfigurationsSubscriber implements EventSubscriberInterface
     private $metadataManager;
 
     /**
-     * Constructor.
-     *
      * @param MetadataManagerInterface $metadataManager The metadata manager
      */
     public function __construct(MetadataManagerInterface $metadataManager)
@@ -36,9 +34,6 @@ class ConfigurationsSubscriber implements EventSubscriberInterface
         $this->metadataManager = $metadataManager;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public static function getSubscribedEvents(): array
     {
         return [

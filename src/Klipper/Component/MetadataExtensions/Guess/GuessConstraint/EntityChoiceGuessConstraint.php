@@ -22,10 +22,7 @@ use Symfony\Component\Validator\Constraint;
  */
 class EntityChoiceGuessConstraint extends AbstractGuessConstraint implements GuessConstraintAwareInterface
 {
-    /**
-     * @var GuessSymfonyConstraint
-     */
-    private $constraintGuesser;
+    private ?GuessSymfonyConstraint $constraintGuesser = null;
 
     public function setGuesser(GuessSymfonyConstraint $guesser): void
     {

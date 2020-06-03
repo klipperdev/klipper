@@ -32,16 +32,13 @@ class MetadatasCacheWarmer implements CacheWarmerInterface, ServiceSubscriberInt
      */
     private $metadataFactory;
 
-    /**
-     * Constructor.
-     */
     public function __construct(ContainerInterface $container)
     {
         $this->container = $container;
     }
 
     /**
-     * {@inheritdoc}
+     * @param mixed $cacheDir
      */
     public function warmUp($cacheDir): void
     {
@@ -54,17 +51,11 @@ class MetadatasCacheWarmer implements CacheWarmerInterface, ServiceSubscriberInt
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function isOptional(): bool
     {
         return true;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public static function getSubscribedServices(): array
     {
         return [

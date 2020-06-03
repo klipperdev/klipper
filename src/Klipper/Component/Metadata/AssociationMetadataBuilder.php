@@ -18,19 +18,11 @@ use Klipper\Component\Metadata\Util\BuilderUtil;
  */
 class AssociationMetadataBuilder extends BaseChildMetadataBuilder implements AssociationMetadataBuilderInterface
 {
-    /**
-     * @var string
-     */
-    protected $association;
+    protected string $association;
+
+    protected ?string $target;
 
     /**
-     * @var null|string
-     */
-    protected $target;
-
-    /**
-     * Constructor.
-     *
      * @param string      $association The association name
      * @param null|string $type        The type
      * @param null|string $target      The target
@@ -46,17 +38,11 @@ class AssociationMetadataBuilder extends BaseChildMetadataBuilder implements Ass
         $this->target = $target;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getAssociation(): string
     {
         return $this->association;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setTarget(?string $target): self
     {
         $this->target = $target;
@@ -64,17 +50,11 @@ class AssociationMetadataBuilder extends BaseChildMetadataBuilder implements Ass
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getTarget(): ?string
     {
         return $this->target;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function merge(AssociationMetadataBuilderInterface $builder): self
     {
         BuilderUtil::mergeValues($this, $builder);
@@ -82,9 +62,6 @@ class AssociationMetadataBuilder extends BaseChildMetadataBuilder implements Ass
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function build(ObjectMetadataInterface $parent): AssociationMetadataInterface
     {
         BuilderUtil::validate($this, ['name', 'type', 'target', 'label']);

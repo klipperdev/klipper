@@ -16,13 +16,7 @@ namespace Klipper\Component\Metadata;
  */
 abstract class MetadataContexts
 {
-    /**
-     * @var string
-     */
     public const USER = 'user';
 
-    /**
-     * @var string
-     */
     public const ORGANIZATION = 'organization';
 }

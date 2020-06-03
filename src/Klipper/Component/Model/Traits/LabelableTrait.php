@@ -32,9 +32,6 @@ trait LabelableTrait
      */
     protected ?string $label = null;
 
-    /**
-     * {@inheritdoc}
-     */
     public function setLabel(?string $label): self
     {
         $this->label = $label;
@@ -42,9 +39,6 @@ trait LabelableTrait
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getLabel(): ?string
     {
         return $this->label;

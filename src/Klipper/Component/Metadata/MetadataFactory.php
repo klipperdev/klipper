@@ -23,24 +23,13 @@ use Klipper\Component\Resource\Exception\InvalidArgumentException;
  */
 class MetadataFactory implements MetadataFactoryInterface
 {
-    /**
-     * @var MetadataRegistryInterface
-     */
-    protected $register;
+    protected MetadataRegistryInterface $register;
+
+    protected DomainManagerInterface $domainManager;
+
+    protected ?ChoiceNameCollection $cacheChoiceNames = null;
 
     /**
-     * @var DomainManagerInterface
-     */
-    protected $domainManager;
-
-    /**
-     * @var null|string[]
-     */
-    protected $cacheChoiceNames;
-
-    /**
-     * Constructor.
-     *
      * @param MetadataRegistryInterface $register      The metadata register
      * @param DomainManagerInterface    $domainManager The resource domain manager
      */
@@ -52,25 +41,16 @@ class MetadataFactory implements MetadataFactoryInterface
         $this->domainManager = $domainManager;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getManagedClasses(): ObjectMetadataNameCollection
     {
         return $this->register->getNames();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function isManagedClass(string $class): bool
     {
         return $this->domainManager->has($class);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function isManagedByName(string $name): bool
     {
         $names = $this->getManagedClasses()->all();
@@ -78,17 +58,11 @@ class MetadataFactory implements MetadataFactoryInterface
         return isset($names[$name]);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getManagedClass(string $class): string
     {
         return $this->getManagedDomain($class)->getClass();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function create(string $class): ObjectMetadataInterface
     {
         $domain = $this->getManagedDomain($class);
@@ -96,9 +70,6 @@ class MetadataFactory implements MetadataFactoryInterface
         return $this->getBuilder($domain->getClass())->build();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function createChoice(string $name): ChoiceInterface
     {
         $builder = $this->register->getChoice($name);
@@ -112,9 +83,6 @@ class MetadataFactory implements MetadataFactoryInterface
         return ($builder ?? new ChoiceBuilder($name, null, []))->build();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getChoiceNames(): ChoiceNameCollection
     {
         if (null === $this->cacheChoiceNames) {
@@ -128,9 +96,6 @@ class MetadataFactory implements MetadataFactoryInterface
         return $this->cacheChoiceNames;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function isChoiceManaged(string $name): bool
     {
         $names = $this->getChoiceNames()->all();

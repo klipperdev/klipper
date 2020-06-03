@@ -22,24 +22,13 @@ use Twig\TwigFunction;
  */
 class RequestExtension extends AbstractExtension
 {
-    /**
-     * @var RequestStack
-     */
-    protected $requestStack;
+    protected RequestStack $requestStack;
 
-    /**
-     * Constructor.
-     *
-     * @param RequestStack $requestStack The request stack
-     */
     public function __construct(RequestStack $requestStack)
     {
         $this->requestStack = $requestStack;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getFunctions(): array
     {
         return [
@@ -49,9 +38,6 @@ class RequestExtension extends AbstractExtension
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getFilters(): array
     {
         return [
@@ -73,10 +59,8 @@ class RequestExtension extends AbstractExtension
      * Get the current request URI.
      *
      * @param string $path A path to use instead of the current one
-     *
-     * @return null|string
      */
-    public function getRequestUriForPath(string $path): string
+    public function getRequestUriForPath(string $path): ?string
     {
         $request = $this->requestStack->getCurrentRequest();
 

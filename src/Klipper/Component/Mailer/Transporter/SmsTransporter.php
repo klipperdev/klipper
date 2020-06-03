@@ -26,7 +26,7 @@ use Symfony\Component\Mime\RawMessage;
  */
 class SmsTransporter implements TransporterInterface
 {
-    private $smsSender;
+    private SmsSenderInterface $smsSender;
 
     public function __construct(SmsSenderInterface $smsSender)
     {
@@ -34,23 +34,20 @@ class SmsTransporter implements TransporterInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @param null|mixed $envelope
      */
     public function supports(RawMessage $message, $envelope = null): bool
     {
         return $message instanceof Sms;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function hasRequiredFrom(): bool
     {
         return $this->smsSender->hasRequiredFrom();
     }
 
     /**
-     * {@inheritdoc}
+     * @param null|mixed $envelope
      */
     public function send(RawMessage $message, $envelope = null): void
     {

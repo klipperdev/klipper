@@ -21,8 +21,6 @@ class PhpParser
     /**
      * Extract the class names.
      *
-     * @param string $filename The filename
-     *
      * @return string[]
      */
     public static function extractClasses(string $filename): array

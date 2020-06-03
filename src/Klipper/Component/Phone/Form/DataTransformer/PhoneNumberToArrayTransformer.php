@@ -25,19 +25,11 @@ use Symfony\Component\Form\Exception\TransformationFailedException;
  */
 class PhoneNumberToArrayTransformer implements DataTransformerInterface
 {
-    /**
-     * @var array
-     */
-    private $countryChoices;
+    private array $countryChoices;
+
+    private ?string $defaultCountry = null;
 
     /**
-     * @var null|string
-     */
-    private $defaultCountry;
-
-    /**
-     * Constructor.
-     *
      * @param array       $countryChoices The country choice
      * @param null|string $defaultCountry The default country
      */
@@ -48,7 +40,7 @@ class PhoneNumberToArrayTransformer implements DataTransformerInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @param mixed $value
      */
     public function transform($value): array
     {
@@ -75,7 +67,7 @@ class PhoneNumberToArrayTransformer implements DataTransformerInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @param mixed $value
      */
     public function reverseTransform($value): ?PhoneNumber
     {

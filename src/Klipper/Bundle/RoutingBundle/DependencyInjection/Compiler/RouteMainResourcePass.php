@@ -25,9 +25,6 @@ class RouteMainResourcePass implements CompilerPassInterface
 {
     use PriorityTaggedServiceTrait;
 
-    /**
-     * {@inheritdoc}
-     */
     public function process(ContainerBuilder $container): void
     {
         $def = $container->getDefinition('router.default');

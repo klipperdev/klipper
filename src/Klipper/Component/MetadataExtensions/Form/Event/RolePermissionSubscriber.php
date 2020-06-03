@@ -24,19 +24,14 @@ use Symfony\Component\Form\FormEvents;
  */
 class RolePermissionSubscriber implements EventSubscriberInterface
 {
-    /**
-     * @var RoleInterface
-     */
-    protected $role;
+    protected RoleInterface $role;
 
     /**
      * @var PermissionMetadataInterface[]
      */
-    protected $permissionMetadatas;
+    protected array $permissionMetadatas;
 
     /**
-     * Constructor.
-     *
      * @param RoleInterface                 $role                The role
      * @param PermissionMetadataInterface[] $permissionMetadatas The permission metadatas
      */
@@ -46,9 +41,6 @@ class RolePermissionSubscriber implements EventSubscriberInterface
         $this->permissionMetadatas = $permissionMetadatas;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public static function getSubscribedEvents(): array
     {
         return [

@@ -18,41 +18,26 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 abstract class AbstractType implements ObjectTypeInterface
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function newInstance(ObjectBuilderInterface $builder, array $options)
+    public function newInstance(ObjectBuilderInterface $builder, array $options): ?object
     {
         $class = $this->getClass();
 
         return new $class();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function buildObject(ObjectBuilderInterface $builder, array $options): void
     {
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function finishObject(ObjectBuilderInterface $builder, array $options): void
     {
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function configureOptions(OptionsResolver $resolver): void
     {
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getParent()
+    public function getParent(): ?string
     {
         return 'default';
     }

@@ -23,9 +23,6 @@ use Symfony\Component\DependencyInjection\Reference;
  */
 class DoctrineParamConverterExpressionLanguagePass implements CompilerPassInterface
 {
-    /**
-     * {@inheritdoc}
-     */
     public function process(ContainerBuilder $container): void
     {
         if (!$container->hasDefinition('sensio_framework_extra.converter.doctrine.orm.expression_language.default')) {

@@ -20,44 +20,20 @@ use CrEOF\Spatial\PHP\Types\Geometry\Point;
  */
 trait AddressTrait
 {
-    /**
-     * @var null|string
-     */
-    protected $street;
+    protected ?string $street;
 
-    /**
-     * @var null|string
-     */
-    protected $streetComplement;
+    protected ?string $streetComplement;
 
-    /**
-     * @var null|string
-     */
-    protected $postalCode;
+    protected ?string $postalCode;
 
-    /**
-     * @var null|string
-     */
-    protected $city;
+    protected ?string $city;
 
-    /**
-     * @var null|string
-     */
-    protected $state;
+    protected ?string $state;
 
-    /**
-     * @var null|string
-     */
-    protected $country;
+    protected ?string $country;
 
-    /**
-     * @var null|Point
-     */
-    protected $addressLocation;
+    protected ?Point $addressLocation = null;
 
-    /**
-     * {@inheritdoc}
-     */
     public function setStreet(?string $street): self
     {
         $this->street = $street;
@@ -65,17 +41,11 @@ trait AddressTrait
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getStreet(): ?string
     {
         return $this->street;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setStreetComplement(?string $complement): self
     {
         $this->streetComplement = $complement;
@@ -83,17 +53,11 @@ trait AddressTrait
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getStreetComplement(): ?string
     {
         return $this->streetComplement;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setPostalCode(?string $postalCode): self
     {
         $this->postalCode = $postalCode;
@@ -101,17 +65,11 @@ trait AddressTrait
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getPostalCode(): ?string
     {
         return $this->postalCode;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setCity(?string $city): self
     {
         $this->city = $city;
@@ -119,17 +77,11 @@ trait AddressTrait
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getCity(): ?string
     {
         return $this->city;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setState(?string $state): self
     {
         $this->state = $state;
@@ -137,17 +89,11 @@ trait AddressTrait
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getState(): ?string
     {
         return $this->state;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setCountry(?string $country): self
     {
         $this->country = $country;
@@ -155,17 +101,11 @@ trait AddressTrait
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getCountry(): ?string
     {
         return $this->country;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setAddressLocation(?Point $addressLocation): self
     {
         if (null === $addressLocation || $addressLocation instanceof Point) {
@@ -175,9 +115,6 @@ trait AddressTrait
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getAddressLocation(): ?Point
     {
         return $this->addressLocation;

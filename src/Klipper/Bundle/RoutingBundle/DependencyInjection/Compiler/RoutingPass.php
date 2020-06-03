@@ -22,9 +22,6 @@ class RoutingPass implements CompilerPassInterface
 {
     use PriorityTaggedServiceTrait;
 
-    /**
-     * {@inheritdoc}
-     */
     public function process(ContainerBuilder $container): void
     {
         $translatableId = 'klipper_routing.translatable_routing';

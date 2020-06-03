@@ -43,9 +43,6 @@ class MockCache extends AbstractCache implements WarmableInterface
         return $this->configCacheFactory;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function createConfigurations(): ConfigCollectionInterface
     {
         return $this->loadConfigurationFromCache('prefix', function () {

@@ -20,10 +20,7 @@ use Klipper\Component\DefaultValue\AbstractExtension;
  */
 class CoreExtension extends AbstractExtension
 {
-    /**
-     * {@inheritdoc}
-     */
-    protected function loadTypes()
+    protected function loadTypes(): array
     {
         return [];
     }

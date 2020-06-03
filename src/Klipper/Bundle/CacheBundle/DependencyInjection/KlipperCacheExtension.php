@@ -21,9 +21,6 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
  */
 class KlipperCacheExtension extends Extension
 {
-    /**
-     * {@inheritdoc}
-     */
     public function load(array $configs, ContainerBuilder $container): void
     {
         $configuration = new Configuration();

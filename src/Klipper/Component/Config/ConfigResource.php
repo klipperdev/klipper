@@ -23,14 +23,9 @@ class ConfigResource
      */
     private $resource;
 
-    /**
-     * @var null|string
-     */
-    private $type;
+    private ?string $type;
 
     /**
-     * Constructor.
-     *
      * @param mixed       $resource The resource
      * @param null|string $type     The resource type
      */

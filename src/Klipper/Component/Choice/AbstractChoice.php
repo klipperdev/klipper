@@ -20,17 +20,11 @@ use Klipper\Component\Choice\Util\ChoiceUtil;
  */
 abstract class AbstractChoice implements ChoiceInterface
 {
-    /**
-     * {@inheritdoc}
-     */
     public static function getValues(): array
     {
         return ChoiceUtil::getValues(static::listIdentifiers());
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public static function getTranslationDomain(): string
     {
         return 'choices';

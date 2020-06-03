@@ -23,36 +23,24 @@ use Symfony\Component\Intl\Currencies;
 final class CurrencyAvailable implements ExtendableChoiceInterface
 {
     /**
-     * @var array
+     * @var string[]
      */
-    public static $availables = [
+    public static array $availables = [
         'EUR',
     ];
 
-    /**
-     * @var null|array
-     */
-    private static $cache;
+    private static ?array $cache = null;
 
-    /**
-     * {@inheritdoc}
-     */
     public static function setTranslationDomain(string $translationDomain): void
     {
         // do nothing
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public static function getTranslationDomain(): string
     {
         return '';
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public static function setIdentifiers(array $identifiers, bool $override = false): void
     {
         static::$availables = array_merge($override ? [] : static::$availables, array_values($identifiers));
@@ -61,9 +49,6 @@ final class CurrencyAvailable implements ExtendableChoiceInterface
         ksort(static::$availables);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public static function listIdentifiers(): array
     {
         if (null === static::$cache) {
@@ -74,9 +59,6 @@ final class CurrencyAvailable implements ExtendableChoiceInterface
         return static::$cache;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public static function getValues(): array
     {
         return array_keys(static::listIdentifiers());

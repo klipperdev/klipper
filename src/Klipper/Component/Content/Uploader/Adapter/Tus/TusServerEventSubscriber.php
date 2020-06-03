@@ -33,29 +33,15 @@ use TusPhp\Events\UploadProgress;
  */
 class TusServerEventSubscriber implements EventSubscriberInterface
 {
-    /**
-     * @var EventDispatcherInterface
-     */
-    private $dispatcher;
+    private EventDispatcherInterface $dispatcher;
+
+    private NamerManagerInterface $namerManager;
+
+    private UploaderConfigurationInterface $config;
+
+    private Request $request;
 
     /**
-     * @var NamerManagerInterface
-     */
-    private $namerManager;
-
-    /**
-     * @var UploaderConfigurationInterface
-     */
-    private $config;
-
-    /**
-     * @var Request
-     */
-    private $request;
-
-    /**
-     * Constructor.
-     *
      * @param EventDispatcherInterface       $dispatcher   The event dispatcher
      * @param NamerManagerInterface          $namerManager The namer manager
      * @param UploaderConfigurationInterface $config       The uploader configuration
@@ -73,9 +59,6 @@ class TusServerEventSubscriber implements EventSubscriberInterface
         $this->request = $request;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public static function getSubscribedEvents(): array
     {
         return [
@@ -94,33 +77,21 @@ class TusServerEventSubscriber implements EventSubscriberInterface
         ];
     }
 
-    /**
-     * @param UploadCreated $event The event
-     */
     public function onUploadCreated(UploadCreated $event): void
     {
         $this->dispatch($event, UploadFileCreatedEvent::class);
     }
 
-    /**
-     * @param UploadProgress $event The event
-     */
     public function onUploadProgress(UploadProgress $event): void
     {
         $this->dispatch($event, UploadFileProgressEvent::class);
     }
 
-    /**
-     * @param UploadMerged $event The event
-     */
     public function onUploadMerged(UploadMerged $event): void
     {
         $this->dispatch($event, UploadFileMergedEvent::class);
     }
 
-    /**
-     * @param UploadComplete $event The event
-     */
     public function onUploadComplete(UploadComplete $event): void
     {
         $name = null; // TODO replace the request metadata name/filename on the creation

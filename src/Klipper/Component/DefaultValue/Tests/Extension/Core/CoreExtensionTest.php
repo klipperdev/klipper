@@ -21,10 +21,7 @@ use PHPUnit\Framework\TestCase;
  */
 final class CoreExtensionTest extends TestCase
 {
-    /**
-     * @var CoreExtension
-     */
-    protected $extension;
+    protected ?CoreExtension $extension = null;
 
     protected function setUp(): void
     {

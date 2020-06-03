@@ -18,9 +18,6 @@ namespace Klipper\Component\ExpressionLanguage\Functions;
  */
 class MonthEndFunction extends BaseFunction
 {
-    /**
-     * Constructor.
-     */
     public function __construct()
     {
         parent::__construct('month_end', static function () {

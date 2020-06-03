@@ -35,10 +35,7 @@ final class SmsTransporterTest extends TestCase
      */
     protected $smsSender;
 
-    /**
-     * @var SmsTransporter
-     */
-    protected $transporter;
+    protected ?SmsTransporter $transporter = null;
 
     protected function setUp(): void
     {

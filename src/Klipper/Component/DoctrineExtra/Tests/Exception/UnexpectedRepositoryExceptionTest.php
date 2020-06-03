@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Klipper\Component\DoctrineExtra\Tests\Util;
+namespace Klipper\Component\DoctrineExtra\Tests\Exception;
 
 use Klipper\Component\DoctrineExtra\Exception\UnexpectedRepositoryException;
 use PHPUnit\Framework\TestCase;

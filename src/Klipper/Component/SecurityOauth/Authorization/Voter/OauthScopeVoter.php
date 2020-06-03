@@ -30,12 +30,12 @@ class OauthScopeVoter extends AbstractIdentityVoter
         return 'scope:';
     }
 
-    protected function supports($attribute, $subject): bool
+    protected function supports(string $attribute, $subject): bool
     {
         return parent::supports($attribute, $subject) || $attribute instanceof OauthScope;
     }
 
-    protected function voteOnAttribute($attribute, $subject, TokenInterface $token): bool
+    protected function voteOnAttribute(string $attribute, $subject, TokenInterface $token): bool
     {
         if (!$attribute instanceof OauthScope) {
             return parent::voteOnAttribute($attribute, $subject, $token);

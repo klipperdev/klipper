@@ -35,10 +35,7 @@ final class EmailTransporterTest extends TestCase
      */
     protected $sfMailer;
 
-    /**
-     * @var EmailTransporter
-     */
-    protected $transporter;
+    protected ?EmailTransporter $transporter = null;
 
     protected function setUp(): void
     {

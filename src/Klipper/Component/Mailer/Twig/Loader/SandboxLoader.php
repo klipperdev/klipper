@@ -25,16 +25,11 @@ class SandboxLoader implements LoaderInterface, SourceContextLoaderInterface
     /**
      * @var string[]
      */
-    private $availableNamespaces;
+    private array $availableNamespaces;
+
+    private SandboxTemplaterInterface $sandboxTemplater;
 
     /**
-     * @var null|SandboxTemplaterInterface
-     */
-    private $sandboxTemplater;
-
-    /**
-     * Constructor.
-     *
      * @param SandboxTemplaterInterface $sandboxTemplater    The sandbox templater
      * @param string[]                  $availableNamespaces The available namespaces
      */
@@ -47,7 +42,7 @@ class SandboxLoader implements LoaderInterface, SourceContextLoaderInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @param mixed $name
      */
     public function getSourceContext($name): Source
     {
@@ -55,7 +50,7 @@ class SandboxLoader implements LoaderInterface, SourceContextLoaderInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @param mixed $name
      */
     public function getCacheKey($name): string
     {
@@ -63,7 +58,8 @@ class SandboxLoader implements LoaderInterface, SourceContextLoaderInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @param mixed $name
+     * @param mixed $time
      */
     public function isFresh($name, $time): bool
     {
@@ -71,7 +67,7 @@ class SandboxLoader implements LoaderInterface, SourceContextLoaderInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @param mixed $name
      *
      * @throws
      */

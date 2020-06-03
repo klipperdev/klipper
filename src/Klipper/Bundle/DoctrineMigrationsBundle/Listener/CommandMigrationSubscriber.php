@@ -24,11 +24,9 @@ class CommandMigrationSubscriber implements EventSubscriberInterface
     /**
      * @var SchemaNamespaceFixListener[]
      */
-    private $listeners;
+    private array $listeners;
 
     /**
-     * Constructor.
-     *
      * @param SchemaNamespaceFixListener[] $listeners The doctrine listeners
      */
     public function __construct(array $listeners)
@@ -36,9 +34,6 @@ class CommandMigrationSubscriber implements EventSubscriberInterface
         $this->listeners = $listeners;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public static function getSubscribedEvents(): array
     {
         return [
@@ -50,8 +45,6 @@ class CommandMigrationSubscriber implements EventSubscriberInterface
 
     /**
      * Enable the doctrine migrations listener for doctrine migration commands.
-     *
-     * @param ConsoleCommandEvent $event The event
      */
     public function onCommand(ConsoleCommandEvent $event): void
     {

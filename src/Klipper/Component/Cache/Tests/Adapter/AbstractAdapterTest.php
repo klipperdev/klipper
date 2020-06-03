@@ -26,10 +26,7 @@ abstract class AbstractAdapterTest extends TestCase
     public const PREFIX_2 = 'prefix2_';
     public const PREFIX_GLOBAL = 'global';
 
-    /**
-     * @var AdapterInterface
-     */
-    protected $adapter;
+    protected ?AdapterInterface $adapter = null;
 
     protected function tearDown(): void
     {

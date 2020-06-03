@@ -20,16 +20,8 @@ use Klipper\Component\SmsSender\Mime\Phone;
  */
 class WrappedTemplatedSms
 {
-    /**
-     * @var TemplatedSms
-     */
-    private $message;
+    private TemplatedSms $message;
 
-    /**
-     * Constructor.
-     *
-     * @param TemplatedSms $message The message
-     */
     public function __construct(TemplatedSms $message)
     {
         $this->message = $message;

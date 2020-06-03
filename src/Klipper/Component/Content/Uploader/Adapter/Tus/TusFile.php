@@ -19,65 +19,39 @@ use TusPhp\File;
  */
 class TusFile implements FileInterface
 {
-    /**
-     * @var File
-     */
-    private $file;
+    private File $file;
 
-    /**
-     * Constructor.
-     *
-     * @param File $file The TUS file
-     */
     public function __construct(File $file)
     {
         $this->file = $file;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getSize(): int
     {
         return $this->file->getFileSize();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getPathname(): string
     {
         return pathinfo($this->file->getFilePath(), PATHINFO_FILENAME);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getPath(): string
     {
         return $this->file->getFilePath();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getMimeType(): ?string
     {
         return null;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getBasename()
+    public function getBasename(): string
     {
         return pathinfo($this->file->getFilePath(), PATHINFO_BASENAME);
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getExtension()
+    public function getExtension(): string
     {
         return pathinfo($this->file->getFilePath(), PATHINFO_EXTENSION);
     }

@@ -16,69 +16,37 @@ namespace Klipper\Component\Metadata;
  */
 class ActionMetadata implements ActionMetadataInterface
 {
-    /**
-     * @var ObjectMetadataInterface
-     */
-    protected $parent;
+    protected ObjectMetadataInterface $parent;
 
-    /**
-     * @var string
-     */
-    protected $name;
+    protected string $name;
 
     /**
      * @var string[]
      */
-    protected $methods = [];
+    protected array $methods = [];
 
     /**
      * @var string[]
      */
-    protected $schemes = [];
+    protected array $schemes = [];
+
+    protected ?string $host;
+
+    protected ?string $path;
+
+    protected ?string $fragment;
+
+    protected array $defaults = [];
+
+    protected array $requirements = [];
+
+    protected array $options = [];
+
+    protected ?string $condition;
+
+    protected array $configurations = [];
 
     /**
-     * @var null|string
-     */
-    protected $host;
-
-    /**
-     * @var null|string
-     */
-    protected $path;
-
-    /**
-     * @var null|string
-     */
-    protected $fragment;
-
-    /**
-     * @var array
-     */
-    protected $defaults = [];
-
-    /**
-     * @var array
-     */
-    protected $requirements = [];
-
-    /**
-     * @var array
-     */
-    protected $options = [];
-
-    /**
-     * @var null|string
-     */
-    protected $condition;
-
-    /**
-     * @var array
-     */
-    protected $configurations = [];
-
-    /**
-     * Constructor.
-     *
      * @param ObjectMetadataInterface $parent         The object metadata parent
      * @param string                  $name           The action name
      * @param array                   $methods        The route methods
@@ -120,121 +88,76 @@ class ActionMetadata implements ActionMetadataInterface
         $this->configurations = $configurations;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getParent(): ObjectMetadataInterface
     {
         return $this->parent;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getMethods(): array
     {
         return $this->methods;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getSchemes(): array
     {
         return $this->schemes;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getHost(): ?string
     {
         return $this->host;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getPath(): ?string
     {
         return $this->path;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getFragment(): ?string
     {
         return $this->fragment;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getController(): ?string
     {
         return $this->defaults['_controller'] ?? null;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getFormat(): ?string
     {
         return $this->defaults['_format'] ?? null;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getLocale(): ?string
     {
         return $this->defaults['_locale'] ?? null;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getDefaults(): array
     {
         return $this->defaults;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getRequirements(): array
     {
         return $this->requirements;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getOptions(): array
     {
         return $this->options;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getCondition(): ?string
     {
         return $this->condition;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getConfigurations(): array
     {
         return $this->configurations;

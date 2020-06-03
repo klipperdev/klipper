@@ -18,15 +18,9 @@ use Twig\Extension\SandboxExtension;
  */
 class SandboxTemplater implements SandboxTemplaterInterface
 {
-    /**
-     * @var bool
-     */
-    private $sandboxed;
+    private bool $sandboxed;
 
-    /**
-     * @var null|SandboxExtension
-     */
-    private $sandboxExtension;
+    private ?SandboxExtension $sandboxExtension;
 
     public function __construct(?SandboxExtension $sandboxExtension = null)
     {

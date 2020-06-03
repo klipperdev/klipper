@@ -33,17 +33,11 @@ trait ImagePathTrait
      */
     protected ?string $imagePath = null;
 
-    /**
-     * {@inheritdoc}
-     */
     public function hasImage(): bool
     {
         return null !== $this->imagePath;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setImagePath(?string $imagePath): self
     {
         $this->imagePath = $imagePath;
@@ -51,9 +45,6 @@ trait ImagePathTrait
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getImagePath(): ?string
     {
         return $this->imagePath;

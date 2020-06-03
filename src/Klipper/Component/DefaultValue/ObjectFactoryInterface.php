@@ -29,7 +29,7 @@ interface ObjectFactoryInterface
      *
      * @return object The object instance defined by the type
      */
-    public function inject($data, array $options = []);
+    public function inject($data, array $options = []): object;
 
     /**
      * Returns a object with the default value.
@@ -37,25 +37,25 @@ interface ObjectFactoryInterface
      * @see createBuilder()
      *
      * @param ObjectTypeInterface|string $type    The type of the object default value
-     * @param object                     $data    The object instance
+     * @param null|object                $data    The object instance
      * @param array                      $options The options
      *
      * @throws Exception\UnexpectedTypeException if any given option is not applicable to the given type
      *
      * @return object The object instance defined by the type
      */
-    public function create($type, $data = null, array $options = []);
+    public function create($type, ?object $data = null, array $options = []): object;
 
     /**
      * Returns a block builder.
      *
      * @param ObjectTypeInterface|string $type    The type of the object default value
-     * @param mixed                      $data    The object instance
+     * @param null|object                $data    The object instance
      * @param array                      $options The options
      *
      * @throws Exception\UnexpectedTypeException if any given option is not applicable to the given type
      *
      * @return ObjectBuilderInterface The object default value builder
      */
-    public function createBuilder($type, $data = null, array $options = []);
+    public function createBuilder($type, ?object $data = null, array $options = []): ObjectBuilderInterface;
 }

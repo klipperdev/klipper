@@ -36,8 +36,6 @@ class PhoneNumberToStringTransformer implements DataTransformerInterface
     private $format;
 
     /**
-     * Constructor.
-     *
      * @param string $defaultRegion The default region code
      * @param int    $format        The display format
      */
@@ -50,7 +48,7 @@ class PhoneNumberToStringTransformer implements DataTransformerInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @param mixed $value
      */
     public function transform($value): string
     {
@@ -71,7 +69,7 @@ class PhoneNumberToStringTransformer implements DataTransformerInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @param mixed $value
      */
     public function reverseTransform($value): ?PhoneNumber
     {

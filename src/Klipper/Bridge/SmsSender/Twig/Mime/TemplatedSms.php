@@ -20,27 +20,15 @@ use Klipper\Component\SmsSender\Mime\Sms;
  */
 class TemplatedSms extends Sms
 {
-    /**
-     * @var null|string
-     */
-    private $template;
+    private ?string $template = null;
 
-    /**
-     * @var array
-     */
-    private $context = [];
+    private array $context = [];
 
-    /**
-     * {@inheritdoc}
-     */
     public function __serialize(): array
     {
         return [$this->template, $this->context, parent::__serialize()];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function __unserialize(array $data): void
     {
         [$this->template, $this->context, $parentData] = $data;

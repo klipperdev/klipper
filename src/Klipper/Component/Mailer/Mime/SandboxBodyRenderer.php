@@ -19,19 +19,11 @@ use Symfony\Component\Mime\Message;
  */
 class SandboxBodyRenderer implements BodyRendererInterface
 {
-    /**
-     * @var BodyRendererInterface
-     */
-    private $renderer;
+    private BodyRendererInterface $renderer;
+
+    private ?SandboxTemplaterInterface $sandboxTemplater;
 
     /**
-     * @var null|SandboxTemplaterInterface
-     */
-    private $sandboxTemplater;
-
-    /**
-     * Constructor.
-     *
      * @param BodyRendererInterface          $renderer         The body renderer
      * @param null|SandboxTemplaterInterface $sandboxTemplater The sandbox templater
      */
@@ -41,9 +33,6 @@ class SandboxBodyRenderer implements BodyRendererInterface
         $this->sandboxTemplater = $sandboxTemplater;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function render(Message $message): void
     {
         $isSandboxed = null;

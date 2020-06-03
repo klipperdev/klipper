@@ -21,7 +21,7 @@ interface ObjectFactoryBuilderInterface
     /**
      * Sets the factory for creating ResolvedObjectTypeInterface instances.
      *
-     * @return ObjectFactoryBuilderInterface The builder
+     * @return static
      */
     public function setResolvedTypeFactory(ResolvedObjectTypeFactoryInterface $resolvedTypeFactory);
 
@@ -30,7 +30,7 @@ interface ObjectFactoryBuilderInterface
      *
      * @param ObjectExtensionInterface $extension The extension
      *
-     * @return ObjectFactoryBuilderInterface The builder
+     * @return static
      */
     public function addExtension(ObjectExtensionInterface $extension);
 
@@ -39,7 +39,7 @@ interface ObjectFactoryBuilderInterface
      *
      * @param array $extensions The extensions
      *
-     * @return ObjectFactoryBuilderInterface The builder
+     * @return static
      */
     public function addExtensions(array $extensions);
 
@@ -48,7 +48,7 @@ interface ObjectFactoryBuilderInterface
      *
      * @param ObjectTypeInterface $type The object default value type
      *
-     * @return ObjectFactoryBuilderInterface The builder
+     * @return static
      */
     public function addType(ObjectTypeInterface $type);
 
@@ -57,7 +57,7 @@ interface ObjectFactoryBuilderInterface
      *
      * @param array $types The object default value types
      *
-     * @return ObjectFactoryBuilderInterface The builder
+     * @return static
      */
     public function addTypes(array $types);
 
@@ -66,7 +66,7 @@ interface ObjectFactoryBuilderInterface
      *
      * @param ObjectTypeExtensionInterface $typeExtension The object default value type extension
      *
-     * @return ObjectFactoryBuilderInterface The builder
+     * @return static
      */
     public function addTypeExtension(ObjectTypeExtensionInterface $typeExtension);
 
@@ -75,7 +75,7 @@ interface ObjectFactoryBuilderInterface
      *
      * @param array $typeExtensions The object default value type extensions
      *
-     * @return ObjectFactoryBuilderInterface The builder
+     * @return static
      */
     public function addTypeExtensions(array $typeExtensions);
 
@@ -84,5 +84,5 @@ interface ObjectFactoryBuilderInterface
      *
      * @return ObjectFactoryInterface The object default value factory
      */
-    public function getObjectFactory();
+    public function getObjectFactory(): ObjectFactoryInterface;
 }

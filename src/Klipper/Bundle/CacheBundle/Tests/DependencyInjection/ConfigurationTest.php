@@ -28,7 +28,7 @@ final class ConfigurationTest extends TestCase
     {
         $config = [];
         $processor = new Processor();
-        $configuration = new Configuration([], []);
+        $configuration = new Configuration();
         $res = $processor->processConfiguration($configuration, [$config]);
 
         $valid = [
@@ -46,7 +46,7 @@ final class ConfigurationTest extends TestCase
             ],
         ];
         $processor = new Processor();
-        $configuration = new Configuration([], []);
+        $configuration = new Configuration();
         $res = $processor->processConfiguration($configuration, [$config]);
 
         $valid = [
@@ -64,7 +64,7 @@ final class ConfigurationTest extends TestCase
             'override_cache_services' => true,
         ];
         $processor = new Processor();
-        $configuration = new Configuration([], []);
+        $configuration = new Configuration();
         $res = $processor->processConfiguration($configuration, [$config]);
 
         $valid = [
@@ -80,7 +80,7 @@ final class ConfigurationTest extends TestCase
             'override_cache_services' => false,
         ];
         $processor = new Processor();
-        $configuration = new Configuration([], []);
+        $configuration = new Configuration();
         $res = $processor->processConfiguration($configuration, [$config]);
 
         $valid = [

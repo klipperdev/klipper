@@ -28,28 +28,16 @@ use Symfony\Component\PropertyAccess\PropertyAccessor;
  */
 class GeometryPointType extends AbstractType
 {
-    /**
-     * @var PropertyAccessor
-     */
-    private $accessor;
+    private PropertyAccessor $accessor;
 
-    /**
-     * @var ArrayToPointTransformer
-     */
-    private $transformer;
+    private ArrayToPointTransformer $transformer;
 
-    /**
-     * Constructor.
-     */
     public function __construct()
     {
         $this->accessor = PropertyAccess::createPropertyAccessor();
         $this->transformer = new ArrayToPointTransformer();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $fOptions = [];
@@ -86,9 +74,6 @@ class GeometryPointType extends AbstractType
         ;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([

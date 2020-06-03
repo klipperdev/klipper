@@ -12,6 +12,7 @@
 namespace Klipper\Bundle\SessionBundle\Tests\Command;
 
 use Klipper\Bundle\SessionBundle\Command\InitSessionPdoCommand;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Helper\HelperSet;
@@ -31,22 +32,22 @@ use Symfony\Component\HttpKernel\KernelInterface;
 abstract class AbstractInitSessionPdoCommandTest extends TestCase
 {
     /**
-     * @var \PHPUnit_Framework_MockObject_MockObject
+     * @var MockObject
      */
     protected $application;
 
     /**
-     * @var \PHPUnit_Framework_MockObject_MockObject
+     * @var MockObject
      */
     protected $definition;
 
     /**
-     * @var \PHPUnit_Framework_MockObject_MockObject
+     * @var MockObject
      */
     protected $kernel;
 
     /**
-     * @var \PHPUnit_Framework_MockObject_MockObject
+     * @var MockObject
      */
     protected $container;
 
@@ -56,7 +57,7 @@ abstract class AbstractInitSessionPdoCommandTest extends TestCase
     protected $command;
 
     /**
-     * @var \PHPUnit_Framework_MockObject_MockObject
+     * @var MockObject
      */
     protected $helperSet;
 
@@ -142,7 +143,7 @@ abstract class AbstractInitSessionPdoCommandTest extends TestCase
 
         /** @var ContainerInterface $container */
         $container = $this->container;
-        /** @var \PHPUnit_Framework_MockObject_MockObject $pdoMock */
+        /** @var MockObject $pdoMock */
         $pdoMock = $container->get('klipper_session.handler.pdo');
         $pdoMock->expects(static::any())
             ->method('createTable')
@@ -163,7 +164,7 @@ abstract class AbstractInitSessionPdoCommandTest extends TestCase
 
         /** @var ContainerInterface $container */
         $container = $this->container;
-        /** @var \PHPUnit_Framework_MockObject_MockObject $pdoMock */
+        /** @var MockObject $pdoMock */
         $pdoMock = $container->get('klipper_session.handler.pdo');
         $pdoMock->expects(static::any())
             ->method('createTable')

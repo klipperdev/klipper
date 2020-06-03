@@ -20,9 +20,6 @@ use Klipper\Component\Intl\CalendarUtil;
  */
 class WeekBeginFunction extends BaseFunction
 {
-    /**
-     * Constructor.
-     */
     public function __construct()
     {
         parent::__construct('week_begin', static function () {

@@ -25,29 +25,21 @@ use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
  */
 class Uploader implements UploaderInterface
 {
-    /**
-     * @var EventDispatcherInterface
-     */
-    private $dispatcher;
+    private EventDispatcherInterface $dispatcher;
 
-    /**
-     * @var RequestStack
-     */
-    private $requestStack;
+    private RequestStack $requestStack;
 
     /**
      * @var UploaderConfigurationInterface[]
      */
-    private $uploaders;
+    private array $uploaders = [];
 
     /**
      * @var AdapterInterface[]
      */
-    private $adapters;
+    private array $adapters = [];
 
     /**
-     * Constructor.
-     *
      * @param EventDispatcherInterface         $dispatcher   The event dispatcher
      * @param RequestStack                     $requestStack The request stack
      * @param UploaderConfigurationInterface[] $uploaders    The uploaders
@@ -71,9 +63,6 @@ class Uploader implements UploaderInterface
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function add(UploaderConfigurationInterface $uploader): self
     {
         $this->uploaders[$uploader->getName()] = $uploader;
@@ -81,9 +70,6 @@ class Uploader implements UploaderInterface
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function remove(string $uploader): self
     {
         unset($this->uploaders[$uploader]);
@@ -91,17 +77,11 @@ class Uploader implements UploaderInterface
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function has(string $uploader): bool
     {
         return isset($this->uploaders[$uploader]);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function get(string $uploader): UploaderConfigurationInterface
     {
         if (!isset($this->uploaders[$uploader])) {
@@ -111,17 +91,11 @@ class Uploader implements UploaderInterface
         return $this->uploaders[$uploader];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function all(): array
     {
         return $this->uploaders;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function addAdapter(AdapterInterface $adapter): self
     {
         $this->adapters[] = $adapter;
@@ -129,9 +103,6 @@ class Uploader implements UploaderInterface
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function upload(string $uploader): Response
     {
         $config = $this->get($uploader);

@@ -27,14 +27,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class RolePermissionType extends AbstractType
 {
-    /**
-     * @var PermissionMetadataManagerInterface
-     */
-    protected $pmManager;
+    protected PermissionMetadataManagerInterface $pmManager;
 
     /**
-     * Constructor.
-     *
      * @param PermissionMetadataManagerInterface $pmManager The permission metadata manager
      */
     public function __construct(PermissionMetadataManagerInterface $pmManager)
@@ -42,9 +37,6 @@ class RolePermissionType extends AbstractType
         $this->pmManager = $pmManager;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         /** @var RoleInterface $role */
@@ -55,17 +47,11 @@ class RolePermissionType extends AbstractType
         $builder->addEventSubscriber(new RolePermissionSubscriber($role, $permissionMetadatas));
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->addAllowedTypes('data', RoleInterface::class);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getBlockPrefix(): string
     {
         return 'role_permission';

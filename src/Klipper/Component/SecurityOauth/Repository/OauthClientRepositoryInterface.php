@@ -19,5 +19,8 @@ use Klipper\Component\SecurityOauth\Model\OauthClientInterface;
  */
 interface OauthClientRepositoryInterface extends ObjectRepository
 {
+    /**
+     * @param int|string $identifier
+     */
     public function findEnabled($identifier, ?string $locale = null): ?OauthClientInterface;
 }

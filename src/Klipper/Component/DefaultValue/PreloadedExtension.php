@@ -20,15 +20,9 @@ use Klipper\Component\DefaultValue\Exception\InvalidArgumentException;
  */
 class PreloadedExtension implements ObjectExtensionInterface
 {
-    /**
-     * @var array
-     */
-    private $types = [];
+    private array $types;
 
-    /**
-     * @var array
-     */
-    private $typeExtensions = [];
+    private array $typeExtensions;
 
     /**
      * Creates a new preloaded extension.
@@ -42,10 +36,7 @@ class PreloadedExtension implements ObjectExtensionInterface
         $this->typeExtensions = $typeExtensions;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getType($name)
+    public function getType(string $name): ObjectTypeInterface
     {
         if (!isset($this->types[$name])) {
             throw new InvalidArgumentException(sprintf('The object default value type "%s" can not be loaded by this extension', $name));
@@ -54,28 +45,19 @@ class PreloadedExtension implements ObjectExtensionInterface
         return $this->types[$name];
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function hasType($name)
+    public function hasType(string $name): bool
     {
         return isset($this->types[$name]);
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getTypeExtensions($name)
+    public function getTypeExtensions(string $name): array
     {
         return isset($this->typeExtensions[$name])
             ? $this->typeExtensions[$name]
             : [];
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function hasTypeExtensions($name)
+    public function hasTypeExtensions(string $name): bool
     {
         return !empty($this->typeExtensions[$name]);
     }

@@ -22,34 +22,26 @@ use Symfony\Component\Routing\RouterInterface;
  */
 class OrganizationalRouting extends TranslatableRouting implements OrganizationalRoutingInterface
 {
-    /**
-     * @var RouterInterface
-     */
-    private $router;
+    private RouterInterface $router;
+
+    private OrganizationalContextInterface $context;
 
     /**
-     * @var OrganizationalContextInterface
-     */
-    private $context;
-
-    /**
-     * Constructor.
-     *
      * @param RouterInterface                $router       The router
      * @param RequestStack                   $requestStack The request stack
      * @param OrganizationalContextInterface $context      The organizational context
      */
-    public function __construct(RouterInterface $router, RequestStack $requestStack, OrganizationalContextInterface $context)
-    {
+    public function __construct(
+        RouterInterface $router,
+        RequestStack $requestStack,
+        OrganizationalContextInterface $context
+    ) {
         parent::__construct($router, $requestStack);
 
         $this->router = $router;
         $this->context = $context;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getOrgPath(string $name, array $parameters = [], bool $relative = false): string
     {
         $parameters = $this->getOrgParameters($name, $parameters);
@@ -57,17 +49,11 @@ class OrganizationalRouting extends TranslatableRouting implements Organizationa
         return $this->getPath($name, $parameters, $relative);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getLangOrgPath(string $name, array $parameters = [], bool $relative = false): string
     {
         return $this->getOrgPath($name, $this->getLangParameters($parameters), $relative);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getOrgUrl(string $name, array $parameters = [], bool $schemeRelative = false): string
     {
         $parameters = $this->getOrgParameters($name, $parameters);
@@ -75,17 +61,11 @@ class OrganizationalRouting extends TranslatableRouting implements Organizationa
         return $this->getUrl($name, $parameters, $schemeRelative);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getLangOrgUrl(string $name, array $parameters = [], bool $schemeRelative = false): string
     {
         return $this->getOrgUrl($name, $this->getLangParameters($parameters), $schemeRelative);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getOrgParameters(string $name, array $parameters = []): array
     {
         $route = $this->router->getRouteCollection()->get($name);

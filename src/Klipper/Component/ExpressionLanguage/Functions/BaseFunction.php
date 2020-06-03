@@ -21,13 +21,11 @@ use Symfony\Component\ExpressionLanguage\ExpressionFunction;
 abstract class BaseFunction extends ExpressionFunction
 {
     /**
-     * Constructor.
-     *
      * @param string        $name      The name of expression function
      * @param null|callable $evaluator The evaluator function
      * @param null|callable $compiler  The compiler function
      */
-    public function __construct($name, callable $evaluator = null, callable $compiler = null)
+    public function __construct(string $name, ?callable $evaluator = null, ?callable $compiler = null)
     {
         if (null === $evaluator) {
             $evaluator = static function () {

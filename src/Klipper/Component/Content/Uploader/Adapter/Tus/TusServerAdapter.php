@@ -26,46 +26,33 @@ use TusPhp\Tus\Server;
  */
 class TusServerAdapter implements AdapterInterface
 {
-    /**
-     * @var Server
-     */
-    private $server;
+    private Server $server;
+
+    private EventDispatcherInterface $dispatcher;
+
+    private NamerManagerInterface $namerManager;
 
     /**
-     * @var EventDispatcherInterface
-     */
-    private $dispatcher;
-
-    /**
-     * @var NamerManagerInterface
-     */
-    private $namerManager;
-
-    /**
-     * Constructor.
-     *
      * @param Server                   $server       The Tus server
      * @param EventDispatcherInterface $dispatcher   The event dispatcher
      * @param NamerManagerInterface    $namerManager The namer manager
      */
-    public function __construct(Server $server, EventDispatcherInterface $dispatcher, NamerManagerInterface $namerManager)
-    {
+    public function __construct(
+        Server $server,
+        EventDispatcherInterface $dispatcher,
+        NamerManagerInterface $namerManager
+    ) {
         $this->server = $server;
         $this->dispatcher = $dispatcher;
         $this->namerManager = $namerManager;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function supports(Request $request, UploaderConfigurationInterface $uploader): bool
     {
         return $request->headers->has('Tus-Resumable');
     }
 
     /**
-     * {@inheritdoc}
-     *
      * @throws
      */
     public function upload(Request $request, UploaderConfigurationInterface $uploader): Response

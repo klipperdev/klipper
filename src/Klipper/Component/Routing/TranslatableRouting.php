@@ -21,25 +21,16 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
  */
 class TranslatableRouting extends Routing implements TranslatableRoutingInterface
 {
-    /**
-     * {@inheritdoc}
-     */
     public function getUrlGenerator(): UrlGeneratorInterface
     {
         return $this->generator;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getLangPath(string $name, array $parameters = [], bool $relative = false): string
     {
         return $this->getPath($name, $this->getLangParameters($parameters), $relative);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getLangUrl(string $name, array $parameters = [], bool $schemeRelative = false): string
     {
         return $this->getUrl($name, $this->getLangParameters($parameters), $schemeRelative);

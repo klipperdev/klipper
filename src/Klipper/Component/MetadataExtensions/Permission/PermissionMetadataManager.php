@@ -41,29 +41,15 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  */
 class PermissionMetadataManager implements PermissionMetadataManagerInterface
 {
-    /**
-     * @var MetadataManagerInterface
-     */
-    protected $metadataManager;
+    protected MetadataManagerInterface $metadataManager;
+
+    protected PermissionManagerInterface $permissionManager;
+
+    protected TranslatorInterface $translator;
+
+    protected AuthorizationCheckerInterface $authChecker;
 
     /**
-     * @var PermissionManagerInterface
-     */
-    protected $permissionManager;
-
-    /**
-     * @var TranslatorInterface
-     */
-    protected $translator;
-
-    /**
-     * @var AuthorizationCheckerInterface
-     */
-    protected $authChecker;
-
-    /**
-     * Constructor.
-     *
      * @param MetadataManagerInterface      $metadataManager   The metadata manager
      * @param PermissionManagerInterface    $permissionManager The permission manager
      * @param TranslatorInterface           $translator        The translator
@@ -81,17 +67,11 @@ class PermissionMetadataManager implements PermissionMetadataManagerInterface
         $this->authChecker = $authChecker;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function clear(): void
     {
         $this->permissionManager->clear();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getMetadatas(bool $onlyPermission = false): array
     {
         $metadatas = [];
@@ -111,9 +91,6 @@ class PermissionMetadataManager implements PermissionMetadataManagerInterface
         return $metadatas;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function hasMetadata(string $name, bool $requiredPermission = false): bool
     {
         if ($this->metadataManager->hasByName($name)) {
@@ -128,9 +105,6 @@ class PermissionMetadataManager implements PermissionMetadataManagerInterface
         return false;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getMetadata(string $name, bool $requiredPermission = false): ViewMetadataInterface
     {
         if (!$this->hasMetadata($name, $requiredPermission)) {
@@ -146,9 +120,6 @@ class PermissionMetadataManager implements PermissionMetadataManagerInterface
         return $meta;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getChoices(): array
     {
         $choices = [];
@@ -164,17 +135,11 @@ class PermissionMetadataManager implements PermissionMetadataManagerInterface
         return $choices;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function hasChoice(string $name): bool
     {
         return $this->metadataManager->hasChoice($name);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getChoice(string $name): ViewChoiceInterface
     {
         if (!$this->metadataManager->hasChoice($name)
@@ -189,17 +154,11 @@ class PermissionMetadataManager implements PermissionMetadataManagerInterface
         );
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getPermissions(RoleInterface $role): array
     {
         return $this->buildRolePermissions($role);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getObjectPermissions(RoleInterface $role, string $object, bool $requiredPermission = false): ObjectPermissionMetadataInterface
     {
         $meta = $this->getMetadata($object, $requiredPermission);
@@ -232,9 +191,6 @@ class PermissionMetadataManager implements PermissionMetadataManagerInterface
         return new ObjectPermissionMetadata($meta, $permissions, $fields, $associations);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function buildPermission(PermissionInterface $permission, bool $granted = true, bool $locked = false): PermissionMetadataInterface
     {
         $domainTrans = method_exists($permission, 'getTranslationDomain') ? $permission->getTranslationDomain() : null;
@@ -251,7 +207,7 @@ class PermissionMetadataManager implements PermissionMetadataManagerInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @param mixed $permissions
      */
     public function buildPermissions($permissions, bool $granted = true, bool $locked = false): array
     {

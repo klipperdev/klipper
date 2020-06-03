@@ -20,18 +20,17 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class UploadFileMoveEvent extends AbstractUploadFileEvent
 {
-    /**
-     * @var string
-     */
-    private $name;
+    private string $name;
 
     /**
-     * {@inheritdoc}
-     *
      * @param string $name The new file name
      */
-    public function __construct(UploaderConfigurationInterface $config, Request $request, FileInterface $file, string $name)
-    {
+    public function __construct(
+        UploaderConfigurationInterface $config,
+        Request $request,
+        FileInterface $file,
+        string $name
+    ) {
         parent::__construct($config, $request, $file);
 
         $this->name = $name;

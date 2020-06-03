@@ -31,6 +31,9 @@ final class ArrayResourceTest extends TestCase
         static::assertSame('Klipper\Component\Config\ArrayResource(directory_path [type]))', (string) $resource);
     }
 
+    /**
+     * @throws
+     */
     public function testAdd(): void
     {
         $resource = new ArrayResource([

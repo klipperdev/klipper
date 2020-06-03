@@ -18,70 +18,43 @@ namespace Klipper\Component\DefaultValue;
  */
 class ObjectFactoryBuilder implements ObjectFactoryBuilderInterface
 {
-    /**
-     * @var ResolvedObjectTypeFactoryInterface
-     */
-    private $resolvedTypeFactory;
+    private ?ResolvedObjectTypeFactoryInterface $resolvedTypeFactory = null;
 
-    /**
-     * @var array
-     */
-    private $extensions = [];
+    private array $extensions = [];
 
-    /**
-     * @var array
-     */
-    private $types = [];
+    private array $types = [];
 
-    /**
-     * @var array
-     */
-    private $typeExtensions = [];
+    private array $typeExtensions = [];
 
-    /**
-     * {@inheritdoc}
-     */
-    public function setResolvedTypeFactory(ResolvedObjectTypeFactoryInterface $resolvedTypeFactory)
+    public function setResolvedTypeFactory(ResolvedObjectTypeFactoryInterface $resolvedTypeFactory): self
     {
         $this->resolvedTypeFactory = $resolvedTypeFactory;
 
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function addExtension(ObjectExtensionInterface $extension)
+    public function addExtension(ObjectExtensionInterface $extension): self
     {
         $this->extensions[] = $extension;
 
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function addExtensions(array $extensions)
+    public function addExtensions(array $extensions): self
     {
         $this->extensions = array_merge($this->extensions, $extensions);
 
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function addType(ObjectTypeInterface $type)
+    public function addType(ObjectTypeInterface $type): self
     {
         $this->types[$type->getClass()] = $type;
 
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function addTypes(array $types)
+    public function addTypes(array $types): self
     {
         /** @var ObjectTypeInterface $type */
         foreach ($types as $type) {
@@ -91,20 +64,14 @@ class ObjectFactoryBuilder implements ObjectFactoryBuilderInterface
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function addTypeExtension(ObjectTypeExtensionInterface $typeExtension)
+    public function addTypeExtension(ObjectTypeExtensionInterface $typeExtension): self
     {
         $this->typeExtensions[$typeExtension->getExtendedType()][] = $typeExtension;
 
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function addTypeExtensions(array $typeExtensions)
+    public function addTypeExtensions(array $typeExtensions): self
     {
         /** @var ObjectTypeExtensionInterface $typeExtension */
         foreach ($typeExtensions as $typeExtension) {
@@ -114,10 +81,7 @@ class ObjectFactoryBuilder implements ObjectFactoryBuilderInterface
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getObjectFactory()
+    public function getObjectFactory(): ObjectFactoryInterface
     {
         $extensions = $this->extensions;
 

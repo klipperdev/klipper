@@ -23,21 +23,19 @@ class ClassFinder
     /**
      * @var string[]
      */
-    private $includePaths;
+    private array $includePaths;
 
     /**
      * @var string[]
      */
-    private $excludePaths;
+    private array $excludePaths;
 
     /**
      * @var null|string[]
      */
-    private $cache;
+    private ?array $cache = null;
 
     /**
-     * Constructor.
-     *
      * @param string[] $includePaths The include paths
      * @param string[] $excludePaths The exclude paths
      */

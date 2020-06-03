@@ -45,14 +45,14 @@ interface JobResultInterface
     /**
      * Get the exception.
      *
-     * @param null|\Exception $exception The exception
+     * @param null|\Throwable $exception The exception
      *
      * @return static
      */
-    public function setException(?\Exception $exception);
+    public function setThrowable(?\Throwable $exception);
 
     /**
      * Get the exception.
      */
-    public function getException(): ?\Exception;
+    public function getThrowable(): ?\Throwable;
 }

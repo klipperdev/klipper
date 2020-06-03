@@ -22,14 +22,14 @@ use Klipper\Component\DefaultValue\Tests\Fixtures\Type\UserType;
  */
 class TestExtension extends AbstractExtension
 {
-    protected function loadTypes()
+    protected function loadTypes(): array
     {
         return [
             new UserType(),
         ];
     }
 
-    protected function loadTypeExtensions()
+    protected function loadTypeExtensions(): array
     {
         return [
             new UserExtension(),

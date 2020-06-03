@@ -19,79 +19,50 @@ use Symfony\Component\Config\Resource\ResourceInterface;
  */
 class ObjectMetadataBuilder extends BaseMetadataBuilder implements ObjectMetadataBuilderInterface
 {
-    /**
-     * @var null|string
-     */
-    protected $pluralName;
+    protected ?string $pluralName = null;
 
-    /**
-     * @var string
-     */
-    protected $class;
+    protected string $class;
 
     /**
      * @var FieldMetadataBuilderInterface[]
      */
-    protected $fields = [];
+    protected array $fields = [];
 
     /**
      * @var AssociationMetadataBuilderInterface[]
      */
-    protected $associations = [];
+    protected array $associations = [];
 
-    /**
-     * @var bool
-     */
-    protected $sortable = false;
+    protected bool $sortable = false;
 
-    /**
-     * @var null|bool
-     */
-    protected $multiSortable;
+    protected ?bool $multiSortable = null;
 
-    /**
-     * @var null|array
-     */
-    protected $defaultSortable;
+    protected ?array $defaultSortable = null;
 
     /**
      * @var null|string[]
      */
-    protected $availableContexts;
+    protected ?array $availableContexts = null;
 
-    /**
-     * @var null|string
-     */
-    protected $fieldIdentifier;
+    protected ?string $fieldIdentifier = null;
 
-    /**
-     * @var null|string
-     */
-    protected $fieldLabel;
+    protected ?string $fieldLabel = null;
 
     /**
      * @var null|ActionMetadataBuilderInterface[]
      */
-    protected $actions;
+    protected ?array $actions = null;
 
-    /**
-     * @var null|bool
-     */
-    protected $buildDefaultActions;
+    protected ?bool $buildDefaultActions = null;
 
-    /**
-     * @var null|ActionMetadataBuilderInterface
-     */
-    protected $defaultAction;
+    protected ?ActionMetadataBuilderInterface $defaultAction = null;
 
     /**
      * @var ResourceInterface[]
      */
-    protected $resources = [];
+    protected array $resources = [];
 
     /**
-     * Constructor.
-     *
      * @param string $class The class name
      */
     public function __construct(string $class)
@@ -101,9 +72,6 @@ class ObjectMetadataBuilder extends BaseMetadataBuilder implements ObjectMetadat
         $this->class = $class;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setPluralName(?string $name): self
     {
         $this->pluralName = $name;
@@ -111,25 +79,16 @@ class ObjectMetadataBuilder extends BaseMetadataBuilder implements ObjectMetadat
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getPluralName(): ?string
     {
         return $this->pluralName;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getClass(): string
     {
         return $this->class;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function addField(FieldMetadataBuilderInterface $metadata): self
     {
         $metadata->setParent($this);
@@ -148,33 +107,21 @@ class ObjectMetadataBuilder extends BaseMetadataBuilder implements ObjectMetadat
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function hasField(string $field): bool
     {
         return isset($this->fields[$field]);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getField(string $field): ?FieldMetadataBuilderInterface
     {
         return $this->fields[$field] ?? null;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getFields(): array
     {
         return $this->fields;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function addAssociation(AssociationMetadataBuilderInterface $metadata): self
     {
         $metadata->setParent($this);
@@ -189,41 +136,26 @@ class ObjectMetadataBuilder extends BaseMetadataBuilder implements ObjectMetadat
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function hasAssociation(string $association): bool
     {
         return isset($this->associations[$association]);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getAssociation(string $association): ?AssociationMetadataBuilderInterface
     {
         return $this->associations[$association] ?? null;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getAssociations(): array
     {
         return $this->associations;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function isSortable(): bool
     {
         return $this->sortable;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setMultiSortable(?bool $sortable): self
     {
         $this->multiSortable = $sortable;
@@ -231,17 +163,11 @@ class ObjectMetadataBuilder extends BaseMetadataBuilder implements ObjectMetadat
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function isMultiSortable(): ?bool
     {
         return$this->multiSortable;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setDefaultSortable(?array $map): self
     {
         $this->defaultSortable = $map;
@@ -249,17 +175,11 @@ class ObjectMetadataBuilder extends BaseMetadataBuilder implements ObjectMetadat
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getDefaultSortable(): ?array
     {
         return $this->defaultSortable;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setAvailableContexts(?array $availableContexts): self
     {
         $this->availableContexts = $availableContexts;
@@ -267,17 +187,11 @@ class ObjectMetadataBuilder extends BaseMetadataBuilder implements ObjectMetadat
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getAvailableContexts(): ?array
     {
         return $this->availableContexts;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setFieldIdentifier(?string $name): self
     {
         $this->fieldIdentifier = $name;
@@ -285,17 +199,11 @@ class ObjectMetadataBuilder extends BaseMetadataBuilder implements ObjectMetadat
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getFieldIdentifier(): ?string
     {
         return $this->fieldIdentifier;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setFieldLabel(?string $name): self
     {
         $this->fieldLabel = $name;
@@ -303,25 +211,16 @@ class ObjectMetadataBuilder extends BaseMetadataBuilder implements ObjectMetadat
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getFieldLabel(): ?string
     {
         return $this->fieldLabel;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function hasAction(string $action): bool
     {
         return isset($this->actions[$action]);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setActions(?array $actions): self
     {
         $this->actions = $actions;
@@ -335,9 +234,6 @@ class ObjectMetadataBuilder extends BaseMetadataBuilder implements ObjectMetadat
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function addAction(ActionMetadataBuilderInterface $action): self
     {
         $action->setParent($this);
@@ -351,25 +247,16 @@ class ObjectMetadataBuilder extends BaseMetadataBuilder implements ObjectMetadat
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getActions(): ?array
     {
         return $this->actions;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getAction(string $action): ?ActionMetadataBuilderInterface
     {
         return $this->actions[$action] ?? null;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setBuildDefaultActions(?bool $buildDefaultActions): self
     {
         $this->buildDefaultActions = $buildDefaultActions;
@@ -377,17 +264,11 @@ class ObjectMetadataBuilder extends BaseMetadataBuilder implements ObjectMetadat
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getBuildDefaultActions(): ?bool
     {
         return $this->buildDefaultActions;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setDefaultAction(?ActionMetadataBuilderInterface $action): self
     {
         if (null !== $action) {
@@ -404,25 +285,16 @@ class ObjectMetadataBuilder extends BaseMetadataBuilder implements ObjectMetadat
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getDefaultAction(): ?ActionMetadataBuilderInterface
     {
         return $this->defaultAction;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getResources(): array
     {
         return array_values($this->resources);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function addResource(ResourceInterface $resource): void
     {
         $key = (string) $resource;
@@ -432,9 +304,6 @@ class ObjectMetadataBuilder extends BaseMetadataBuilder implements ObjectMetadat
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function merge(ObjectMetadataBuilderInterface $builder): self
     {
         BuilderUtil::mergeValues($this, $builder);
@@ -464,9 +333,6 @@ class ObjectMetadataBuilder extends BaseMetadataBuilder implements ObjectMetadat
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function build(): ObjectMetadataInterface
     {
         BuilderUtil::validate($this, ['name', 'pluralName', 'label', 'fieldIdentifier', 'fieldLabel']);

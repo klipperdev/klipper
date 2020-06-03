@@ -23,23 +23,18 @@ use Symfony\Component\Form\Exception\TransformationFailedException;
 class ArrayToPointTransformer implements DataTransformerInterface
 {
     /**
-     * @var null
-     */
-    private static $empty;
-
-    /**
      * Transforms a point into a array.
      *
      * @param null|Point $value The point value
      *
      * @throws TransformationFailedException If the given value is not a string
      *
-     * @return array Array value
+     * @return null|array Array value
      */
-    public function transform($value): array
+    public function transform($value): ?array
     {
         if (null === $value || '' === $value) {
-            return self::$empty;
+            return null;
         }
 
         if (!$value instanceof Point) {
@@ -62,7 +57,7 @@ class ArrayToPointTransformer implements DataTransformerInterface
     public function reverseTransform($value): ?Point
     {
         if ($this->isEmpty($value)) {
-            return self::$empty;
+            return null;
         }
 
         if (!\is_array($value)) {

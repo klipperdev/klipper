@@ -20,25 +20,16 @@ use Klipper\Component\ExpressionLanguage\DependencyInjection\Compiler\AbstractEx
  */
 class DefaultValueExpressionLanguagePass extends AbstractExpressionLanguageProvidersPass
 {
-    /**
-     * {@inheritdoc}
-     */
     protected function getExpressionLanguageId(): string
     {
         return 'klipper_doctrine_extensions_extra.default_value.expression_language';
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function getProviderTagName(): string
     {
         return 'klipper_doctrine_extensions_extra.default_value.expression_language_provider';
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function getFunctionTagName(): string
     {
         return 'klipper_doctrine_extensions_extra.default_value.expression_language_function';

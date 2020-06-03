@@ -38,15 +38,9 @@ use Symfony\Component\HttpKernel\KernelEvents;
  */
 final class ControllerSubscriberTest extends TestCase
 {
-    /**
-     * @var Request
-     */
-    protected $request;
+    protected ?Request $request = null;
 
-    /**
-     * @var ControllerSubscriber
-     */
-    protected $listener;
+    protected ?ControllerSubscriber $listener = null;
 
     protected function setUp(): void
     {
@@ -179,6 +173,7 @@ final class ControllerSubscriberTest extends TestCase
      */
     private function getControllerEvent($controller, Request $request): ControllerEvent
     {
+        /** @var Kernel $mockKernel */
         $mockKernel = $this->getMockForAbstractClass(Kernel::class, ['', '']);
 
         return new ControllerEvent($mockKernel, $controller, $request, HttpKernelInterface::MASTER_REQUEST);

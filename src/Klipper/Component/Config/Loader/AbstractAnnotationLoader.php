@@ -21,19 +21,11 @@ use Symfony\Component\Config\Loader\Loader;
  */
 abstract class AbstractAnnotationLoader extends Loader
 {
-    /**
-     * @var Reader
-     */
-    protected $reader;
+    protected Reader $reader;
+
+    protected ClassFinder $classFinder;
 
     /**
-     * @var ClassFinder
-     */
-    protected $classFinder;
-
-    /**
-     * Constructor.
-     *
      * @param Reader           $reader      The annotation reader
      * @param null|ClassFinder $classFinder The class finder
      */

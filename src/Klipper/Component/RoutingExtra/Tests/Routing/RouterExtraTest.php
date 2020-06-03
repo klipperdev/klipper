@@ -31,10 +31,7 @@ final class RouterExtraTest extends TestCase
      */
     protected $router;
 
-    /**
-     * @var RouterExtraInterface
-     */
-    protected $routerExtra;
+    protected ?RouterExtraInterface $routerExtra = null;
 
     protected function setUp(): void
     {
@@ -42,7 +39,7 @@ final class RouterExtraTest extends TestCase
         $this->routerExtra = new RouterExtra($this->router, new PropertyPathMatcher());
     }
 
-    public function getMatcherConfig()
+    public function getMatcherConfig(): array
     {
         $dataArray = [
             'custom_id' => 42,

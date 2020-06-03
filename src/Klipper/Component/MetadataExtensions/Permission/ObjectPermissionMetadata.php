@@ -21,28 +21,26 @@ use Klipper\Component\Metadata\View\ViewMetadataInterface;
 class ObjectPermissionMetadata implements ObjectPermissionMetadataInterface
 {
     /**
-     * @var ViewMetadataInterface
+     * @var
      */
-    protected $metadata;
+    protected ViewMetadataInterface $metadata;
 
     /**
      * @var PermissionMetadataInterface[]
      */
-    protected $permissions;
+    protected array $permissions;
 
     /**
      * @var null|FieldPermissionMetadataInterface[]
      */
-    protected $fields;
+    protected ?array $fields;
 
     /**
      * @var null|AssociationPermissionMetadataInterface[]
      */
-    protected $associations;
+    protected ?array $associations;
 
     /**
-     * Constructor.
-     *
      * @param ViewMetadataInterface                    $metadata     The view metadata of object
      * @param PermissionMetadataInterface[]            $permissions  The object permissions
      * @param FieldPermissionMetadataInterface[]       $fields       The field permission metadatas
@@ -60,65 +58,41 @@ class ObjectPermissionMetadata implements ObjectPermissionMetadataInterface
         $this->associations = !empty($associations) ? $associations : null;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getClass(): string
     {
         return $this->metadata->getClass();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getName(): string
     {
         return $this->metadata->getName();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getLabel(): string
     {
         return $this->metadata->getLabel();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getDescription(): ?string
     {
         return $this->metadata->getDescription();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function hasEditablePermissions(): bool
     {
         return $this->metadata->hasEditablePermissions();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getPermissions(): array
     {
         return $this->permissions;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function hasField(string $name): bool
     {
         return isset($this->fields[$name]);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getField(string $name): FieldPermissionMetadataInterface
     {
         if (!$this->hasField($name)) {
@@ -128,25 +102,16 @@ class ObjectPermissionMetadata implements ObjectPermissionMetadataInterface
         return $this->fields[$name];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getFields(): array
     {
         return $this->fields ?? [];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function hasAssociation(string $name): bool
     {
         return isset($this->associations[$name]);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getAssociation(string $name): AssociationPermissionMetadataInterface
     {
         if (!$this->hasAssociation($name)) {
@@ -156,9 +121,6 @@ class ObjectPermissionMetadata implements ObjectPermissionMetadataInterface
         return $this->associations[$name];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getAssociations(): array
     {
         return $this->associations ?? [];

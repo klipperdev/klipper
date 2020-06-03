@@ -24,19 +24,9 @@ use Symfony\Component\Filesystem\Filesystem;
  */
 final class PhpArrayAdapterTest extends AbstractAdapterTest
 {
-    /**
-     * @var PhpArrayAdapter
-     */
-    protected $adapter;
+    protected ?Filesystem $fs = null;
 
-    /**
-     * @var Filesystem
-     */
-    protected $fs;
-    /**
-     * @var string
-     */
-    private static $file;
+    private static string $file = '';
 
     public static function setupBeforeClass(): void
     {

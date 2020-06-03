@@ -28,9 +28,6 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
  */
 class KlipperDoctrineExtensionsExtraBundle extends Bundle
 {
-    /**
-     * {@inheritdoc}
-     */
     public function build(ContainerBuilder $container): void
     {
         $container->addCompilerPass(new ValidateExtensionConfigurationPass());

@@ -26,14 +26,9 @@ class GuessJmsSerializerMetadata implements
     GuessFieldConfigInterface,
     GuessAssociationConfigInterface
 {
-    /**
-     * @var MetadataFactoryInterface
-     */
-    private $factory;
+    private MetadataFactoryInterface $factory;
 
     /**
-     * Constructor.
-     *
      * @param MetadataFactoryInterface $factory The jms metadata factory
      */
     public function __construct(MetadataFactoryInterface $factory)
@@ -41,17 +36,11 @@ class GuessJmsSerializerMetadata implements
         $this->factory = $factory;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function guessFieldConfig(FieldMetadataBuilderInterface $builder): void
     {
         $this->guessChildConfig($builder, $builder->getField());
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function guessAssociationConfig(AssociationMetadataBuilderInterface $builder): void
     {
         $this->guessChildConfig($builder, $builder->getAssociation());
@@ -63,7 +52,7 @@ class GuessJmsSerializerMetadata implements
      * @param ChildMetadataBuilderInterface $builder  The child builder
      * @param string                        $property The property name
      */
-    private function guessChildConfig(ChildMetadataBuilderInterface $builder, $property): void
+    private function guessChildConfig(ChildMetadataBuilderInterface $builder, string $property): void
     {
         $class = $builder->getParent()->getClass();
         $meta = $this->factory->getMetadataForClass($class);

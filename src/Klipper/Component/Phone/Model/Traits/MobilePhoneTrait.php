@@ -20,14 +20,8 @@ use libphonenumber\PhoneNumber;
  */
 trait MobilePhoneTrait
 {
-    /**
-     * @var null|PhoneNumber
-     */
-    protected $mobilePhone;
+    protected ?PhoneNumber $mobilePhone = null;
 
-    /**
-     * {@inheritdoc}
-     */
     public function setMobilePhone(?PhoneNumber $mobilePhone = null): self
     {
         $this->mobilePhone = $mobilePhone;
@@ -35,9 +29,6 @@ trait MobilePhoneTrait
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getMobilePhone(): ?PhoneNumber
     {
         return $this->mobilePhone;

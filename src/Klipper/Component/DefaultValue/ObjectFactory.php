@@ -18,29 +18,19 @@ use Klipper\Component\DefaultValue\Exception\UnexpectedTypeException;
  */
 class ObjectFactory implements ObjectFactoryInterface
 {
-    /**
-     * @var ObjectRegistryInterface
-     */
-    protected $registry;
+    protected ObjectRegistryInterface $registry;
 
-    /**
-     * @var ResolvedObjectTypeFactoryInterface
-     */
-    protected $resolvedTypeFactory;
+    protected ResolvedObjectTypeFactoryInterface $resolvedTypeFactory;
 
-    /**
-     * Construcotr.
-     */
-    public function __construct(ObjectRegistryInterface $registry, ResolvedObjectTypeFactoryInterface $resolvedTypeFactory)
-    {
+    public function __construct(
+        ObjectRegistryInterface $registry,
+        ResolvedObjectTypeFactoryInterface $resolvedTypeFactory
+    ) {
         $this->registry = $registry;
         $this->resolvedTypeFactory = $resolvedTypeFactory;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function inject($data, array $options = [])
+    public function inject($data, array $options = []): object
     {
         if (!\is_object($data)) {
             throw new UnexpectedTypeException(\gettype($data), 'object');
@@ -49,18 +39,12 @@ class ObjectFactory implements ObjectFactoryInterface
         return $this->create(\get_class($data), $data, $options);
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function create($type, $data = null, array $options = [])
+    public function create($type, ?object $data = null, array $options = []): object
     {
         return $this->createBuilder($type, $data, $options)->getObject();
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function createBuilder($type, $data = null, array $options = [])
+    public function createBuilder($type, ?object $data = null, array $options = []): ObjectBuilderInterface
     {
         if ($type instanceof ObjectTypeInterface) {
             $type = $this->resolveType($type);
@@ -87,7 +71,7 @@ class ObjectFactory implements ObjectFactoryInterface
      *
      * @return ResolvedObjectTypeInterface The resolved type
      */
-    private function resolveType(ObjectTypeInterface $type)
+    private function resolveType(ObjectTypeInterface $type): ResolvedObjectTypeInterface
     {
         $parentType = $type->getParent();
 

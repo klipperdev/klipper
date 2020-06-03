@@ -95,10 +95,6 @@ class TwigSecurityPolicies
             'getAddress',
             'getEncodedAddress',
         ],
-        \Symfony\Component\Mime\NamedAddress::class => [
-            'getName',
-            'getEncodedNamedAddress',
-        ],
         \Klipper\Bridge\SmsSender\Twig\Mime\WrappedTemplatedSms::class => [
             'getFrom',
             'addTo',

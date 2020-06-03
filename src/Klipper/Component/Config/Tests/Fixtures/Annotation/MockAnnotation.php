@@ -19,10 +19,7 @@ use Klipper\Component\Config\Annotation\AbstractAnnotation;
  */
 class MockAnnotation extends AbstractAnnotation
 {
-    /**
-     * @var null|string
-     */
-    protected $foo;
+    protected ?string $foo = null;
 
     public function setFoo(?string $foo): self
     {

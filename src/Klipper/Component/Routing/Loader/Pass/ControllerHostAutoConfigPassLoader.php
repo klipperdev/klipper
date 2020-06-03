@@ -19,14 +19,9 @@ use Symfony\Component\Routing\RouteCollection;
  */
 class ControllerHostAutoConfigPassLoader implements PassLoaderInterface
 {
-    /**
-     * @var array
-     */
-    private $patterns;
+    private array $patterns;
 
     /**
-     * Constructor.
-     *
      * @param array $patterns The map of patterns to inject route config
      */
     public function __construct(array $patterns = [])
@@ -34,9 +29,6 @@ class ControllerHostAutoConfigPassLoader implements PassLoaderInterface
         $this->patterns = $patterns;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function load(RouteCollection $collection): RouteCollection
     {
         if (empty($this->patterns)) {

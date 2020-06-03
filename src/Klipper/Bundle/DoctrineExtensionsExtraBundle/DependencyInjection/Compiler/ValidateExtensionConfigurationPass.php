@@ -11,7 +11,7 @@
 
 namespace Klipper\Bundle\DoctrineExtensionsExtraBundle\DependencyInjection\Compiler;
 
-use Klipper\Bundle\DoctrineExtensionsExtraBundle\DependencyInjection\KlipperDoctrineExtensionsExtension;
+use Klipper\Bundle\DoctrineExtensionsExtraBundle\DependencyInjection\KlipperDoctrineExtensionsExtraExtension;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
@@ -31,7 +31,7 @@ class ValidateExtensionConfigurationPass implements CompilerPassInterface
      */
     public function process(ContainerBuilder $container): void
     {
-        /** @var KlipperDoctrineExtensionsExtension $ext */
+        /** @var KlipperDoctrineExtensionsExtraExtension $ext */
         $ext = $container->getExtension('klipper_doctrine_extensions_extra');
         $ext->configValidate($container);
     }

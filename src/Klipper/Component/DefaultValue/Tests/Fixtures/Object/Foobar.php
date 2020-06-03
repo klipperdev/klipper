@@ -18,23 +18,14 @@ namespace Klipper\Component\DefaultValue\Tests\Fixtures\Object;
  */
 class Foobar extends Foo
 {
-    /**
-     * @var string
-     */
-    private $customField;
+    private ?string $customField = null;
 
-    /**
-     * @param string $value
-     */
-    public function setCustomField($value): void
+    public function setCustomField(?string $value): void
     {
         $this->customField = $value;
     }
 
-    /**
-     * @return string
-     */
-    public function getCustomField()
+    public function getCustomField(): ?string
     {
         return $this->customField;
     }

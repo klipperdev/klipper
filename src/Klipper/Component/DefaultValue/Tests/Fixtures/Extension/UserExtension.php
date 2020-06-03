@@ -15,7 +15,7 @@ use Klipper\Component\DefaultValue\AbstractTypeExtension;
 
 class UserExtension extends AbstractTypeExtension
 {
-    public function getExtendedType()
+    public function getExtendedType(): string
     {
         return 'Klipper\Component\DefaultValue\Tests\Fixtures\Object\User';
     }

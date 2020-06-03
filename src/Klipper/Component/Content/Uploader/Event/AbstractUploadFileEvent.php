@@ -20,18 +20,8 @@ use Symfony\Component\HttpFoundation\Request;
  */
 abstract class AbstractUploadFileEvent extends AbstractUploadEvent
 {
-    /**
-     * @var FileInterface
-     */
-    private $file;
+    private FileInterface $file;
 
-    /**
-     * Constructor.
-     *
-     * @param UploaderConfigurationInterface $config  The uploader configuration
-     * @param Request                        $request The request
-     * @param FileInterface                  $file    The file
-     */
     public function __construct(UploaderConfigurationInterface $config, Request $request, FileInterface $file)
     {
         parent::__construct($config, $request);
@@ -39,9 +29,6 @@ abstract class AbstractUploadFileEvent extends AbstractUploadEvent
         $this->file = $file;
     }
 
-    /**
-     * Get the file.
-     */
     public function getFile(): FileInterface
     {
         return $this->file;

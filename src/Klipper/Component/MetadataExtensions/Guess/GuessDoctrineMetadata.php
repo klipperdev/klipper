@@ -11,10 +11,10 @@
 
 namespace Klipper\Component\MetadataExtensions\Guess;
 
-use Doctrine\Common\Persistence\Mapping\ClassMetadata;
 use Doctrine\DBAL\Types\Type;
 use Doctrine\ORM\Mapping\ClassMetadataInfo as OrmClassMetadata;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Persistence\Mapping\ClassMetadata;
 use Klipper\Component\Metadata\AssociationMetadataBuilder;
 use Klipper\Component\Metadata\AssociationMetadataBuilderInterface;
 use Klipper\Component\Metadata\Exception\InvalidArgumentException as MetadataInvalidArgumentException;
@@ -71,24 +71,13 @@ class GuessDoctrineMetadata extends AbstractGuessDoctrine implements
         'json_array',
     ];
 
-    /**
-     * @var MetadataRegistryInterface
-     */
-    protected $metadataRegistry;
+    protected ?MetadataRegistryInterface $metadataRegistry = null;
+
+    protected array $mappingFieldTypes;
+
+    protected array $mappingAssociationTypes;
 
     /**
-     * @var array
-     */
-    protected $mappingFieldTypes;
-
-    /**
-     * @var array
-     */
-    protected $mappingAssociationTypes;
-
-    /**
-     * Constructor.
-     *
      * @param ManagerRegistry $registry                The doctrine registry
      * @param array           $mappingFieldTypes       The mapping of field types
      * @param array           $mappingAssociationTypes The mapping of association types
@@ -108,17 +97,11 @@ class GuessDoctrineMetadata extends AbstractGuessDoctrine implements
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setRegistry(MetadataRegistryInterface $registry): void
     {
         $this->metadataRegistry = $registry;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function guessObjectConfig(ObjectMetadataBuilderInterface $builder): void
     {
         $classMeta = $this->getClassMetadata($builder->getClass());
@@ -155,8 +138,6 @@ class GuessDoctrineMetadata extends AbstractGuessDoctrine implements
     }
 
     /**
-     * {@inheritdoc}
-     *
      * @throws
      */
     public function guessFieldConfig(FieldMetadataBuilderInterface $builder): void
@@ -187,8 +168,6 @@ class GuessDoctrineMetadata extends AbstractGuessDoctrine implements
     }
 
     /**
-     * {@inheritdoc}
-     *
      * @throws
      */
     public function guessAssociationConfig(AssociationMetadataBuilderInterface $builder): void

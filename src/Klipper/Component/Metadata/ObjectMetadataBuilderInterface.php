@@ -246,9 +246,6 @@ interface ObjectMetadataBuilderInterface extends MetadataBuilderInterface
      */
     public function setDefaultAction(?ActionMetadataBuilderInterface $action);
 
-    /**
-     * {@inheritdoc}
-     */
     public function getDefaultAction(): ?ActionMetadataBuilderInterface;
 
     /**

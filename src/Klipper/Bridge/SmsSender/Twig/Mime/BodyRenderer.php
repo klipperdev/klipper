@@ -22,21 +22,12 @@ use Twig\Environment;
  */
 class BodyRenderer implements BodyRendererInterface
 {
-    /**
-     * @var Environment
-     */
-    private $twig;
+    private Environment $twig;
+
+    private array $context;
 
     /**
-     * @var array
-     */
-    private $context;
-
-    /**
-     * Constructor.
-     *
-     * @param Environment $twig    The twig environment
-     * @param array       $context The default twig context
+     * @param array $context The default twig context
      */
     public function __construct(Environment $twig, array $context = [])
     {
@@ -45,8 +36,6 @@ class BodyRenderer implements BodyRendererInterface
     }
 
     /**
-     * {@inheritdoc}
-     *
      * @throws
      */
     public function render(Message $message): void

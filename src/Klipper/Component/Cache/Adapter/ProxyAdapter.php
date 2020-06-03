@@ -23,9 +23,6 @@ class ProxyAdapter extends BaseProxyAdapter implements AdapterInterface
 {
     use AdapterPrefixesTrait;
 
-    /**
-     * {@inheritdoc}
-     */
     public function clearByPrefixes(array $prefixes): bool
     {
         /** @var AdapterInterface|CacheItemPoolInterface $pool */

@@ -24,10 +24,7 @@ use Symfony\Component\Validator\Constraints\Required;
  */
 class CollectionGuessConstraint extends AbstractGuessConstraint implements GuessConstraintAwareInterface
 {
-    /**
-     * @var GuessSymfonyConstraint
-     */
-    private $guesser;
+    private ?GuessSymfonyConstraint $guesser = null;
 
     public function supports(ChildMetadataBuilderInterface $builder, Constraint $constraint): bool
     {

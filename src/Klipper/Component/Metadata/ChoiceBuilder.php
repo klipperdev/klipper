@@ -19,39 +19,22 @@ use Symfony\Component\Config\Resource\ResourceInterface;
  */
 class ChoiceBuilder implements ChoiceBuilderInterface
 {
-    /**
-     * @var string
-     */
-    protected $name;
+    protected string $name;
 
-    /**
-     * @var array
-     */
-    protected $listIdentifiers;
+    protected array $listIdentifiers;
 
-    /**
-     * @var null|array
-     */
-    protected $values;
+    protected ?array $values;
 
-    /**
-     * @var null|string
-     */
-    protected $translationDomain;
+    protected ?string $translationDomain;
 
-    /**
-     * @var null|string
-     */
-    protected $placeholder;
+    protected ?string $placeholder;
 
     /**
      * @var ResourceInterface[]
      */
-    protected $resources = [];
+    protected array $resources = [];
 
     /**
-     * Constructor.
-     *
      * @param string      $name              The unique name
      * @param null|string $translationDomain The translation domain
      * @param array       $identifiers       The list identifiers
@@ -72,25 +55,16 @@ class ChoiceBuilder implements ChoiceBuilderInterface
         $this->placeholder = $placeholder;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getListIdentifiers(): ?array
     {
         return $this->listIdentifiers;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setListIdentifiers(array $identifiers)
     {
         $this->listIdentifiers = $identifiers;
@@ -98,17 +72,11 @@ class ChoiceBuilder implements ChoiceBuilderInterface
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getValues(): ?array
     {
         return $this->values;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setValues(?array $values): self
     {
         $this->values = $values;
@@ -116,17 +84,11 @@ class ChoiceBuilder implements ChoiceBuilderInterface
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getTranslationDomain(): ?string
     {
         return $this->translationDomain;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setTranslationDomain(?string $translationDomain): self
     {
         $this->translationDomain = $translationDomain;
@@ -134,17 +96,11 @@ class ChoiceBuilder implements ChoiceBuilderInterface
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getPlaceholder(): ?string
     {
         return $this->placeholder;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setPlaceholder(?string $placeholder): self
     {
         $this->placeholder = $placeholder;
@@ -152,17 +108,11 @@ class ChoiceBuilder implements ChoiceBuilderInterface
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getResources(): array
     {
         return array_values($this->resources);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function addResource(ResourceInterface $resource): void
     {
         $key = (string) $resource;
@@ -172,9 +122,6 @@ class ChoiceBuilder implements ChoiceBuilderInterface
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function merge(ChoiceBuilderInterface $builder): self
     {
         BuilderUtil::mergeValues($this, $builder);
@@ -182,9 +129,6 @@ class ChoiceBuilder implements ChoiceBuilderInterface
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function build(): ChoiceInterface
     {
         return new Choice(

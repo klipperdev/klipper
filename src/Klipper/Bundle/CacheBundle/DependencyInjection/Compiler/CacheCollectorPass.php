@@ -29,9 +29,6 @@ use Symfony\Component\DependencyInjection\Reference;
  */
 class CacheCollectorPass implements CompilerPassInterface
 {
-    /**
-     * {@inheritdoc}
-     */
     public function process(ContainerBuilder $container): void
     {
         foreach ($container->findTaggedServiceIds('cache.pool') as $id => $attributes) {
@@ -52,7 +49,7 @@ class CacheCollectorPass implements CompilerPassInterface
      * @param Definition       $def          The service definition of adapter
      * @param string           $adapterClass The new class name of adapter
      */
-    private function replaceTraceableAdapter(ContainerBuilder $container, Definition $def, $adapterClass): void
+    private function replaceTraceableAdapter(ContainerBuilder $container, Definition $def, string $adapterClass): void
     {
         $args = $def->getArguments();
 

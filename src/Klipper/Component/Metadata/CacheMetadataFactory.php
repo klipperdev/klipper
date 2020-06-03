@@ -24,10 +24,7 @@ use Symfony\Component\HttpKernel\CacheWarmer\WarmableInterface;
  */
 class CacheMetadataFactory implements MetadataFactoryInterface, WarmableInterface
 {
-    /**
-     * @var MetadataFactoryInterface
-     */
-    protected $factory;
+    protected MetadataFactoryInterface $factory;
 
     /**
      * @var array
@@ -37,34 +34,23 @@ class CacheMetadataFactory implements MetadataFactoryInterface, WarmableInterfac
         'debug' => false,
     ];
 
-    /**
-     * @var null|ConfigCacheFactoryInterface
-     */
-    private $configCacheFactory;
+    private ?ConfigCacheFactoryInterface $configCacheFactory = null;
 
     /**
      * @var null|ObjectMetadataInterface[]
      */
-    private $metadatas;
+    private ?array $metadatas = null;
 
-    /**
-     * @var null|ObjectMetadataNameCollection
-     */
-    private $names;
+    private ?ObjectMetadataNameCollection $names = null;
 
     /**
      * @var null|ChoiceInterface[]
      */
-    private $choices;
+    private ?array $choices = null;
+
+    private ?array $choiceNames = null;
 
     /**
-     * @var null|array
-     */
-    private $choiceNames;
-
-    /**
-     * Constructor.
-     *
      * @param MetadataFactoryInterface $factory The metadata factory
      * @param array                    $options An array of options
      */
@@ -74,9 +60,6 @@ class CacheMetadataFactory implements MetadataFactoryInterface, WarmableInterfac
         $this->options = array_merge($this->options, $options);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getManagedClasses(): ObjectMetadataNameCollection
     {
         if (null === $this->options['cache_dir']) {
@@ -104,17 +87,11 @@ class CacheMetadataFactory implements MetadataFactoryInterface, WarmableInterfac
         return $this->names;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function isManagedClass(string $class): bool
     {
         return $this->factory->isManagedClass($class);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function isManagedByName(string $name): bool
     {
         $names = $this->getManagedClasses()->all();
@@ -122,17 +99,11 @@ class CacheMetadataFactory implements MetadataFactoryInterface, WarmableInterfac
         return isset($names[$name]);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getManagedClass(string $class): string
     {
         return $this->factory->getManagedClass($class);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function create(string $class): ObjectMetadataInterface
     {
         if (null === $this->options['cache_dir']) {
@@ -166,9 +137,6 @@ class CacheMetadataFactory implements MetadataFactoryInterface, WarmableInterfac
         return $this->metadatas[$class];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function createChoice(string $name): ChoiceInterface
     {
         if (null === $this->options['cache_dir']) {
@@ -199,9 +167,6 @@ class CacheMetadataFactory implements MetadataFactoryInterface, WarmableInterfac
         return $this->choices[$name];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getChoiceNames(): ChoiceNameCollection
     {
         if (null === $this->options['cache_dir']) {
@@ -232,9 +197,6 @@ class CacheMetadataFactory implements MetadataFactoryInterface, WarmableInterfac
         return $this->choiceNames;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function isChoiceManaged(string $name): bool
     {
         $names = $this->getChoiceNames()->all();
@@ -243,7 +205,7 @@ class CacheMetadataFactory implements MetadataFactoryInterface, WarmableInterfac
     }
 
     /**
-     * {@inheritdoc}
+     * @param mixed $cacheDir
      */
     public function warmUp($cacheDir): void
     {

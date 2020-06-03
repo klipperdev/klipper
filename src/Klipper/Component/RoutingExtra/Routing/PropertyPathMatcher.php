@@ -19,23 +19,18 @@ use Symfony\Component\PropertyAccess\PropertyAccessorInterface;
  */
 class PropertyPathMatcher implements PropertyPathMatcherInterface
 {
-    /**
-     * @var PropertyAccessorInterface
-     */
-    private $propertyAccessor;
+    private PropertyAccessorInterface $propertyAccessor;
 
     /**
-     * Constructor.
-     *
      * @param PropertyAccessorInterface $propertyAccessor The property accessor
      */
     public function __construct(?PropertyAccessorInterface $propertyAccessor = null)
     {
-        $this->propertyAccessor = $propertyAccessor ?: PropertyAccess::createPropertyAccessor();
+        $this->propertyAccessor = $propertyAccessor ?? PropertyAccess::createPropertyAccessor();
     }
 
     /**
-     * {@inheritdoc}
+     * @param mixed $objectOrArray
      */
     public function matchRouteParameters(array $parameters, $objectOrArray): array
     {

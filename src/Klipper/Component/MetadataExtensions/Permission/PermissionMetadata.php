@@ -18,41 +18,24 @@ use Klipper\Component\Security\Model\PermissionInterface;
  */
 class PermissionMetadata implements PermissionMetadataInterface
 {
-    /**
-     * @var PermissionInterface
-     */
-    protected $permission;
+    protected PermissionInterface $permission;
+
+    protected bool $granted;
+
+    protected bool $locked;
+
+    protected string $label;
+
+    protected ?string $description;
 
     /**
-     * @var bool
-     */
-    protected $granted;
-
-    /**
-     * @var bool
-     */
-    protected $locked;
-
-    /**
-     * @var string
-     */
-    protected $label;
-
-    /**
-     * @var null|string
-     */
-    protected $description;
-
-    /**
-     * Constructor.
-     *
      * @param PermissionInterface $permission  The permission
      * @param bool                $granted     Check if the permission is granted
      * @param bool                $locked      Check if the permission is locked
      * @param string              $label       The permission label
      * @param null|string         $description The permission description
      */
-    public function __construct(PermissionInterface $permission, $granted, $locked, $label, $description = null)
+    public function __construct(PermissionInterface $permission, bool $granted, bool $locked, string $label, ?string $description = null)
     {
         $this->permission = $permission;
         $this->granted = $granted;
@@ -61,57 +44,36 @@ class PermissionMetadata implements PermissionMetadataInterface
         $this->description = $description;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getPermission(): PermissionInterface
     {
         return $this->permission;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getOperation(): string
     {
         return $this->permission->getOperation();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getContexts(): array
     {
         return $this->permission->getContexts();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getLabel(): string
     {
         return $this->label;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getDescription(): ?string
     {
         return $this->description;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function isGranted(): bool
     {
         return $this->granted;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function isLocked(): bool
     {
         return $this->locked;

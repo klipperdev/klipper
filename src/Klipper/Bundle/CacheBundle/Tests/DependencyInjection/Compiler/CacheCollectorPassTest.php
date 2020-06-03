@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Klipper\Bundle\CacheBundle\Tests\DependencyInjection;
+namespace Klipper\Bundle\CacheBundle\Tests\DependencyInjection\Compiler;
 
 use Klipper\Bundle\CacheBundle\DependencyInjection\Compiler\CacheCollectorPass;
 use Klipper\Component\Cache\Adapter\FilesystemAdapter;
@@ -34,15 +34,9 @@ use Symfony\Component\DependencyInjection\Reference;
  */
 final class CacheCollectorPassTest extends TestCase
 {
-    /**
-     * @var ContainerBuilder
-     */
-    protected $container;
+    protected ?ContainerBuilder $container = null;
 
-    /**
-     * @var CacheCollectorPass
-     */
-    protected $compiler;
+    protected ?CacheCollectorPass $compiler = null;
 
     protected function setUp(): void
     {

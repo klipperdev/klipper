@@ -23,20 +23,9 @@ abstract class AbstractConfigCollection implements ConfigCollectionInterface
     /**
      * @var object[]
      */
-    protected $configs = [];
+    protected array $configs = [];
 
-    /**
-     * @var array
-     */
-    protected $resources = [];
-
-    /**
-     * Constructor.
-     */
-    public function __construct()
-    {
-        $this->configs = [];
-    }
+    protected array $resources = [];
 
     /**
      * Clone the config collection.
@@ -82,9 +71,6 @@ abstract class AbstractConfigCollection implements ConfigCollectionInterface
         return $this->configs;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function addCollection(ConfigCollectionInterface $collection): void
     {
         foreach ($collection->getResources() as $resource) {
@@ -92,17 +78,11 @@ abstract class AbstractConfigCollection implements ConfigCollectionInterface
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getResources(): array
     {
         return array_values($this->resources);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function addResource(ResourceInterface $resource): void
     {
         $key = (string) $resource;

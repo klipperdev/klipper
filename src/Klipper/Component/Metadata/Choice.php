@@ -18,39 +18,25 @@ use Symfony\Component\Config\Resource\ResourceInterface;
  */
 class Choice implements ChoiceInterface
 {
-    /**
-     * @var string
-     */
-    protected $name;
+    protected string $name;
 
-    /**
-     * @var array
-     */
-    protected $listIdentifiers;
+    protected array $listIdentifiers;
 
     /**
      * @var string[]
      */
-    protected $values;
+    protected array $values;
 
-    /**
-     * @var null|string
-     */
-    protected $translationDomain;
+    protected ?string $translationDomain;
 
-    /**
-     * @var null|string
-     */
-    protected $placeholder;
+    protected ?string $placeholder;
 
     /**
      * @var ResourceInterface[]
      */
-    protected $resources = [];
+    protected array $resources = [];
 
     /**
-     * Constructor.
-     *
      * @param string[]            $values
      * @param ResourceInterface[] $resources
      */
@@ -70,49 +56,31 @@ class Choice implements ChoiceInterface
         $this->resources = $resources;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getListIdentifiers(): array
     {
         return $this->listIdentifiers;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getValues(): array
     {
         return $this->values;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getTranslationDomain(): ?string
     {
         return $this->translationDomain;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getPlaceholder(): ?string
     {
         return $this->placeholder;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getResources(): array
     {
         return $this->resources;

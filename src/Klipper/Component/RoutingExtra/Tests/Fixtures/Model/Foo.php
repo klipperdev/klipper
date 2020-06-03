@@ -16,10 +16,7 @@ namespace Klipper\Component\RoutingExtra\Tests\Fixtures\Model;
  */
 class Foo
 {
-    /**
-     * @var null|int
-     */
-    private $bar;
+    private ?int $bar;
 
     /**
      * @param int $bar

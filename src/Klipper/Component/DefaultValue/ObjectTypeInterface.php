@@ -20,51 +20,41 @@ interface ObjectTypeInterface
 {
     /**
      * Constructs a new object instance.
-     *
-     * @return object
      */
-    public function newInstance(ObjectBuilderInterface $builder, array $options);
+    public function newInstance(ObjectBuilderInterface $builder, array $options): ?object;
 
     /**
      * Builds the object default value.
      *
      * This method is called for each type in the hierarchy starting object the
      * top most type. Type extensions can further modify the object.
-     *
-     * @param ObjectBuilderInterface $builder The object builder
-     * @param array                  $options The options
      */
-    public function buildObject(ObjectBuilderInterface $builder, array $options);
+    public function buildObject(ObjectBuilderInterface $builder, array $options): void;
 
     /**
      * Finishes the object.
      *
      * This method is called for each type in the hierarchy ending object the
      * top most type. Type extensions can further modify the object.
-     *
-     * @param ObjectBuilderInterface $builder The object builder
-     * @param array                  $options The options
      */
-    public function finishObject(ObjectBuilderInterface $builder, array $options);
+    public function finishObject(ObjectBuilderInterface $builder, array $options): void;
 
     /**
      * Configures the options for this type.
-     *
-     * @param OptionsResolver $resolver The resolver for the options
      */
-    public function configureOptions(OptionsResolver $resolver);
+    public function configureOptions(OptionsResolver $resolver): void;
 
     /**
      * Returns the name of the parent type.
      *
      * @return null|string The name of the parent type if any, null otherwise
      */
-    public function getParent();
+    public function getParent(): ?string;
 
     /**
      * Returns the name of this type.
      *
      * @return string The name of this type
      */
-    public function getClass();
+    public function getClass(): string;
 }

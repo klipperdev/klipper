@@ -26,29 +26,20 @@ use Twig\Source;
  */
 class DoctrineTemplateLoader implements LoaderInterface, SourceContextLoaderInterface
 {
-    /**
-     * @var ManagerRegistry
-     */
-    private $doctrine;
+    private ManagerRegistry $doctrine;
 
-    /**
-     * @var string
-     */
-    private $namespace;
+    private string $namespace;
 
     /**
      * @var DoctrineTemplate[]
      */
-    private $cache = [];
+    private array $cache = [];
 
     /**
      * @var bool[]
      */
-    private $errorCache = [];
+    private array $errorCache = [];
 
-    /**
-     * Constructor.
-     */
     public function __construct(
         ManagerRegistry $doctrine,
         string $namespace = 'user_templates'
@@ -58,7 +49,7 @@ class DoctrineTemplateLoader implements LoaderInterface, SourceContextLoaderInte
     }
 
     /**
-     * {@inheritdoc}
+     * @param mixed $name
      */
     public function getSourceContext($name): Source
     {
@@ -69,7 +60,7 @@ class DoctrineTemplateLoader implements LoaderInterface, SourceContextLoaderInte
     }
 
     /**
-     * {@inheritdoc}
+     * @param mixed $name
      */
     public function getCacheKey($name): string
     {
@@ -79,7 +70,8 @@ class DoctrineTemplateLoader implements LoaderInterface, SourceContextLoaderInte
     }
 
     /**
-     * {@inheritdoc}
+     * @param mixed $name
+     * @param mixed $time
      */
     public function isFresh($name, $time): bool
     {
@@ -91,7 +83,7 @@ class DoctrineTemplateLoader implements LoaderInterface, SourceContextLoaderInte
     }
 
     /**
-     * {@inheritdoc}
+     * @param mixed $name
      *
      * @throws
      */

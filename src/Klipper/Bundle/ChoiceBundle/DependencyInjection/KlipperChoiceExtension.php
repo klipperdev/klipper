@@ -22,8 +22,6 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 class KlipperChoiceExtension extends Extension
 {
     /**
-     * {@inheritdoc}
-     *
      * @throws \Exception
      */
     public function load(array $configs, ContainerBuilder $container): void

@@ -19,69 +19,37 @@ use Klipper\Component\Metadata\Util\BuilderUtil;
  */
 class ActionMetadataBuilder implements ActionMetadataBuilderInterface
 {
-    /**
-     * @var null|ObjectMetadataBuilderInterface
-     */
-    protected $parent;
+    protected ?ObjectMetadataBuilderInterface $parent = null;
 
-    /**
-     * @var string
-     */
-    protected $name;
+    protected string $name;
 
     /**
      * @var string[]
      */
-    protected $methods = [];
+    protected array $methods = [];
 
     /**
      * @var string[]
      */
-    protected $schemes = [];
+    protected array $schemes = [];
+
+    protected ?string $host = null;
+
+    protected ?string $path = null;
+
+    protected ?string $fragment = null;
+
+    protected array $defaults = [];
+
+    protected array $requirements = [];
+
+    protected array $options = [];
+
+    protected ?string $condition = null;
+
+    protected array $configurations = [];
 
     /**
-     * @var null|string
-     */
-    protected $host;
-
-    /**
-     * @var null|string
-     */
-    protected $path;
-
-    /**
-     * @var null|string
-     */
-    protected $fragment;
-
-    /**
-     * @var array
-     */
-    protected $defaults = [];
-
-    /**
-     * @var array
-     */
-    protected $requirements = [];
-
-    /**
-     * @var array
-     */
-    protected $options = [];
-
-    /**
-     * @var null|string
-     */
-    protected $condition;
-
-    /**
-     * @var array
-     */
-    protected $configurations = [];
-
-    /**
-     * Constructor.
-     *
      * @param string $name The action name
      */
     public function __construct(string $name)
@@ -89,9 +57,6 @@ class ActionMetadataBuilder implements ActionMetadataBuilderInterface
         $this->name = $name;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setParent(ObjectMetadataBuilderInterface $parent): self
     {
         $this->parent = $parent;
@@ -99,9 +64,6 @@ class ActionMetadataBuilder implements ActionMetadataBuilderInterface
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getParent(): ObjectMetadataBuilderInterface
     {
         if (null === $this->parent) {
@@ -111,9 +73,6 @@ class ActionMetadataBuilder implements ActionMetadataBuilderInterface
         return $this->parent;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setName(string $name): self
     {
         $this->name = $name;
@@ -121,17 +80,11 @@ class ActionMetadataBuilder implements ActionMetadataBuilderInterface
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setMethods(array $methods): self
     {
         $this->methods = $methods;
@@ -139,17 +92,11 @@ class ActionMetadataBuilder implements ActionMetadataBuilderInterface
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getMethods(): array
     {
         return $this->methods;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setSchemes(array $schemes): self
     {
         $this->schemes = $schemes;
@@ -157,17 +104,11 @@ class ActionMetadataBuilder implements ActionMetadataBuilderInterface
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getSchemes(): array
     {
         return $this->schemes;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setHost(?string $host): self
     {
         $this->host = $host;
@@ -175,17 +116,11 @@ class ActionMetadataBuilder implements ActionMetadataBuilderInterface
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getHost(): ?string
     {
         return $this->host;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setPath(?string $path): self
     {
         $this->path = $path;
@@ -193,17 +128,11 @@ class ActionMetadataBuilder implements ActionMetadataBuilderInterface
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getPath(): ?string
     {
         return $this->path;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setFragment(?string $fragment): self
     {
         $this->fragment = $fragment;
@@ -211,17 +140,11 @@ class ActionMetadataBuilder implements ActionMetadataBuilderInterface
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getFragment(): ?string
     {
         return $this->fragment;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setController(?string $controller): self
     {
         if (null === $controller) {
@@ -233,17 +156,11 @@ class ActionMetadataBuilder implements ActionMetadataBuilderInterface
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getController(): ?string
     {
         return $this->defaults['_controller'] ?? null;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setFormat(?string $format): self
     {
         if (null === $format) {
@@ -255,17 +172,11 @@ class ActionMetadataBuilder implements ActionMetadataBuilderInterface
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getFormat(): ?string
     {
         return $this->defaults['_format'] ?? null;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setLocale(?string $locale): self
     {
         if (null === $locale) {
@@ -277,17 +188,11 @@ class ActionMetadataBuilder implements ActionMetadataBuilderInterface
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getLocale(): ?string
     {
         return $this->defaults['_locale'] ?? null;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setDefaults(array $defaults): self
     {
         $this->defaults = $defaults;
@@ -295,9 +200,6 @@ class ActionMetadataBuilder implements ActionMetadataBuilderInterface
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function addDefaults(array $defaults): self
     {
         $this->defaults = array_merge($this->defaults, $defaults);
@@ -305,17 +207,11 @@ class ActionMetadataBuilder implements ActionMetadataBuilderInterface
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getDefaults(): array
     {
         return $this->defaults;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setRequirements(array $requirements): self
     {
         $this->requirements = $requirements;
@@ -323,9 +219,6 @@ class ActionMetadataBuilder implements ActionMetadataBuilderInterface
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function addRequirements(array $requirements): self
     {
         $this->requirements = array_merge($this->requirements, $requirements);
@@ -333,17 +226,11 @@ class ActionMetadataBuilder implements ActionMetadataBuilderInterface
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getRequirements(): array
     {
         return $this->requirements;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setOptions(array $options): self
     {
         $this->options = $options;
@@ -351,9 +238,6 @@ class ActionMetadataBuilder implements ActionMetadataBuilderInterface
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function addOptions(array $options): self
     {
         $this->options = array_merge($this->options, $options);
@@ -361,17 +245,11 @@ class ActionMetadataBuilder implements ActionMetadataBuilderInterface
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getOptions(): array
     {
         return $this->options;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setCondition(?string $condition): self
     {
         $this->condition = $condition;
@@ -379,17 +257,11 @@ class ActionMetadataBuilder implements ActionMetadataBuilderInterface
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getCondition(): ?string
     {
         return $this->condition;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setConfigurations(array $configurations): self
     {
         $this->configurations = $configurations;
@@ -397,17 +269,11 @@ class ActionMetadataBuilder implements ActionMetadataBuilderInterface
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getConfigurations(): array
     {
         return $this->configurations;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function merge(ActionMetadataBuilderInterface $builder): self
     {
         BuilderUtil::mergeValues($this, $builder);
@@ -415,9 +281,6 @@ class ActionMetadataBuilder implements ActionMetadataBuilderInterface
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function build(ObjectMetadataInterface $parent): ActionMetadataInterface
     {
         return new ActionMetadata(

@@ -28,10 +28,7 @@ use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
  */
 final class TransporterPassTest extends KernelTestCase
 {
-    /**
-     * @var TransporterPass
-     */
-    protected $pass;
+    protected ?TransporterPass $pass = null;
 
     protected function setUp(): void
     {

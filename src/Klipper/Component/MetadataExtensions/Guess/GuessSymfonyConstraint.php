@@ -25,24 +25,16 @@ use Symfony\Component\Validator\Mapping\Factory\MetadataFactoryInterface;
  */
 class GuessSymfonyConstraint implements GuessFieldConfigInterface, GuessRegistryAwareInterface
 {
-    /**
-     * @var MetadataFactoryInterface
-     */
-    private $factory;
+    private MetadataFactoryInterface $factory;
 
-    /**
-     * @var MetadataRegistryInterface
-     */
-    private $metadataRegistry;
+    private ?MetadataRegistryInterface $metadataRegistry = null;
 
     /**
      * @var GuessConstraintInterface[]
      */
-    private $guessConstraints;
+    private array $guessConstraints;
 
     /**
-     * Constructor.
-     *
      * @param MetadataFactoryInterface   $factory          The jms metadata factory
      * @param GuessConstraintInterface[] $guessConstraints The guess constraints
      */
@@ -68,9 +60,6 @@ class GuessSymfonyConstraint implements GuessFieldConfigInterface, GuessRegistry
         return $this->guessConstraints;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setRegistry(MetadataRegistryInterface $registry): void
     {
         $this->metadataRegistry = $registry;
@@ -81,9 +70,6 @@ class GuessSymfonyConstraint implements GuessFieldConfigInterface, GuessRegistry
         return $this->metadataRegistry;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function guessFieldConfig(FieldMetadataBuilderInterface $builder): void
     {
         $field = $builder->getField();

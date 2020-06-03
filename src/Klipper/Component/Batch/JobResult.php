@@ -21,43 +21,23 @@ use Symfony\Component\Validator\ConstraintViolationListInterface;
  */
 class JobResult implements JobResultInterface
 {
-    /**
-     * @var ConstraintViolationListInterface
-     */
-    protected $constraintViolationList;
+    protected ConstraintViolationListInterface $constraintViolationList;
 
-    /**
-     * @var null|\Exception
-     */
-    protected $exception;
+    protected ?\Throwable $throwable;
 
-    /**
-     * @var bool
-     */
-    protected $retryable = true;
+    protected bool $retryable = true;
 
-    /**
-     * Constructor.
-     *
-     * @param null|\Exception $exception The exception
-     */
-    public function __construct(?\Exception $exception = null)
+    public function __construct(?\Throwable $exception = null)
     {
         $this->constraintViolationList = new ConstraintViolationList();
-        $this->exception = $exception;
+        $this->throwable = $exception;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function isValid(): bool
     {
-        return null === $this->exception && 0 === $this->constraintViolationList->count();
+        return null === $this->throwable && 0 === $this->constraintViolationList->count();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setRetryable(bool $retryable)
     {
         $this->retryable = $retryable;
@@ -65,34 +45,25 @@ class JobResult implements JobResultInterface
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function isRetryable(): bool
     {
         return $this->retryable;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getConstraintViolationList(): ConstraintViolationListInterface
     {
         return $this->constraintViolationList;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function setException(?\Exception $exception)
+    public function setThrowable(?\Throwable $throwable)
     {
-        $this->exception = $exception;
+        $this->throwable = $throwable;
 
         return $this;
     }
 
-    public function getException(): ?\Exception
+    public function getThrowable(): ?\Throwable
     {
-        return $this->exception;
+        return $this->throwable;
     }
 }

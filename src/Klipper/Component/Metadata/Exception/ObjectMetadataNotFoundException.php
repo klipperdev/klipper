@@ -17,8 +17,6 @@ namespace Klipper\Component\Metadata\Exception;
 class ObjectMetadataNotFoundException extends MetadataNotFoundException
 {
     /**
-     * Constructor.
-     *
      * @param string $class The class name
      */
     public function __construct(string $class)

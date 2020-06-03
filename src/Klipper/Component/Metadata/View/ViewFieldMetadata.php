@@ -42,8 +42,6 @@ class ViewFieldMetadata extends BaseViewChildMetadata implements ViewFieldMetada
     protected $translatable;
 
     /**
-     * Constructor.
-     *
      * @param string      $field               The field name in class
      * @param string      $name                The name of metadata field
      * @param string      $type                The type of metadata field
@@ -84,41 +82,26 @@ class ViewFieldMetadata extends BaseViewChildMetadata implements ViewFieldMetada
         $this->translatable = $translatable;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getField(): string
     {
         return $this->field;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function isSortable(): bool
     {
         return $this->sortable;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function isFilterable(): bool
     {
         return $this->filterable;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function isSearchable(): bool
     {
         return $this->searchable;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function isTranslatable(): bool
     {
         return $this->translatable;

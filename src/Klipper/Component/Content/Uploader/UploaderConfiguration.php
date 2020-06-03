@@ -16,34 +16,20 @@ namespace Klipper\Component\Content\Uploader;
  */
 class UploaderConfiguration implements UploaderConfigurationInterface
 {
-    /**
-     * @var string
-     */
-    private $name;
+    private string $name;
 
-    /**
-     * @var string
-     */
-    private $path;
+    private string $path;
 
-    /**
-     * @var int
-     */
-    private $maxSize;
+    private int $maxSize;
 
     /**
      * @var string[]
      */
-    private $allowedTypeMimes;
+    private array $allowedTypeMimes;
+
+    private ?string $namer;
 
     /**
-     * @var null|string
-     */
-    private $namer;
-
-    /**
-     * Constructor.
-     *
      * @param string      $name             The uploader name
      * @param string      $path             The path of the upload directory
      * @param int         $maxSize          The max size of the uploaded file
@@ -59,41 +45,26 @@ class UploaderConfiguration implements UploaderConfigurationInterface
         $this->namer = $namer;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getPath(): string
     {
         return $this->path;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getMaxSize(): int
     {
         return $this->maxSize;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getAllowedTypeMimes(): array
     {
         return $this->allowedTypeMimes;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getNamer(): ?string
     {
         return $this->namer;

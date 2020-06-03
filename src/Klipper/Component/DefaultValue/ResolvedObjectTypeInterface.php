@@ -11,6 +11,8 @@
 
 namespace Klipper\Component\DefaultValue;
 
+use Symfony\Component\OptionsResolver\OptionsResolver;
+
 /**
  * A wrapper for a object default value type and its extensions.
  *
@@ -23,28 +25,28 @@ interface ResolvedObjectTypeInterface
      *
      * @return string The type name
      */
-    public function getClass();
+    public function getClass(): string;
 
     /**
      * Returns the parent type.
      *
      * @return ResolvedObjectTypeInterface The parent type or null
      */
-    public function getParent();
+    public function getParent(): ResolvedObjectTypeInterface;
 
     /**
      * Returns the wrapped object default value type.
      *
      * @return ObjectTypeInterface The wrapped object default value type
      */
-    public function getInnerType();
+    public function getInnerType(): ObjectTypeInterface;
 
     /**
      * Returns the extensions of the wrapped object default value type.
      *
      * @return ObjectTypeExtensionInterface[] An array of {@link ObjectTypeExtensionInterface} instances
      */
-    public function getTypeExtensions();
+    public function getTypeExtensions(): iterable;
 
     /**
      * Creates a new object default value builder for this type.
@@ -54,7 +56,7 @@ interface ResolvedObjectTypeInterface
      *
      * @return ObjectBuilderInterface The created object default value builder
      */
-    public function createBuilder(ObjectFactoryInterface $factory, array $options = []);
+    public function createBuilder(ObjectFactoryInterface $factory, array $options = []): ObjectBuilderInterface;
 
     /**
      * Constructs a new object instance.
@@ -64,7 +66,7 @@ interface ResolvedObjectTypeInterface
      *
      * @return object The new object instance
      */
-    public function newInstance(ObjectBuilderInterface $builder, array $options);
+    public function newInstance(ObjectBuilderInterface $builder, array $options): ?object;
 
     /**
      * Configures a object default value builder for the type hierarchy.
@@ -72,7 +74,7 @@ interface ResolvedObjectTypeInterface
      * @param ObjectBuilderInterface $builder The builder to configure
      * @param array                  $options The options used for the configuration
      */
-    public function buildObject(ObjectBuilderInterface $builder, array $options);
+    public function buildObject(ObjectBuilderInterface $builder, array $options): void;
 
     /**
      * Finishes a object default value builder for the type hierarchy.
@@ -80,12 +82,12 @@ interface ResolvedObjectTypeInterface
      * @param ObjectBuilderInterface $builder The builder to configure
      * @param array                  $options The options used for the configuration
      */
-    public function finishObject(ObjectBuilderInterface $builder, array $options);
+    public function finishObject(ObjectBuilderInterface $builder, array $options): void;
 
     /**
      * Returns the configured options resolver used for this type.
      *
-     * @return \Symfony\Component\OptionsResolver\OptionsResolverInterface The options resolver
+     * @return OptionsResolver The options resolver
      */
-    public function getOptionsResolver();
+    public function getOptionsResolver(): OptionsResolver;
 }

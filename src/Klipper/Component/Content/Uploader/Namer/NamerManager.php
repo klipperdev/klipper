@@ -19,11 +19,9 @@ class NamerManager implements NamerManagerInterface
     /**
      * @var NamerInterface[]
      */
-    private $namers;
+    private array $namers = [];
 
     /**
-     * Constructor.
-     *
      * @param NamerInterface[] $namers The namers
      */
     public function __construct(array $namers)
@@ -33,25 +31,16 @@ class NamerManager implements NamerManagerInterface
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function has(?string $name): bool
     {
         return isset($this->namers[$name]);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function get(?string $name): ?NamerInterface
     {
         return $this->namers[$name] ?? null;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function add(NamerInterface $namer): void
     {
         $this->namers[$namer->getName()] = $namer;

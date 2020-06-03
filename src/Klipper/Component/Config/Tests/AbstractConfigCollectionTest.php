@@ -27,6 +27,7 @@ final class AbstractConfigCollectionTest extends TestCase
      */
     public function testGetIterator(): void
     {
+        /** @var AbstractConfigCollection $collection */
         $collection = $this->getMockForAbstractClass(AbstractConfigCollection::class);
 
         static::assertCount(0, $collection->getIterator());
@@ -37,6 +38,7 @@ final class AbstractConfigCollectionTest extends TestCase
      */
     public function testAll(): void
     {
+        /** @var AbstractConfigCollection $collection */
         $collection = $this->getMockForAbstractClass(AbstractConfigCollection::class);
 
         static::assertCount(0, $collection->all());
@@ -47,6 +49,7 @@ final class AbstractConfigCollectionTest extends TestCase
      */
     public function testCount(): void
     {
+        /** @var AbstractConfigCollection $collection */
         $collection = $this->getMockForAbstractClass(AbstractConfigCollection::class);
 
         static::assertSame(0, $collection->count());
@@ -57,6 +60,7 @@ final class AbstractConfigCollectionTest extends TestCase
      */
     public function testAddResource(): void
     {
+        /** @var AbstractConfigCollection $collection */
         $collection = $this->getMockForAbstractClass(AbstractConfigCollection::class);
 
         static::assertSame([], $collection->getResources());
@@ -74,6 +78,7 @@ final class AbstractConfigCollectionTest extends TestCase
      */
     public function testAddCollection(): void
     {
+        /** @var AbstractConfigCollection $collection */
         $collection = $this->getMockForAbstractClass(AbstractConfigCollection::class);
 
         static::assertSame([], $collection->getResources());
@@ -81,6 +86,7 @@ final class AbstractConfigCollectionTest extends TestCase
         /** @var ResourceInterface $mockResource */
         $mockResource = $this->getMockBuilder(ResourceInterface::class)->getMock();
 
+        /** @var AbstractConfigCollection $mockNewCollection */
         $mockNewCollection = $this->getMockForAbstractClass(AbstractConfigCollection::class);
         $mockNewCollection->addResource($mockResource);
 

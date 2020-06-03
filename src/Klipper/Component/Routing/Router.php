@@ -27,67 +27,41 @@ use Symfony\Component\Routing\RouterInterface;
  */
 class Router implements RouterInterface, RequestMatcherInterface
 {
-    /**
-     * @var BaseRouter
-     */
-    protected $router;
+    protected BaseRouter $router;
 
-    /**
-     * Constructor.
-     *
-     * @param BaseRouter $router The router
-     */
     public function __construct(BaseRouter $router)
     {
         $this->router = $router;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setContext(RequestContext $context): void
     {
         $this->router->setContext($context);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getContext(): RequestContext
     {
         return $this->router->getContext();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function matchRequest(Request $request): array
     {
         return $this->router->matchRequest($request);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getRouteCollection(): RouteCollection
     {
         return $this->router->getRouteCollection();
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function generate($name, $parameters = [], $referenceType = self::ABSOLUTE_PATH): string
+    public function generate(string $name, array $parameters = [], int $referenceType = self::ABSOLUTE_PATH): string
     {
         $path = rtrim($this->router->generate($name, $parameters, $referenceType), '/');
 
         return RequestUtil::restoreFakeHost($path);
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function match($pathinfo): array
+    public function match(string $pathinfo): array
     {
         return $this->router->match($pathinfo);
     }

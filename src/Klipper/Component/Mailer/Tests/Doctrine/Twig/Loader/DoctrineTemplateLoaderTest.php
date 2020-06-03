@@ -37,10 +37,7 @@ final class DoctrineTemplateLoaderTest extends TestCase
      */
     protected $repo;
 
-    /**
-     * @var DoctrineTemplateLoader
-     */
-    protected $loader;
+    protected ?DoctrineTemplateLoader $loader = null;
 
     /**
      * @throws
@@ -173,7 +170,7 @@ final class DoctrineTemplateLoaderTest extends TestCase
 
         try {
             $this->loader->getSourceContext($name);
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             $exception = $e;
         }
 
