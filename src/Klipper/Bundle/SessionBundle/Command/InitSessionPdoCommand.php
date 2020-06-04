@@ -23,7 +23,7 @@ use Symfony\Component\HttpFoundation\Session\Storage\Handler\PdoSessionHandler;
  */
 class InitSessionPdoCommand extends Command
 {
-    private $handler;
+    private PdoSessionHandler $handler;
 
     public function __construct(PdoSessionHandler $pdoHandler)
     {
