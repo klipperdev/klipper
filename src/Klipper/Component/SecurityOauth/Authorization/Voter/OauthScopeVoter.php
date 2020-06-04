@@ -11,37 +11,57 @@
 
 namespace Klipper\Component\SecurityOauth\Authorization\Voter;
 
-use Klipper\Component\Security\Authorization\Voter\AbstractIdentityVoter;
 use Klipper\Component\SecurityOauth\Annotation\OauthScope;
+use Klipper\Component\SecurityOauth\Authentication\Token\OauthToken;
+use Klipper\Component\SecurityOauth\Scope\ScopeVote;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\Security\Core\Authorization\Voter\VoterInterface;
 
 /**
  * @author François Pluchino <francois.pluchino@klipper.dev>
  */
-class OauthScopeVoter extends AbstractIdentityVoter
+class OauthScopeVoter implements VoterInterface
 {
-    protected function getValidType(): string
+    public function vote(TokenInterface $token, $subject, array $attributes)
     {
-        return 'oauth_scope';
-    }
+        $vote = self::ACCESS_ABSTAIN;
 
-    protected function getDefaultPrefix(): string
-    {
-        return 'scope:';
-    }
+        foreach ($attributes as $attribute) {
+            if (!$this->supports($attribute)) {
+                continue;
+            }
 
-    protected function supports(string $attribute, $subject): bool
-    {
-        return parent::supports($attribute, $subject) || $attribute instanceof OauthScope;
-    }
+            $vote = self::ACCESS_DENIED;
 
-    protected function voteOnAttribute(string $attribute, $subject, TokenInterface $token): bool
-    {
-        if (!$attribute instanceof OauthScope) {
-            return parent::voteOnAttribute($attribute, $subject, $token);
+            if ($this->voteOnAttribute($attribute, $token)) {
+                return self::ACCESS_GRANTED;
+            }
         }
 
-        $tokenScopes = $this->getTokenScopes($token);
+        return $vote;
+    }
+
+    /**
+     * @param mixed $attribute
+     */
+    protected function supports($attribute): bool
+    {
+        return $attribute instanceof OauthScope
+            || (\is_string($attribute) && 0 === strpos($attribute, $this->getPrefix()));
+    }
+
+    /**
+     * @param OauthScope|string $attribute The attribute
+     * @param null|mixed        $subject   The subject
+     * @param TokenInterface    $token     The security token
+     */
+    protected function voteOnAttribute($attribute, TokenInterface $token): bool
+    {
+        if (\is_string($attribute)) {
+            $attribute = new ScopeVote(substr($attribute, \strlen($this->getPrefix())));
+        }
+
+        $tokenScopes = $token instanceof OauthToken ? $token->getScopes() : [];
 
         if ($attribute->isAllRequired()) {
             foreach ($attribute->getScope() as $scope) {
@@ -68,17 +88,8 @@ class OauthScopeVoter extends AbstractIdentityVoter
         return true;
     }
 
-    private function getTokenScopes(TokenInterface $token): array
+    protected function getPrefix(): string
     {
-        $sids = $this->sim->getSecurityIdentities($token);
-        $scopes = [];
-
-        foreach ($sids as $sid) {
-            if ($sid->getType() === $this->getValidType()) {
-                $scopes[] = $sid->getIdentifier();
-            }
-        }
-
-        return $scopes;
+        return 'scope:';
     }
 }
