@@ -57,11 +57,14 @@ class OauthScopeVoter implements VoterInterface
      */
     protected function voteOnAttribute($attribute, TokenInterface $token): bool
     {
-        if (\is_string($attribute)) {
-            $attribute = new ScopeVote(substr($attribute, \strlen($this->getPrefix())));
+        if (!$token instanceof OauthToken) {
+            return true;
         }
 
         $tokenScopes = $token instanceof OauthToken ? $token->getScopes() : [];
+        $attribute = \is_string($attribute)
+            ? new ScopeVote(substr($attribute, \strlen($this->getPrefix())))
+            : $attribute;
 
         if ($attribute->isAllRequired()) {
             foreach ($attribute->getScope() as $scope) {
