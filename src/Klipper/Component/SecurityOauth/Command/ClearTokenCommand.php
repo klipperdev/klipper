@@ -43,7 +43,7 @@ class ClearTokenCommand extends Command
         ;
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output): void
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);
         $io->comment('Clearing the expired oauth auth codes, access tokens and refresh tokens');
@@ -54,6 +54,8 @@ class ClearTokenCommand extends Command
         $this->clearTokens(OauthRefreshTokenInterface::class);
 
         $io->success('Expired Oauth tokens and auth codes were successfully cleared');
+
+        return 0;
     }
 
     private function clearTokens(string $class): void

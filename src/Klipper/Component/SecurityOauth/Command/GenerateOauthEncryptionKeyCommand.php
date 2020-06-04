@@ -32,9 +32,11 @@ class GenerateOauthEncryptionKeyCommand extends Command
     /**
      * @throws
      */
-    protected function execute(InputInterface $input, OutputInterface $output): void
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $key = Key::createNewRandomKey();
         $output->writeln($key->saveToAsciiSafeString());
+
+        return 0;
     }
 }

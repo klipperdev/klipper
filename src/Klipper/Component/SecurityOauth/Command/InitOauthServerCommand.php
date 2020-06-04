@@ -47,7 +47,7 @@ class InitOauthServerCommand extends Command
         ;
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output): void
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $proc = new Process(['openssl', 'version']);
         $proc->run();
@@ -58,6 +58,8 @@ class InitOauthServerCommand extends Command
 
         $this->generatePrivateKey($output, $input->getOption('force'));
         $this->generatePublicKey($output, $input->getOption('force'));
+
+        return 0;
     }
 
     protected function generatePrivateKey(OutputInterface $output, bool $force): void
