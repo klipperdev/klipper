@@ -21,14 +21,14 @@ class MetadataManager implements MetadataManagerInterface
     protected MetadataFactoryInterface $factory;
 
     /**
-     * @var ObjectMetadataInterface[]
+     * @var null|ObjectMetadataInterface[]
      */
-    protected array $objects = [];
+    protected ?array $objects = null;
 
     /**
      * @var null|ChoiceInterface[]
      */
-    protected ?array $choices;
+    protected ?array $choices = null;
 
     /**
      * @param MetadataFactoryInterface $factory The metadata factory
