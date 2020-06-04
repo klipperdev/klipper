@@ -232,7 +232,6 @@ class PermissionMetadataManager implements PermissionMetadataManagerInterface
         $metadatas = [];
 
         foreach ($permissionCheckings as $permCheck) {
-            /** @var PermissionInterface $perm */
             $perm = $permCheck->getPermission();
             $metadatas[$perm->getOperation()] = $this->buildPermission($perm, $permCheck->isGranted(), $permCheck->isLocked());
         }
