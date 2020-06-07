@@ -17,7 +17,7 @@ use Klipper\Component\Metadata\FieldMetadataBuilderInterface;
 use Klipper\Component\Metadata\MetadataContexts;
 use Klipper\Component\Metadata\ObjectMetadataBuilderInterface;
 use Klipper\Component\Metadata\Util\MetadataUtil;
-use Symfony\Component\Inflector\Inflector;
+use Symfony\Component\String\Inflector\EnglishInflector;
 
 /**
  * @author François Pluchino <francois.pluchino@klipper.dev>
@@ -29,13 +29,15 @@ class GuessFinal implements
 {
     public function guessObjectConfig(ObjectMetadataBuilderInterface $builder): void
     {
+        $inflector = new EnglishInflector();
         $class = $builder->getClass();
         $label = $builder->getLabel();
 
         $builder->setName($builder->getName() ?? MetadataUtil::getObjectName($class));
         $builder->setTranslationDomain(null !== $label ? $builder->getTranslationDomain() : null);
         $builder->setPublic($builder->isPublic() ?? false);
-        $builder->setPluralName($builder->getPluralName() ?? Inflector::pluralize($builder->getName()));
+
+        $builder->setPluralName($builder->getPluralName() ?? (string) current($inflector->pluralize($builder->getName())));
         $builder->setMultiSortable($builder->isMultiSortable() ?? false);
         $builder->setDefaultSortable($builder->getDefaultSortable() ?? []);
         $builder->setAvailableContexts($builder->getAvailableContexts() ?? [
