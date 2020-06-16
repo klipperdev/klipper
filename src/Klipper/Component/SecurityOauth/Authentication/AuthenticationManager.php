@@ -17,6 +17,7 @@ use Symfony\Component\Security\Core\Authentication\AuthenticationManagerInterfac
 use Symfony\Component\Security\Core\Authentication\Token\AnonymousToken;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\Security\Core\Exception\ProviderNotFoundException;
 use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 use Symfony\Component\Security\Http\SecurityEvents;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
@@ -58,6 +59,8 @@ class AuthenticationManager implements AuthenticationManagerInterface
             $token = $this->authManager->authenticate($token);
             $this->tokenStorage->setToken($token);
             $this->dispatchInteractiveLogin($token);
+        } catch (ProviderNotFoundException $e) {
+            throw $e;
         } catch (\Throwable $e) {
             $token = null;
         }
