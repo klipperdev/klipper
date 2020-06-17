@@ -27,5 +27,5 @@ interface ProfileableInterface
 
     public function getProfile(): ?ProfileInterface;
 
-    public function getFullName($format = '{firstName} {lastName}'): string;
+    public function getFullName(string $format = '{firstName} {lastName}'): string;
 }
