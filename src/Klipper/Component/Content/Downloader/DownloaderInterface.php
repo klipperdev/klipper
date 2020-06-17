@@ -14,6 +14,8 @@ namespace Klipper\Component\Content\Downloader;
 use Klipper\Component\Content\ImageManipulator\Config;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpKernel\Exception\UnsupportedMediaTypeHttpException;
 
 /**
  * @author François Pluchino <francois.pluchino@klipper.dev>
@@ -29,12 +31,28 @@ interface DownloaderInterface
     /**
      * Download the file.
      *
-     * @param string      $path               The file path
+     * @param null|string $path               The file path
      * @param null|string $contentDisposition The content disposition
      * @param array       $headers            The custom headers
      * @param string      $mode               The download mode
+     *
+     * @throws NotFoundHttpException
+     * @throws UnsupportedMediaTypeHttpException
      */
-    public function download(string $path, ?string $contentDisposition = null, array $headers = [], string $mode = self::MODE_AUTO): Response;
+    public function download(?string $path, ?string $contentDisposition = null, array $headers = [], string $mode = self::MODE_AUTO): Response;
+
+    /**
+     * Download the image file.
+     *
+     * @param null|string $path               The image file path
+     * @param null|string $contentDisposition The content disposition
+     * @param array       $headers            The custom headers
+     * @param string      $mode               The download mode
+     *
+     * @throws NotFoundHttpException
+     * @throws UnsupportedMediaTypeHttpException
+     */
+    public function downloadImage(?string $path, ?string $contentDisposition = null, array $headers = []): Response;
 
     /**
      * Build the image manipulator config.

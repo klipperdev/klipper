@@ -40,8 +40,16 @@ class Downloader implements DownloaderInterface
         $this->requestStack = $requestStack;
     }
 
-    public function download(string $path, ?string $contentDisposition = null, array $headers = [], string $mode = self::MODE_AUTO): Response
-    {
+    public function download(
+        ?string $path,
+        ?string $contentDisposition = null,
+        array $headers = [],
+        string $mode = self::MODE_AUTO
+    ): Response {
+        if (empty($path)) {
+            throw new NotFoundHttpException();
+        }
+
         $ext = pathinfo($path, PATHINFO_EXTENSION);
         $config = $this->buildConfig($this->requestStack->getCurrentRequest());
         $configExt = $config->getExtension() ?? $ext;
@@ -72,6 +80,19 @@ class Downloader implements DownloaderInterface
         }
 
         return $this->downloadStream($stream, $mimeType, $contentDisposition, $headers);
+    }
+
+    public function downloadImage(
+        ?string $path,
+        ?string $contentDisposition = null,
+        array $headers = []
+    ): Response {
+        return $this->download(
+            $path,
+            $contentDisposition,
+            $headers,
+            DownloaderInterface::MODE_FORCE_IMAGE_MANIPULATOR
+        );
     }
 
     public function buildConfig(?Request $request = null): Config
@@ -121,8 +142,13 @@ class Downloader implements DownloaderInterface
      * @param array       $headers            The custom headers
      * @param callable    $callback           The callable
      */
-    protected function downloadStream($stream, string $contentType, ?string $contentDisposition = null, array $headers = [], ?callable $callback = null): Response
-    {
+    protected function downloadStream(
+        $stream,
+        string $contentType,
+        ?string $contentDisposition = null,
+        array $headers = [],
+        ?callable $callback = null
+    ): Response {
         $request = $this->requestStack->getCurrentRequest();
         $response = new StreamedResponse();
 
@@ -135,7 +161,8 @@ class Downloader implements DownloaderInterface
             'Accept-Ranges' => 'bytes',
         ];
 
-        if ($request && null !== $contentDisposition && null !== $httpRange = $request->server->get('HTTP_RANGE')) {
+        if ($request && null !== $contentDisposition
+                && null !== $httpRange = $request->server->get('HTTP_RANGE')) {
             if (!preg_match('#bytes=([\\d]+)?-([\\d]+)?(/[\\d]+)?#i', $httpRange)) {
                 throw new HttpException(
                     Response::HTTP_REQUESTED_RANGE_NOT_SATISFIABLE,
@@ -146,7 +173,9 @@ class Downloader implements DownloaderInterface
             $start = !empty($m[1]) ? (int) $m[1] : null;
             $end = !empty($m[2]) ? (int) $m[2] : $end;
 
-            if ((!$start && !$end) || (null !== $end && $end >= $size) || ($end && $start && $end < $start)) {
+            if ((!$start && !$end)
+                    || (null !== $end && $end >= $size)
+                    || ($end && $start && $end < $start)) {
                 throw new HttpException(
                     Response::HTTP_REQUESTED_RANGE_NOT_SATISFIABLE,
                     Response::$statusTexts[Response::HTTP_REQUESTED_RANGE_NOT_SATISFIABLE]
@@ -173,7 +202,9 @@ class Downloader implements DownloaderInterface
 
         $response->headers->add(array_merge($defaultHeaders, $headers));
 
-        if ($request && $request->hasSession() && null !== $request->getSession() && $request->getSession()->isStarted()) {
+        if ($request && $request->hasSession()
+                && null !== $request->getSession()
+                && $request->getSession()->isStarted()) {
             $request->getSession()->save();
         }
 
