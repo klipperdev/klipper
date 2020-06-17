@@ -59,7 +59,7 @@ trait ProfileableTrait
     /**
      * @see ProfileableInterface::getFullName()
      */
-    public function getFullName($format = '{firstName} {lastName}'): string
+    public function getFullName(string $format = '{firstName} {lastName}'): string
     {
         $fullName = null !== $this->profile
             ? $this->profile->getFullName($format)
