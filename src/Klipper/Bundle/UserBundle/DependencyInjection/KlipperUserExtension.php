@@ -31,5 +31,6 @@ class KlipperUserExtension extends Extension
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('locale_listener.xml');
         $loader->load('timezone_listener.xml');
+        $loader->load('doctrine_listener.xml');
     }
 }

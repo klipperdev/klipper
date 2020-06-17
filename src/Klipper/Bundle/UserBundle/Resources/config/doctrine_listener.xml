@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="klipper_user.doctrine.subscriber.user"
+                 class="Klipper\Component\User\Doctrine\Listener\UserSubscriber">
+            <tag name="doctrine.event_subscriber" />
+            <argument type="service" id="klipper_resource.domain_manager" />
+            <argument type="service" id="validator" />
+        </service>
+    </services>
+</container>
