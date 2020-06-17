@@ -52,11 +52,6 @@ class UserSubscriber implements EventSubscriber
         }
     }
 
-    /**
-     * Create the profile of user.
-     *
-     * @param UserInterface $entity The user entity
-     */
     protected function createProfile(UserInterface $entity): void
     {
         if ($entity instanceof ProfileableInterface && null === $entity->getProfile()) {
