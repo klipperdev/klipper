@@ -9,22 +9,20 @@
  * file that was distributed with this source code.
  */
 
-namespace Klipper\Bundle\ApiSecurityBundle\DependencyInjection;
+namespace Klipper\Bundle\ApiSearchBundle\DependencyInjection;
 
 use Klipper\Bundle\ApiBundle\Util\ControllerDefinitionUtil;
-use Klipper\Bundle\ApiSecurityBundle\Controller\LogoutController;
-use Klipper\Bundle\ApiSecurityBundle\Controller\RolePermissionController;
+use Klipper\Bundle\ApiSearchBundle\Controller\SearchController;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 /**
  * @author François Pluchino <francois.pluchino@klipper.dev>
  */
-class KlipperApiSecurityExtension extends Extension
+class KlipperApiSearchExtension extends Extension
 {
     public function load(array $configs, ContainerBuilder $container): void
     {
-        ControllerDefinitionUtil::set($container, RolePermissionController::class);
-        ControllerDefinitionUtil::set($container, LogoutController::class);
+        ControllerDefinitionUtil::set($container, SearchController::class);
     }
 }

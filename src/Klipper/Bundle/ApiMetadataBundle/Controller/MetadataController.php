@@ -11,7 +11,7 @@
 
 namespace Klipper\Bundle\ApiMetadataBundle\Controller;
 
-use Klipper\Bundle\ApiBundle\Controller\AbstractController;
+use Klipper\Bundle\ApiBundle\Controller\ControllerHelper;
 use Klipper\Bundle\ApiBundle\Util\RequestHeaderUtil;
 use Klipper\Bundle\ApiBundle\View\View;
 use Klipper\Bundle\ApiMetadataBundle\RequestHeaders;
@@ -29,34 +29,34 @@ use Symfony\Component\Routing\Annotation\Route;
  *
  * @author François Pluchino <francois.pluchino@klipper.dev>
  */
-class MetadataController extends AbstractController
+class MetadataController
 {
     /**
      * Get the choices.
      *
-     * @param PermissionMetadataManagerInterface $pmManager The permission metadata manager
-     *
      * @Route("/metadatas/choices", methods={"GET"})
      */
-    public function allChoices(PermissionMetadataManagerInterface $pmManager): Response
-    {
-        return $this->view($pmManager->getChoices());
+    public function allChoices(
+        ControllerHelper $helper,
+        PermissionMetadataManagerInterface $pmManager
+    ): Response {
+        return $helper->view($pmManager->getChoices());
     }
 
     /**
      * Get the choice.
      *
-     * @param PermissionMetadataManagerInterface $pmManager The permission metadata manager
-     * @param string                             $name      The choice name
-     *
      * @Route("/metadatas/choices/{name}", methods={"GET"})
      */
-    public function showChoice(PermissionMetadataManagerInterface $pmManager, string $name): Response
-    {
+    public function showChoice(
+        ControllerHelper $helper,
+        PermissionMetadataManagerInterface $pmManager,
+        string $name
+    ): Response {
         try {
-            return $this->view($pmManager->getChoice($name));
+            return $helper->view($pmManager->getChoice($name));
         } catch (ChoiceNotFoundException $e) {
-            throw $this->createNotFoundException();
+            throw $helper->createNotFoundException();
         }
     }
 
@@ -68,31 +68,34 @@ class MetadataController extends AbstractController
      *
      * @Route("/metadatas", methods={"GET"})
      */
-    public function all(Request $request, PermissionMetadataManagerInterface $pmManager): Response
-    {
+    public function all(
+        ControllerHelper $helper,
+        Request $request,
+        PermissionMetadataManagerInterface $pmManager
+    ): Response {
         if (RequestHeaderUtil::getBoolean($request, RequestHeaders::METADATA_DETAILS)) {
-            $this->setView(View::create())->getContext()->addGroup(ViewGroups::METADATA_DETAILS);
+            $helper->setView(View::create())->getContext()->addGroup(ViewGroups::METADATA_DETAILS);
         }
 
-        return $this->view($pmManager->getMetadatas());
+        return $helper->view($pmManager->getMetadatas());
     }
 
     /**
      * Get the metadata of object.
      *
-     * @param PermissionMetadataManagerInterface $pmManager The permission metadata manager
-     * @param string                             $name      The object name
-     *
      * @Route("/metadatas/{name}", methods={"GET"})
      */
-    public function show(PermissionMetadataManagerInterface $pmManager, string $name): Response
-    {
+    public function show(
+        ControllerHelper $helper,
+        PermissionMetadataManagerInterface $pmManager,
+        string $name
+    ): Response {
         try {
-            $this->setView(View::create())->getContext()->addGroup(ViewGroups::METADATA_DETAILS);
+            $helper->setView(View::create())->getContext()->addGroup(ViewGroups::METADATA_DETAILS);
 
-            return $this->view($pmManager->getMetadata($name));
+            return $helper->view($pmManager->getMetadata($name));
         } catch (MetadataNotFoundException $e) {
-            throw $this->createNotFoundException();
+            throw $helper->createNotFoundException();
         }
     }
 
@@ -106,6 +109,7 @@ class MetadataController extends AbstractController
      * @Route("/metadatas/{name}/filters", methods={"GET"})
      */
     public function allFilters(
+        ControllerHelper $helper,
         PermissionMetadataManagerInterface $pmManager,
         FilterManager $fManager,
         string $name
@@ -113,9 +117,9 @@ class MetadataController extends AbstractController
         try {
             $pmManager->getMetadata($name);
 
-            return $this->view($fManager->getFiltersByName($name));
+            return $helper->view($fManager->getFiltersByName($name));
         } catch (MetadataNotFoundException $e) {
-            throw $this->createNotFoundException();
+            throw $helper->createNotFoundException();
         }
     }
 }

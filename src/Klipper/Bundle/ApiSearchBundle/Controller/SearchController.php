@@ -11,7 +11,7 @@
 
 namespace Klipper\Bundle\ApiSearchBundle\Controller;
 
-use Klipper\Bundle\ApiBundle\Controller\AbstractController;
+use Klipper\Bundle\ApiBundle\Controller\ControllerHelper;
 use Klipper\Bundle\ApiSearchBundle\RequestHeaders;
 use Klipper\Component\Search\SearchManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,21 +23,25 @@ use Symfony\Component\Routing\Annotation\Route;
  *
  * @author François Pluchino <francois.pluchino@klipper.dev>
  */
-class SearchController extends AbstractController
+class SearchController
 {
     /**
      * Search in all objects or selected objects.
      *
-     * @param Request                $request       The request
-     * @param SearchManagerInterface $searchManager The search manager
-     *
      * @Route("/search", methods={"GET"})
      */
-    public function all(Request $request, SearchManagerInterface $searchManager): Response
-    {
+    public function all(
+        Request $request,
+        ControllerHelper $helper,
+        SearchManagerInterface $searchManager
+    ): Response {
         $query = $this->getParam($request, RequestHeaders::SEARCH_QUERY);
         $objects = $this->getParam($request, RequestHeaders::SEARCH_OBJECTS);
         $object = $this->getParam($request, RequestHeaders::SEARCH_OBJECT);
+
+        if (null === $query || '' === $query) {
+            throw $helper->createBadRequestException();
+        }
 
         $objects = \is_string($objects) && !empty($objects)
             ? array_map('trim', explode(',', $objects))
@@ -47,7 +51,7 @@ class SearchController extends AbstractController
             $objects[] = $object;
         }
 
-        return $this->view($searchManager->search($query, $objects));
+        return $helper->view($searchManager->search($query, $objects));
     }
 
     private function getParam(Request $request, string $param)
