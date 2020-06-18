@@ -18,11 +18,17 @@ interface FileInterface
 {
     /**
      * Returns the size of the file.
+     *
+     * @see \SplFileInfo::getSize()
+     *
+     * @return int
      */
-    public function getSize(): int;
+    public function getSize();
 
     /**
      * Returns the path of the file.
+     *
+     * @see \SplFileInfo::getPathname()
      *
      * @return string
      */
@@ -30,8 +36,12 @@ interface FileInterface
 
     /**
      * Return the path of the file without the filename.
+     *
+     * @see \SplFileInfo::getPath()
+     *
+     * @return string
      */
-    public function getPath(): string;
+    public function getPath();
 
     /**
      * Returns the guessed mime type of the file.
@@ -42,11 +52,19 @@ interface FileInterface
 
     /**
      * Returns the basename of the file.
+     *
+     * @see \SplFileInfo::getBasename()
+     *
+     * @return null|string
      */
-    public function getBasename(): ?string;
+    public function getBasename();
 
     /**
      * Returns the guessed extension of the file.
+     *
+     * @see \SplFileInfo::getExtension()
+     *
+     * @return string
      */
-    public function getExtension(): string;
+    public function getExtension();
 }
