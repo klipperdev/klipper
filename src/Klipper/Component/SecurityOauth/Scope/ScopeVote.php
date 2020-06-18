@@ -28,4 +28,13 @@ class ScopeVote extends OauthScope
             'allRequired' => $allRequired,
         ]);
     }
+
+    public function __toString(): string
+    {
+        return sprintf(
+            'scope:%s:%s',
+            implode('|', $this->scope),
+            $this->allRequired ? 'allRequired' : 'atLeastOne'
+        );
+    }
 }
