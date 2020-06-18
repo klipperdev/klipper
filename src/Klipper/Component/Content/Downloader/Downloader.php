@@ -47,7 +47,7 @@ class Downloader implements DownloaderInterface
         string $mode = self::MODE_AUTO
     ): Response {
         if (empty($path)) {
-            throw new NotFoundHttpException();
+            throw new NotFoundHttpException(Response::$statusTexts[Response::HTTP_NOT_FOUND]);
         }
 
         $ext = pathinfo($path, PATHINFO_EXTENSION);
@@ -61,15 +61,15 @@ class Downloader implements DownloaderInterface
                 $mimeType = $image->getTypeMime();
                 $ext = $configExt;
             } catch (FileNotFoundException $e) {
-                throw new NotFoundHttpException(null, $e);
+                throw new NotFoundHttpException(Response::$statusTexts[Response::HTTP_NOT_FOUND], $e);
             } catch (InvalidArgumentException $e) {
-                throw new UnsupportedMediaTypeHttpException(null, $e);
+                throw new UnsupportedMediaTypeHttpException(Response::$statusTexts[Response::HTTP_UNSUPPORTED_MEDIA_TYPE], $e);
             }
         } else {
             $stream = @fopen($path, 'r');
 
             if (false === $stream) {
-                throw new NotFoundHttpException();
+                throw new NotFoundHttpException(Response::$statusTexts[Response::HTTP_NOT_FOUND]);
             }
 
             $mimeType = mime_content_type($path);

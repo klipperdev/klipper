@@ -58,11 +58,14 @@ class FormDataAdapter implements AdapterInterface
         $files = $this->getFiles($request->files);
 
         if (empty($files)) {
-            throw new BadRequestHttpException();
+            throw new BadRequestHttpException('No file was sent');
         }
 
         if (\count($files) > 1 || !$this->validateUploadSize($uploader, $files)) {
-            throw new HttpException(Response::HTTP_REQUEST_ENTITY_TOO_LARGE);
+            throw new HttpException(
+                Response::HTTP_REQUEST_ENTITY_TOO_LARGE,
+                Response::$statusTexts[Response::HTTP_REQUEST_ENTITY_TOO_LARGE]
+            );
         }
 
         $file = new FilesystemFile($files[0]);

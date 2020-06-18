@@ -122,6 +122,6 @@ class Uploader implements UploaderInterface
             }
         }
 
-        throw new BadRequestHttpException();
+        throw new BadRequestHttpException('No upload adapter is compatible with the request');
     }
 }
