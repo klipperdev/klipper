@@ -14,6 +14,7 @@ namespace Klipper\Component\Content;
 use Klipper\Component\Content\Downloader\DownloaderInterface;
 use Klipper\Component\Content\ImageManipulator\Config;
 use Klipper\Component\Content\Uploader\UploaderInterface;
+use Klipper\Component\Content\Util\ContentUtil;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -39,10 +40,8 @@ class ContentManager implements ContentManagerInterface
 
     public function download(string $uploaderName, ?string $path, ?string $contentDisposition = null, array $headers = [], string $mode = DownloaderInterface::MODE_AUTO): Response
     {
-        $basePath = $this->uploader->get($uploaderName)->getPath();
-
         return $this->downloader->download(
-            rtrim($basePath, '/').'/'.ltrim($path, '/'),
+            ContentUtil::getAbsolutePath($this->uploader->get($uploaderName), $path),
             $contentDisposition,
             $headers,
             $mode
@@ -51,10 +50,8 @@ class ContentManager implements ContentManagerInterface
 
     public function downloadImage(string $uploaderName, ?string $path, ?string $contentDisposition = null, array $headers = []): Response
     {
-        $basePath = $this->uploader->get($uploaderName)->getPath();
-
         return $this->downloader->downloadImage(
-            rtrim($basePath, '/').'/'.ltrim($path, '/'),
+            ContentUtil::getAbsolutePath($this->uploader->get($uploaderName), $path),
             $contentDisposition,
             $headers
         );
