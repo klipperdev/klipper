@@ -36,8 +36,14 @@ class UrlGeneratorHandler
     public function generateUrl(SerializationVisitorInterface $visitor, $data, array $type): ?string
     {
         $object = $type['ci_url_gen_object'] ?? $data;
-        $url = $this->urlGenerator->generate($type['name'], $type['params'], $object);
 
-        return $visitor->visitString($url, $type);
+        if (!\is_object($object)) {
+            return null;
+        }
+
+        return $visitor->visitString(
+            $this->urlGenerator->generate($type['name'], $type['params'], $object),
+            $type
+        );
     }
 }
