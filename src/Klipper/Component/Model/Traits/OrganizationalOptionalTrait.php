@@ -32,6 +32,7 @@ trait OrganizationalOptionalTrait
      * )
      * @ORM\JoinColumn(onDelete="CASCADE")
      *
+     * @Serializer\Type("Relation")
      * @Serializer\Expose
      * @Serializer\ReadOnly
      */
