@@ -33,6 +33,7 @@ interface AdapterInterface
      *
      * @param Request                        $request  The request
      * @param UploaderConfigurationInterface $uploader The uploader configuration
+     * @param null|mixed                     $payload  The payload
      */
-    public function upload(Request $request, UploaderConfigurationInterface $uploader): Response;
+    public function upload(Request $request, UploaderConfigurationInterface $uploader, $payload = null): Response;
 }

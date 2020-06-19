@@ -24,10 +24,19 @@ abstract class AbstractUploadEvent extends Event
 
     private Request $request;
 
-    public function __construct(UploaderConfigurationInterface $config, Request $request)
+    /**
+     * @var null|mixed
+     */
+    private $payload;
+
+    /**
+     * @param null|mixed $payload
+     */
+    public function __construct(UploaderConfigurationInterface $config, Request $request, $payload = null)
     {
         $this->config = $config;
         $this->request = $request;
+        $this->payload = $payload;
     }
 
     /**
@@ -44,5 +53,15 @@ abstract class AbstractUploadEvent extends Event
     public function getRequest(): Request
     {
         return $this->request;
+    }
+
+    /**
+     * Get the payload.
+     *
+     * @return null|mixed
+     */
+    public function getPayload()
+    {
+        return $this->payload;
     }
 }

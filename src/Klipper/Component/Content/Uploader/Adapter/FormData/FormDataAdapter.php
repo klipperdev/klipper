@@ -51,9 +51,11 @@ class FormDataAdapter implements AdapterInterface
     }
 
     /**
+     * @param null|mixed $payload
+     *
      * @throws
      */
-    public function upload(Request $request, UploaderConfigurationInterface $uploader): Response
+    public function upload(Request $request, UploaderConfigurationInterface $uploader, $payload = null): Response
     {
         $files = $this->getFiles($request->files);
 
@@ -69,20 +71,20 @@ class FormDataAdapter implements AdapterInterface
         }
 
         $file = new FilesystemFile($files[0]);
-        $this->dispatcher->dispatch(new UploadFileCreatedEvent($uploader, $request, $file));
+        $this->dispatcher->dispatch(new UploadFileCreatedEvent($uploader, $request, $file, $payload));
 
         $namer = $this->namerManager->get($uploader->getNamer());
         $name = null !== $namer
             ? $namer->name($file)
             : ($file->getClientOriginalName() ?? uniqid('', false).'.'.$file->getExtension());
 
-        $this->dispatcher->dispatch(new UploadFileMoveEvent($uploader, $request, $file, $name));
+        $this->dispatcher->dispatch(new UploadFileMoveEvent($uploader, $request, $file, $name, $payload));
 
         $movedFile = $file->move($uploader->getPath(), $name);
         $newFile = new FilesystemFile($movedFile);
 
-        $this->dispatcher->dispatch(new UploadFileCompleteEvent($uploader, $request, $newFile));
-        $this->dispatcher->dispatch(new UploadFileCompletedEvent($uploader, $request, $newFile));
+        $this->dispatcher->dispatch(new UploadFileCompleteEvent($uploader, $request, $newFile, $payload));
+        $this->dispatcher->dispatch(new UploadFileCompletedEvent($uploader, $request, $newFile, $payload));
 
         return new Response(null, Response::HTTP_NO_CONTENT);
     }

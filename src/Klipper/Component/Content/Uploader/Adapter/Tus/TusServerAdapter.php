@@ -53,11 +53,19 @@ class TusServerAdapter implements AdapterInterface
     }
 
     /**
+     * @param null|mixed $payload
+     *
      * @throws
      */
-    public function upload(Request $request, UploaderConfigurationInterface $uploader): Response
+    public function upload(Request $request, UploaderConfigurationInterface $uploader, $payload = null): Response
     {
-        $subscriber = new TusServerEventSubscriber($this->dispatcher, $this->namerManager, $uploader, $request);
+        $subscriber = new TusServerEventSubscriber(
+            $this->dispatcher,
+            $this->namerManager,
+            $uploader,
+            $request,
+            $payload
+        );
         $prevApiPath = $this->server->getApiPath();
         $prevMaxUploadSize = $this->server->getMaxUploadSize();
         $exception = null;

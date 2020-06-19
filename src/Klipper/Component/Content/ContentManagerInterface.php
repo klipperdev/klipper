@@ -27,9 +27,10 @@ interface ContentManagerInterface
     /**
      * Upload a file.
      *
-     * @param string $uploaderName The uploader name
+     * @param string     $uploaderName The uploader name
+     * @param null|mixed $payload      The payload
      */
-    public function upload(string $uploaderName): Response;
+    public function upload(string $uploaderName, $payload = null): Response;
 
     /**
      * Download the file.

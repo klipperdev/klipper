@@ -22,9 +22,13 @@ abstract class AbstractUploadFileEvent extends AbstractUploadEvent
 {
     private FileInterface $file;
 
-    public function __construct(UploaderConfigurationInterface $config, Request $request, FileInterface $file)
-    {
-        parent::__construct($config, $request);
+    public function __construct(
+        UploaderConfigurationInterface $config,
+        Request $request,
+        FileInterface $file,
+        $payload = null
+    ) {
+        parent::__construct($config, $request, $payload);
 
         $this->file = $file;
     }

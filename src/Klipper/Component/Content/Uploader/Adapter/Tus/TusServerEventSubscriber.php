@@ -42,21 +42,29 @@ class TusServerEventSubscriber implements EventSubscriberInterface
     private Request $request;
 
     /**
+     * @var null|mixed
+     */
+    private $payload;
+
+    /**
      * @param EventDispatcherInterface       $dispatcher   The event dispatcher
      * @param NamerManagerInterface          $namerManager The namer manager
      * @param UploaderConfigurationInterface $config       The uploader configuration
      * @param Request                        $request      The request
+     * @param null|mixed                     $payload      The payload
      */
     public function __construct(
         EventDispatcherInterface $dispatcher,
         NamerManagerInterface $namerManager,
         UploaderConfigurationInterface $config,
-        Request $request
+        Request $request,
+        $payload = null
     ) {
         $this->dispatcher = $dispatcher;
         $this->namerManager = $namerManager;
         $this->config = $config;
         $this->request = $request;
+        $this->payload = $payload;
     }
 
     public static function getSubscribedEvents(): array
@@ -101,7 +109,8 @@ class TusServerEventSubscriber implements EventSubscriberInterface
             $this->config,
             $this->request,
             new TusFile($tusFile),
-            $name
+            $name,
+            $this->payload
         ));
 
         //TODO move temp dir to final dir
@@ -122,7 +131,8 @@ class TusServerEventSubscriber implements EventSubscriberInterface
         $this->dispatcher->dispatch(new $eventClass(
             $this->config,
             $this->request,
-            new TusFile($tusFile)
+            new TusFile($tusFile),
+            $this->payload
         ));
     }
 }

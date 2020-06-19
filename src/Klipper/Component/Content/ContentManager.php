@@ -32,9 +32,9 @@ class ContentManager implements ContentManagerInterface
         $this->downloader = $downloader;
     }
 
-    public function upload(string $uploaderName): Response
+    public function upload(string $uploaderName, $payload = null): Response
     {
-        return $this->uploader->upload($uploaderName);
+        return $this->uploader->upload($uploaderName, $payload);
     }
 
     public function download(string $uploaderName, ?string $path, ?string $contentDisposition = null, array $headers = [], string $mode = DownloaderInterface::MODE_AUTO): Response

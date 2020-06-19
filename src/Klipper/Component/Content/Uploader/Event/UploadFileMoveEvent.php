@@ -23,15 +23,17 @@ class UploadFileMoveEvent extends AbstractUploadFileEvent
     private string $name;
 
     /**
-     * @param string $name The new file name
+     * @param string     $name    The new file name
+     * @param null|mixed $payload The payload
      */
     public function __construct(
         UploaderConfigurationInterface $config,
         Request $request,
         FileInterface $file,
-        string $name
+        string $name,
+        $payload = null
     ) {
-        parent::__construct($config, $request, $file);
+        parent::__construct($config, $request, $file, $payload);
 
         $this->name = $name;
     }

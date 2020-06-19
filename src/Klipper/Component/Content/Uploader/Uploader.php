@@ -103,7 +103,7 @@ class Uploader implements UploaderInterface
         return $this;
     }
 
-    public function upload(string $uploader): Response
+    public function upload(string $uploader, $payload = null): Response
     {
         $config = $this->get($uploader);
         $request = $this->requestStack->getCurrentRequest();
@@ -114,9 +114,9 @@ class Uploader implements UploaderInterface
 
         foreach ($this->adapters as $adapter) {
             if ($adapter->supports($request, $config)) {
-                $this->dispatcher->dispatch(new PreUploadEvent($config, $request));
-                $response = $adapter->upload($request, $config);
-                $this->dispatcher->dispatch(new PostUploadEvent($config, $request, $response));
+                $this->dispatcher->dispatch(new PreUploadEvent($config, $request, $payload));
+                $response = $adapter->upload($request, $config, $payload);
+                $this->dispatcher->dispatch(new PostUploadEvent($config, $request, $response, $payload));
 
                 return $response;
             }

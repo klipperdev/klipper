@@ -73,7 +73,8 @@ interface UploaderInterface
     /**
      * Upload a file.
      *
-     * @param string $uploader The uploader name
+     * @param string     $uploader The uploader name
+     * @param null|mixed $payload  The payload
      */
-    public function upload(string $uploader): Response;
+    public function upload(string $uploader, $payload = null): Response;
 }

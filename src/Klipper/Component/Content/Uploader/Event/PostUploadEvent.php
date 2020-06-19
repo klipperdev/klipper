@@ -22,12 +22,16 @@ class PostUploadEvent extends AbstractUploadEvent
 {
     private Response $response;
 
+    /**
+     * @param null|mixed $payload
+     */
     public function __construct(
         UploaderConfigurationInterface $config,
         Request $request,
-        Response $response
+        Response $response,
+        $payload
     ) {
-        parent::__construct($config, $request);
+        parent::__construct($config, $request, $payload);
 
         $this->response = $response;
     }
