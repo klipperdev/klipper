@@ -104,6 +104,9 @@ trait ProfileTrait
 
     /**
      * @see ProfileInterface::getFullName()
+     *
+     * @Serializer\SerializedName("full_name")
+     * @Serializer\VirtualProperty
      */
     public function getFullName(string $format = '{firstName} {lastName}'): ?string
     {
@@ -120,6 +123,9 @@ trait ProfileTrait
 
     /**
      * @see ProfileInterface::getInitial()
+     *
+     * @Serializer\SerializedName("initial")
+     * @Serializer\VirtualProperty
      */
     public function getInitial(): string
     {
