@@ -20,7 +20,7 @@ use Symfony\Component\Filesystem\Filesystem;
 class ContentUtil
 {
     /**
-     * @param UploaderConfigurationInterface|string $basePath The base path
+     * @param string|UploaderConfigurationInterface $basePath The base path
      * @param string                                $path     The file path
      */
     public static function getAbsolutePath($basePath, string $path): string
