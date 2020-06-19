@@ -19,6 +19,9 @@
         "symfony/http-kernel": "^5.1.0",
         "symfony/intl": "^5.1.0"
     },
+    "require-dev": {
+        "jms/serializer": "^3.7.0"
+    },
     "autoload": {
         "psr-4": { "Klipper\\Component\\User\\": "" },
         "exclude-from-classmap": [

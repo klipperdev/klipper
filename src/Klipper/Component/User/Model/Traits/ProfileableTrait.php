@@ -12,6 +12,7 @@
 namespace Klipper\Component\User\Model\Traits;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
 use Klipper\Component\Security\Model\UserInterface;
 use Klipper\Component\User\Model\ProfileInterface;
 use Klipper\Component\Uuid\Util\UuidUtil;
@@ -31,6 +32,9 @@ trait ProfileableTrait
      *     orphanRemoval=true,
      *     cascade={"persist", "remove"}
      * )
+     *
+     * @Serializer\Expose
+     * @Serializer\ReadOnly
      */
     protected ?ProfileInterface $profile = null;
 
