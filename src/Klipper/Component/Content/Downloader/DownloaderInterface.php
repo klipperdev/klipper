@@ -47,7 +47,6 @@ interface DownloaderInterface
      * @param null|string $path               The image file path
      * @param null|string $contentDisposition The content disposition
      * @param array       $headers            The custom headers
-     * @param string      $mode               The download mode
      *
      * @throws NotFoundHttpException
      * @throws UnsupportedMediaTypeHttpException
