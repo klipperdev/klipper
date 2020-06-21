@@ -62,8 +62,8 @@ trait OauthClientTrait
      *     multiple=true,
      *     min=1,
      *     choices={
+     *         "authorization_code",
      *         "client_credentials",
-     *         "code",
      *         "implicit",
      *         "password",
      *         "refresh_token"
