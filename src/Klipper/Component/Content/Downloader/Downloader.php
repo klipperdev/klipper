@@ -53,12 +53,14 @@ class Downloader implements DownloaderInterface
         $ext = pathinfo($path, PATHINFO_EXTENSION);
         $config = $this->buildConfig($this->requestStack->getCurrentRequest());
         $configExt = $config->getExtension() ?? $ext;
+        $callback = null;
 
         if ($this->useImageManipulator($mode, $ext, $configExt)) {
             try {
                 $image = $this->imageManipulator->create($path, $config);
                 $stream = $image->getResource();
                 $mimeType = $image->getTypeMime();
+                $callback = $image->getCallback();
                 $ext = $configExt;
             } catch (FileNotFoundException $e) {
                 throw new NotFoundHttpException(Response::$statusTexts[Response::HTTP_NOT_FOUND], $e);
@@ -79,7 +81,17 @@ class Downloader implements DownloaderInterface
             $contentDisposition = sprintf('%s.%s', $contentDisposition, $ext);
         }
 
-        return $this->downloadStream($stream, $mimeType, $contentDisposition, $headers);
+        return $this->downloadStream(
+            $stream,
+            $mimeType,
+            $contentDisposition,
+            $headers,
+            static function () use ($stream, $callback): void {
+                if (null !== $callback && !\is_resource($stream)) {
+                    $callback();
+                }
+            }
+        );
     }
 
     public function downloadImage(
