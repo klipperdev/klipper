@@ -21,6 +21,7 @@ use Klipper\Component\Content\Uploader\Namer\NamerManagerInterface;
 use Klipper\Component\Content\Uploader\UploaderConfigurationInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\FileBag;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
@@ -85,6 +86,14 @@ class FormDataAdapter implements AdapterInterface
 
         $this->dispatcher->dispatch(new UploadFileCompleteEvent($uploader, $request, $newFile, $payload));
         $this->dispatcher->dispatch(new UploadFileCompletedEvent($uploader, $request, $newFile, $payload));
+
+        foreach ($request->getAcceptableContentTypes() as $contentType) {
+            if ('json' === $request->getFormat($contentType)) {
+                return new JsonResponse([
+                    'success' => true,
+                ]);
+            }
+        }
 
         return new Response(null, Response::HTTP_NO_CONTENT);
     }
