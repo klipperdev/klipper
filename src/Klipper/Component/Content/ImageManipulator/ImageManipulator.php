@@ -111,6 +111,10 @@ class ImageManipulator implements ImageManipulatorInterface
         try {
             $image = $this->imagine->read($stream);
         } catch (\RuntimeException $e) {
+            if ($ext !== pathinfo($path, PATHINFO_EXTENSION)) {
+                throw new InvalidArgumentException($e->getMessage(), $e->getCode(), $e);
+            }
+
             return new Image($stream, mime_content_type($path), static function () use ($stream): void {
                 if (\is_resource($stream)) {
                     @fclose($stream);
