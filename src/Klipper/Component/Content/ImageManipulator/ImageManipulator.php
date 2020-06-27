@@ -108,7 +108,16 @@ class ImageManipulator implements ImageManipulatorInterface
             throw new FileNotFoundException($path);
         }
 
-        $image = $this->imagine->read($stream);
+        try {
+            $image = $this->imagine->read($stream);
+        } catch (\RuntimeException $e) {
+            return new Image($stream, mime_content_type($path), static function () use ($stream): void {
+                if (\is_resource($stream)) {
+                    @fclose($stream);
+                }
+            });
+        }
+
         $box = $this->buildBox($config, $image);
         $mode = $this->buildMode($config);
         $options = $this->options;
