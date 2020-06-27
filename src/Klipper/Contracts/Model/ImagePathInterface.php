@@ -24,6 +24,11 @@ interface ImagePathInterface
     public function hasImage(): bool;
 
     /**
+     * Get the extension of the image path.
+     */
+    public function getImageExtension(): ?string;
+
+    /**
      * Set the image path.
      *
      * @param null|string $imagePath The image path

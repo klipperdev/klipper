@@ -49,4 +49,9 @@ trait ImagePathTrait
     {
         return $this->imagePath;
     }
+
+    public function getImageExtension(): ?string
+    {
+        return null !== $this->imagePath ? pathinfo($this->imagePath, PATHINFO_EXTENSION) : null;
+    }
 }
