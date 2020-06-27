@@ -13,6 +13,7 @@ namespace Klipper\Component\Content\Downloader;
 
 use Klipper\Component\Content\Downloader\Exception\InvalidArgumentException;
 use Klipper\Component\Content\ImageManipulator\Config;
+use Klipper\Component\Content\ImageManipulator\Exception\InvalidArgumentException as ImageManipulatorInvalidArgumentException;
 use Klipper\Component\Content\ImageManipulator\ImageManipulatorInterface;
 use Symfony\Component\Filesystem\Exception\FileNotFoundException;
 use Symfony\Component\HttpFoundation\Request;
@@ -63,6 +64,8 @@ class Downloader implements DownloaderInterface
                 $callback = $image->getCallback();
                 $ext = $configExt;
             } catch (FileNotFoundException $e) {
+                throw new NotFoundHttpException(Response::$statusTexts[Response::HTTP_NOT_FOUND], $e);
+            } catch (ImageManipulatorInvalidArgumentException $e) {
                 throw new NotFoundHttpException(Response::$statusTexts[Response::HTTP_NOT_FOUND], $e);
             } catch (InvalidArgumentException $e) {
                 throw new UnsupportedMediaTypeHttpException(Response::$statusTexts[Response::HTTP_UNSUPPORTED_MEDIA_TYPE], $e);
