@@ -29,6 +29,11 @@ interface ImagePathInterface
     public function getImageExtension(): ?string;
 
     /**
+     * Get the preferred extension of the image path.
+     */
+    public function getPreferredImageExtension(): ?string;
+
+    /**
      * Set the image path.
      *
      * @param null|string $imagePath The image path

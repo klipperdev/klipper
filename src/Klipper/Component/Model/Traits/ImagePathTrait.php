@@ -54,4 +54,11 @@ trait ImagePathTrait
     {
         return null !== $this->imagePath ? pathinfo($this->imagePath, PATHINFO_EXTENSION) : null;
     }
+
+    public function getPreferredImageExtension(): ?string
+    {
+        $ext = $this->getImageExtension();
+
+        return 'svg' === $ext ? 'svg' : 'jpg';
+    }
 }
