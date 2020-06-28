@@ -55,6 +55,8 @@ class ObjectMetadataBuilder extends BaseMetadataBuilder implements ObjectMetadat
 
     protected ?bool $buildDefaultActions = null;
 
+    protected array $excludedDefaultActions = [];
+
     protected ?ActionMetadataBuilderInterface $defaultAction = null;
 
     /**
@@ -267,6 +269,18 @@ class ObjectMetadataBuilder extends BaseMetadataBuilder implements ObjectMetadat
     public function getBuildDefaultActions(): ?bool
     {
         return $this->buildDefaultActions;
+    }
+
+    public function setExcludedDefaultActions(array $excludedDefaultActions)
+    {
+        $this->excludedDefaultActions = $excludedDefaultActions;
+
+        return $this;
+    }
+
+    public function getExcludedDefaultActions(): array
+    {
+        return $this->excludedDefaultActions;
     }
 
     public function setDefaultAction(?ActionMetadataBuilderInterface $action): self

@@ -238,6 +238,22 @@ interface ObjectMetadataBuilderInterface extends MetadataBuilderInterface
     public function getBuildDefaultActions(): ?bool;
 
     /**
+     * Set the list of excluded default actions.
+     *
+     * @param string[] $excludedDefaultActions The excluded default actions
+     *
+     * @return static
+     */
+    public function setExcludedDefaultActions(array $excludedDefaultActions);
+
+    /**
+     * Get the list of excluded default actions.
+     *
+     * @return string[]
+     */
+    public function getExcludedDefaultActions(): array;
+
+    /**
      * Set the default values of actions.
      *
      * @param null|ActionMetadataBuilderInterface $action The default action
