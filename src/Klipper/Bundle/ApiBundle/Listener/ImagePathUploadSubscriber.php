@@ -9,27 +9,31 @@
  * file that was distributed with this source code.
  */
 
-namespace Klipper\Bundle\ApiUserBundle\Listener;
+namespace Klipper\Bundle\ApiBundle\Listener;
 
+use Klipper\Bundle\ApiBundle\Uploader\ImagePathUploadListenerConfigInterface;
 use Klipper\Component\Content\ImageManipulator\Cache\CacheInterface;
 use Klipper\Component\Content\Uploader\Event\UploadFileCompletedEvent;
 use Klipper\Component\Content\Util\ContentUtil;
+use Klipper\Component\DoctrineExtra\Util\ClassUtils;
 use Klipper\Component\Resource\Domain\DomainManagerInterface;
 use Klipper\Component\Resource\Exception\ConstraintViolationException;
-use Klipper\Component\User\Model\ProfileInterface;
+use Klipper\Contracts\Model\ImagePathInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Filesystem\Filesystem;
 
 /**
  * @author François Pluchino <francois.pluchino@klipper.dev>
  */
-class ProfileUploadSubscriber implements EventSubscriberInterface
+class ImagePathUploadSubscriber implements EventSubscriberInterface
 {
     private DomainManagerInterface $domainManager;
 
     private ?CacheInterface $imageManipulatorCache;
 
     private Filesystem $fs;
+
+    private array $configs = [];
 
     public function __construct(
         DomainManagerInterface $domainManager,
@@ -50,22 +54,42 @@ class ProfileUploadSubscriber implements EventSubscriberInterface
         ];
     }
 
+    public function addImagePathUploadListenerConfig(ImagePathUploadListenerConfigInterface $config): void
+    {
+        $this->configs[] = $config;
+    }
+
     /**
      * @throws
      */
     public function onUploadRequest(UploadFileCompletedEvent $event): void
     {
-        $file = $event->getFile()->getPathname();
-        $profile = $event->getPayload();
+        foreach ($this->configs as $config) {
+            if ($this->doOnUploadRequest($event, $config)) {
+                break;
+            }
+        }
+    }
 
-        if ('user_profile_image' !== $event->getConfig()->getName()
-                || !$profile instanceof ProfileInterface) {
-            return;
+    /**
+     * @throws
+     */
+    public function doOnUploadRequest(
+        UploadFileCompletedEvent $event,
+        ImagePathUploadListenerConfigInterface $config
+    ): bool {
+        $file = $event->getFile()->getPathname();
+        $payload = $event->getPayload();
+
+        if (!\is_object($payload) || !$payload instanceof ImagePathInterface
+                || $config->getUploaderName() !== $event->getConfig()->getName()
+                || !$config->validateEvent($event)) {
+            return false;
         }
 
-        $previousFile = $profile->getImagePath();
-        $profile->setImagePath(ContentUtil::getRelativePath($this->fs, $event->getConfig(), $file));
-        $res = $this->domainManager->get(ProfileInterface::class)->update($profile);
+        $previousFile = $payload->getImagePath();
+        $payload->setImagePath(ContentUtil::getRelativePath($this->fs, $event->getConfig(), $file));
+        $res = $this->domainManager->get(ClassUtils::getClass($payload))->update($payload);
 
         if (!$res->isValid()) {
             $this->fs->remove($file);
@@ -88,5 +112,7 @@ class ProfileUploadSubscriber implements EventSubscriberInterface
         } catch (\Throwable $e) {
             // no check to optimize request to delete file, so do nothing on error
         }
+
+        return true;
     }
 }

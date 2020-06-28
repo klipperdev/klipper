@@ -5,8 +5,8 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <service id="klipper_api_user.listener.profile_upload_subscriber"
-                 class="Klipper\Bundle\ApiUserBundle\Listener\ProfileUploadSubscriber"
+        <service id="klipper_api.listener.image_path_upload_subscriber"
+                 class="Klipper\Bundle\ApiBundle\Listener\ImagePathUploadSubscriber"
                  public="false">
             <tag name="kernel.event_subscriber" />
             <argument type="service" id="klipper_resource.domain_manager" />
