@@ -162,11 +162,6 @@ interface ObjectMetadataInterface extends MetadataInterface
     public function getAction(string $action): ActionMetadataInterface;
 
     /**
-     * Check if the default actions must be built even if the actions is manually defined.
-     */
-    public function getBuildDefaultActions(): bool;
-
-    /**
      * Returns an array of resources loaded to build this metadata.
      *
      * @return ResourceInterface[] An array of resources

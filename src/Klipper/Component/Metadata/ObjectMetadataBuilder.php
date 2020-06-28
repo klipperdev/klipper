@@ -356,8 +356,7 @@ class ObjectMetadataBuilder extends BaseMetadataBuilder implements ObjectMetadat
             $this->getResources(),
             $this->getFields(),
             $this->getAssociations(),
-            $this->getActions() ?? [],
-            false !== $this->getBuildDefaultActions()
+            $this->getActions() ?? []
         );
     }
 }

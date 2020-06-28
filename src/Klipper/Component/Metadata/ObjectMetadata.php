@@ -68,8 +68,6 @@ class ObjectMetadata extends BaseMetadata implements ObjectMetadataInterface
 
     protected string $fieldLabel;
 
-    protected bool $buildDefaultActions = true;
-
     /**
      * @var ActionMetadataInterface[]
      */
@@ -99,8 +97,7 @@ class ObjectMetadata extends BaseMetadata implements ObjectMetadataInterface
         array $resources,
         array $fieldBuilders,
         array $associationBuilders,
-        array $actionBuilders,
-        bool $buildDefaultActions
+        array $actionBuilders
     ) {
         parent::__construct(
             $name,
@@ -122,7 +119,6 @@ class ObjectMetadata extends BaseMetadata implements ObjectMetadataInterface
         $this->formOptions = $formOptions;
         $this->groups = $groups;
         $this->resources = $resources;
-        $this->buildDefaultActions = $buildDefaultActions;
 
         foreach ($fieldBuilders as $fieldBuilder) {
             $this->addField($fieldBuilder);
@@ -266,11 +262,6 @@ class ObjectMetadata extends BaseMetadata implements ObjectMetadataInterface
         }
 
         return $this->actions[$action];
-    }
-
-    public function getBuildDefaultActions(): bool
-    {
-        return $this->buildDefaultActions;
     }
 
     public function getResources(): array
