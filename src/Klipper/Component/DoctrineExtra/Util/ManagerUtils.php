@@ -13,6 +13,7 @@ namespace Klipper\Component\DoctrineExtra\Util;
 
 use Doctrine\ORM\Mapping\ClassMetadata as OrmClassMetadata;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Persistence\Mapping\MappingException;
 use Doctrine\Persistence\ObjectManager;
 use Klipper\Component\DoctrineExtra\Exception\ObjectManagerNotFoundException;
 
@@ -35,11 +36,15 @@ class ManagerUtils
 
         if (null === $manager) {
             foreach ($or->getManagers() as $objectManager) {
-                if (self::isValidManager($objectManager, $class)
+                try {
+                    if (self::isValidManager($objectManager, $class)
                         && $objectManager->getMetadataFactory()->hasMetadataFor($class)) {
-                    $manager = $objectManager;
+                        $manager = $objectManager;
 
-                    break;
+                        break;
+                    }
+                } catch (MappingException $e) {
+                    // skip class
                 }
             }
         }

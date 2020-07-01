@@ -15,6 +15,7 @@ use Doctrine\ORM\Mapping\ClassMetadata as OrmClassMetadata;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Persistence\Mapping\ClassMetadata;
 use Doctrine\Persistence\Mapping\ClassMetadataFactory;
+use Doctrine\Persistence\Mapping\MappingException;
 use Doctrine\Persistence\ObjectManager;
 use Klipper\Component\DoctrineExtra\Util\ManagerUtils;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -136,5 +137,40 @@ final class ManagerUtilsTest extends TestCase
         ;
 
         static::assertNull(ManagerUtils::getManager($registry, 'ValidClass'));
+    }
+
+    public function testGetManagerWithUnconfiguredMappingClass(): void
+    {
+        /** @var ClassMetadataFactory|MockObject $metaFactory */
+        $metaFactory = $this->getMockBuilder(ClassMetadataFactory::class)->getMock();
+
+        $metaFactory->expects(static::once())
+            ->method('hasMetadataFor')
+            ->with('UnconfiguredMappingClass')
+            ->willThrowException(new MappingException('The class \'UnconfiguredMappingClass\' was not found in the chain configured namespaces'))
+        ;
+
+        /** @var MockObject|ObjectManager $manager */
+        $manager = $this->getMockBuilder(ObjectManager::class)->getMock();
+        $manager->expects(static::atLeastOnce())
+            ->method('getMetadataFactory')
+            ->willReturn($metaFactory)
+        ;
+
+        /** @var ManagerRegistry|MockObject $registry */
+        $registry = $this->getMockBuilder(ManagerRegistry::class)->getMock();
+
+        $registry->expects(static::once())
+            ->method('getManagerForClass')
+            ->with('UnconfiguredMappingClass')
+            ->willReturn(null)
+        ;
+
+        $registry->expects(static::once())
+            ->method('getManagers')
+            ->willReturn([$manager])
+        ;
+
+        static::assertNull(ManagerUtils::getManager($registry, 'UnconfiguredMappingClass'));
     }
 }
