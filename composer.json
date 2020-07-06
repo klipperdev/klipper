@@ -88,6 +88,7 @@
         "klipper/http-foundation": "self.version",
         "klipper/http-kernel": "self.version",
         "klipper/importer": "self.version",
+        "klipper/importer-bundle": "self.version",
         "klipper/intl": "self.version",
         "klipper/mailer": "self.version",
         "klipper/mailer-bundle": "self.version",
