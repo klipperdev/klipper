@@ -73,6 +73,7 @@
         "klipper/default-value-bundle": "self.version",
         "klipper/dependency-injection": "self.version",
         "klipper/dependency-injection-bundle": "self.version",
+        "klipper/doctrine-choice": "self.version",
         "klipper/doctrine-extra": "self.version",
         "klipper/doctrine-extensions": "self.version",
         "klipper/doctrine-extensions-bundle": "self.version",
