@@ -12,7 +12,11 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "klipper/choice": "^2.0.0"
+        "doctrine/orm": "^2.7.0",
+        "gedmo/doctrine-extensions": "^2.4.0",
+        "klipper/model": "^2.0.0",
+        "jms/serializer": "^3.8.0",
+        "symfony/validator": "^5.1.0"
     },
     "autoload": {
         "psr-4": { "Klipper\\Component\\DoctrineChoice\\": "" },
