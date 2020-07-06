@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="klipper_lock.command.init_lock_store"
+                 class="Klipper\Bundle\LockBundle\Command\InitLockStoreCommand">
+            <tag name="console.command" command="init:lock-store" />
+            <argument type="service" id="klipper_lock.store" />
+        </service>
+    </services>
+</container>
