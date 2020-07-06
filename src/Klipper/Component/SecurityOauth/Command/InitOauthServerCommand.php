@@ -65,7 +65,7 @@ class InitOauthServerCommand extends Command
     protected function generatePrivateKey(OutputInterface $output, bool $force): void
     {
         if (!$force && file_exists($this->privateKey)) {
-            $output->writeln('Private key for Oauth is already created');
+            $output->writeln('  The private key for Oauth is already created');
 
             return;
         }
@@ -82,13 +82,13 @@ class InitOauthServerCommand extends Command
             throw new RuntimeException('Private key cannot be created: '.PHP_EOL.$proc->getErrorOutput());
         }
 
-        $output->writeln('Private key for Oauth was successfully created');
+        $output->writeln('  The private key for Oauth was successfully created');
     }
 
     protected function generatePublicKey(OutputInterface $output, bool $force): void
     {
         if (!$force && file_exists($this->publicKey)) {
-            $output->writeln('Public key for Oauth is already created');
+            $output->writeln('  The public key for Oauth is already created');
 
             return;
         }
@@ -105,6 +105,6 @@ class InitOauthServerCommand extends Command
             throw new RuntimeException('Private key cannot be created: '.PHP_EOL.$proc->getErrorOutput());
         }
 
-        $output->writeln('Public key for Oauth was successfully created');
+        $output->writeln('  The public key for Oauth was successfully created');
     }
 }

@@ -48,14 +48,14 @@ class InitSessionPdoCommand extends Command
     {
         try {
             $this->handler->createTable();
-            $output->writeln(['', '  The table for PDO session is created.']);
+            $output->writeln('  The table for PDO session is created');
         } catch (\PDOException $ex) {
             // Mysql and PostgreSQL already table exist code
             if (!\in_array($ex->getCode(), ['42S01', '42P07'], true)) {
                 throw $ex;
             }
 
-            $output->writeln(['', '  The table for PDO session is already exists.']);
+            $output->writeln('  The table for PDO session is already exists');
         }
 
         return 0;
