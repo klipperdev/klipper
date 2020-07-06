@@ -1,0 +1,30 @@
+{
+    "name": "klipper/lock-bundle",
+    "type": "symfony-bundle",
+    "description": "Lock bundle of Klipper",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "François Pluchino",
+            "email": "francois.pluchino@klipper.dev"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "doctrine/dbal": "^2.10.0",
+        "symfony/lock": "^5.1.0",
+        "symfony/framework-bundle": "^5.1.0"
+    },
+    "autoload": {
+        "psr-4": { "Klipper\\Bundle\\LockBundle\\": "" },
+        "exclude-from-classmap": [
+            "**/Tests/"
+        ]
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.0-dev"
+        }
+    }
+}
