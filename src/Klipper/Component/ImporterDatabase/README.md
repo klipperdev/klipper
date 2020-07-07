@@ -1,7 +1,7 @@
 Klipper Importer Database Component
 ===================================
 
-The Importer Database component is a base to build an importation connector for SQL database
+The Importer Database component is a base to build an importation pipeline for SQL database
 compatible with Doctrine DBAL.
 
 Resources
