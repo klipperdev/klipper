@@ -14,6 +14,7 @@ namespace Klipper\Bundle\DoctrineExtensionsExtraBundle\Listener;
 use Gedmo\Blameable\BlameableListener;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Security\Core\AuthenticationEvents;
+use Symfony\Component\Security\Core\Event\AuthenticationSuccessEvent;
 use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 use Symfony\Component\Security\Http\SecurityEvents;
 
@@ -33,11 +34,16 @@ class AuthenticationBlameableSubscriber implements EventSubscriberInterface
     {
         return [
             SecurityEvents::INTERACTIVE_LOGIN => 'onSecurityInteractiveLogin',
-            AuthenticationEvents::AUTHENTICATION_SUCCESS,
+            AuthenticationEvents::AUTHENTICATION_SUCCESS => 'onAuthenticationSuccess',
         ];
     }
 
     public function onSecurityInteractiveLogin(InteractiveLoginEvent $event): void
+    {
+        $this->blameableListener->setUserValue($event->getAuthenticationToken()->getUser());
+    }
+
+    public function onAuthenticationSuccess(AuthenticationSuccessEvent $event): void
     {
         $this->blameableListener->setUserValue($event->getAuthenticationToken()->getUser());
     }
