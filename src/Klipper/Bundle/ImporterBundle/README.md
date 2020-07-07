@@ -1,7 +1,7 @@
 Klipper Importer Bundle
 =====================
 
-The Importer bundle is a base to build importation connectors.
+The Importer bundle is a base to build importation pipelines.
 
 
 Resources
