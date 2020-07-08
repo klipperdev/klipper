@@ -16,7 +16,7 @@
         "klipper/importer": "^2.0.0"
     },
     "autoload": {
-        "psr-4": { "Klipper\\Component\\ImporterDatabase\\": "" },
+        "psr-4": { "Klipper\\Bridge\\Importer\\Database\\": "" },
         "exclude-from-classmap": [
             "**/Tests/"
         ]

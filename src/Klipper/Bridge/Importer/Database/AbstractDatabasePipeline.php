@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Klipper\Component\ImporterDatabase;
+namespace Klipper\Bridge\Importer\Database;
 
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\DBALException;
