@@ -26,7 +26,7 @@ trait ExternalableTrait
      *
      * @Serializer\Expose
      */
-    protected array $externalIds = [];
+    protected ?array $externalIds = [];
 
     public function getExternalIds(): array
     {
