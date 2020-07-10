@@ -45,10 +45,8 @@ trait ExternalableTrait
 
     public function setExternalIds(array $serviceIds): void
     {
-        $this->externalIds = [];
-
         foreach ($serviceIds as $service => $id) {
-            $this->externalIds[$service] = (string) $id;
+            $this->addExternalId($service, $id);
         }
     }
 
@@ -60,5 +58,10 @@ trait ExternalableTrait
     public function removeExternalId(string $service): void
     {
         unset($this->externalIds[$service]);
+    }
+
+    public function clearExternalIds(): void
+    {
+        $this->externalIds = [];
     }
 }

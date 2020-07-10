@@ -38,7 +38,7 @@ interface ExternalableInterface
     public function getExternalId(string $service): ?string;
 
     /**
-     * Set the external ids of service.
+     * Set or merge the external ids of service.
      *
      * @param array $serviceIds The map of service names and service ids
      */
@@ -58,4 +58,9 @@ interface ExternalableInterface
      * @param string $service The service name
      */
     public function removeExternalId(string $service): void;
+
+    /**
+     * Clear all external ids of services.
+     */
+    public function clearExternalIds(): void;
 }
