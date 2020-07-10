@@ -13,7 +13,7 @@
     "prefer-stable": true,
     "require": {
         "php": "^7.4.0",
-        "ramsey/uuid": "^3.7.0"
+        "ramsey/uuid": "^4.0.0"
     },
     "autoload": {
         "psr-4": { "Klipper\\Component\\Uuid\\": "" },
