@@ -28,15 +28,18 @@ class KlipperImporterExtension extends Extension
      */
     public function load(array $configs, ContainerBuilder $container): void
     {
+        $configuration = new Configuration();
+        $config = $this->processConfiguration($configuration, $configs);
+
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
 
-        $this->configureImporter($loader);
+        $this->configureImporter($container, $loader, $config);
     }
 
     /**
      * @throws
      */
-    private function configureImporter(LoaderInterface $loader): void
+    private function configureImporter(ContainerBuilder $container, LoaderInterface $loader, array $config): void
     {
         $loader->load('importer.xml');
         $loader->load('command.xml');
@@ -44,5 +47,8 @@ class KlipperImporterExtension extends Extension
         if (interface_exists(UserInterface::class)) {
             $loader->load('security_listener.xml');
         }
+
+        $imDef = $container->getDefinition('klipper_importer.manager');
+        $imDef->addMethodCall('setLogResourceErrors', [$config['log_resource_errors']]);
     }
 }
