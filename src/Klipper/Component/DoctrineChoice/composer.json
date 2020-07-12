@@ -18,6 +18,13 @@
         "jms/serializer": "^3.8.0",
         "symfony/validator": "^5.1.0"
     },
+    "require-dev": {
+        "klipper/data-loader": "^2.0.0",
+        "klipper/doctrine-extensions": "^2.0.0",
+        "klipper/doctrine-extensions-extra": "^2.0.0",
+        "symfony/console": "^5.1.0",
+        "symfony/property-access": "^5.1.0"
+    },
     "autoload": {
         "psr-4": { "Klipper\\Component\\DoctrineChoice\\": "" },
         "exclude-from-classmap": [
