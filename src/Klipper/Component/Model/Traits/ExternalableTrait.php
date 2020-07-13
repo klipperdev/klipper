@@ -46,7 +46,11 @@ trait ExternalableTrait
     public function setExternalIds(array $serviceIds): void
     {
         foreach ($serviceIds as $service => $id) {
-            $this->addExternalId($service, $id);
+            if (empty($id)) {
+                $this->removeExternalId($service);
+            } else {
+                $this->addExternalId($service, $id);
+            }
         }
     }
 
