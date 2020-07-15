@@ -33,7 +33,7 @@ trait OauthRefreshTokenTrait
      * @Serializer\Expose
      * @Serializer\ReadOnly
      */
-    protected ?OauthAccessTokenInterface $accessToken;
+    protected ?OauthAccessTokenInterface $accessToken = null;
 
     /**
      * @see OauthRefreshTokenInterface::setAccessToken()

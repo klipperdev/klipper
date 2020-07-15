@@ -20,17 +20,17 @@ use CrEOF\Spatial\PHP\Types\Geometry\Point;
  */
 trait AddressTrait
 {
-    protected ?string $street;
+    protected ?string $street = null;
 
-    protected ?string $streetComplement;
+    protected ?string $streetComplement = null;
 
-    protected ?string $postalCode;
+    protected ?string $postalCode = null;
 
-    protected ?string $city;
+    protected ?string $city = null;
 
-    protected ?string $state;
+    protected ?string $state = null;
 
-    protected ?string $country;
+    protected ?string $country = null;
 
     protected ?Point $addressLocation = null;
 
