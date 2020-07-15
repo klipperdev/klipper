@@ -48,6 +48,16 @@ trait UserTrackableTrait
     protected ?UserInterface $updatedBy = null;
 
     /**
+     * @return static
+     */
+    public function setCreatedBy(?UserInterface $createdBy): self
+    {
+        $this->createdBy = $createdBy;
+
+        return $this;
+    }
+
+    /**
      * @see \Klipper\Contracts\Model\UserTrackableInterface::getCreatedBy()
      */
     public function getCreatedBy(): ?UserInterface
@@ -63,6 +73,16 @@ trait UserTrackableTrait
         return null !== $this->getCreatedBy()
             ? $this->getCreatedBy()->getId()
             : null;
+    }
+
+    /**
+     * @return static
+     */
+    public function setUpdatedBy(?UserInterface $updatedBy): self
+    {
+        $this->updatedBy = $updatedBy;
+
+        return $this;
     }
 
     /**
