@@ -29,6 +29,11 @@ class ViewMetadata implements ViewMetadataInterface
     /**
      * @var string
      */
+    protected $pluralName;
+
+    /**
+     * @var string
+     */
     protected $label;
 
     /**
@@ -109,6 +114,7 @@ class ViewMetadata implements ViewMetadataInterface
     /**
      * @param string                                  $class               The class name
      * @param string                                  $name                The name of metadata object
+     * @param string                                  $pluralName          The plural name of metadata object
      * @param string                                  $fieldIdentifier     The name of the field used for identifier
      * @param string                                  $fieldLabel          The name of field used for label
      * @param string                                  $label               The label of metadata object
@@ -124,6 +130,7 @@ class ViewMetadata implements ViewMetadataInterface
     public function __construct(
         string $class,
         string $name,
+        string $pluralName,
         string $fieldIdentifier,
         string $fieldLabel,
         string $label,
@@ -138,6 +145,7 @@ class ViewMetadata implements ViewMetadataInterface
     ) {
         $this->class = $class;
         $this->name = $name;
+        $this->pluralName = $pluralName;
         $this->label = $label;
         $this->description = $description;
         $this->multiSortable = $multiSortable;
@@ -189,6 +197,11 @@ class ViewMetadata implements ViewMetadataInterface
     public function getName(): string
     {
         return $this->name;
+    }
+
+    public function getPluralName(): string
+    {
+        return $this->pluralName;
     }
 
     public function getLabel(): string

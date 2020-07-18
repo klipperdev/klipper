@@ -256,6 +256,7 @@ class PermissionMetadataManager implements PermissionMetadataManagerInterface
             $viewMeta = new ViewMetadata(
                 $metadata->getClass(),
                 $metadata->getName(),
+                $metadata->getPluralName(),
                 $metadata->getFieldIdentifier(),
                 $metadata->getFieldLabel(),
                 MetadataUtil::getTrans($this->translator, $metadata->getLabel(), $metadata->getTranslationDomain(), $metadata->getName()),

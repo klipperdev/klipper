@@ -27,6 +27,11 @@ interface ViewMetadataInterface
     public function getName(): string;
 
     /**
+     * Get the plural name of metadata object.
+     */
+    public function getPluralName(): string;
+
+    /**
      * Get the label of metadata object.
      */
     public function getLabel(): string;
