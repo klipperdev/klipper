@@ -54,6 +54,8 @@ class GuessFinal implements
         if (null === $label) {
             $builder->setLabel(MetadataUtil::getObjectLabel($builder->getName()));
         }
+
+        $builder->setPluralLabel($builder->getPluralLabel() ?? (string) current($inflector->pluralize($builder->getLabel())));
     }
 
     public function guessFieldConfig(FieldMetadataBuilderInterface $builder): void

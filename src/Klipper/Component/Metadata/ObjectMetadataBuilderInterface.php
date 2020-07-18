@@ -33,6 +33,20 @@ interface ObjectMetadataBuilderInterface extends MetadataBuilderInterface
     public function getPluralName(): ?string;
 
     /**
+     * Set the plural label.
+     *
+     * @param string $label The plural label
+     *
+     * @return static
+     */
+    public function setPluralLabel(?string $label);
+
+    /**
+     * Get the plural label.
+     */
+    public function getPluralLabel(): ?string;
+
+    /**
      * Get the class name.
      */
     public function getClass(): string;

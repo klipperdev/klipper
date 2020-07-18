@@ -41,7 +41,7 @@ class GuessTranslator implements
     {
         $name = $builder->getName() ?? MetadataUtil::getObjectName($builder->getClass());
 
-        $this->guessTranslations($builder, [$name.'.name'], [$name.'.description']);
+        $this->guessTranslations($builder, [$name.'.name'], [$name.'.description'], [$name.'.name.plural']);
     }
 
     public function guessFieldConfig(FieldMetadataBuilderInterface $builder): void
@@ -89,13 +89,19 @@ class GuessTranslator implements
         ]);
     }
 
-    private function guessTranslations(MetadataBuilderInterface $builder, array $names, array $descriptions): void
+    private function guessTranslations(MetadataBuilderInterface $builder, array $names, array $descriptions, array $pluralNames = []): void
     {
         if (null === $builder->getTranslationDomain()) {
             $catalogue = $this->translator->getCatalogue();
 
             if (null === $builder->getLabel()) {
                 $builder->setLabel($this->findTranslation($catalogue, $builder, $names));
+            }
+
+            if ($builder instanceof ObjectMetadataBuilderInterface
+                    && null === $builder->getPluralLabel()
+                    && !empty($pluralNames)) {
+                $builder->setPluralLabel($this->findTranslation($catalogue, $builder, $pluralNames));
             }
 
             if (null === $builder->getDescription()) {

@@ -24,6 +24,11 @@ interface ObjectMetadataInterface extends MetadataInterface
     public function getPluralName(): string;
 
     /**
+     * Get the plural label.
+     */
+    public function getPluralLabel(): ?string;
+
+    /**
      * Get the class name.
      */
     public function getClass(): string;

@@ -21,6 +21,8 @@ class ObjectMetadataBuilder extends BaseMetadataBuilder implements ObjectMetadat
 {
     protected ?string $pluralName = null;
 
+    protected ?string $pluralLabel = null;
+
     protected string $class;
 
     /**
@@ -84,6 +86,18 @@ class ObjectMetadataBuilder extends BaseMetadataBuilder implements ObjectMetadat
     public function getPluralName(): ?string
     {
         return $this->pluralName;
+    }
+
+    public function setPluralLabel(?string $label): self
+    {
+        $this->pluralLabel = $label;
+
+        return $this;
+    }
+
+    public function getPluralLabel(): ?string
+    {
+        return $this->pluralLabel;
     }
 
     public function getClass(): string
@@ -356,6 +370,7 @@ class ObjectMetadataBuilder extends BaseMetadataBuilder implements ObjectMetadat
             (string) $this->getName(),
             (string) $this->getPluralName(),
             (string) $this->getLabel(),
+            (string) $this->getPluralLabel(),
             $this->getDescription(),
             $this->getTranslationDomain(),
             $this->isPublic() ?? false,

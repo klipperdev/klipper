@@ -260,6 +260,7 @@ class PermissionMetadataManager implements PermissionMetadataManagerInterface
                 $metadata->getFieldIdentifier(),
                 $metadata->getFieldLabel(),
                 MetadataUtil::getTrans($this->translator, $metadata->getLabel(), $metadata->getTranslationDomain(), $metadata->getName()),
+                MetadataUtil::getTrans($this->translator, $metadata->getPluralLabel(), $metadata->getTranslationDomain(), $metadata->getName()),
                 MetadataUtil::getTrans($this->translator, $metadata->getDescription(), $metadata->getTranslationDomain()),
                 $metadata->isMultiSortable(),
                 $this->buildDefaultSortable($metadata),

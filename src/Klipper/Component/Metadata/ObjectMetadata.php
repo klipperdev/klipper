@@ -25,6 +25,8 @@ class ObjectMetadata extends BaseMetadata implements ObjectMetadataInterface
 
     protected string $pluralName;
 
+    protected string $pluralLabel;
+
     protected string $class;
 
     /**
@@ -83,6 +85,7 @@ class ObjectMetadata extends BaseMetadata implements ObjectMetadataInterface
         string $name,
         string $pluralName,
         string $label,
+        string $pluralLabel,
         ?string $description,
         ?string $translationDomain,
         bool $public,
@@ -110,6 +113,7 @@ class ObjectMetadata extends BaseMetadata implements ObjectMetadataInterface
 
         $this->class = $class;
         $this->pluralName = $pluralName;
+        $this->pluralLabel = $pluralLabel;
         $this->multiSortable = $multiSortable;
         $this->defaultSortable = $defaultSortable;
         $this->availableContexts = $availableContexts;
@@ -136,6 +140,11 @@ class ObjectMetadata extends BaseMetadata implements ObjectMetadataInterface
     public function getPluralName(): string
     {
         return $this->pluralName;
+    }
+
+    public function getPluralLabel(): string
+    {
+        return $this->pluralLabel;
     }
 
     public function getClass(): string

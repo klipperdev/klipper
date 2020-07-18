@@ -37,6 +37,11 @@ class ViewMetadata implements ViewMetadataInterface
     protected $label;
 
     /**
+     * @var string
+     */
+    protected $pluralLabel;
+
+    /**
      * @var null|string
      */
     protected $description;
@@ -118,6 +123,7 @@ class ViewMetadata implements ViewMetadataInterface
      * @param string                                  $fieldIdentifier     The name of the field used for identifier
      * @param string                                  $fieldLabel          The name of field used for label
      * @param string                                  $label               The label of metadata object
+     * @param string                                  $pluralLabel         The plural label of metadata object
      * @param null|string                             $description         The description of metadata object
      * @param bool                                    $multiSortable       Check if the metadata is multi sortable
      * @param array                                   $defaultSortable     The default sortable
@@ -134,6 +140,7 @@ class ViewMetadata implements ViewMetadataInterface
         string $fieldIdentifier,
         string $fieldLabel,
         string $label,
+        string $pluralLabel,
         ?string $description = null,
         bool $multiSortable = false,
         array $defaultSortable = [],
@@ -147,6 +154,7 @@ class ViewMetadata implements ViewMetadataInterface
         $this->name = $name;
         $this->pluralName = $pluralName;
         $this->label = $label;
+        $this->pluralLabel = $pluralLabel;
         $this->description = $description;
         $this->multiSortable = $multiSortable;
         $this->defaultSortable = $defaultSortable;
@@ -207,6 +215,11 @@ class ViewMetadata implements ViewMetadataInterface
     public function getLabel(): string
     {
         return $this->label;
+    }
+
+    public function getPluralLabel(): string
+    {
+        return $this->pluralLabel;
     }
 
     public function getDescription(): ?string

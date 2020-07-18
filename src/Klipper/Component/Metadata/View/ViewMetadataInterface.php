@@ -37,6 +37,11 @@ interface ViewMetadataInterface
     public function getLabel(): string;
 
     /**
+     * Get the plural label of metadata object.
+     */
+    public function getPluralLabel(): string;
+
+    /**
      * Get the description of metadata object.
      */
     public function getDescription(): ?string;
