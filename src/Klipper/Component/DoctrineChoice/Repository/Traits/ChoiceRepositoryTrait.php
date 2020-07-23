@@ -15,6 +15,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\QueryBuilder;
 use Klipper\Component\DoctrineChoice\Model\ChoiceInterface;
 use Klipper\Component\DoctrineChoice\Repository\ChoiceRepositoryInterface;
+use Klipper\Component\DoctrineChoice\Util\ChoiceUtil;
 use Klipper\Component\DoctrineExtensions\Util\SqlFilterUtil;
 
 /**
@@ -40,14 +41,8 @@ trait ChoiceRepositoryTrait
             ->getQuery()
             ->getResult()
         ;
-        $values = [];
-
-        foreach ($res as $choice) {
-            $values[$choice->getType().'|'.$choice->getValue()] = $choice;
-        }
-
         SqlFilterUtil::enableFilters($this->getEntityManager(), $filters);
 
-        return $values;
+        return ChoiceUtil::getMapChoices($res);
     }
 }
