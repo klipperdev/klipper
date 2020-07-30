@@ -29,7 +29,6 @@ trait UserTrackableTrait
      *
      * @Gedmo\Blameable(on="create")
      *
-     * @Serializer\Type("Relation")
      * @Serializer\Expose
      * @Serializer\ReadOnly
      */
@@ -41,7 +40,6 @@ trait UserTrackableTrait
      *
      * @Gedmo\Blameable(on="update")
      *
-     * @Serializer\Type("Relation")
      * @Serializer\Expose
      * @Serializer\ReadOnly
      */
