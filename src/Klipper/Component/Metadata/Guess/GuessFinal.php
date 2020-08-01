@@ -39,13 +39,13 @@ class GuessFinal implements
 
         $builder->setPluralName($builder->getPluralName() ?? (string) current($inflector->pluralize($builder->getName())));
         $builder->setMultiSortable($builder->isMultiSortable() ?? false);
-        $builder->setDefaultSortable($builder->getDefaultSortable() ?? []);
         $builder->setAvailableContexts($builder->getAvailableContexts() ?? [
             MetadataContexts::USER,
             MetadataContexts::ORGANIZATION,
         ]);
         $builder->setFieldIdentifier($builder->getFieldIdentifier() ?? 'id');
         $builder->setFieldLabel($builder->getFieldLabel() ?? 'id');
+        $builder->setDefaultSortable($builder->getDefaultSortable() ?? [$builder->getFieldLabel() => 'asc']);
 
         if (null === $builder->getActions()) {
             $builder->setActions([]);
@@ -56,12 +56,6 @@ class GuessFinal implements
         }
 
         $builder->setPluralLabel($builder->getPluralLabel() ?? (string) current($inflector->pluralize($builder->getLabel())));
-
-        if (empty($builder->getDefaultSortable())) {
-            $builder->setDefaultSortable([
-                $builder->getFieldLabel() => 'asc',
-            ]);
-        }
     }
 
     public function guessFieldConfig(FieldMetadataBuilderInterface $builder): void
