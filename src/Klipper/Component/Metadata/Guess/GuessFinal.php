@@ -56,6 +56,12 @@ class GuessFinal implements
         }
 
         $builder->setPluralLabel($builder->getPluralLabel() ?? (string) current($inflector->pluralize($builder->getLabel())));
+
+        if (empty($builder->getDefaultSortable())) {
+            $builder->setDefaultSortable([
+                $builder->getFieldLabel() => 'asc',
+            ]);
+        }
     }
 
     public function guessFieldConfig(FieldMetadataBuilderInterface $builder): void
