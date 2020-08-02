@@ -14,6 +14,7 @@ namespace Klipper\Component\ListView\Model\Traits;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as Serializer;
 use Klipper\Component\Model\Traits\LabelableTrait;
+use Klipper\Component\Model\Traits\NameableTrait;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -23,6 +24,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 trait ListViewTrait
 {
+    use NameableTrait;
     use LabelableTrait;
 
     /**

@@ -12,13 +12,14 @@
 namespace Klipper\Component\ListView\Model;
 
 use Klipper\Component\Model\Traits\LabelableInterface;
+use Klipper\Component\Model\Traits\NameableInterface;
 
 /**
  * Interface of list view model.
  *
  * @author François Pluchino <francois.pluchino@klipper.dev>
  */
-interface ListViewInterface extends LabelableInterface
+interface ListViewInterface extends NameableInterface, LabelableInterface
 {
     /**
      * @return static
