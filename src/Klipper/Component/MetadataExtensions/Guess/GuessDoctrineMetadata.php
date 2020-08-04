@@ -56,6 +56,10 @@ class GuessDoctrineMetadata extends AbstractGuessDoctrine implements
         'linestring' => 'object',
     ];
 
+    public const FIELD_TYPE_INPUTS = [
+        'object' => 'object',
+    ];
+
     public const ASSOCIATION_TYPES = [
         OrmClassMetadata::ONE_TO_ONE => 'one-to-one',
         OrmClassMetadata::MANY_TO_ONE => 'many-to-one',
@@ -77,6 +81,8 @@ class GuessDoctrineMetadata extends AbstractGuessDoctrine implements
 
     protected array $mappingAssociationTypes;
 
+    protected array $mappingFieldTypeInputs;
+
     /**
      * @param ManagerRegistry $registry                The doctrine registry
      * @param array           $mappingFieldTypes       The mapping of field types
@@ -85,12 +91,14 @@ class GuessDoctrineMetadata extends AbstractGuessDoctrine implements
     public function __construct(
         ManagerRegistry $registry,
         array $mappingFieldTypes = [],
-        array $mappingAssociationTypes = []
+        array $mappingAssociationTypes = [],
+        array $mappingFieldTypeInputs = []
     ) {
         parent::__construct($registry);
 
         $this->mappingFieldTypes = array_merge(static::FIELD_TYPES, $mappingFieldTypes);
         $this->mappingAssociationTypes = static::ASSOCIATION_TYPES;
+        $this->mappingFieldTypeInputs = array_merge(static::FIELD_TYPE_INPUTS, $mappingFieldTypeInputs);
 
         foreach ($mappingAssociationTypes as $doctrineType => $type) {
             $this->mappingAssociationTypes[$doctrineType] = $type;
@@ -151,6 +159,10 @@ class GuessDoctrineMetadata extends AbstractGuessDoctrine implements
 
         if (null === $builder->getType()) {
             $builder->setType($this->getFieldType($classMeta, $fieldName));
+        }
+
+        if (null === $builder->getInput() && isset($this->mappingFieldTypeInputs[$builder->getType()])) {
+            $builder->setInput($this->mappingFieldTypeInputs[$builder->getType()]);
         }
 
         if (!$classMeta instanceof OrmClassMetadata) {
