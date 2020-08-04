@@ -41,7 +41,6 @@ trait ListViewTrait
     /**
      * @ORM\Column(type="json", nullable=true)
      *
-     * @Assert\Json
      * @Assert\NotBlank
      *
      * @Serializer\Expose
