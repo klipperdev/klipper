@@ -14,17 +14,15 @@ namespace Klipper\Component\User\Doctrine\Listener;
 use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Events;
-use Klipper\Component\DoctrineExtensionsExtra\Util\ListenerUtil;
 use Klipper\Component\Resource\Domain\DomainManagerInterface;
 use Klipper\Component\Security\Model\UserInterface;
-use Klipper\Component\User\Model\ProfileInterface;
 use Klipper\Component\User\Model\Traits\ProfileableInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
  * @author François Pluchino <francois.pluchino@klipper.dev>
  */
-class UserSubscriber implements EventSubscriber
+class ProfileableSubscriber implements EventSubscriber
 {
     private DomainManagerInterface $domainManager;
 
@@ -40,6 +38,7 @@ class UserSubscriber implements EventSubscriber
     {
         return [
             Events::prePersist,
+            Events::preUpdate,
         ];
     }
 
@@ -47,20 +46,31 @@ class UserSubscriber implements EventSubscriber
     {
         $entity = $args->getEntity();
 
-        if ($entity instanceof UserInterface) {
-            $this->createProfile($entity);
+        if ($entity instanceof ProfileableInterface) {
+            $entity->setInitial($this->getInitial($entity));
         }
     }
 
-    protected function createProfile(UserInterface $entity): void
+    public function preUpdate(LifecycleEventArgs $args): void
     {
-        if ($entity instanceof ProfileableInterface && null === $entity->getProfile()) {
-            /** @var ProfileInterface $profile */
-            $profile = $this->domainManager->get(ProfileInterface::class)->newInstance();
-            $profile->setUser($entity);
+        $this->prePersist($args);
+    }
 
-            ListenerUtil::validateEntity($this->validator, $profile);
-            $entity->setProfile($profile);
+    private function getInitial(ProfileableInterface $entity): string
+    {
+        $initial = null;
+        $fn = $entity->getFirstName();
+        $ln = $entity->getLastName();
+
+        if (null !== $fn || null !== $ln) {
+            $initial = null !== $fn && \strlen($fn) > 0 ? substr($fn, 0, 1) : '';
+            $initial .= null !== $ln && \strlen($ln) > 0 ? substr($ln, 0, 1) : '';
         }
+
+        if (null === $initial && $entity instanceof UserInterface) {
+            $initial = substr($entity->getUsername(), 0, 1);
+        }
+
+        return strtoupper($initial);
     }
 }

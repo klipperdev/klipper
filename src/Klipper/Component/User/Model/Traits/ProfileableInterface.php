@@ -11,21 +11,38 @@
 
 namespace Klipper\Component\User\Model\Traits;
 
-use Klipper\Component\User\Model\ProfileInterface;
+use Klipper\Component\Model\Traits\ImagePathInterface;
 
 /**
- * Profile interface.
+ * Profileable interface.
  *
  * @author François Pluchino <francois.pluchino@klipper.dev>
  */
-interface ProfileableInterface
+interface ProfileableInterface extends ImagePathInterface
 {
     /**
      * @return static
      */
-    public function setProfile(?ProfileInterface $profile);
+    public function setFirstName(?string $firstName);
 
-    public function getProfile(): ?ProfileInterface;
+    public function getFirstName(): ?string;
 
-    public function getFullName(string $format = '{firstName} {lastName}'): string;
+    /**
+     * @return static
+     */
+    public function setLastName(?string $lastName);
+
+    public function getLastName(): ?string;
+
+    /**
+     * @return static
+     */
+    public function setInitial(?string $initial);
+
+    public function getInitial(): ?string;
+
+    /**
+     * @param string $format The format
+     */
+    public function getFullName(string $format = '{firstName} {lastName}'): ?string;
 }

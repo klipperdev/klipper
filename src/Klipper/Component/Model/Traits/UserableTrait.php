@@ -27,7 +27,6 @@ trait UserableTrait
     /**
      * @ORM\OneToOne(
      *     targetEntity="Klipper\Component\Security\Model\UserInterface",
-     *     inversedBy="profile",
      *     fetch="EXTRA_LAZY",
      *     cascade={"persist", "remove"}
      * )

@@ -13,9 +13,7 @@ namespace Klipper\Component\User\Model\Traits;
 
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as Serializer;
-use Klipper\Component\Security\Model\UserInterface;
-use Klipper\Component\User\Model\ProfileInterface;
-use Klipper\Component\Uuid\Util\UuidUtil;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Profileable trait.
@@ -25,52 +23,102 @@ use Klipper\Component\Uuid\Util\UuidUtil;
 trait ProfileableTrait
 {
     /**
-     * @ORM\OneToOne(
-     *     targetEntity="Klipper\Component\User\Model\ProfileInterface",
-     *     mappedBy="user",
-     *     fetch="EAGER",
-     *     orphanRemoval=true,
-     *     cascade={"persist", "remove"}
-     * )
+     * @ORM\Column(type="string", length=255, nullable=true)
+     *
+     * @Assert\Length(max=255)
      *
      * @Serializer\Expose
-     * @Serializer\ReadOnly
      */
-    protected ?ProfileInterface $profile = null;
+    protected ?string $firstName = null;
 
     /**
-     * @see ProfileableInterface::setProfile()
+     * @ORM\Column(type="string", length=255, nullable=true)
+     *
+     * @Assert\Length(max=255)
+     *
+     * @Serializer\Expose
      */
-    public function setProfile(?ProfileInterface $profile): self
-    {
-        $this->profile = $profile;
+    protected ?string $lastName = null;
 
-        if ($this instanceof UserInterface) {
-            $profile->setUser($this);
-        }
+    /**
+     * @ORM\Column(type="string", length=5, nullable=true)
+     *
+     * @Assert\Length(max=5)
+     *
+     * @Serializer\Expose
+     */
+    protected ?string $initial = null;
+
+    /**
+     * @see ProfileableInterface::setFirstName()
+     */
+    public function setFirstName(?string $firstName): self
+    {
+        $this->firstName = $firstName;
 
         return $this;
     }
 
     /**
-     * @see ProfileableInterface::getProfile()
+     * @see ProfileableInterface::getFirstName()
      */
-    public function getProfile(): ?ProfileInterface
+    public function getFirstName(): ?string
     {
-        return $this->profile;
+        return $this->firstName;
+    }
+
+    /**
+     * @see ProfileableInterface::setLastName()
+     */
+    public function setLastName(?string $lastName): self
+    {
+        $this->lastName = $lastName;
+
+        return $this;
+    }
+
+    /**
+     * @see ProfileableInterface::getLastName()
+     */
+    public function getLastName(): ?string
+    {
+        return $this->lastName;
+    }
+
+    /**
+     * @see ProfileableInterface::setInitial()
+     */
+    public function setInitial(?string $initial): self
+    {
+        $this->initial = $initial;
+
+        return $this;
+    }
+
+    /**
+     * @see ProfileableInterface::getInitial()
+     */
+    public function getInitial(): ?string
+    {
+        return $this->initial;
     }
 
     /**
      * @see ProfileableInterface::getFullName()
+     *
+     * @Serializer\SerializedName("full_name")
+     * @Serializer\VirtualProperty
      */
-    public function getFullName(string $format = '{firstName} {lastName}'): string
+    public function getFullName(string $format = '{firstName} {lastName}'): ?string
     {
-        $fullName = null !== $this->profile
-            ? $this->profile->getFullName($format)
-            : $this->getUsername();
+        $fullName = null;
 
-        return UuidUtil::isV4($fullName)
-            ? $this->getEmail()
-            : $fullName;
+        if (null !== $this->firstName || null !== $this->lastName) {
+            $fullName = str_replace('{firstName}', $this->firstName, $format);
+            $fullName = str_replace('{lastName}', $this->lastName, $fullName);
+            $fullName = trim($fullName);
+        }
+
+        return $fullName;
     }
 }
