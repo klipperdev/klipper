@@ -94,6 +94,13 @@ interface ViewMetadataInterface
     public function getFieldLabel(): string;
 
     /**
+     * Get the paths to allow the search on fields defined in deep associations.
+     *
+     * @return string[]
+     */
+    public function getDeepSearchPaths(): array;
+
+    /**
      * Check if the permissions can be configured for this metadata.
      */
     public function hasEditablePermissions(): bool;

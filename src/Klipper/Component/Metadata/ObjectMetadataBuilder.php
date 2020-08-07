@@ -51,6 +51,11 @@ class ObjectMetadataBuilder extends BaseMetadataBuilder implements ObjectMetadat
     protected ?string $fieldLabel = null;
 
     /**
+     * @var string[]
+     */
+    protected array $deepSearchPaths = [];
+
+    /**
      * @var null|ActionMetadataBuilderInterface[]
      */
     protected ?array $actions = null;
@@ -232,6 +237,45 @@ class ObjectMetadataBuilder extends BaseMetadataBuilder implements ObjectMetadat
         return $this->fieldLabel;
     }
 
+    public function setDeepSearchPaths(array $deepSearchPaths): self
+    {
+        $this->deepSearchPaths = [];
+
+        foreach ($deepSearchPaths as $deepSearchPath) {
+            $this->addDeepSearchPath($deepSearchPath);
+        }
+
+        return $this;
+    }
+
+    public function hasDeepSearchPath(string $deepSearchPath): bool
+    {
+        return \in_array($deepSearchPath, $this->deepSearchPaths, true);
+    }
+
+    public function addDeepSearchPath(string $deepSearchPath): self
+    {
+        if (!$this->hasDeepSearchPath($deepSearchPath)) {
+            $this->deepSearchPaths[] = $deepSearchPath;
+        }
+
+        return $this;
+    }
+
+    public function removeDeepSearchPath(string $deepSearchPath): self
+    {
+        if (false !== ($pos = array_search($deepSearchPath, $this->deepSearchPaths, true))) {
+            array_splice($this->deepSearchPaths, $pos, 1);
+        }
+
+        return $this;
+    }
+
+    public function getDeepSearchPaths(): array
+    {
+        return $this->deepSearchPaths;
+    }
+
     public function hasAction(string $action): bool
     {
         return isset($this->actions[$action]);
@@ -381,6 +425,7 @@ class ObjectMetadataBuilder extends BaseMetadataBuilder implements ObjectMetadat
             (string) $this->getFieldLabel(),
             $this->getFormType(),
             $this->getFormOptions(),
+            $this->getDeepSearchPaths(),
             $this->getGroups(),
             $this->getResources(),
             $this->getFields(),

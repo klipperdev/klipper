@@ -92,6 +92,11 @@ class ViewMetadata implements ViewMetadataInterface
     protected $fieldLabel;
 
     /**
+     * @var string[]
+     */
+    protected $deepSearchPaths;
+
+    /**
      * @var bool
      */
     protected $editablePermissions;
@@ -128,6 +133,7 @@ class ViewMetadata implements ViewMetadataInterface
      * @param bool                                    $multiSortable       Check if the metadata is multi sortable
      * @param array                                   $defaultSortable     The default sortable
      * @param string[]                                $availableContexts   The available contexts
+     * @param string[]                                $deepSearchPaths     The deep search paths
      * @param bool                                    $editablePermissions Check if the permissions can be configured for this metadata
      * @param null|string[]                           $availableActions    The available actions
      * @param null|ViewFieldMetadataInterface[]       $fields              The field metadatas
@@ -145,6 +151,7 @@ class ViewMetadata implements ViewMetadataInterface
         bool $multiSortable = false,
         array $defaultSortable = [],
         array $availableContexts = [],
+        array $deepSearchPaths = [],
         bool $editablePermissions = false,
         ?array $availableActions = null,
         ?array $fields = null,
@@ -161,8 +168,10 @@ class ViewMetadata implements ViewMetadataInterface
         $this->availableContexts = $availableContexts;
         $this->fieldIdentifier = $fieldIdentifier;
         $this->fieldLabel = $fieldLabel;
+        $this->deepSearchPaths = $deepSearchPaths;
         $this->editablePermissions = $editablePermissions;
         $this->availableActions = $availableActions;
+        $this->searchable = !empty($deepSearchPaths);
 
         if (\is_array($fields)) {
             foreach ($fields as $field) {
@@ -270,6 +279,11 @@ class ViewMetadata implements ViewMetadataInterface
     public function getFieldLabel(): string
     {
         return $this->fieldLabel;
+    }
+
+    public function getDeepSearchPaths(): array
+    {
+        return $this->deepSearchPaths;
     }
 
     public function hasEditablePermissions(): bool

@@ -265,6 +265,7 @@ class PermissionMetadataManager implements PermissionMetadataManagerInterface
                 $metadata->isMultiSortable(),
                 $this->buildDefaultSortable($metadata),
                 $metadata->getAvailableContexts(),
+                $metadata->getDeepSearchPaths(),
                 null === $master && null !== $config && empty($config->getOperations()),
                 !empty($metadata->getActions()) ? array_keys($metadata->getActions()) : null,
                 $this->buildFieldMetadatas($metadata, null === $master),

@@ -199,6 +199,47 @@ interface ObjectMetadataBuilderInterface extends MetadataBuilderInterface
     public function getFieldLabel(): ?string;
 
     /**
+     * Set the paths to allow the search on fields defined in deep associations.
+     *
+     * @param string[] $deepSearchPaths The deep search paths
+     *
+     * @return static
+     */
+    public function setDeepSearchPaths(array $deepSearchPaths);
+
+    /**
+     * Check if the deep search path is defined.
+     *
+     * @param string $deepSearchPath The deep search path
+     */
+    public function hasDeepSearchPath(string $deepSearchPath): bool;
+
+    /**
+     * Add the path to allow the search on fields defined in deep associations.
+     *
+     * @param string $deepSearchPath The deep search path
+     *
+     * @return static
+     */
+    public function addDeepSearchPath(string $deepSearchPath);
+
+    /**
+     * Remove the path to allow the search on fields defined in deep associations.
+     *
+     * @param string $deepSearchPath The deep search path
+     *
+     * @return static
+     */
+    public function removeDeepSearchPath(string $deepSearchPath);
+
+    /**
+     * Get the paths to allow the search on fields defined in deep associations.
+     *
+     * @return string[]
+     */
+    public function getDeepSearchPaths(): array;
+
+    /**
      * Check if the action metadata builder is present.
      *
      * @param string $action The action name

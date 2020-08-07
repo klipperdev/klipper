@@ -71,6 +71,11 @@ class ObjectMetadata extends BaseMetadata implements ObjectMetadataInterface
     protected string $fieldLabel;
 
     /**
+     * @var string[]
+     */
+    protected array $deepSearchPaths = [];
+
+    /**
      * @var ActionMetadataInterface[]
      */
     protected array $actions = [];
@@ -96,6 +101,7 @@ class ObjectMetadata extends BaseMetadata implements ObjectMetadataInterface
         string $fieldLabel,
         ?string $formType,
         array $formOptions,
+        array $deepSearchPaths,
         array $groups,
         array $resources,
         array $fieldBuilders,
@@ -121,8 +127,10 @@ class ObjectMetadata extends BaseMetadata implements ObjectMetadataInterface
         $this->fieldLabel = $fieldLabel;
         $this->formType = $formType;
         $this->formOptions = $formOptions;
+        $this->deepSearchPaths = $deepSearchPaths;
         $this->groups = $groups;
         $this->resources = $resources;
+        $this->searchable = !empty($deepSearchPaths);
 
         foreach ($fieldBuilders as $fieldBuilder) {
             $this->addField($fieldBuilder);
@@ -252,6 +260,11 @@ class ObjectMetadata extends BaseMetadata implements ObjectMetadataInterface
     public function getFieldLabel(): string
     {
         return $this->fieldLabel;
+    }
+
+    public function getDeepSearchPaths(): array
+    {
+        return $this->deepSearchPaths;
     }
 
     public function getActions(): array
