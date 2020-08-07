@@ -57,7 +57,7 @@ class GuessJmsSerializerVirtualFieldMetadata implements GuessObjectConfigInterfa
                         $propRef = new \ReflectionMethod($propMeta->class, $propMeta->getter);
 
                         if (null !== $type = $propRef->getReturnType()) {
-                            $field->setType((string) $type);
+                            $field->setType($type instanceof \ReflectionNamedType ? $type->getName() : (string) $type);
                         }
                     }
 
