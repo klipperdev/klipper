@@ -16,110 +16,62 @@ namespace Klipper\Component\Metadata\View;
  */
 class ViewMetadata implements ViewMetadataInterface
 {
-    /**
-     * @var string
-     */
-    protected $class;
+    protected string $class;
 
-    /**
-     * @var string
-     */
-    protected $name;
+    protected string $name;
 
-    /**
-     * @var string
-     */
-    protected $pluralName;
+    protected string $pluralName;
 
-    /**
-     * @var string
-     */
-    protected $label;
+    protected string $label;
 
-    /**
-     * @var string
-     */
-    protected $pluralLabel;
+    protected string $pluralLabel;
 
-    /**
-     * @var null|string
-     */
-    protected $description;
+    protected ?string $description;
 
-    /**
-     * @var bool
-     */
-    protected $sortable = false;
+    protected bool $sortable = false;
 
-    /**
-     * @var bool
-     */
-    protected $multiSortable;
+    protected bool $multiSortable;
 
-    /**
-     * @var array
-     */
-    protected $defaultSortable;
+    protected array $defaultSortable;
 
-    /**
-     * @var bool
-     */
-    protected $filterable = false;
+    protected bool $filterable = false;
 
-    /**
-     * @var bool
-     */
-    protected $searchable = false;
+    protected bool $searchable = false;
 
-    /**
-     * @var bool
-     */
-    protected $translatable = false;
+    protected bool $translatable = false;
 
     /**
      * @var string[]
      */
-    protected $availableContexts;
+    protected array $availableContexts;
 
-    /**
-     * @var string
-     */
-    protected $fieldIdentifier;
+    protected string $fieldIdentifier;
 
-    /**
-     * @var string
-     */
-    protected $fieldLabel;
+    protected string $fieldLabel;
 
     /**
      * @var string[]
      */
-    protected $deepSearchPaths;
+    protected array $deepSearchPaths;
 
-    /**
-     * @var bool
-     */
-    protected $editablePermissions;
+    protected bool $editablePermissions;
 
-    /**
-     * @var bool
-     */
-    protected $master = true;
+    protected bool $master = true;
 
     /**
      * @var null|string[]
      */
-    protected $availableActions;
+    protected ?array $availableActions = null;
 
     /**
      * @var null|ViewFieldMetadataInterface[]
      */
-    protected $fields;
+    protected ?array $fields = null;
 
     /**
      * @var null|ViewAssociationMetadataInterface[]
      */
-    protected $associations;
+    protected ?array $associations = null;
 
     /**
      * @param string                                  $class               The class name

@@ -16,20 +16,11 @@ namespace Klipper\Component\Metadata\View;
  */
 class ViewAssociationMetadata extends BaseViewChildMetadata implements ViewAssociationMetadataInterface
 {
-    /**
-     * @var string
-     */
-    protected $association;
+    protected string $association;
 
-    /**
-     * @var null|string
-     */
-    protected $target;
+    protected string $target;
 
-    /**
-     * @var bool
-     */
-    protected $masterDetails;
+    protected bool $masterDetails;
 
     /**
      * @param string      $association         The association name in class

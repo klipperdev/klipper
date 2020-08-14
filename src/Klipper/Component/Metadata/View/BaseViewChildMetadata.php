@@ -16,50 +16,23 @@ namespace Klipper\Component\Metadata\View;
  */
 abstract class BaseViewChildMetadata implements ViewChildMetadataInterface
 {
-    /**
-     * @var string
-     */
-    protected $name;
+    protected string $name;
 
-    /**
-     * @var string
-     */
-    protected $type;
+    protected string $type;
 
-    /**
-     * @var string
-     */
-    protected $label;
+    protected string $label;
 
-    /**
-     * @var null|string
-     */
-    protected $description;
+    protected ?string $description;
 
-    /**
-     * @var bool
-     */
-    protected $readOnly;
+    protected bool $readOnly;
 
-    /**
-     * @var bool
-     */
-    protected $required;
+    protected bool $required;
 
-    /**
-     * @var null|string
-     */
-    protected $input;
+    protected ?string $input;
 
-    /**
-     * @var null|array
-     */
-    protected $inputConfig;
+    protected ?array $inputConfig;
 
-    /**
-     * @var bool
-     */
-    protected $editablePermissions;
+    protected bool $editablePermissions;
 
     /**
      * @param string      $name                The name of metadata field

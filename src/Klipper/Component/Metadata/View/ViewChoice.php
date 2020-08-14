@@ -16,20 +16,11 @@ namespace Klipper\Component\Metadata\View;
  */
 class ViewChoice implements ViewChoiceInterface
 {
-    /**
-     * @var string
-     */
-    protected $name;
+    protected string $name;
 
-    /**
-     * @var array
-     */
-    protected $identifiers;
+    protected array $identifiers;
 
-    /**
-     * @var null|string
-     */
-    protected $placeholder;
+    protected ?string $placeholder;
 
     /**
      * @param string      $name        The choice name

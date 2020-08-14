@@ -16,30 +16,15 @@ namespace Klipper\Component\Metadata\View;
  */
 class ViewFieldMetadata extends BaseViewChildMetadata implements ViewFieldMetadataInterface
 {
-    /**
-     * @var string
-     */
-    protected $field;
+    protected string $field;
 
-    /**
-     * @var bool
-     */
-    protected $sortable;
+    protected bool $sortable;
 
-    /**
-     * @var bool
-     */
-    protected $filterable;
+    protected bool $filterable;
 
-    /**
-     * @var bool
-     */
-    protected $searchable;
+    protected bool $searchable;
 
-    /**
-     * @var bool
-     */
-    protected $translatable;
+    protected bool $translatable;
 
     /**
      * @param string      $field               The field name in class
