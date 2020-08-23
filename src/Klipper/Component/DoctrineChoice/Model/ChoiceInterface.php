@@ -37,6 +37,13 @@ interface ChoiceInterface extends LabelableInterface
     /**
      * @return static
      */
+    public function setColor(?string $color);
+
+    public function getColor(): ?string;
+
+    /**
+     * @return static
+     */
     public function setPosition(?int $position);
 
     public function getPosition(): ?int;
