@@ -77,7 +77,8 @@ class Downloader implements DownloaderInterface
                 throw new NotFoundHttpException(Response::$statusTexts[Response::HTTP_NOT_FOUND]);
             }
 
-            $mimeType = mime_content_type($path);
+            $mimeTypes = Request::getMimeTypes($ext);
+            $mimeType = empty($mimeTypes) ? mime_content_type($path) : $mimeTypes[0];
         }
 
         if (null !== $contentDisposition && false === strrpos($contentDisposition, '.')) {
