@@ -112,7 +112,7 @@ abstract class MetadataUtil
             foreach ($fields as $field) {
                 $exp = explode(':', $field);
                 $field = trim($exp[0]);
-                $value[$field] = isset($exp[1]) ? trim($exp[1]) : 'asc';
+                $value[$field] = isset($exp[1]) ? strtolower(trim($exp[1])) : 'asc';
             }
         }
 
