@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="klipper_pusher.manager"
+                 class="Klipper\Component\Pusher\PusherManager"
+                 lazy="true"
+                 public="true">
+            <argument type="service" id="klipper_lock.factory" />
+            <argument type="service" id="klipper_resource.domain_manager" />
+            <argument type="service" id="event_dispatcher" />
+            <argument type="collection" />
+            <argument type="service" id="logger" on-invalid="null" />
+        </service>
+
+        <service id="Klipper\Component\Pusher\PusherManagerInterface" alias="klipper_pusher.manager" />
+    </services>
+</container>

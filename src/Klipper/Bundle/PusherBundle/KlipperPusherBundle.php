@@ -11,6 +11,8 @@
 
 namespace Klipper\Bundle\PusherBundle;
 
+use Klipper\Bundle\PusherBundle\DependencyInjection\Compiler\PipelinePass;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
@@ -18,4 +20,8 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
  */
 class KlipperPusherBundle extends Bundle
 {
+    public function build(ContainerBuilder $container): void
+    {
+        $container->addCompilerPass(new PipelinePass());
+    }
 }
