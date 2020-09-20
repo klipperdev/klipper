@@ -23,7 +23,7 @@ class GuessFormOptions
     public static function choice(array $inputConfig, ChildMetadataBuilderInterface $builder, MetadataRegistryInterface $registry): array
     {
         $options = !is_a($builder->getFormType(), ChoiceType::class, true) ? [] : [
-            'multiple' => isset($inputConfig['multiple']),
+            'multiple' => isset($inputConfig['multiple']) && true === $inputConfig['multiple'],
         ];
 
         if (isset($inputConfig['choices']) && \is_string($inputConfig['choices']) && 0 === strpos($inputConfig['choices'], '#/choices/')) {
