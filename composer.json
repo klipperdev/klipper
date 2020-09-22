@@ -104,6 +104,7 @@
         "klipper/object": "self.version",
         "klipper/phone": "self.version",
         "klipper/phone-bundle": "self.version",
+        "klipper/portal": "self.version",
         "klipper/pusher": "self.version",
         "klipper/pusher-bundle": "self.version",
         "klipper/resource": "self.version",
