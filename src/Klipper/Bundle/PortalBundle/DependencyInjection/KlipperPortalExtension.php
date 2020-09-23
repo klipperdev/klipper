@@ -11,7 +11,9 @@
 
 namespace Klipper\Bundle\PortalBundle\DependencyInjection;
 
+use Klipper\Component\Security\Identity\SecurityIdentityInterface;
 use Symfony\Component\Config\FileLocator;
+use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
@@ -33,13 +35,20 @@ class KlipperPortalExtension extends Extension
 
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
 
-        $loader->load('portal_context.xml');
-
-        $this->configPortalContext($container, $config['context']);
+        $this->configPortalContext($container, $loader, $config['context']);
     }
 
-    protected function configPortalContext(ContainerBuilder $container, array $config): void
+    /**
+     * @throws
+     */
+    protected function configPortalContext(ContainerBuilder $container, LoaderInterface $loader, array $config): void
     {
+        $loader->load('portal_context.xml');
+
+        if (interface_exists(SecurityIdentityInterface::class)) {
+            $loader->load('security_portal_context.xml');
+        }
+
         $container->getDefinition('klipper_portal.portal_context.helper')
             ->replaceArgument(4, $config['security']['permission_name'])
         ;

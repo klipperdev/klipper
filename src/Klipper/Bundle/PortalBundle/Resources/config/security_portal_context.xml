@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <!-- Portal Security Identity Subscriber -->
+        <service id="klipper_portal.subscriber.security_identity.portal"
+                 class="Klipper\Component\Portal\Listener\PortalSecurityIdentitySubscriber">
+            <tag name="klipper_security.event_subscriber"/>
+            <argument type="service" id="security.role_hierarchy"/>
+            <argument type="service" id="klipper_portal.portal_context"/>
+        </service>
+    </services>
+</container>

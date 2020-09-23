@@ -23,7 +23,8 @@
     "require-dev": {
         "doctrine/annotations": "^1.6.0",
         "doctrine/orm": "^2.6.0",
-        "klipper/model": "^2.0.0"
+        "klipper/model": "^2.0.0",
+        "klipper/security": "^2.0.0"
     },
     "autoload": {
         "psr-4": { "Klipper\\Component\\Portal\\": "" },
