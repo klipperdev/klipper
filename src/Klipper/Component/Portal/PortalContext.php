@@ -91,6 +91,11 @@ class PortalContext implements PortalContextInterface
         return $this->portalUser;
     }
 
+    public function isPortal(): bool
+    {
+        return null !== $this->getCurrentPortal();
+    }
+
     /**
      * @throws
      */

@@ -42,4 +42,9 @@ interface PortalContextInterface
      * Get the current used portal user.
      */
     public function getCurrentPortalUser(): ?PortalUserInterface;
+
+    /**
+     * Check if portal is enabled.
+     */
+    public function isPortal(): bool;
 }
