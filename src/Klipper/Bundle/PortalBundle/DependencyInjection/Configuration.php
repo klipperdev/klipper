@@ -48,6 +48,22 @@ class Configuration implements ConfigurationInterface
             ->addDefaultsIfNotSet()
             ->children()
             ->scalarNode('permission_name')->defaultValue('back-office')->end()
+            ->append($this->getContextSecurityExpressionLanguageNode())
+            ->end()
+            ->end()
+            ->end()
+        ;
+    }
+
+    private function getContextSecurityExpressionLanguageNode(): NodeDefinition
+    {
+        return NodeUtils::createArrayNode('expression')
+            ->addDefaultsIfNotSet()
+            ->children()
+            ->arrayNode('functions')
+            ->addDefaultsIfNotSet()
+            ->children()
+            ->scalarNode('is_portal')->defaultFalse()->end()
             ->end()
             ->end()
             ->end()

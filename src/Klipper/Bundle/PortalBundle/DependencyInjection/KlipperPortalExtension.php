@@ -47,6 +47,12 @@ class KlipperPortalExtension extends Extension
 
         if (interface_exists(SecurityIdentityInterface::class)) {
             $loader->load('security_portal_context.xml');
+
+            foreach ($config['security']['expression']['functions'] as $function => $enabled) {
+                if ($enabled) {
+                    $loader->load(sprintf('expression_function_%s.xml', $function));
+                }
+            }
         }
 
         $container->getDefinition('klipper_portal.portal_context.helper')

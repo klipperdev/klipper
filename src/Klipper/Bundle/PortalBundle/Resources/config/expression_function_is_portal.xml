@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <!-- Is portal expression language function -->
+        <service id="klipper_portal.security.expression.functions.is_portal"
+                 class="Klipper\Component\Portal\Security\Authorization\Expression\IsPortalProvider"
+                 public="false">
+            <tag name="security.expression_language_provider" />
+            <tag name="klipper_security.expression.variables" portal_context="@klipper_portal.portal_context" />
+        </service>
+    </services>
+</container>
