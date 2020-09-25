@@ -11,6 +11,7 @@
 
 namespace Klipper\Bundle\PortalBundle\DependencyInjection;
 
+use Klipper\Component\DoctrineExtensionsExtra\Filter\Listener\AbstractFilterSubscriber;
 use Klipper\Component\Security\Identity\SecurityIdentityInterface;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Config\Loader\LoaderInterface;
@@ -52,6 +53,10 @@ class KlipperPortalExtension extends Extension
                 if ($enabled) {
                     $loader->load(sprintf('expression_function_%s.xml', $function));
                 }
+            }
+
+            if (class_exists(AbstractFilterSubscriber::class)) {
+                $loader->load('security_portal_orm_filter_listener.xml');
             }
         }
 
