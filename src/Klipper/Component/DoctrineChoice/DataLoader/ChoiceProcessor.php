@@ -43,7 +43,9 @@ class ChoiceProcessor
 
         foreach ($config as $type => &$choices) {
             foreach ($choices as &$choice) {
-                $choice['type'] = $type;
+                if (!isset($choice['type'])) {
+                    $choice['type'] = $type;
+                }
             }
         }
 
