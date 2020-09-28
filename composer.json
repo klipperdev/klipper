@@ -21,7 +21,8 @@
             "Klipper\\Bridge\\": "src/Klipper/Bridge/",
             "Klipper\\Bundle\\": "src/Klipper/Bundle/",
             "Klipper\\Component\\": "src/Klipper/Component/",
-            "Klipper\\Contracts\\": "src/Klipper/Contracts/"
+            "Klipper\\Contracts\\": "src/Klipper/Contracts/",
+            "Klipper\\Module\\": "src/Klipper/Module/"
         },
         "exclude-from-classmap": [
             "**/Tests/"
@@ -42,7 +43,8 @@
                 "src/Klipper/Bridge/*/*/composer.json",
                 "src/Klipper/Bundle/*/composer.json",
                 "src/Klipper/Component/*/composer.json",
-                "src/Klipper/Contracts/*/composer.json"
+                "src/Klipper/Contracts/*/composer.json",
+                "src/Klipper/Module/*/composer.json"
             ]
         },
         "branch-alias": {
@@ -101,6 +103,7 @@
         "klipper/metadata-extensions-bundle": "self.version",
         "klipper/model": "self.version",
         "klipper/model-contracts": "self.version",
+        "klipper/module": "self.version",
         "klipper/object": "self.version",
         "klipper/phone": "self.version",
         "klipper/phone-bundle": "self.version",

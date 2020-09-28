@@ -1,0 +1,37 @@
+{
+    "name": "klipper/module",
+    "type": "metapackage",
+    "description": "Metapackage for Modules of Klipper",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "François Pluchino",
+            "email": "francois.pluchino@klipper.dev"
+        }
+    ],
+    "require": {
+        "php": "^7.4.0",
+        "ext-ctype": "*",
+        "ext-iconv": "*",
+        "ext-json": "*",
+        "doctrine/orm": "^2.7.0",
+        "doctrine/doctrine-bundle": "^2.1.0",
+        "klipper/api-bundle": "^2.0.0",
+        "klipper/choice-bundle": "^2.0.0",
+        "klipper/config-bundle": "^2.0.0",
+        "klipper/doctrine-choice-bundle": "^2.0.0",
+        "klipper/doctrine-extensions-bundle": "^2.0.0",
+        "klipper/metadata-extensions-bundle": "^2.0.0",
+        "klipper/security-extra-bundle": "^2.0.0",
+        "klipper/serializer-extra-bundle": "^2.0.0",
+        "klipper/user-bundle": "^2.0.0",
+        "stof/doctrine-extensions-bundle": "^1.4.0"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.0-dev"
+        }
+    }
+}
