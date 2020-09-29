@@ -23,6 +23,8 @@ use Klipper\Component\Metadata\MetadataRegistryInterface;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -42,8 +44,8 @@ class GuessFormType implements
         'checkbox' => CheckboxType::class,
         'choice' => ChoiceType::class,
         'collection' => CollectionType::class,
-        'date' => TextType::class,
-        'datetime' => TextType::class,
+        'date' => DateType::class,
+        'datetime' => DateTimeType::class,
         'email' => TextType::class,
         'file' => FileType::class,
         'iban' => TextType::class,
@@ -69,6 +71,12 @@ class GuessFormType implements
         'choice' => [GuessFormOptions::class, 'choice'],
         'number' => [
             'scale' => 'inputConfig:scale',
+        ],
+        'date' => [
+            'widget' => 'single_text',
+        ],
+        'datetime' => [
+            'widget' => 'single_text',
         ],
     ];
 
