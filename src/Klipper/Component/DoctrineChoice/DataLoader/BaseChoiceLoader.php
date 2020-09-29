@@ -128,7 +128,7 @@ abstract class BaseChoiceLoader implements DataLoaderInterface
             if ('translations' !== $field) {
                 $fieldValue = $this->accessor->getValue($entity, $field);
 
-                if ($fieldValue !== $value) {
+                if ($fieldValue !== $value && null !== $value) {
                     $this->accessor->setValue($entity, $field, $value);
                     $edited = true;
                 }
