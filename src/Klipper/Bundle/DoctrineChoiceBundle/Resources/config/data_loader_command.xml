@@ -10,6 +10,7 @@
             <tag name="console.command" command="init:choices" />
             <argument type="service" id="klipper_resource.domain_manager" />
             <argument>%kernel.project_dir%</argument>
+            <argument>%kernel.bundles%</argument>
         </service>
     </services>
 </container>

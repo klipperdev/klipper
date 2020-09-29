@@ -23,6 +23,7 @@
         "klipper/doctrine-extensions": "^2.0.0",
         "klipper/doctrine-extensions-extra": "^2.0.0",
         "symfony/console": "^5.1.0",
+        "symfony/finder": "^5.1.0",
         "symfony/property-access": "^5.1.0"
     },
     "autoload": {
