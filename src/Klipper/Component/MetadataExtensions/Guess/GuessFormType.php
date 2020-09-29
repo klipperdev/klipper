@@ -127,6 +127,13 @@ class GuessFormType implements
                 $typeVal = $typeVal($builder->getInputConfig() ?? []);
             }
 
+            if (null !== $typeVal && ($builder->getInputConfig()['null_form_type'] ?? false)) {
+                $inputConfig = $builder->getInputConfig();
+                unset($inputConfig['null_form_type']);
+                $builder->setInputConfig($inputConfig);
+                $typeVal = null;
+            }
+
             $builder->setFormType($typeVal ?? null);
         }
 

@@ -37,6 +37,7 @@ class LocaleGuessConstraint extends AbstractGuessConstraint
         $this->addInput($builder, 'choice', [
             'choices' => array_keys($choices),
             'multiple' => false,
+            'null_form_type' => true,
         ]);
     }
 }
