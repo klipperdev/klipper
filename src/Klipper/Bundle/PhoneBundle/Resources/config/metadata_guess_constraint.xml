@@ -7,7 +7,7 @@
     <services>
         <!-- Symfony Constraint Metadata Guess -->
         <service id="Klipper\Component\Phone\Metadata\GuessConstraint\PhoneGuessConstraint">
-            <tag name="klipper_metadata.guess.symfony_constraint"/>
+            <tag name="klipper_metadata_extensions.guess.symfony_constraint"/>
         </service>
     </services>
 </container>
