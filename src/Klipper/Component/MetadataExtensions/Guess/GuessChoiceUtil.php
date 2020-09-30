@@ -12,6 +12,7 @@
 namespace Klipper\Component\MetadataExtensions\Guess;
 
 use Klipper\Component\Metadata\ChildMetadataBuilderInterface;
+use Klipper\Component\Metadata\FieldMetadataBuilderInterface;
 use Klipper\Component\Metadata\MetadataRegistryInterface;
 use Klipper\Component\Metadata\Util\MetadataUtil;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
@@ -31,13 +32,29 @@ class GuessChoiceUtil
      * @param string                        $class    The class name of target
      * @param bool                          $multiple Check if the choice is multiple
      */
-    public static function guessConfig(MetadataRegistryInterface $registry, ChildMetadataBuilderInterface $builder, string $class, bool $multiple): void
+    public static function guessConfig(MetadataRegistryInterface $registry, ChildMetadataBuilderInterface $builder, string $class, bool $multiple, array $criteria = [], ?string $namePath = null): void
     {
         if (null !== $relationBuilder = $registry->getBuilder($class)) {
             $metaName = $relationBuilder->getName() ?? MetadataUtil::getObjectName($class);
             $builder->setInputConfig(array_merge($builder->getInputConfig() ?? [], [
                 'choices' => '#/metadatas/'.$metaName,
             ]));
+
+            if (!empty($criteria)) {
+                $builder->setInputConfig(array_merge($builder->getInputConfig() ?? [], [
+                    'criteria' => $criteria,
+                ]));
+            }
+
+            if (null !== $namePath) {
+                $builder->setInputConfig(array_merge($builder->getInputConfig() ?? [], [
+                    'name_path' => $namePath,
+                ]));
+            }
+
+            if (!$builder instanceof FieldMetadataBuilderInterface) {
+                return;
+            }
 
             if ($multiple) {
                 $formType = CollectionType::class;

@@ -39,6 +39,6 @@ class EntityChoiceGuessConstraint extends AbstractGuessConstraint implements Gue
      */
     public function guess(ChildMetadataBuilderInterface $builder, Constraint $constraint): void
     {
-        GuessChoiceUtil::guessConfig($this->constraintGuesser->getRegistry(), $builder, $constraint->entityClass, $constraint->multiple);
+        GuessChoiceUtil::guessConfig($this->constraintGuesser->getRegistry(), $builder, $constraint->entityClass, $constraint->multiple, $constraint->criteria, $constraint->namePath);
     }
 }
