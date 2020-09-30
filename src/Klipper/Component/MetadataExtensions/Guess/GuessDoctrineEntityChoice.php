@@ -46,5 +46,11 @@ class GuessDoctrineEntityChoice extends AbstractGuessDoctrine implements
                 'choice_value' => $inputConfig['name_path'],
             ]));
         }
+
+        if (isset($inputConfig['criteria']) && \is_array($inputConfig['criteria']) && null !== $builder->getFormType()) {
+            $builder->setFormOptions(array_merge($builder->getFormOptions() ?? [], [
+                'criteria' => $inputConfig['criteria'],
+            ]));
+        }
     }
 }
