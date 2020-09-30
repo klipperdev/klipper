@@ -1,0 +1,54 @@
+<?php
+
+/*
+ * This file is part of the Klipper package.
+ *
+ * (c) François Pluchino <francois.pluchino@klipper.dev>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+namespace Klipper\Component\DoctrineChoice\Validator\Constraints;
+
+use Klipper\Component\DoctrineChoice\Model\ChoiceInterface;
+use Klipper\Component\DoctrineExtensionsExtra\Validator\Constraints\EntityChoice;
+
+/**
+ * @author François Pluchino <francois.pluchino@klipper.dev>
+ *
+ * @Annotation
+ * @Target({"PROPERTY", "METHOD", "ANNOTATION"})
+ */
+class EntityDoctrineChoice extends EntityChoice
+{
+    public ?string $entityClass = ChoiceInterface::class;
+
+    public ?string $namePath = 'value';
+
+    /**
+     * Define the type of the doctrine choice.
+     */
+    public ?string $type = null;
+
+    public function __construct($options = null)
+    {
+        parent::__construct($options);
+
+        $this->criteria = array_merge($this->criteria, [
+            'type' => $this->type,
+        ]);
+    }
+
+    public function getDefaultOption(): string
+    {
+        return 'type';
+    }
+
+    public function getRequiredOptions(): array
+    {
+        return [
+            'type',
+        ];
+    }
+}
