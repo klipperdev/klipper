@@ -12,5 +12,17 @@
         <service id="form.type_extension.klipper_doctrine_extensions_extra.klipper_entity_select2" class="Klipper\Component\DoctrineExtensionsExtra\Form\Extension\KlipperTranslatableEntityExtension" public="true">
             <tag name="form.type_extension" priority="200" />
         </service>
+
+        <service id="form.type_extension.klipper_doctrine_extensions_extra.symfony_entity_criteria"
+                 class="Klipper\Component\DoctrineExtensionsExtra\Form\Extension\SymfonyEntityCriteriaExtension"
+                 public="true">
+            <tag name="form.type_extension" priority="300" />
+        </service>
+
+        <service id="form.type_extension.klipper_doctrine_extensions_extra.klipper_entity_criteria"
+                 class="Klipper\Component\DoctrineExtensionsExtra\Form\Extension\KlipperEntityCriteriaExtension"
+                 public="true">
+            <tag name="form.type_extension" priority="300" />
+        </service>
     </services>
 </container>
