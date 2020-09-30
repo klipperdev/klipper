@@ -15,6 +15,7 @@ use Doctrine\DBAL\Types\Type;
 use Doctrine\ORM\Mapping\ClassMetadataInfo as OrmClassMetadata;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Persistence\Mapping\ClassMetadata;
+use Klipper\Component\Form\Doctrine\Type\EntityType;
 use Klipper\Component\Metadata\AssociationMetadataBuilder;
 use Klipper\Component\Metadata\AssociationMetadataBuilderInterface;
 use Klipper\Component\Metadata\Exception\InvalidArgumentException as MetadataInvalidArgumentException;
@@ -26,6 +27,7 @@ use Klipper\Component\Metadata\Guess\GuessObjectConfigInterface;
 use Klipper\Component\Metadata\Guess\GuessRegistryAwareInterface;
 use Klipper\Component\Metadata\MetadataRegistryInterface;
 use Klipper\Component\Metadata\ObjectMetadataBuilderInterface;
+use Klipper\Contracts\Model\NameableInterface;
 
 /**
  * @author François Pluchino <francois.pluchino@klipper.dev>
@@ -194,8 +196,10 @@ class GuessDoctrineMetadata extends AbstractGuessDoctrine implements
             return;
         }
 
+        $targetClass = $classMeta->getAssociationTargetClass($assoName);
+
         if (null === $builder->getTarget()) {
-            $target = $classMeta->getAssociationTargetClass($assoName);
+            $target = $targetClass;
             $targetName = array_search($target, $this->metadataRegistry->getNames()->all(), true);
             $target = false !== $targetName ? $targetName : $target;
             $builder->setTarget($target);
@@ -207,6 +211,7 @@ class GuessDoctrineMetadata extends AbstractGuessDoctrine implements
 
         $mapping = $classMeta->getAssociationMapping($assoName);
         $type = $mapping['type'];
+        $multiple = \in_array($type, [OrmClassMetadata::ONE_TO_MANY, OrmClassMetadata::MANY_TO_MANY], true);
         $joins = $mapping['joinColumns'] ?? [];
 
         if (null === $builder->getType()) {
@@ -220,8 +225,6 @@ class GuessDoctrineMetadata extends AbstractGuessDoctrine implements
         }
 
         if (null === $builder->getInput()) {
-            $multiple = \in_array($type, [OrmClassMetadata::ONE_TO_MANY, OrmClassMetadata::MANY_TO_MANY], true);
-
             $builder->setInput('choice');
             $builder->setInputConfig(array_merge($builder->getInputConfig() ?? [], [
                 'multiple' => $multiple,
@@ -230,10 +233,17 @@ class GuessDoctrineMetadata extends AbstractGuessDoctrine implements
             GuessChoiceUtil::guessConfig(
                 $this->metadataRegistry,
                 $builder,
-                $classMeta->getAssociationTargetClass($assoName),
+                $targetClass,
                 $multiple
             );
         }
+
+        $builder->setFormType(EntityType::class);
+        $builder->setFormOptions(array_merge($builder->getFormOptions() ?? [], [
+            'class' => $targetClass,
+            'choice_name' => $this->getAssociationChoiceName($targetClass),
+            'multiple' => $multiple,
+        ]));
     }
 
     /**
@@ -268,5 +278,14 @@ class GuessDoctrineMetadata extends AbstractGuessDoctrine implements
         }
 
         throw new MetadataInvalidArgumentException(sprintf('The metadata association type of "%s::%s" is not managed', $class, $association));
+    }
+
+    protected function getAssociationChoiceName(string $class): ?string
+    {
+        if (is_a($class, NameableInterface::class, true)) {
+            return 'name';
+        }
+
+        return null;
     }
 }
