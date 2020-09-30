@@ -11,7 +11,9 @@
 
 namespace Klipper\Component\MetadataExtensions\Guess;
 
+use Klipper\Component\Metadata\AssociationMetadataBuilderInterface;
 use Klipper\Component\Metadata\FieldMetadataBuilderInterface;
+use Klipper\Component\Metadata\Guess\GuessAssociationConfigInterface;
 use Klipper\Component\Metadata\Guess\GuessFieldConfigInterface;
 use Klipper\Component\Metadata\Guess\GuessRegistryAwareInterface;
 use Klipper\Component\Metadata\MetadataRegistryInterface;
@@ -23,7 +25,7 @@ use Symfony\Component\Validator\Mapping\Factory\MetadataFactoryInterface;
 /**
  * @author François Pluchino <francois.pluchino@klipper.dev>
  */
-class GuessSymfonyConstraint implements GuessFieldConfigInterface, GuessRegistryAwareInterface
+class GuessSymfonyConstraint implements GuessFieldConfigInterface, GuessAssociationConfigInterface, GuessRegistryAwareInterface
 {
     private MetadataFactoryInterface $factory;
 
@@ -77,6 +79,24 @@ class GuessSymfonyConstraint implements GuessFieldConfigInterface, GuessRegistry
 
         if ($meta instanceof ClassMetadataInterface && $meta->hasPropertyMetadata($field)) {
             foreach ($meta->getPropertyMetadata($field) as $memberMetadata) {
+                foreach ($memberMetadata->getConstraints() as $constraint) {
+                    foreach ($this->guessConstraints as $guessConstraint) {
+                        if ($guessConstraint->supports($builder, $constraint)) {
+                            $guessConstraint->guess($builder, $constraint);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    public function guessAssociationConfig(AssociationMetadataBuilderInterface $builder): void
+    {
+        $association = $builder->getAssociation();
+        $meta = $this->factory->getMetadataFor($builder->getParent()->getClass());
+
+        if ($meta instanceof ClassMetadataInterface && $meta->hasPropertyMetadata($association)) {
+            foreach ($meta->getPropertyMetadata($association) as $memberMetadata) {
                 foreach ($memberMetadata->getConstraints() as $constraint) {
                     foreach ($this->guessConstraints as $guessConstraint) {
                         if ($guessConstraint->supports($builder, $constraint)) {
