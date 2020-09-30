@@ -40,4 +40,11 @@ abstract class AbstractGuessConstraint implements GuessConstraintInterface
             $builder->setInputConfig($config);
         }
     }
+
+    protected function addFormType(ChildMetadataBuilderInterface $builder, string $formType): void
+    {
+        if (false === strpos($formType, '?') || null === $builder->getFormType()) {
+            $builder->setFormType(str_replace('?', '', $formType));
+        }
+    }
 }
