@@ -238,12 +238,14 @@ class GuessDoctrineMetadata extends AbstractGuessDoctrine implements
             );
         }
 
-        $builder->setFormType(EntityType::class);
-        $builder->setFormOptions(array_merge($builder->getFormOptions() ?? [], [
-            'class' => $targetClass,
-            'choice_name' => $this->getAssociationChoiceName($targetClass),
-            'multiple' => $multiple,
-        ]));
+        if (null === $builder->getFormType()) {
+            $builder->setFormType(EntityType::class);
+            $builder->setFormOptions(array_merge($builder->getFormOptions() ?? [], [
+                'class' => $targetClass,
+                'choice_value' => $this->getAssociationChoiceName($targetClass),
+                'multiple' => $multiple,
+            ]));
+        }
     }
 
     /**
