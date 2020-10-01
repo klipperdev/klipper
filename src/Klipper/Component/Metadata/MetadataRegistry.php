@@ -60,17 +60,21 @@ class MetadataRegistry implements MetadataRegistryInterface
 
     protected ChoiceNameCollection $choiceNames;
 
+    protected array $resolveTargets;
+
     protected bool $init = false;
 
     /**
-     * @param ObjectMetadataBuilderInterface[] $builders     The object metadata builders
-     * @param MetadataLoaderInterface[]        $loaders      The metadata loaders
-     * @param GuessConfigInterface[]           $guessConfigs The metadata guess configs
+     * @param ObjectMetadataBuilderInterface[] $builders       The object metadata builders
+     * @param MetadataLoaderInterface[]        $loaders        The metadata loaders
+     * @param GuessConfigInterface[]           $guessConfigs   The metadata guess configs
+     * @param string[]                         $resolveTargets The map of resolve targets
      */
-    public function __construct(array $builders = [], array $loaders = [], array $guessConfigs = [])
+    public function __construct(array $builders = [], array $loaders = [], array $guessConfigs = [], array $resolveTargets = [])
     {
         $this->names = new ObjectMetadataNameCollection();
         $this->choiceNames = new ChoiceNameCollection();
+        $this->resolveTargets = $resolveTargets;
 
         foreach ($loaders as $loader) {
             $this->addLoader($loader);
@@ -133,7 +137,7 @@ class MetadataRegistry implements MetadataRegistryInterface
     public function getBuilder(string $class): ?ObjectMetadataBuilderInterface
     {
         $this->init();
-        $realClass = ClassUtils::getRealClass($class);
+        $realClass = $this->findClassName(ClassUtils::getRealClass($class));
         $builder = null;
         $hasBuilder = \array_key_exists($realClass, $this->builders);
 
@@ -298,5 +302,15 @@ class MetadataRegistry implements MetadataRegistryInterface
         } else {
             $this->builders[$class] = $builder;
         }
+    }
+
+    /**
+     * Find the class name by the the class name or the Doctrine resolved target.
+     *
+     * @param string $class The class name
+     */
+    protected function findClassName(string $class): string
+    {
+        return $this->resolveTargets[$class] ?? $class;
     }
 }
