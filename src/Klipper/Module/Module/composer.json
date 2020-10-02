@@ -21,6 +21,7 @@
         "klipper/config-bundle": "^2.0.0",
         "klipper/doctrine-choice-bundle": "^2.0.0",
         "klipper/doctrine-extensions-bundle": "^2.0.0",
+        "klipper/doctrine-extensions-extra-bundle": "^2.0.0",
         "klipper/metadata-extensions-bundle": "^2.0.0",
         "klipper/security-extra-bundle": "^2.0.0",
         "klipper/serializer-extra-bundle": "^2.0.0",
