@@ -32,7 +32,7 @@ class PortalContext implements PortalContextInterface
 
     protected ?EventDispatcherInterface $dispatcher;
 
-    protected ?PortalInterface $portal;
+    protected ?PortalInterface $portal = null;
 
     protected ?PortalUserInterface $portalUser = null;
 
