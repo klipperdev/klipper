@@ -59,7 +59,6 @@ class PortalFilter extends AbstractFilter
             && $targetEntity->associationMappings['portal']['isOwningSide'];
 
         return $hasAssociationPortal
-            || $this->getRealParameter('has_portal')
             || ClassUtil::isInstanceOf($ref, PortalableInterface::class);
     }
 }
