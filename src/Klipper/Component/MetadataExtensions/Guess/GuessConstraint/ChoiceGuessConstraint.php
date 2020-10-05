@@ -105,7 +105,7 @@ class ChoiceGuessConstraint extends AbstractGuessConstraint implements GuessCons
             }
         }
 
-        $this->addType($builder, 'array');
+        $this->addType($builder, '?array');
         $this->addInput($builder, 'choice', [
             'multiple' => $constraint->multiple,
             'choice_min' => $constraint->min,
