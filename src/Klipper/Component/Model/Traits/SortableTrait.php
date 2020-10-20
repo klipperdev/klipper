@@ -12,6 +12,7 @@
 namespace Klipper\Component\Model\Traits;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 use JMS\Serializer\Annotation as Serializer;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -24,6 +25,8 @@ trait SortableTrait
 {
     /**
      * @ORM\Column(type="integer")
+     *
+     * @Gedmo\SortablePosition()
      *
      * @Assert\Type(type="integer")
      *
