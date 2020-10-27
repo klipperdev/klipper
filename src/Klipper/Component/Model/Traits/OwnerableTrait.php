@@ -27,7 +27,7 @@ trait OwnerableTrait
     use BaseOwnerableTrait;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Klipper\Component\Security\Model\UserInterface")
+     * @ORM\ManyToOne(targetEntity="Klipper\Component\Security\Model\UserInterface", fetch="EAGER")
      * @ORM\JoinColumn(onDelete="CASCADE", nullable=false)
      *
      * @Gedmo\Blameable(on="create")

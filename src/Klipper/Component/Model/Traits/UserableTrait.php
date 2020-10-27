@@ -27,7 +27,7 @@ trait UserableTrait
     /**
      * @ORM\OneToOne(
      *     targetEntity="Klipper\Component\Security\Model\UserInterface",
-     *     fetch="EXTRA_LAZY",
+     *     fetch="EAGER",
      *     cascade={"persist", "remove"}
      * )
      * @ORM\JoinColumn(onDelete="CASCADE", nullable=false)
