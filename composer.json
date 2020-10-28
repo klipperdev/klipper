@@ -63,6 +63,7 @@
         "klipper/cache-bundle": "self.version",
         "klipper/choice": "self.version",
         "klipper/choice-bundle": "self.version",
+        "klipper/code-generator": "self.version",
         "klipper/config": "self.version",
         "klipper/config-bundle": "self.version",
         "klipper/console": "self.version",
