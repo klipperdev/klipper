@@ -11,7 +11,11 @@
 
 namespace Klipper\Component\Model\Traits;
 
+use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use JMS\Serializer\Annotation as Serializer;
 use Klipper\Component\Security\Model\Traits\OwnerableOptionalTrait as BaseOwnerableOptionalTrait;
+use Klipper\Component\Security\Model\UserInterface;
 
 /**
  * Trait of ownerable optional model.
@@ -21,4 +25,14 @@ use Klipper\Component\Security\Model\Traits\OwnerableOptionalTrait as BaseOwnera
 trait OwnerableOptionalTrait
 {
     use BaseOwnerableOptionalTrait;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Klipper\Component\Security\Model\UserInterface", fetch="EAGER")
+     * @ORM\JoinColumn(onDelete="SET NULL", nullable=true)
+     *
+     * @Gedmo\Blameable(on="create")
+     *
+     * @Serializer\Expose
+     */
+    protected ?UserInterface $owner = null;
 }

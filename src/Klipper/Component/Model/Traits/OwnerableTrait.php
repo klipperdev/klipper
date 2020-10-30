@@ -16,6 +16,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use JMS\Serializer\Annotation as Serializer;
 use Klipper\Component\Security\Model\Traits\OwnerableTrait as BaseOwnerableTrait;
 use Klipper\Component\Security\Model\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Trait of ownerable model.
@@ -28,9 +29,11 @@ trait OwnerableTrait
 
     /**
      * @ORM\ManyToOne(targetEntity="Klipper\Component\Security\Model\UserInterface", fetch="EAGER")
-     * @ORM\JoinColumn(onDelete="CASCADE", nullable=false)
+     * @ORM\JoinColumn(onDelete="SET NULL", nullable=true)
      *
      * @Gedmo\Blameable(on="create")
+     *
+     * @Assert\NotNull
      *
      * @Serializer\Expose
      */

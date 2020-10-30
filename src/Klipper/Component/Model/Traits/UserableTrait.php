@@ -12,8 +12,10 @@
 namespace Klipper\Component\Model\Traits;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
 use Klipper\Component\Security\Model\UserInterface;
 use Klipper\Component\SecurityExtra\Model\Traits\UserableTrait as BaseUserableTrait;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Trait of userable model.
@@ -31,6 +33,10 @@ trait UserableTrait
      *     cascade={"persist", "remove"}
      * )
      * @ORM\JoinColumn(onDelete="CASCADE", nullable=false)
+     *
+     * @Assert\NotNull
+     *
+     * @Serializer\Expose
      */
     protected ?UserInterface $user = null;
 }
