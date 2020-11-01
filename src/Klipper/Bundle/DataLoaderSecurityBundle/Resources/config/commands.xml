@@ -19,6 +19,7 @@
             <tag name="console.command" command="init:permissions" />
             <argument type="service" id="klipper_resource.domain_manager" />
             <argument>%kernel.project_dir%</argument>
+            <argument>%kernel.bundles%</argument>
         </service>
 
         <service id="klipper_data_loader_security.command.init_roles"
@@ -26,6 +27,7 @@
             <tag name="console.command" command="init:roles" />
             <argument type="service" id="klipper_resource.domain_manager" />
             <argument>%kernel.project_dir%</argument>
+            <argument>%kernel.bundles%</argument>
         </service>
     </services>
 </container>
