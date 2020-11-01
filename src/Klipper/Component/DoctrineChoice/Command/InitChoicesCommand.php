@@ -11,6 +11,7 @@
 
 namespace Klipper\Component\DoctrineChoice\Command;
 
+use Klipper\Component\DataLoader\Exception\ConsoleResourceException;
 use Klipper\Component\DataLoader\Exception\InvalidArgumentException;
 use Klipper\Component\DoctrineChoice\DataLoader\YamlChoiceLoader;
 use Klipper\Component\DoctrineChoice\Model\ChoiceInterface;
@@ -73,6 +74,7 @@ class InitChoicesCommand extends Command
         $domainChoice = $this->domainManager->get(ChoiceInterface::class);
         $loader = new YamlChoiceLoader($domainChoice);
         $updated = false;
+        $errorRes = null;
 
         foreach ($finder->files() as $file) {
             $filename = $file->getPathname();
@@ -84,8 +86,17 @@ class InitChoicesCommand extends Command
                 ));
             }
 
-            $loader->load($filename);
+            $res = $loader->load($filename);
+
+            if ($res->hasErrors() && null === $errorRes) {
+                $errorRes = $res;
+            }
+
             $updated = $updated || $loader->hasNewEntities() || $loader->hasUpdatedEntities();
+        }
+
+        if (null !== $errorRes) {
+            throw new ConsoleResourceException($errorRes);
         }
 
         if ($updated) {
