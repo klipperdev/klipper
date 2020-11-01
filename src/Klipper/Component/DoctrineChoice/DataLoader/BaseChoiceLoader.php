@@ -11,7 +11,7 @@
 
 namespace Klipper\Component\DoctrineChoice\DataLoader;
 
-use Klipper\Component\DataLoader\DataLoaderInterface;
+use Klipper\Component\DataLoader\StateableDataLoaderInterface;
 use Klipper\Component\DataLoader\Util\DataLoaderTranslationUtil;
 use Klipper\Component\DoctrineChoice\Model\ChoiceInterface;
 use Klipper\Component\DoctrineExtensions\Util\SqlFilterUtil;
@@ -25,7 +25,7 @@ use Symfony\Component\PropertyAccess\PropertyAccessor;
 /**
  * @author François Pluchino <francois.pluchino@klipper.dev>
  */
-abstract class BaseChoiceLoader implements DataLoaderInterface
+abstract class BaseChoiceLoader implements StateableDataLoaderInterface
 {
     protected DomainInterface $domain;
 
@@ -68,20 +68,19 @@ abstract class BaseChoiceLoader implements DataLoaderInterface
         return $this->doLoad($config);
     }
 
-    /**
-     * Check if the new choices are loaded.
-     */
-    public function hasNewEntities(): bool
+    public function hasNewValues(): bool
     {
         return $this->hasNewEntities;
     }
 
-    /**
-     * Check if the choices are updated.
-     */
-    public function hasUpdatedEntities(): bool
+    public function hasUpdatedValues(): bool
     {
         return $this->hasUpdatedEntities;
+    }
+
+    public function isEdited(): bool
+    {
+        return $this->hasNewEntities || $this->hasUpdatedEntities;
     }
 
     /**
