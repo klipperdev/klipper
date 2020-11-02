@@ -15,21 +15,14 @@ use JMS\Serializer\EventDispatcher\Events;
 use JMS\Serializer\EventDispatcher\EventSubscriberInterface;
 use JMS\Serializer\EventDispatcher\ObjectEvent;
 use JMS\Serializer\Metadata\PropertyMetadata;
-use JMS\Serializer\Metadata\StaticPropertyMetadata;
 use Klipper\Component\Content\Serializer\UrlGenerator;
+use Klipper\Component\DoctrineExtra\Util\ClassUtils;
 
 /**
  * @author François Pluchino <francois.pluchino@klipper.dev>
  */
 class UrlSerializerSubscriber implements EventSubscriberInterface
 {
-    protected UrlGenerator $urlGenerator;
-
-    public function __construct(UrlGenerator $urlGenerator)
-    {
-        $this->urlGenerator = $urlGenerator;
-    }
-
     public static function getSubscribedEvents(): array
     {
         return [
@@ -37,6 +30,11 @@ class UrlSerializerSubscriber implements EventSubscriberInterface
                 'event' => Events::PRE_SERIALIZE,
                 'format' => 'json',
                 'method' => 'onPreSerialize',
+            ],
+            [
+                'event' => Events::POST_SERIALIZE,
+                'format' => 'json',
+                'method' => 'onPostSerialize',
             ],
         ];
     }
@@ -48,43 +46,84 @@ class UrlSerializerSubscriber implements EventSubscriberInterface
      */
     public function onPreSerialize(ObjectEvent $event): void
     {
-        $object = $event->getObject();
+        $this->replaceClassAliases($event);
+        $types = UrlGenerator::TYPES;
 
-        if (!\is_object($object)) {
+        if (!\is_object($event->getObject())) {
             return;
         }
 
-        $classMeta = $event->getContext()->getMetadataFactory()->getMetadataForClass(\get_class($object));
+        /** @var object $object */
+        $object = $event->getObject();
 
-        if (null !== $classMeta) {
+        try {
+            $classMeta = $event->getContext()->getMetadataFactory()->getMetadataForClass(ClassUtils::getClass($object));
+            $classTypes = array_values($types);
+
+            if (null === $classMeta) {
+                return;
+            }
+
             /** @var PropertyMetadata $propertyMeta */
-            foreach ($classMeta->propertyMetadata as $i => $propertyMeta) {
-                if (null === $propertyMeta->type) {
-                    continue;
+            foreach ($classMeta->propertyMetadata as $propertyMeta) {
+                $type = $propertyMeta->type;
+
+                if (isset($type['name'], $types[$type['name']])) {
+                    $propertyMeta->type['name'] = $types[$type['name']];
                 }
 
-                if (\in_array($propertyMeta->type['name'], array_keys(UrlGenerator::TYPES), true)) {
-                    $propertyMeta->type['name'] = UrlGenerator::TYPES[$propertyMeta->type['name']];
-                }
-
-                if (\in_array($propertyMeta->type['name'], array_values(UrlGenerator::TYPES), true)) {
-                    $classMeta->propertyMetadata[$i] = $staticPropMeta = new StaticPropertyMetadata(
-                        $propertyMeta->class,
-                        $propertyMeta->serializedName,
-                        $this->urlGenerator->generate(
-                            $propertyMeta->type['name'],
-                            $propertyMeta->type['params'],
-                            $object
-                        ),
-                    );
-                    $staticPropMeta->sinceVersion = $propertyMeta->sinceVersion;
-                    $staticPropMeta->untilVersion = $propertyMeta->untilVersion;
-                    $staticPropMeta->groups = $propertyMeta->groups;
-                    $staticPropMeta->inline = $propertyMeta->inline;
-                    $staticPropMeta->skipWhenEmpty = $propertyMeta->skipWhenEmpty;
-                    $staticPropMeta->excludeIf = $propertyMeta->excludeIf;
+                if (null !== $type && \in_array($propertyMeta->type['name'], $classTypes, true)) {
+                    $propertyMeta->type['ci_url_gen_object'] = $object;
                 }
             }
+        } catch (\Throwable $e) {
+            // do nothing
+        }
+    }
+
+    /**
+     * Clean the property metadatas.
+     */
+    public function onPostSerialize(ObjectEvent $event): void
+    {
+        if (!\is_object($event->getObject())) {
+            return;
+        }
+
+        $object = $event->getObject();
+
+        try {
+            $classMeta = $event->getContext()->getMetadataFactory()->getMetadataForClass(ClassUtils::getClass($object));
+
+            if (null === $classMeta) {
+                return;
+            }
+
+            /** @var PropertyMetadata $propertyMeta */
+            foreach ($classMeta->propertyMetadata as $propertyMeta) {
+                if (isset($propertyMeta->type['ci_url_gen_object'])) {
+                    unset($propertyMeta->type['ci_url_gen_object']);
+                }
+            }
+        } catch (\Throwable $e) {
+            // do nothing
+        }
+    }
+
+    /**
+     * @throws
+     */
+    private function replaceClassAliases(ObjectEvent $event): void
+    {
+        $eventType = $event->getType();
+        $types = UrlGenerator::TYPES;
+
+        if (isset($eventType['name'], $types[$eventType['name']])) {
+            $eventType['name'] = $types[$eventType['name']];
+            $ref = new \ReflectionClass($event);
+            $refProp = $ref->getProperty('type');
+            $refProp->setAccessible(true);
+            $refProp->setValue($event, $eventType);
         }
     }
 }
