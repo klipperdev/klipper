@@ -32,7 +32,7 @@ trait OrganizationalRequiredTrait
      * )
      * @ORM\JoinColumn(onDelete="CASCADE")
      *
-     * @Serializer\Type("Relation")
+     * @Serializer\Type("AssociationId")
      * @Serializer\Expose
      * @Serializer\ReadOnly
      */
