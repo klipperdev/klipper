@@ -31,6 +31,7 @@ trait OauthAuthCodeTrait
      * )
      * @ORM\JoinColumn(onDelete="CASCADE")
      *
+     * @Serializer\Type("AssociationId")
      * @Serializer\Expose
      * @Serializer\ReadOnly
      */
