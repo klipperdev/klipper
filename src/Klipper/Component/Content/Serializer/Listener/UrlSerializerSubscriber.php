@@ -13,10 +13,9 @@ namespace Klipper\Component\Content\Serializer\Listener;
 
 use JMS\Serializer\EventDispatcher\Events;
 use JMS\Serializer\EventDispatcher\EventSubscriberInterface;
-use JMS\Serializer\EventDispatcher\ObjectEvent;
+use JMS\Serializer\EventDispatcher\PreSerializeEvent;
 use JMS\Serializer\Metadata\PropertyMetadata;
 use Klipper\Component\Content\Serializer\UrlGenerator;
-use Klipper\Component\DoctrineExtra\Util\ClassUtils;
 
 /**
  * @author François Pluchino <francois.pluchino@klipper.dev>
@@ -31,11 +30,6 @@ class UrlSerializerSubscriber implements EventSubscriberInterface
                 'format' => 'json',
                 'method' => 'onPreSerialize',
             ],
-            [
-                'event' => Events::POST_SERIALIZE,
-                'format' => 'json',
-                'method' => 'onPostSerialize',
-            ],
         ];
     }
 
@@ -44,86 +38,27 @@ class UrlSerializerSubscriber implements EventSubscriberInterface
      *
      * @throws
      */
-    public function onPreSerialize(ObjectEvent $event): void
+    public function onPreSerialize(PreSerializeEvent $event): void
     {
-        $this->replaceClassAliases($event);
-        $types = UrlGenerator::TYPES;
+        $object = $event->getObject();
 
-        if (!\is_object($event->getObject())) {
+        if (!\is_object($object)) {
             return;
         }
 
-        /** @var object $object */
-        $object = $event->getObject();
+        $classMeta = $event->getContext()->getMetadataFactory()->getMetadataForClass(\get_class($object));
 
-        try {
-            $classMeta = $event->getContext()->getMetadataFactory()->getMetadataForClass(ClassUtils::getClass($object));
-            $classTypes = array_values($types);
-
-            if (null === $classMeta) {
-                return;
-            }
-
+        if (null !== $classMeta) {
             /** @var PropertyMetadata $propertyMeta */
             foreach ($classMeta->propertyMetadata as $propertyMeta) {
-                $type = $propertyMeta->type;
-
-                if (isset($type['name'], $types[$type['name']])) {
-                    $propertyMeta->type['name'] = $types[$type['name']];
+                if (null === $propertyMeta->type) {
+                    continue;
                 }
 
-                if (null !== $type && \in_array($propertyMeta->type['name'], $classTypes, true)) {
-                    $propertyMeta->type['ci_url_gen_object'] = $object;
+                if (isset($propertyMeta->type['name'], UrlGenerator::TYPES[$propertyMeta->type['name']])) {
+                    $propertyMeta->type['name'] = UrlGenerator::TYPES[$propertyMeta->type['name']];
                 }
             }
-        } catch (\Throwable $e) {
-            // do nothing
-        }
-    }
-
-    /**
-     * Clean the property metadatas.
-     */
-    public function onPostSerialize(ObjectEvent $event): void
-    {
-        if (!\is_object($event->getObject())) {
-            return;
-        }
-
-        $object = $event->getObject();
-
-        try {
-            $classMeta = $event->getContext()->getMetadataFactory()->getMetadataForClass(ClassUtils::getClass($object));
-
-            if (null === $classMeta) {
-                return;
-            }
-
-            /** @var PropertyMetadata $propertyMeta */
-            foreach ($classMeta->propertyMetadata as $propertyMeta) {
-                if (isset($propertyMeta->type['ci_url_gen_object'])) {
-                    unset($propertyMeta->type['ci_url_gen_object']);
-                }
-            }
-        } catch (\Throwable $e) {
-            // do nothing
-        }
-    }
-
-    /**
-     * @throws
-     */
-    private function replaceClassAliases(ObjectEvent $event): void
-    {
-        $eventType = $event->getType();
-        $types = UrlGenerator::TYPES;
-
-        if (isset($eventType['name'], $types[$eventType['name']])) {
-            $eventType['name'] = $types[$eventType['name']];
-            $ref = new \ReflectionClass($event);
-            $refProp = $ref->getProperty('type');
-            $refProp->setAccessible(true);
-            $refProp->setValue($event, $eventType);
         }
     }
 }

@@ -11,6 +11,7 @@
 
 namespace Klipper\Component\Content\Serializer\Handler;
 
+use JMS\Serializer\SerializationContext;
 use JMS\Serializer\Visitor\SerializationVisitorInterface;
 use Klipper\Component\Content\Serializer\UrlGenerator;
 
@@ -32,18 +33,14 @@ class UrlGeneratorHandler
      * @param SerializationVisitorInterface $visitor The serializer visitor
      * @param mixed                         $data    The data
      * @param array                         $type    The serializer type
+     * @param SerializationContext          $context The serialization context
      */
-    public function generateUrl(SerializationVisitorInterface $visitor, $data, array $type): ?string
+    public function generateUrl(SerializationVisitorInterface $visitor, $data, array $type, SerializationContext $context): ?string
     {
-        $object = $type['ci_url_gen_object'] ?? $data;
+        $object = $context->getObject();
 
-        if (!\is_object($object)) {
-            return null;
-        }
-
-        return $visitor->visitString(
-            $this->urlGenerator->generate($type['name'], $type['params'], $object),
-            $type
-        );
+        return \is_object($object)
+            ? $visitor->visitString($this->urlGenerator->generate($type['name'], $type['params'], $object), $type)
+            : null;
     }
 }
