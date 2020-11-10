@@ -13,6 +13,7 @@ namespace Klipper\Component\ListView\Model\Traits;
 
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as Serializer;
+use Klipper\Component\DoctrineExtensionsExtra\Validator\Constraints\RequestQueryFilter;
 use Klipper\Component\Model\Traits\LabelableTrait;
 use Klipper\Component\Model\Traits\NameableTrait;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -41,6 +42,7 @@ trait ListViewTrait
     /**
      * @ORM\Column(type="json", nullable=true)
      *
+     * @RequestQueryFilter
      * @Assert\NotBlank
      *
      * @Serializer\Expose

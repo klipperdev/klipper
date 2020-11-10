@@ -73,6 +73,10 @@ class KlipperDoctrineExtensionsExtraExtension extends Extension
 
         if (interface_exists(ValidatorInterface::class)) {
             $loader->load('orm_validator.xml');
+
+            if (class_exists(KlipperMetadataBundle::class)) {
+                $loader->load('request_query_metadata_orm_validator.xml');
+            }
         }
 
         $container->setParameter('klipper_doctrine_extensions_extra.locale_fallback', $config['locale_fallback']);
