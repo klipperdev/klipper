@@ -32,8 +32,8 @@ class CountGuessConstraint extends AbstractGuessConstraint
     {
         $this->addType($builder, '?array');
         $this->addInput($builder, '?collection', [
-            'count_min' => $constraint->min,
-            'count_max' => $constraint->max,
+            'count_min' => null !== $constraint->min ? (int) $constraint->min : null,
+            'count_max' => null !== $constraint->max ? (int) $constraint->max : null,
         ]);
     }
 }

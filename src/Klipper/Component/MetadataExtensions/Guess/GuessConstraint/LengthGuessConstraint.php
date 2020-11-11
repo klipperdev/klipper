@@ -32,8 +32,8 @@ class LengthGuessConstraint extends AbstractGuessConstraint
     {
         $this->addType($builder, '?string');
         $this->addInput($builder, '?text', [
-            'length_min' => $constraint->min,
-            'length_max' => $constraint->max,
+            'length_min' => null !== $constraint->min ? (int) $constraint->min : null,
+            'length_max' => null !== $constraint->max ? (int) $constraint->max : null,
         ]);
 
         if (($constraint->max ?? 0) > 255 && 'text' === $builder->getInput()) {

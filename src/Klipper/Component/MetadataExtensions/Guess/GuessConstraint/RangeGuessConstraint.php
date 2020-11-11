@@ -32,8 +32,8 @@ class RangeGuessConstraint extends AbstractGuessConstraint
     {
         $this->addType($builder, '?number');
         $this->addInput($builder, '?number', [
-            'range_min' => $constraint->min,
-            'range_max' => $constraint->max,
+            'range_min' => null !== $constraint->min ? (int) $constraint->min : null,
+            'range_max' => null !== $constraint->max ? (int) $constraint->max : null,
         ]);
     }
 }

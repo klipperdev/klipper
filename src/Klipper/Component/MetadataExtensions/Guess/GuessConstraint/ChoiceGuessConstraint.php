@@ -108,8 +108,8 @@ class ChoiceGuessConstraint extends AbstractGuessConstraint implements GuessCons
         $this->addType($builder, '?array');
         $this->addInput($builder, 'choice', [
             'multiple' => $constraint->multiple,
-            'choice_min' => $constraint->min,
-            'choice_max' => $constraint->max,
+            'choice_min' => null !== $constraint->min ? (int) $constraint->min : null,
+            'choice_max' => null !== $constraint->max ? (int) $constraint->max : null,
         ]);
 
         if (!empty($choices)) {
