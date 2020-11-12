@@ -220,7 +220,7 @@ class GuessDoctrineMetadata extends AbstractGuessDoctrine implements
 
         if (null === $builder->isRequired()) {
             $required = \in_array($type, [OrmClassMetadata::ONE_TO_ONE, OrmClassMetadata::MANY_TO_ONE], true)
-                && !(isset($joins[0]['nullable']) && true === $joins[0]['nullable']);
+                && isset($joins[0]['nullable']) && false === $joins[0]['nullable'];
             $builder->setRequired($required);
         }
 
