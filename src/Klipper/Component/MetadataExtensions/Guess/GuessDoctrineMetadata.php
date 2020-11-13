@@ -27,7 +27,6 @@ use Klipper\Component\Metadata\Guess\GuessObjectConfigInterface;
 use Klipper\Component\Metadata\Guess\GuessRegistryAwareInterface;
 use Klipper\Component\Metadata\MetadataRegistryInterface;
 use Klipper\Component\Metadata\ObjectMetadataBuilderInterface;
-use Klipper\Contracts\Model\NameableInterface;
 
 /**
  * @author François Pluchino <francois.pluchino@klipper.dev>
@@ -242,7 +241,6 @@ class GuessDoctrineMetadata extends AbstractGuessDoctrine implements
             $builder->setFormType(EntityType::class);
             $builder->setFormOptions(array_merge($builder->getFormOptions() ?? [], [
                 'class' => $targetClass,
-                'choice_value' => $this->getAssociationChoiceName($targetClass),
                 'multiple' => $multiple,
             ]));
         }
@@ -280,14 +278,5 @@ class GuessDoctrineMetadata extends AbstractGuessDoctrine implements
         }
 
         throw new MetadataInvalidArgumentException(sprintf('The metadata association type of "%s::%s" is not managed', $class, $association));
-    }
-
-    protected function getAssociationChoiceName(string $class): ?string
-    {
-        if (is_a($class, NameableInterface::class, true)) {
-            return 'name';
-        }
-
-        return null;
     }
 }
