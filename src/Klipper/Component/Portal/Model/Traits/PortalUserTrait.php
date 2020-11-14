@@ -12,6 +12,7 @@
 namespace Klipper\Component\Portal\Model\Traits;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
 use Klipper\Component\Model\Traits\EnableTrait;
 use Klipper\Component\Portal\Model\PortalInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -31,16 +32,23 @@ trait PortalUserTrait
      *     fetch="EXTRA_LAZY"
      * )
      * @ORM\JoinColumn(onDelete="CASCADE", nullable=false)
+     *
+     * @Serializer\Type("AssociationId")
+     * @Serializer\Expose
+     * @Serializer\ReadOnly
      */
     protected ?PortalInterface $portal = null;
 
     /**
      * @ORM\ManyToOne(
      *     targetEntity="Symfony\Component\Security\Core\User\UserInterface",
-     *     fetch="EXTRA_LAZY",
+     *     fetch="EAGER",
      *     cascade={"persist"}
      * )
      * @ORM\JoinColumn(onDelete="CASCADE")
+     *
+     * @Serializer\Expose
+     * @Serializer\ReadOnly
      */
     protected ?UserInterface $user = null;
 
