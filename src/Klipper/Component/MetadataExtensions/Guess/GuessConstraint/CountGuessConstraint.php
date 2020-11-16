@@ -35,5 +35,9 @@ class CountGuessConstraint extends AbstractGuessConstraint
             'count_min' => null !== $constraint->min ? (int) $constraint->min : null,
             'count_max' => null !== $constraint->max ? (int) $constraint->max : null,
         ]);
+
+        if (null !== $constraint->min && $constraint->min > 0) {
+            $builder->setRequired(true);
+        }
     }
 }
