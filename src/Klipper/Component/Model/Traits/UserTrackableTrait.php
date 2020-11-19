@@ -30,6 +30,7 @@ trait UserTrackableTrait
      * @Gedmo\Blameable(on="create")
      *
      * @Serializer\Expose
+     * @Serializer\MaxDepth(1)
      * @Serializer\ReadOnly
      */
     protected ?UserInterface $createdBy = null;
@@ -41,6 +42,7 @@ trait UserTrackableTrait
      * @Gedmo\Blameable(on="update")
      *
      * @Serializer\Expose
+     * @Serializer\MaxDepth(1)
      * @Serializer\ReadOnly
      */
     protected ?UserInterface $updatedBy = null;

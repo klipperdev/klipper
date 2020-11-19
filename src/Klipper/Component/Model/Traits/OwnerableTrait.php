@@ -36,6 +36,7 @@ trait OwnerableTrait
      * @Assert\NotNull
      *
      * @Serializer\Expose
+     * @Serializer\MaxDepth(1)
      */
     protected ?UserInterface $owner = null;
 }

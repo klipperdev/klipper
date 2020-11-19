@@ -37,6 +37,7 @@ trait UserableTrait
      * @Assert\NotNull
      *
      * @Serializer\Expose
+     * @Serializer\MaxDepth(1)
      */
     protected ?UserInterface $user = null;
 }
