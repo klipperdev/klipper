@@ -62,6 +62,17 @@ trait ChoiceTrait
     protected ?string $color = null;
 
     /**
+     * @ORM\Column(type="string", length=30, nullable=true)
+     *
+     * @Assert\Type(type="string")
+     * @Assert\Length(max=30)
+     * @Assert\NotBlank
+     *
+     * @Serializer\Expose
+     */
+    protected ?string $icon = null;
+
+    /**
      * @ORM\Column(type="integer")
      *
      * @Gedmo\SortablePosition()
@@ -106,6 +117,18 @@ trait ChoiceTrait
     public function getColor(): ?string
     {
         return $this->color;
+    }
+
+    public function setIcon(?string $icon): self
+    {
+        $this->icon = $icon;
+
+        return $this;
+    }
+
+    public function getIcon(): ?string
+    {
+        return $this->icon;
     }
 
     public function getPosition(): ?int
