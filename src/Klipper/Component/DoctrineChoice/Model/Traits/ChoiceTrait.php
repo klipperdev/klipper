@@ -66,7 +66,6 @@ trait ChoiceTrait
      *
      * @Assert\Type(type="string")
      * @Assert\Length(max=30)
-     * @Assert\NotBlank
      *
      * @Serializer\Expose
      */
