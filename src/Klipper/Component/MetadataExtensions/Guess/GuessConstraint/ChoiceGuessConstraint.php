@@ -71,7 +71,7 @@ class ChoiceGuessConstraint extends AbstractGuessConstraint implements GuessCons
                     $nameCallback = [$choices[0], 'getName'];
                     $name = $nameCallback();
                 } else {
-                    $name = strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', basename($choices[0])));
+                    $name = MetadataUtil::getObjectName($choices[0]);
                 }
 
                 if (is_a($choices[0], PlaceholderableChoiceInterface::class, true)) {
