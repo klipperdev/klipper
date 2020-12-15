@@ -85,6 +85,7 @@
         "klipper/doctrine-extensions-extra": "self.version",
         "klipper/doctrine-extensions-extra-bundle": "self.version",
         "klipper/doctrine-migrations-bundle": "self.version",
+        "klipper/export": "self.version",
         "klipper/expression-language": "self.version",
         "klipper/form": "self.version",
         "klipper/form-bundle": "self.version",
