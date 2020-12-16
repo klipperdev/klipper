@@ -45,7 +45,8 @@ class Downloader implements DownloaderInterface
         ?string $path,
         ?string $contentDisposition = null,
         array $headers = [],
-        string $mode = self::MODE_AUTO
+        string $mode = self::MODE_AUTO,
+        ?callable $callback = null
     ): Response {
         if (empty($path)) {
             throw new NotFoundHttpException(Response::$statusTexts[Response::HTTP_NOT_FOUND]);
@@ -54,18 +55,25 @@ class Downloader implements DownloaderInterface
         $ext = pathinfo($path, PATHINFO_EXTENSION);
         $config = $this->buildConfig($this->requestStack->getCurrentRequest());
         $configExt = $config->getExtension() ?? $ext;
-        $callback = null;
 
         if ($this->useImageManipulator($mode, $ext, $configExt)) {
             try {
                 $image = $this->imageManipulator->create($path, $config);
                 $stream = $image->getResource();
                 $mimeType = $image->getTypeMime();
-                $callback = $image->getCallback();
                 $ext = $configExt;
-            } catch (FileNotFoundException $e) {
-                throw new NotFoundHttpException(Response::$statusTexts[Response::HTTP_NOT_FOUND], $e);
-            } catch (ImageManipulatorInvalidArgumentException $e) {
+
+                if (null !== $callback) {
+                    $originalCallback = $callback;
+                    $imageCallback = $image->getCallback();
+                    $callback = static function () use ($originalCallback, $imageCallback): void {
+                        $imageCallback();
+                        $originalCallback();
+                    };
+                } else {
+                    $callback = $image->getCallback();
+                }
+            } catch (FileNotFoundException | ImageManipulatorInvalidArgumentException $e) {
                 throw new NotFoundHttpException(Response::$statusTexts[Response::HTTP_NOT_FOUND], $e);
             } catch (InvalidArgumentException $e) {
                 throw new UnsupportedMediaTypeHttpException(Response::$statusTexts[Response::HTTP_UNSUPPORTED_MEDIA_TYPE], $e);
@@ -101,13 +109,15 @@ class Downloader implements DownloaderInterface
     public function downloadImage(
         ?string $path,
         ?string $contentDisposition = null,
-        array $headers = []
+        array $headers = [],
+        ?callable $callback = null
     ): Response {
         return $this->download(
             $path,
             $contentDisposition,
             $headers,
-            DownloaderInterface::MODE_FORCE_IMAGE_MANIPULATOR
+            DownloaderInterface::MODE_FORCE_IMAGE_MANIPULATOR,
+            $callback
         );
     }
 

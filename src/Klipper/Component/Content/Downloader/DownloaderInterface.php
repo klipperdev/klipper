@@ -31,27 +31,29 @@ interface DownloaderInterface
     /**
      * Download the file.
      *
-     * @param null|string $path               The file path
-     * @param null|string $contentDisposition The content disposition
-     * @param array       $headers            The custom headers
-     * @param string      $mode               The download mode
+     * @param null|string   $path               The file path
+     * @param null|string   $contentDisposition The content disposition
+     * @param array         $headers            The custom headers
+     * @param string        $mode               The download mode
+     * @param null|callable $callback           The callback response
      *
      * @throws NotFoundHttpException
      * @throws UnsupportedMediaTypeHttpException
      */
-    public function download(?string $path, ?string $contentDisposition = null, array $headers = [], string $mode = self::MODE_AUTO): Response;
+    public function download(?string $path, ?string $contentDisposition = null, array $headers = [], string $mode = self::MODE_AUTO, ?callable $callback = null): Response;
 
     /**
      * Download the image file.
      *
-     * @param null|string $path               The image file path
-     * @param null|string $contentDisposition The content disposition
-     * @param array       $headers            The custom headers
+     * @param null|string   $path               The image file path
+     * @param null|string   $contentDisposition The content disposition
+     * @param array         $headers            The custom headers
+     * @param null|callable $callback           The callback response
      *
      * @throws NotFoundHttpException
      * @throws UnsupportedMediaTypeHttpException
      */
-    public function downloadImage(?string $path, ?string $contentDisposition = null, array $headers = []): Response;
+    public function downloadImage(?string $path, ?string $contentDisposition = null, array $headers = [], ?callable $callback = null): Response;
 
     /**
      * Build the image manipulator config.
