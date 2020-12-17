@@ -10,8 +10,9 @@
                  class="Klipper\Component\Export\ExportManager"
                  public="true">
             <argument type="service" id="klipper_metadata.manager"/>
+            <argument type="service" id="translator"/>
             <argument type="service" id="property_accessor"/>
-            <argument type="service" id="klipper_security.permission_manager" on-invalid="null"/>
+            <argument type="service" id="security.authorization_checker" on-invalid="null"/>
             <argument/>
         </service>
 

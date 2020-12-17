@@ -35,7 +35,7 @@ class KlipperExportExtension extends Extension
         $loader->load('export.xml');
 
         $container->getDefinition('klipper_export.manager')
-            ->replaceArgument(3, $config['batch_size'])
+            ->replaceArgument(4, $config['batch_size'])
         ;
     }
 }
