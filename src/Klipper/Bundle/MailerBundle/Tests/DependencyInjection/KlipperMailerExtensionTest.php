@@ -160,6 +160,7 @@ final class KlipperMailerExtensionTest extends TestCase
             'kernel.project_dir' => sys_get_temp_dir().'/klipper_mailer_bundle',
             'kernel.root_dir' => sys_get_temp_dir().'/klipper_mailer_bundle/app',
             'kernel.charset' => 'UTF-8',
+            'kernel.container_class' => 'TestContainer',
         ]));
 
         $container->getParameterBag()->add($parameters);

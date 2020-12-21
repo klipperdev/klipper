@@ -59,6 +59,7 @@ final class KlipperCacheExtensionTest extends TestCase
             'kernel.environment' => 'test',
             'kernel.name' => 'kernel',
             'kernel.root_dir' => sys_get_temp_dir().'/klipper_cache_bundle',
+            'kernel.build_dir' => sys_get_temp_dir().'/klipper_cache_bundle',
             'kernel.charset' => 'UTF-8',
             'kernel.container_class' => Container::class,
         ]));
