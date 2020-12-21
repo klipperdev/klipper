@@ -286,23 +286,33 @@ class PermissionMetadataManager implements PermissionMetadataManagerInterface
         $defaultSortable = [];
 
         foreach ($metadata->getDefaultSortable() as $field => $direction) {
-            $metaForField = $metadata;
+            $fieldPaths = explode('.', $field);
+            $pathMetadata = $metadata;
+            $propertyPathPrefix = '';
 
-            if (false !== strpos($field, '.')) {
-                $links = explode('.', $field);
-                $field = array_pop($links);
-                $metaForField = $this->getMetadataForField($metadata, $links);
-            }
+            foreach ($fieldPaths as $i => $fieldPath) {
+                if ($pathMetadata->hasFieldByName($fieldPath)) {
+                    $fieldMeta = $pathMetadata->getFieldByName($fieldPath);
 
-            $fieldMeta = $metaForField && $metaForField->hasFieldByName($field)
-                ? $metaForField->getFieldByName($field)
-                : null;
+                    if ($this->isVisibleField($fieldMeta)) {
+                        $defaultSortable[$propertyPathPrefix.$fieldMeta->getName()] = $direction;
+                    } else {
+                        break;
+                    }
+                } elseif ($pathMetadata->hasAssociationByName($fieldPath)) {
+                    $assoMeta = $pathMetadata->getAssociationByName($fieldPath);
+                    $propertyPathPrefix .= $assoMeta->getName().'.';
 
-            if ($fieldMeta && $fieldMeta->isSortable() && $this->isVisibleField($metaForField, $fieldMeta)) {
-                $field = $metaForField && $metadata !== $metaForField
-                    ? $metaForField->getName().'.'.$fieldMeta->getName()
-                    : $fieldMeta->getName();
-                $defaultSortable[$field] = $direction;
+                    if ($this->isVisibleAssociation($assoMeta)) {
+                        $pathMetadata = $this->metadataManager->get($assoMeta->getTarget());
+
+                        if (!\in_array($assoMeta->getType(), ['one-to-one', 'many-to-one'], true)) {
+                            break;
+                        }
+                    }
+                } else {
+                    break;
+                }
             }
         }
 
@@ -324,7 +334,7 @@ class PermissionMetadataManager implements PermissionMetadataManagerInterface
         foreach ($metadata->getFields() as $fieldMeta) {
             $name = $fieldMeta->getName();
 
-            if ($fieldMeta->isPublic() && $this->isVisibleField($metadata, $fieldMeta)) {
+            if ($fieldMeta->isPublic() && $this->isVisibleField($fieldMeta)) {
                 $fields[$name] = new ViewFieldMetadata(
                     $fieldMeta->getField(),
                     $fieldMeta->getName(),
@@ -363,7 +373,7 @@ class PermissionMetadataManager implements PermissionMetadataManagerInterface
         foreach ($metadata->getAssociations() as $associationMeta) {
             $name = $associationMeta->getName();
 
-            if ($associationMeta->isPublic() && $this->isVisibleAssociation($metadata, $associationMeta)) {
+            if ($associationMeta->isPublic() && $this->isVisibleAssociation($associationMeta)) {
                 $associations[$name] = new ViewAssociationMetadata(
                     $associationMeta->getAssociation(),
                     $associationMeta->getName(),
@@ -415,54 +425,29 @@ class PermissionMetadataManager implements PermissionMetadataManagerInterface
     }
 
     /**
-     * Get the object metadata of the target association.
-     *
-     * @param ObjectMetadataInterface $metadata     The object metadata
-     * @param string[]                $associations The recursive association names
-     */
-    private function getMetadataForField(ObjectMetadataInterface $metadata, array $associations): ?ObjectMetadataInterface
-    {
-        $assoMetadata = $metadata;
-
-        foreach ($associations as $association) {
-            if ($metadata->hasAssociationByName($association)) {
-                $assoMeta = $metadata->getAssociationByName($association);
-
-                if ($this->isVisibleAssociation($metadata, $assoMeta)
-                        && \in_array($assoMeta->getType(), ['one-to-one', 'many-to-one'], true)) {
-                    $assoMetadata = $this->metadataManager->get($assoMeta->getTarget());
-                } else {
-                    $assoMetadata = null;
-
-                    break;
-                }
-            }
-        }
-
-        return $assoMetadata;
-    }
-
-    /**
      * Check if the field is visible.
      *
-     * @param ObjectMetadataInterface $metadata      The object metadata
-     * @param FieldMetadataInterface  $fieldMetadata The field metadata
+     * @param FieldMetadataInterface $fieldMetadata The field metadata
      */
-    private function isVisibleField(ObjectMetadataInterface $metadata, FieldMetadataInterface $fieldMetadata): bool
+    private function isVisibleField(FieldMetadataInterface $fieldMetadata): bool
     {
         return $fieldMetadata->isPublic()
-            && $this->authChecker->isGranted(new PermVote('read'), new FieldVote($metadata->getClass(), $fieldMetadata->getField()));
+            && $this->authChecker->isGranted(new PermVote('read'), new FieldVote($fieldMetadata->getParent()->getClass(), $fieldMetadata->getField()));
     }
 
     /**
      * Check if the association is visible.
      *
-     * @param ObjectMetadataInterface      $metadata            The object metadata
      * @param AssociationMetadataInterface $associationMetadata The association metadata
      */
-    private function isVisibleAssociation(ObjectMetadataInterface $metadata, AssociationMetadataInterface $associationMetadata): bool
+    private function isVisibleAssociation(AssociationMetadataInterface $associationMetadata): bool
     {
+        $targetMeta = $this->metadataManager->get($associationMetadata->getTarget());
+
         return $associationMetadata->isPublic()
-            && $this->authChecker->isGranted(new PermVote('read'), new FieldVote($metadata->getClass(), $associationMetadata->getAssociation()));
+            && $targetMeta->isPublic()
+            && $this->authChecker->isGranted(new PermVote('read'), new FieldVote($associationMetadata->getParent()->getClass(), $associationMetadata->getAssociation()))
+            && $this->authChecker->isGranted(new PermVote('view'), $targetMeta->getClass())
+        ;
     }
 }
