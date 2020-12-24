@@ -18,6 +18,8 @@ abstract class RequestHeaders
 {
     public const SEARCH_QUERY = 'X-Query';
 
+    public const SEARCH_QUERY_FIELDS = 'X-Query-Fields';
+
     public const SEARCH_OBJECTS = 'X-Objects';
 
     public const SEARCH_OBJECT = 'X-Object';
