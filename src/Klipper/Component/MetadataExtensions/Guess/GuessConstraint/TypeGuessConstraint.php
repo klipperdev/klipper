@@ -37,6 +37,7 @@ class TypeGuessConstraint extends AbstractGuessConstraint
                 $this->addInput($builder, '?checkbox');
 
                 break;
+
             case 'float':
             case 'double':
             case 'long':
@@ -47,6 +48,7 @@ class TypeGuessConstraint extends AbstractGuessConstraint
                 $this->addInput($builder, '?number');
 
                 break;
+
             case 'int':
             case 'integer':
                 $this->addType($builder, '?number');
@@ -55,11 +57,13 @@ class TypeGuessConstraint extends AbstractGuessConstraint
                 ]);
 
                 break;
+
             case 'string':
                 $this->addType($builder, '?string');
                 $this->addInput($builder, '?text');
 
                 break;
+
             default:
                 break;
         }

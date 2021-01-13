@@ -122,8 +122,7 @@ final class AbstractCacheTest extends TestCase
 
                 return %s;
 
-                EOF
-            ,
+                EOF,
             $content
         );
     }

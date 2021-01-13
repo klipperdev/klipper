@@ -95,8 +95,7 @@ abstract class AbstractCache
 
                 return %s;
 
-                EOF
-            ,
+                EOF,
             $content
         );
     }

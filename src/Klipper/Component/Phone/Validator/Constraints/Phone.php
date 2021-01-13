@@ -70,22 +70,31 @@ class Phone extends Constraint
         switch ($this->type) {
             case self::FIXED_LINE:
                 return 'This value is not a valid fixed-line number.';
+
             case self::MOBILE:
                 return 'This value is not a valid mobile number.';
+
             case self::PAGER:
                 return 'This value is not a valid pager number.';
+
             case self::PERSONAL_NUMBER:
                 return 'This value is not a valid personal number.';
+
             case self::PREMIUM_RATE:
                 return 'This value is not a valid premium-rate number.';
+
             case self::SHARED_COST:
                 return 'This value is not a valid shared-cost number.';
+
             case self::TOLL_FREE:
                 return 'This value is not a valid toll-free number.';
+
             case self::UAN:
                 return 'This value is not a valid UAN.';
+
             case self::VOIP:
                 return 'This value is not a valid VoIP number.';
+
             case self::VOICEMAIL:
                 return 'This value is not a valid voicemail access number.';
         }

@@ -242,6 +242,7 @@ class ImageManipulator implements ImageManipulatorInterface
                 }
 
                 break;
+
             case ConfigInterface::MODE_CONTAINER:
             default:
                 $width = ($width ?? $imgWidth) * $scale;

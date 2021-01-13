@@ -61,9 +61,8 @@ abstract class AbstractExtension implements ObjectExtensionInterface
             $this->initTypeExtensions();
         }
 
-        return isset($this->typeExtensions[$name])
-            ? $this->typeExtensions[$name]
-            : [];
+        return $this->typeExtensions[$name]
+            ?? [];
     }
 
     public function hasTypeExtensions(string $classname): bool

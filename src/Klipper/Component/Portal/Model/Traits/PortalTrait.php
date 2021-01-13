@@ -22,9 +22,9 @@ use Klipper\Component\Model\Traits\NameableTrait;
  */
 trait PortalTrait
 {
-    use NameableTrait;
-    use LabelableTrait;
     use EnableTrait;
+    use LabelableTrait;
+    use NameableTrait;
 
     public function __toString(): string
     {

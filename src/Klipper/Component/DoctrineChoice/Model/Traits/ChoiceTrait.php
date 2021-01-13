@@ -74,7 +74,7 @@ trait ChoiceTrait
     /**
      * @ORM\Column(type="integer")
      *
-     * @Gedmo\SortablePosition()
+     * @Gedmo\SortablePosition
      *
      * @Assert\Type(type="integer")
      *

@@ -18,8 +18,8 @@ namespace Klipper\Component\Cache\Adapter;
  */
 trait AdapterTrait
 {
-    use AdapterPrefixesTrait;
     use AdapterDeferredTrait;
+    use AdapterPrefixesTrait;
 
     public function clearByPrefixes(array $prefixes): bool
     {

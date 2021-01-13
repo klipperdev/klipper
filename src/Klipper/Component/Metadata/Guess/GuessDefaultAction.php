@@ -16,8 +16,7 @@ use Klipper\Component\Metadata\ActionMetadataBuilderInterface;
 /**
  * @author François Pluchino <francois.pluchino@klipper.dev>
  */
-class GuessDefaultAction implements
-    GuessActionConfigInterface
+class GuessDefaultAction implements GuessActionConfigInterface
 {
     public function guessActionConfig(ActionMetadataBuilderInterface $builder): void
     {

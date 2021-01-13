@@ -25,8 +25,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 trait ListViewTrait
 {
-    use NameableTrait;
     use LabelableTrait;
+    use NameableTrait;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)

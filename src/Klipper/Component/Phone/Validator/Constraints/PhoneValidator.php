@@ -67,42 +67,52 @@ class PhoneValidator extends ConstraintValidator
                 $validTypes = [PhoneNumberType::FIXED_LINE, PhoneNumberType::FIXED_LINE_OR_MOBILE];
 
                 break;
+
             case Phone::MOBILE:
                 $validTypes = [PhoneNumberType::MOBILE, PhoneNumberType::FIXED_LINE_OR_MOBILE];
 
                 break;
+
             case Phone::PAGER:
                 $validTypes = [PhoneNumberType::PAGER];
 
                 break;
+
             case Phone::PERSONAL_NUMBER:
                 $validTypes = [PhoneNumberType::PERSONAL_NUMBER];
 
                 break;
+
             case Phone::PREMIUM_RATE:
                 $validTypes = [PhoneNumberType::PREMIUM_RATE];
 
                 break;
+
             case Phone::SHARED_COST:
                 $validTypes = [PhoneNumberType::SHARED_COST];
 
                 break;
+
             case Phone::TOLL_FREE:
                 $validTypes = [PhoneNumberType::TOLL_FREE];
 
                 break;
+
             case Phone::UAN:
                 $validTypes = [PhoneNumberType::UAN];
 
                 break;
+
             case Phone::VOIP:
                 $validTypes = [PhoneNumberType::VOIP];
 
                 break;
+
             case Phone::VOICEMAIL:
                 $validTypes = [PhoneNumberType::VOICEMAIL];
 
                 break;
+
             default:
                 $validTypes = [];
 

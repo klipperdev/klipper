@@ -195,7 +195,7 @@ class ViewMetadata implements ViewMetadataInterface
 
     public function isMultiSortable(): bool
     {
-        return$this->multiSortable;
+        return $this->multiSortable;
     }
 
     public function getDefaultSortable(): array

@@ -52,9 +52,8 @@ class PreloadedExtension implements ObjectExtensionInterface
 
     public function getTypeExtensions(string $name): array
     {
-        return isset($this->typeExtensions[$name])
-            ? $this->typeExtensions[$name]
-            : [];
+        return $this->typeExtensions[$name]
+            ?? [];
     }
 
     public function hasTypeExtensions(string $name): bool

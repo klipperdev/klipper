@@ -154,14 +154,17 @@ class UrlGenerator
                 }
 
                 break;
+
             case OrgUrl::class:
                 $method = $organizational ? 'getOrgUrl' : 'getUrl';
 
                 break;
+
             case LangUrl::class:
                 $method = $translatable ? 'getLangUrl' : 'getUrl';
 
                 break;
+
             case Url::class:
             default:
                 $method = 'getUrl';

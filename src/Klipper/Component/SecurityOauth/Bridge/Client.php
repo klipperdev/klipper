@@ -20,8 +20,8 @@ use League\OAuth2\Server\Entities\Traits\EntityTrait;
  */
 class Client implements ClientEntityInterface
 {
-    use EntityTrait;
     use ClientTrait;
+    use EntityTrait;
 
     /**
      * @param string|string[] $redirectUri

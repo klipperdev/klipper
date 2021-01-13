@@ -39,6 +39,7 @@ class PhpParser
                     $namespace = ltrim(self::fetch($tokens, [T_STRING, T_NS_SEPARATOR]).'\\', '\\');
 
                     break;
+
                 case T_CLASS:
                 case T_INTERFACE:
                     if ($name = self::fetch($tokens, [T_STRING])) {

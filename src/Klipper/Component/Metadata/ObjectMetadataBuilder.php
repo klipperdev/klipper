@@ -186,7 +186,7 @@ class ObjectMetadataBuilder extends BaseMetadataBuilder implements ObjectMetadat
 
     public function isMultiSortable(): ?bool
     {
-        return$this->multiSortable;
+        return $this->multiSortable;
     }
 
     public function setDefaultSortable(?array $map): self
