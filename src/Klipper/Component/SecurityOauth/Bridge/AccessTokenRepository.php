@@ -49,7 +49,7 @@ class AccessTokenRepository implements AccessTokenRepositoryInterface
         $this->authManager->authenticate(new OauthToken(
             $accessTokenEntity->getIdentifier(),
             $accessTokenEntity->getUserIdentifier(),
-            $this->authManager->getProviderKey(),
+            $this->authManager->getFirewallName(),
             [],
             array_map(static function (ScopeEntityInterface $scope) {
                 return $scope->getIdentifier();

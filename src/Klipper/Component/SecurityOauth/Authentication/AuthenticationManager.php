@@ -68,7 +68,7 @@ class AuthenticationManager implements AuthenticationManagerInterface
         return $token;
     }
 
-    public function getProviderKey(): string
+    public function getFirewallName(): string
     {
         $request = $this->requestStack->getCurrentRequest();
         $firewall = 'security.firewall.map.context.main';

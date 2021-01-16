@@ -20,5 +20,5 @@ interface AuthenticationManagerInterface
 {
     public function authenticate(TokenInterface $token): ?TokenInterface;
 
-    public function getProviderKey(): string;
+    public function getFirewallName(): string;
 }

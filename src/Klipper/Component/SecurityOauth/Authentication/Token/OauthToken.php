@@ -21,7 +21,7 @@ class OauthToken extends AbstractToken
 {
     private string $token;
 
-    private string $providerKey;
+    private string $firewallName;
 
     private array $scopes;
 
@@ -33,14 +33,14 @@ class OauthToken extends AbstractToken
     public function __construct(
         string $token,
         $user,
-        string $providerKey,
+        string $firewallName,
         array $roles = [],
         array $scopes = []
     ) {
         parent::__construct($roles);
 
         $this->token = $token;
-        $this->providerKey = $providerKey;
+        $this->firewallName = $firewallName;
         $this->scopes = $scopes;
 
         if (null !== $user) {
@@ -52,12 +52,12 @@ class OauthToken extends AbstractToken
 
     public function __serialize(): array
     {
-        return [$this->providerKey, parent::__serialize()];
+        return [$this->firewallName, parent::__serialize()];
     }
 
     public function __unserialize(array $data): void
     {
-        [$this->providerKey, $parentData] = $data;
+        [$this->firewallName, $parentData] = $data;
 
         parent::__unserialize($parentData);
     }
@@ -81,9 +81,9 @@ class OauthToken extends AbstractToken
         return $this->token;
     }
 
-    public function getProviderKey(): string
+    public function getFirewallName(): string
     {
-        return $this->providerKey;
+        return $this->firewallName;
     }
 
     /**

@@ -38,7 +38,7 @@ class UserRepository implements UserRepositoryInterface
         $token = $this->authManager->authenticate(new UsernamePasswordToken(
             $username,
             $password,
-            $this->authManager->getProviderKey()
+            $this->authManager->getFirewallName()
         ));
 
         return null !== $token ? new User($username) : null;

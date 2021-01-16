@@ -77,7 +77,7 @@ class OauthProvider implements AuthenticationProviderInterface
 
     public function supports(TokenInterface $token): bool
     {
-        return $token instanceof OauthToken && $this->providerKey === $token->getProviderKey();
+        return $token instanceof OauthToken && $this->providerKey === $token->getFirewallName();
     }
 
     private function getAuthenticatedUser(string $userIdentifier): ?UserInterface
