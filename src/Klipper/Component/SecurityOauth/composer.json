@@ -17,15 +17,15 @@
         "klipper/config": "^2.0.0",
         "klipper/model": "^2.0.0",
         "league/oauth2-server": "^8.1.0",
-        "symfony/config": "^5.1.0",
-        "symfony/security-core": "^5.1.0",
-        "symfony/security-http": "^5.1.0"
+        "symfony/config": "^5.2.0",
+        "symfony/security-core": "^5.2.0",
+        "symfony/security-http": "^5.2.0"
     },
     "require-dev": {
         "klipper/security": "^2.0.0",
-        "symfony/console": "^5.1.0",
-        "symfony/event-dispatcher": "^5.1.0",
-        "symfony/process": "^5.1.0"
+        "symfony/console": "^5.2.0",
+        "symfony/event-dispatcher": "^5.2.0",
+        "symfony/process": "^5.2.0"
     },
     "autoload": {
         "psr-4": { "Klipper\\Component\\SecurityOauth\\": "" },

@@ -15,7 +15,7 @@
         "php": "^7.4.0",
         "klipper/http-foundation": "^2.0.0",
         "klipper/config": "^2.0.0",
-        "symfony/routing": "^5.1.0"
+        "symfony/routing": "^5.2.0"
     },
     "require-dev": {
         "klipper/security": "^2.0.0",

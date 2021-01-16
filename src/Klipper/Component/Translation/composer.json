@@ -13,11 +13,11 @@
     "prefer-stable": true,
     "require": {
         "php": "^7.4.0",
-        "symfony/translation": "^5.1.0"
+        "symfony/translation": "^5.2.0"
     },
     "require-dev": {
         "klipper/resource": "^2.0.0",
-        "symfony/error-handler": "^5.1.0",
+        "symfony/error-handler": "^5.2.0",
         "twig/twig": "^2.7.0"
     },
     "autoload": {

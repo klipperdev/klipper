@@ -16,8 +16,8 @@
         "klipper/choice": "^2.0.0",
         "klipper/model": "^2.0.0",
         "klipper/security": "^2.0.0",
-        "symfony/http-kernel": "^5.1.0",
-        "symfony/intl": "^5.1.0"
+        "symfony/http-kernel": "^5.2.0",
+        "symfony/intl": "^5.2.0"
     },
     "require-dev": {
         "jms/serializer": "^3.8.0"
