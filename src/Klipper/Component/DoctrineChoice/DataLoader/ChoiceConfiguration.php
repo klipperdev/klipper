@@ -35,6 +35,7 @@ class ChoiceConfiguration implements ConfigurationInterface
             ->scalarNode('type')->cannotBeEmpty()->end()
             ->scalarNode('value')->cannotBeEmpty()->end()
             ->scalarNode('label')->cannotBeEmpty()->end()
+            ->scalarNode('icon')->defaultNull()->end()
             ->scalarNode('color')->defaultNull()->end()
             ->integerNode('position')->defaultNull()->end()
             ->arrayNode('translations')
