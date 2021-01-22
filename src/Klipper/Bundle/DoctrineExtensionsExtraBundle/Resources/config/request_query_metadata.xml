@@ -28,6 +28,7 @@
             <argument type="service" id="translator" />
             <argument type="service" id="klipper_doctrine_extensions_extra.request_query.filterable.expression_language"  on-invalid="null"/>
             <argument type="service" id="security.authorization_checker" on-invalid="null" />
+            <argument type="collection"/>
         </service>
 
         <service id="klipper_doctrine_extensions_extra.request_query.filter_manager" class="Klipper\Component\DoctrineExtensionsExtra\Filterable\FilterManager" public="true">
@@ -47,5 +48,10 @@
         </service>
 
         <service id="Klipper\Component\DoctrineExtensionsExtra\Filterable\FilterManager" alias="klipper_doctrine_extensions_extra.request_query.filter_manager" />
+
+        <!-- Metadata Form Config Guesser -->
+        <service id="klipper_doctrine_extensions_extra.request_query.filterable.form_guesser.metadata" class="Klipper\Component\DoctrineExtensionsExtra\Filterable\Guesser\MetadataFormConfigGuesser">
+            <tag name="klipper_doctrine_extensions_extra.request_query.filterable.form_guesser"/>
+        </service>
     </services>
 </container>
