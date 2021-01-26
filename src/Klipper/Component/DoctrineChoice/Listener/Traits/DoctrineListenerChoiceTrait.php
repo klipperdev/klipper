@@ -23,7 +23,7 @@ trait DoctrineListenerChoiceTrait
 {
     protected array $doctrineChoices = [];
 
-    protected function getChoice(EntityManagerInterface $em, string $type, string $value): ?ChoiceInterface
+    protected function getChoice(EntityManagerInterface $em, string $type, ?string $value): ?ChoiceInterface
     {
         if (!isset($this->doctrineChoices[$type])) {
             $this->doctrineChoices[$type] = [];
@@ -34,6 +34,15 @@ trait DoctrineListenerChoiceTrait
             /** @var ChoiceInterface $item */
             foreach ($res as $item) {
                 $this->doctrineChoices[$type][$item->getValue()] = $item;
+            }
+        }
+
+        // Select the first choice
+        if (null === $value) {
+            $values = array_keys($this->doctrineChoices[$type]);
+
+            if (\count($values) > 0) {
+                $value = $values[0];
             }
         }
 
