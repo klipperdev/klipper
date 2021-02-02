@@ -94,6 +94,7 @@
         "klipper/geocoder": "self.version",
         "klipper/http-foundation": "self.version",
         "klipper/http-kernel": "self.version",
+        "klipper/import": "self.version",
         "klipper/importer": "self.version",
         "klipper/importer-bundle": "self.version",
         "klipper/importer-database": "self.version",
