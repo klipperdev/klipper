@@ -14,7 +14,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": "^7.4.0",
+        "php": "^7.4.0|^8.0.0",
         "symfony/intl": "^5.2.0",
         "symfony/mime": "^5.2.0",
         "twig/twig": "^2.5.0"

@@ -12,7 +12,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": "^7.4.0",
+        "php": "^7.4.0|^8.0.0",
         "klipper/config": "^2.0.0",
         "klipper/doctrine-extra": "^2.0.0",
         "klipper/resource": "^2.0.0",

@@ -14,7 +14,7 @@
     "minimum-stability": "stable",
     "prefer-stable": false,
     "require": {
-        "php": "^7.4.0",
+        "php": "^7.4.0|^8.0.0",
         "symfony/cache": "^5.2.0"
     },
     "require-dev": {
