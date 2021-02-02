@@ -95,6 +95,7 @@
         "klipper/http-foundation": "self.version",
         "klipper/http-kernel": "self.version",
         "klipper/import": "self.version",
+        "klipper/import-bundle": "self.version",
         "klipper/importer": "self.version",
         "klipper/importer-bundle": "self.version",
         "klipper/importer-database": "self.version",

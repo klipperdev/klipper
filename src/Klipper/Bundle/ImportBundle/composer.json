@@ -1,0 +1,34 @@
+{
+    "name": "klipper/import-bundle",
+    "type": "symfony-bundle",
+    "description": "Import bundle of Klipper",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "François Pluchino",
+            "email": "francois.pluchino@klipper.dev"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": "^7.4.0|^8.0.0",
+        "symfony/framework-bundle": "^5.2.0",
+        "klipper/metadata-bundle": "^2.0.0",
+        "klipper/import": "^2.0.0"
+    },
+    "require-dev": {
+        "klipper/security-bundle": "^2.0.0"
+    },
+    "autoload": {
+        "psr-4": { "Klipper\\Bundle\\ImportBundle\\": "" },
+        "exclude-from-classmap": [
+            "**/Tests/"
+        ]
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.0-dev"
+        }
+    }
+}
