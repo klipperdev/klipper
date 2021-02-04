@@ -1,0 +1,32 @@
+{
+    "name": "klipper/model-bundle",
+    "type": "symfony-bundle",
+    "description": "Model bundle of Klipper",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "François Pluchino",
+            "email": "francois.pluchino@klipper.dev"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "klipper/model": "^2.0.0",
+        "symfony/framework-bundle": "^5.2.0"
+    },
+    "require-dev": {
+        "doctrine/orm": "^2.7.0"
+    },
+    "autoload": {
+        "psr-4": { "Klipper\\Bundle\\ModelBundle\\": "" },
+        "exclude-from-classmap": [
+            "**/Tests/"
+        ]
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.0-dev"
+        }
+    }
+}

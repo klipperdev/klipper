@@ -110,6 +110,7 @@
         "klipper/metadata-extensions": "self.version",
         "klipper/metadata-extensions-bundle": "self.version",
         "klipper/model": "self.version",
+        "klipper/model-bundle": "self.version",
         "klipper/model-contracts": "self.version",
         "klipper/module": "self.version",
         "klipper/object": "self.version",
