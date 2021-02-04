@@ -12,6 +12,7 @@
 namespace Klipper\Bundle\ModelBundle\DependencyInjection;
 
 use Doctrine\ORM\EntityManagerInterface;
+use Klipper\Component\Content\ContentManagerInterface;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader;
@@ -31,6 +32,10 @@ class KlipperModelExtension extends Extension
 
         if (interface_exists(EntityManagerInterface::class)) {
             $loader->load('doctrine_listener_labelable.xml');
+
+            if (interface_exists(ContentManagerInterface::class)) {
+                $loader->load('doctrine_listener_content_path.xml');
+            }
         }
     }
 }

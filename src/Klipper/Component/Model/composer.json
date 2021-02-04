@@ -14,6 +14,7 @@
     "require-dev": {
         "php": "^7.4.0|^8.0.0",
         "doctrine/orm": "^2.7.0",
+        "klipper/content": "^2.0.0",
         "klipper/doctrine-extensions-extra": "^2.0.0",
         "klipper/resource": "^2.0.0",
         "klipper/security": "^2.0.0",
