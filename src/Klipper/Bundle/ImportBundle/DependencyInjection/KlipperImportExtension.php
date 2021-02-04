@@ -27,6 +27,7 @@ class KlipperImportExtension extends Extension
     public function load(array $configs, ContainerBuilder $container): void
     {
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader->load('doctrine_listener.xml');
         $loader->load('doctrine_listener_content_path.xml');
     }
 }
