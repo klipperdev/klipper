@@ -25,6 +25,13 @@ use Symfony\Component\HttpKernel\Exception\UnsupportedMediaTypeHttpException;
 interface ContentManagerInterface
 {
     /**
+     * Get the uploader name by payload.
+     *
+     * @param mixed $payload The payload
+     */
+    public function getUploaderName($payload): ?string;
+
+    /**
      * Upload a file.
      *
      * @param string     $uploaderName The uploader name
@@ -60,6 +67,22 @@ interface ContentManagerInterface
      * @throws InvalidArgumentException
      */
     public function downloadImage(string $uploaderName, ?string $path, ?string $contentDisposition = null, array $headers = []): Response;
+
+    /**
+     * @param string          $uploaderName The name of the uploader used
+     * @param string|string[] $path         The one path or multiple paths
+     *
+     * @throws InvalidArgumentException
+     */
+    public function remove(string $uploaderName, $path): bool;
+
+    /**
+     * Build the relative path.
+     *
+     * @param string $uploaderName The name of the uploader used
+     * @param string $absolutePath The absolute path
+     */
+    public function buildRelativePath(string $uploaderName, string $absolutePath): string;
 
     /**
      * Build the image manipulator config.

@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Klipper\Bundle\ApiBundle\DependencyInjection\Compiler;
+namespace Klipper\Bundle\ContentBundle\DependencyInjection\Compiler;
 
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\Compiler\PriorityTaggedServiceTrait;
@@ -18,20 +18,20 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 /**
  * @author François Pluchino <francois.pluchino@klipper.dev>
  */
-class FilePathUploadListenerConfigPass implements CompilerPassInterface
+class UploaderNameConfigPass implements CompilerPassInterface
 {
     use PriorityTaggedServiceTrait;
 
     public function process(ContainerBuilder $container): void
     {
-        if (!$container->hasDefinition('klipper_api.listener.file_path_upload_subscriber')) {
+        if (!$container->hasDefinition('klipper_content.uploader_name_config_registry')) {
             return;
         }
 
-        $def = $container->getDefinition('klipper_api.listener.file_path_upload_subscriber');
+        $def = $container->getDefinition('klipper_content.uploader_name_config_registry');
 
-        foreach ($this->findAndSortTaggedServices('klipper_api.listener.file_path_upload_config', $container) as $service) {
-            $def->addMethodCall('addFilePathUploadListenerConfig', [$service]);
+        foreach ($this->findAndSortTaggedServices('klipper_content.uploader_name_config', $container) as $service) {
+            $def->addMethodCall('addConfig', [$service]);
         }
     }
 }

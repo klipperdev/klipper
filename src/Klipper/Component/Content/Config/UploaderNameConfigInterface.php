@@ -9,16 +9,21 @@
  * file that was distributed with this source code.
  */
 
-namespace Klipper\Bundle\ApiBundle\Uploader;
+namespace Klipper\Component\Content\Config;
 
 use Klipper\Component\Content\Uploader\Event\UploadFileCompletedEvent;
 
 /**
  * @author François Pluchino <francois.pluchino@klipper.dev>
  */
-interface ImagePathUploadListenerConfigInterface
+interface UploaderNameConfigInterface
 {
     public function getUploaderName(): string;
+
+    /**
+     * @param mixed $payload
+     */
+    public function validate($payload): bool;
 
     public function validateEvent(UploadFileCompletedEvent $event): bool;
 }

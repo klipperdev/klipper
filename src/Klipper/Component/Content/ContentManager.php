@@ -11,10 +11,13 @@
 
 namespace Klipper\Component\Content;
 
+use Klipper\Component\Content\Config\UploaderNameConfigRegistryInterface;
 use Klipper\Component\Content\Downloader\DownloaderInterface;
+use Klipper\Component\Content\ImageManipulator\Cache\CacheInterface;
 use Klipper\Component\Content\ImageManipulator\Config;
 use Klipper\Component\Content\Uploader\UploaderInterface;
 use Klipper\Component\Content\Util\ContentUtil;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -27,10 +30,29 @@ class ContentManager implements ContentManagerInterface
 
     private DownloaderInterface $downloader;
 
-    public function __construct(UploaderInterface $uploader, DownloaderInterface $downloader)
-    {
+    private UploaderNameConfigRegistryInterface $configRegistry;
+
+    private Filesystem $fs;
+
+    private ?CacheInterface $imageManipulatorCache;
+
+    public function __construct(
+        UploaderInterface $uploader,
+        DownloaderInterface $downloader,
+        UploaderNameConfigRegistryInterface $configRegistry,
+        ?Filesystem $fs = null,
+        ?CacheInterface $imageManipulatorCache = null
+    ) {
         $this->uploader = $uploader;
         $this->downloader = $downloader;
+        $this->configRegistry = $configRegistry;
+        $this->fs = $fs ?? new Filesystem();
+        $this->imageManipulatorCache = $imageManipulatorCache;
+    }
+
+    public function getUploaderName($payload): ?string
+    {
+        return $this->configRegistry->getUploaderName($payload);
     }
 
     public function upload(string $uploaderName, $payload = null): Response
@@ -55,6 +77,40 @@ class ContentManager implements ContentManagerInterface
             $contentDisposition,
             $headers
         );
+    }
+
+    public function remove(string $uploaderName, $path): bool
+    {
+        $basePath = $this->uploader->get($uploaderName)->getPath();
+        $paths = (array) $path;
+        $res = true;
+
+        foreach ($paths as $removePath) {
+            $removeFilename = ContentUtil::getAbsolutePath($basePath, $removePath);
+
+            try {
+                $this->fs->remove($removeFilename);
+            } catch (\Throwable $e) {
+                $res = false;
+            }
+
+            if (null !== $this->imageManipulatorCache) {
+                try {
+                    $this->imageManipulatorCache->clear($removeFilename);
+                } catch (\Throwable $e) {
+                    // no check to optimize request to delete file, so do nothing on error
+                }
+            }
+        }
+
+        return $res;
+    }
+
+    public function buildRelativePath(string $uploaderName, string $absolutePath): string
+    {
+        $basePath = $this->uploader->get($uploaderName)->getPath();
+
+        return ContentUtil::getRelativePath($this->fs, $basePath, $absolutePath);
     }
 
     public function buildConfig(?Request $request = null): Config
