@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="klipper_import.doctrine.subscriber.result_file_path"
+                 class="Klipper\Component\Model\Doctrine\Listener\ContentPathSubscriber">
+            <tag name="doctrine.event_subscriber" />
+            <argument type="service" id="klipper_content.manager"/>
+            <argument>Klipper\Component\Import\Model\ImportInterface</argument>
+            <argument>getResultFilePath</argument>
+        </service>
+    </services>
+</container>
