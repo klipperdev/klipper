@@ -1,0 +1,5 @@
+# Import Status
+import_status.waiting: Waiting
+import_status.in_progress: In progress
+import_status.success: Success
+import_status.error: Error

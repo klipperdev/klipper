@@ -1,0 +1,8 @@
+# Import
+import.name: Importation
+import.name.plural: Importations
+import.fields.adapter: Adapter
+import.fields.metadata: Metadata
+import.fields.file_path: Original file path
+import.fields.result_file_path: Result file path
+import.fields.status: Status

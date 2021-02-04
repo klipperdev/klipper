@@ -1,0 +1,8 @@
+# Import
+import.name: Importation
+import.name.plural: Importations
+import.fields.adapter: Adaptateur
+import.fields.metadata: Metadata
+import.fields.file_path: Chemin du fichier original
+import.fields.result_file_path: Chemin du fichier de résultat
+import.fields.status: Statut
