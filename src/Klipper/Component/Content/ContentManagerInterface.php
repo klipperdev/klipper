@@ -69,6 +69,17 @@ interface ContentManagerInterface
     public function downloadImage(string $uploaderName, ?string $path, ?string $contentDisposition = null, array $headers = []): Response;
 
     /**
+     * Copy the file.
+     *
+     * @param string $uploaderName The name of the uploader used
+     * @param string $originPath   The origin path
+     * @param string $targetPath   The target path
+     */
+    public function copy(string $uploaderName, string $originPath, string $targetPath): bool;
+
+    /**
+     * Remove the file.
+     *
      * @param string          $uploaderName The name of the uploader used
      * @param string|string[] $path         The one path or multiple paths
      *

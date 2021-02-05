@@ -79,6 +79,22 @@ class ContentManager implements ContentManagerInterface
         );
     }
 
+    public function copy(string $uploaderName, string $originPath, $targetPath): bool
+    {
+        $basePath = $this->uploader->get($uploaderName)->getPath();
+        $originFilename = ContentUtil::getAbsolutePath($basePath, $originPath);
+        $targetFilename = ContentUtil::getAbsolutePath($basePath, $targetPath);
+        $res = true;
+
+        try {
+            $this->fs->copy($originFilename, $targetFilename);
+        } catch (\Throwable $e) {
+            $res = false;
+        }
+
+        return $res;
+    }
+
     public function remove(string $uploaderName, $path): bool
     {
         $basePath = $this->uploader->get($uploaderName)->getPath();
