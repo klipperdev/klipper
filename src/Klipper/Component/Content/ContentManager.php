@@ -122,6 +122,13 @@ class ContentManager implements ContentManagerInterface
         return $res;
     }
 
+    public function buildAbsolutePath(string $uploaderName, string $relativePath): string
+    {
+        $basePath = $this->uploader->get($uploaderName)->getPath();
+
+        return ContentUtil::getAbsolutePath($basePath, $relativePath);
+    }
+
     public function buildRelativePath(string $uploaderName, string $absolutePath): string
     {
         $basePath = $this->uploader->get($uploaderName)->getPath();

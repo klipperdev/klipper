@@ -88,6 +88,14 @@ interface ContentManagerInterface
     public function remove(string $uploaderName, $path): bool;
 
     /**
+     * Build the absolute path.
+     *
+     * @param string $uploaderName The name of the uploader used
+     * @param string $absolutePath The relative path
+     */
+    public function buildAbsolutePath(string $uploaderName, string $relativePath): string;
+
+    /**
      * Build the relative path.
      *
      * @param string $uploaderName The name of the uploader used
