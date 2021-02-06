@@ -11,6 +11,8 @@
 
 namespace Klipper\Bundle\ImportBundle;
 
+use Klipper\Bundle\ImportBundle\DependencyInjection\Compiler\AdapterPass;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
@@ -18,4 +20,10 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
  */
 class KlipperImportBundle extends Bundle
 {
+    public function build(ContainerBuilder $container): void
+    {
+        parent::build($container);
+
+        $container->addCompilerPass(new AdapterPass());
+    }
 }
