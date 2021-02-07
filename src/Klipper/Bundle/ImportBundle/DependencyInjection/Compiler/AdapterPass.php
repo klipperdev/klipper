@@ -32,7 +32,7 @@ class AdapterPass implements CompilerPassInterface
         $adapters = $def->getArgument(3);
 
         foreach ($this->findAndSortTaggedServices('klipper_import.adapter', $container) as $service) {
-            $list[] = $service;
+            $adapters[] = $service;
         }
 
         $def->replaceArgument(3, $adapters);
