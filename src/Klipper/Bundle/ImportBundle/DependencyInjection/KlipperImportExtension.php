@@ -31,5 +31,6 @@ class KlipperImportExtension extends Extension
         $loader->load('doctrine_listener_content_path.xml');
         $loader->load('import.xml');
         $loader->load('messenger.xml');
+        $loader->load('command.xml');
     }
 }
