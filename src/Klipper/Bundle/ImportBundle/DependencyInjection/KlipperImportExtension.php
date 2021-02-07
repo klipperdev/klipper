@@ -15,6 +15,7 @@ use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @author François Pluchino <francois.pluchino@klipper.dev>
@@ -32,5 +33,9 @@ class KlipperImportExtension extends Extension
         $loader->load('import.xml');
         $loader->load('messenger.xml');
         $loader->load('command.xml');
+
+        if (interface_exists(UserInterface::class)) {
+            $loader->load('security_listener.xml');
+        }
     }
 }
