@@ -16,5 +16,10 @@
         </service>
 
         <service id="Klipper\Component\Import\ImportManagerInterface" alias="klipper_import.manager"/>
+
+        <service id="klipper_import.adapter.standard"
+                 class="Klipper\Component\Import\Adapter\StandardImportAdapter">
+            <tag name="klipper_import.adapter" priority="-2048" />
+        </service>
     </services>
 </container>
