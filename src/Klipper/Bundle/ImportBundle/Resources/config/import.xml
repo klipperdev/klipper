@@ -7,6 +7,7 @@
     <services>
         <service id="klipper_import.manager"
                  class="Klipper\Component\Import\ImportManager">
+            <argument type="service" id="event_dispatcher"/>
             <argument type="service" id="form.factory"/>
             <argument type="service" id="translator"/>
             <argument type="service" id="klipper_resource.domain_manager"/>
