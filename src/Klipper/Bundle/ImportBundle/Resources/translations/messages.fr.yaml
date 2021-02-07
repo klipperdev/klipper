@@ -1,0 +1,3 @@
+klipper_import.title_field: 'Champs'
+klipper_import.title_errors: 'Erreurs :'
+klipper_import.error_without_message: 'Aucun message d''erreur disponible'
