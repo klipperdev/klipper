@@ -2,7 +2,11 @@
 import.name: Importation
 import.name.plural: Importations
 import.fields.adapter: Adapter
-import.fields.metadata: Metadata
+import.fields.errorCount: Error imported
 import.fields.file_path: Original file path
+import.fields.metadata: Metadata
 import.fields.result_file_path: Result file path
 import.fields.status: Status
+import.fields.status_code: Statut code
+import.fields.successCount: Success imported
+import.fields.total_count: Total imported
