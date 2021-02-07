@@ -91,7 +91,7 @@ interface ContentManagerInterface
      * Build the absolute path.
      *
      * @param string $uploaderName The name of the uploader used
-     * @param string $absolutePath The relative path
+     * @param string $relativePath The relative path
      */
     public function buildAbsolutePath(string $uploaderName, string $relativePath): string;
 
