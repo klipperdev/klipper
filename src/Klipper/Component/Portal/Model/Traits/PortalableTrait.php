@@ -40,4 +40,9 @@ trait PortalableTrait
             ? $this->getPortal()->getId()
             : null;
     }
+
+    public static function getPortalAssociationName(): string
+    {
+        return 'portal';
+    }
 }

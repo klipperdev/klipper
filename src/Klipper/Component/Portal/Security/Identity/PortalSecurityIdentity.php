@@ -40,7 +40,7 @@ class PortalSecurityIdentity extends AbstractSecurityIdentity
      */
     public static function fromAccount(PortalInterface $portal): self
     {
-        return new self('portal', $portal->getName());
+        return new self('portal', $portal->getPortalName());
     }
 
     /**
@@ -94,7 +94,7 @@ class PortalSecurityIdentity extends AbstractSecurityIdentity
     private static function getPortalGroups(PortalUserInterface $user): array
     {
         $sids = [];
-        $portalName = $user->getPortal() ? $user->getPortal()->getName() : null;
+        $portalName = $user->getPortal() ? $user->getPortal()->getPortalName() : null;
 
         if (null !== $portalName && $user instanceof GroupableInterface) {
             foreach ($user->getGroups() as $group) {
@@ -123,7 +123,7 @@ class PortalSecurityIdentity extends AbstractSecurityIdentity
             $portal = $user->getPortal();
 
             if ($portal) {
-                $roles = self::buildPortalUserRoles($roles, $user, $portal->getName());
+                $roles = self::buildPortalUserRoles($roles, $user, $portal->getPortalName());
                 $roles = self::buildPortalRoles($roles, $portal);
             }
 
@@ -163,7 +163,7 @@ class PortalSecurityIdentity extends AbstractSecurityIdentity
      */
     private static function buildPortalRoles(array $roles, PortalInterface $portal): array
     {
-        $portalName = $portal->getName();
+        $portalName = $portal->getPortalName();
 
         if ($portal instanceof RoleableInterface) {
             $existingRoles = [];

@@ -11,9 +11,9 @@
 
 namespace Klipper\Component\Portal\Model\Traits;
 
-use Klipper\Component\Model\Traits\EnableTrait;
-use Klipper\Component\Model\Traits\LabelableTrait;
-use Klipper\Component\Model\Traits\NameableTrait;
+use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Trait for portal model.
@@ -22,12 +22,61 @@ use Klipper\Component\Model\Traits\NameableTrait;
  */
 trait PortalTrait
 {
-    use EnableTrait;
-    use LabelableTrait;
-    use NameableTrait;
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     *
+     * @Assert\Type(type="string")
+     * @Assert\Length(max=255)
+     * @Assert\Expression(
+     *     expression="!(!value && this.isPortalEnabled())",
+     *     message="This value should not be blank."
+     * )
+     *
+     * @Serializer\Expose
+     */
+    protected ?string $portalName = null;
+
+    /**
+     * @ORM\Column(type="boolean")
+     *
+     * @Assert\Type(type="boolean")
+     *
+     * @Serializer\Expose
+     */
+    protected bool $portalEnabled = false;
 
     public function __toString(): string
     {
-        return $this->getName();
+        return (string) $this->getPortalName();
+    }
+
+    /**
+     * @return static
+     */
+    public function setPortalName(?string $name): self
+    {
+        $this->portalName = $name;
+
+        return $this;
+    }
+
+    public function getPortalName(): ?string
+    {
+        return $this->portalName;
+    }
+
+    /**
+     * @return static
+     */
+    public function setPortalEnabled(bool $enabled): self
+    {
+        $this->portalEnabled = $enabled;
+
+        return $this;
+    }
+
+    public function isPortalEnabled(): bool
+    {
+        return $this->portalEnabled;
     }
 }

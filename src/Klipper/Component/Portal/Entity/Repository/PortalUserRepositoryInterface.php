@@ -27,4 +27,9 @@ interface PortalUserRepositoryInterface extends ObjectRepository
      * @param null|UserInterface $user       The user
      */
     public function findCurrentPortalUserByPortalName(string $portalName, ?UserInterface $user): ?PortalUserInterface;
+
+    /**
+     * @param int|string $id The user id
+     */
+    public function findPortalUserById($id): ?PortalUserInterface;
 }

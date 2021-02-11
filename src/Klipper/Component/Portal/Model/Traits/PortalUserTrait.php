@@ -16,6 +16,7 @@ use JMS\Serializer\Annotation as Serializer;
 use Klipper\Component\Model\Traits\EnableTrait;
 use Klipper\Component\Portal\Model\PortalInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Trait for portal user model.
@@ -25,6 +26,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 trait PortalUserTrait
 {
     use EnableTrait;
+    use PortalableTrait;
 
     /**
      * @ORM\ManyToOne(
@@ -32,6 +34,11 @@ trait PortalUserTrait
      *     fetch="EXTRA_LAZY"
      * )
      * @ORM\JoinColumn(onDelete="CASCADE", nullable=false)
+     *
+     * @Assert\NotBlank
+     * @Assert\Expression(
+     *     expression="value && value.isPortalEnabled()"
+     * )
      *
      * @Serializer\Type("AssociationId")
      * @Serializer\Expose
@@ -54,19 +61,7 @@ trait PortalUserTrait
 
     public function __toString(): string
     {
-        return $this->portal->getName().':'.$this->user->getUsername();
-    }
-
-    public function setPortal(?PortalInterface $portal): self
-    {
-        $this->portal = $portal;
-
-        return $this;
-    }
-
-    public function getPortal(): ?PortalInterface
-    {
-        return $this->portal;
+        return $this->portal->getPortalName().':'.$this->user->getUsername();
     }
 
     public function setUser(?UserInterface $user): self

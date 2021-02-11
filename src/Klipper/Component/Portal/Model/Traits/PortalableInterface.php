@@ -40,4 +40,9 @@ interface PortalableInterface
      * @return null|int|string
      */
     public function getPortalId();
+
+    /**
+     * Get the association name for the portal target.
+     */
+    public static function getPortalAssociationName(): string;
 }

@@ -11,6 +11,7 @@
 
 namespace Klipper\Component\Portal\Model;
 
+use Klipper\Component\Portal\Model\Traits\PortalableInterface;
 use Klipper\Contracts\Model\IdInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -19,16 +20,9 @@ use Symfony\Component\Security\Core\User\UserInterface;
  *
  * @author François Pluchino <francois.pluchino@klipper.dev>
  */
-interface PortalUserInterface extends IdInterface
+interface PortalUserInterface extends IdInterface, PortalableInterface
 {
     public function __toString(): string;
-
-    /**
-     * @return static
-     */
-    public function setPortal(?PortalInterface $portal);
-
-    public function getPortal(): ?PortalInterface;
 
     /**
      * @return static

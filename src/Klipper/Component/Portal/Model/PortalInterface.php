@@ -11,21 +11,28 @@
 
 namespace Klipper\Component\Portal\Model;
 
-use Klipper\Contracts\Model\EnableInterface;
 use Klipper\Contracts\Model\IdInterface;
-use Klipper\Contracts\Model\LabelableInterface;
-use Klipper\Contracts\Model\NameableInterface;
 
 /**
  * Portal interface.
  *
  * @author François Pluchino <francois.pluchino@klipper.dev>
  */
-interface PortalInterface extends
-    IdInterface,
-    NameableInterface,
-    LabelableInterface,
-    EnableInterface
+interface PortalInterface extends IdInterface
 {
     public function __toString(): string;
+
+    /**
+     * @return static
+     */
+    public function setPortalName(?string $name);
+
+    public function getPortalName(): ?string;
+
+    /**
+     * @return static
+     */
+    public function setPortalEnabled(bool $enabled);
+
+    public function isPortalEnabled(): bool;
 }

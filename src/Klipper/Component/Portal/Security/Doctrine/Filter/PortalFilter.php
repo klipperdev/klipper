@@ -30,7 +30,7 @@ class PortalFilter extends AbstractFilter
     {
         return $this->hasParameter('portal_id')
             && $this->hasParameter('portal_user_id')
-            && $this->isPortalableEntity($targetEntity)
+            && ClassUtil::isInstanceOf($targetEntity->reflClass, PortalableInterface::class)
         ;
     }
 
@@ -39,26 +39,15 @@ class PortalFilter extends AbstractFilter
      */
     protected function doAddFilterConstraint(ClassMetadata $targetEntity, string $targetTableAlias): string
     {
-        $columnMapping = $targetEntity->getAssociationMapping('portal');
+        $class = $targetEntity->getName();
+
+        if (!is_a($class, PortalableInterface::class, true)) {
+            return '';
+        }
+
+        $columnMapping = $targetEntity->getAssociationMapping($class::getPortalAssociationName());
         $column = $columnMapping['joinColumns'][0]['name'];
 
         return "{$targetTableAlias}.{$column} = {$this->getParameter('portal_id')}";
-    }
-
-    /**
-     * Check if the entity is a portalable entity.
-     *
-     * @param ClassMetadata $targetEntity The metadata of entity
-     *
-     * @throws
-     */
-    private function isPortalableEntity(ClassMetadata $targetEntity): bool
-    {
-        $ref = $targetEntity->reflClass;
-        $hasAssociationPortal = isset($targetEntity->associationMappings['portal']['isOwningSide'])
-            && $targetEntity->associationMappings['portal']['isOwningSide'];
-
-        return $hasAssociationPortal
-            || ClassUtil::isInstanceOf($ref, PortalableInterface::class);
     }
 }
