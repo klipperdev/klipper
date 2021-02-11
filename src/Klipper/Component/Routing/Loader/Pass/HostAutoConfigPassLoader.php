@@ -13,6 +13,7 @@ namespace Klipper\Component\Routing\Loader\Pass;
 
 use Klipper\Component\Routing\Loader\PassLoaderInterface;
 use Klipper\Component\Routing\Util\HostUtil;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;
 
@@ -23,12 +24,15 @@ class HostAutoConfigPassLoader implements PassLoaderInterface
 {
     private array $patterns;
 
+    private ?ParameterBagInterface $parameterBag;
+
     /**
      * @param array $patterns The map of patterns to inject route config
      */
-    public function __construct(array $patterns = [])
+    public function __construct(array $patterns = [], ?ParameterBagInterface $parameterBag = null)
     {
         $this->patterns = $patterns;
+        $this->parameterBag = $parameterBag;
     }
 
     public function load(RouteCollection $collection): RouteCollection
@@ -40,6 +44,11 @@ class HostAutoConfigPassLoader implements PassLoaderInterface
         foreach ($collection->all() as $route) {
             $host = $route->getHost();
             $path = $route->getPath();
+
+            if (null !== $this->parameterBag) {
+                $host = $this->parameterBag->resolveValue($host);
+                $path = $this->parameterBag->resolveValue($path);
+            }
 
             foreach ($this->patterns as $routePattern => $config) {
                 if (HostUtil::isRouteValid($routePattern, $host, $path)) {

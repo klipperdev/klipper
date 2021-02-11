@@ -40,6 +40,7 @@
                  public="false">
             <tag name="klipper_routing.pass_loader" />
             <argument />
+            <argument type="service" id="parameter_bag" on-invalid="null" />
         </service>
 
         <service id="klipper_routing.pass_loader.priority"

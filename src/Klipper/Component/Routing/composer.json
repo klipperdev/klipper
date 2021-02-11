@@ -19,6 +19,7 @@
     },
     "require-dev": {
         "klipper/security": "^2.0.0",
+        "symfony/dependency-injection": "^2.0.0",
         "twig/twig": "^2.5.0"
     },
     "autoload": {
