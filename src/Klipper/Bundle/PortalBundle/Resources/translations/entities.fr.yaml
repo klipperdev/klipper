@@ -1,0 +1,7 @@
+# Portal
+portal.name: Portail client
+portal.name.plural: Portails clients
+
+# Portal user
+portal_user.name: Utilisateur du portail
+portal_user.name.plural: Utilisateurs du portail
