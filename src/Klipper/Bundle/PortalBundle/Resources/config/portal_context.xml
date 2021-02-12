@@ -21,6 +21,7 @@
             <argument type="service" id="klipper_portal.portal_context" />
             <argument type="service" id="security.authorization_checker" />
             <argument />
+            <argument type="service" id="klipper_security_extra.organizational_context.helper" on-invalid="null" />
         </service>
 
         <service id="Klipper\Component\Portal\PortalContextHelper" alias="klipper_portal.portal_context.helper" />

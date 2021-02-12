@@ -19,6 +19,7 @@ use Klipper\Component\DoctrineExtensions\Util\SqlFilterUtil;
 use Klipper\Component\Portal\Entity\Repository\PortalUserRepositoryInterface;
 use Klipper\Component\Portal\Model\PortalUserInterface;
 use Klipper\Component\Portal\Model\Traits\PortalableInterface;
+use Klipper\Component\Security\Model\Traits\OrganizationalInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
@@ -42,19 +43,36 @@ trait PortalUserRepositoryTrait
         $userPortal = null;
 
         if ($user instanceof UserInterface) {
-            $result = $this->createQueryBuilder('pu')
-                ->addSelect('p, u')
-                ->where('pu.user = :userId')
-                ->andWhere('pu.enabled = true')
-                ->andWhere('p.portalName = :portalName')
-                ->andWhere('p.portalEnabled = true')
-                ->leftJoin('pu.'.$this->getPortalAssociationName(), 'p')
-                ->leftJoin('pu.user', 'u')
-                ->setParameter('userId', $user->getId())
-                ->setParameter('portalName', $portalName)
-                ->getQuery()
-                ->getResult()
-            ;
+            if (is_a($this->getClassMetadata()->getReflectionClass()->getName(), OrganizationalInterface::class, true)) {
+                $result = $this->createQueryBuilder('pu')
+                    ->addSelect('p, u, o')
+                    ->where('pu.user = :userId')
+                    ->andWhere('pu.enabled = true')
+                    ->andWhere('p.portalName = :portalName')
+                    ->andWhere('p.portalEnabled = true')
+                    ->leftJoin('pu.'.$this->getPortalAssociationName(), 'p')
+                    ->leftJoin('pu.user', 'u')
+                    ->leftJoin('pu.organization', 'o')
+                    ->setParameter('userId', $user->getId())
+                    ->setParameter('portalName', $portalName)
+                    ->getQuery()
+                    ->getResult()
+                ;
+            } else {
+                $result = $this->createQueryBuilder('pu')
+                    ->addSelect('p, u')
+                    ->where('pu.user = :userId')
+                    ->andWhere('pu.enabled = true')
+                    ->andWhere('p.portalName = :portalName')
+                    ->andWhere('p.portalEnabled = true')
+                    ->leftJoin('pu.'.$this->getPortalAssociationName(), 'p')
+                    ->leftJoin('pu.user', 'u')
+                    ->setParameter('userId', $user->getId())
+                    ->setParameter('portalName', $portalName)
+                    ->getQuery()
+                    ->getResult()
+                ;
+            }
 
             $userPortal = \count($result) > 0 ? $result[0] : null;
         }

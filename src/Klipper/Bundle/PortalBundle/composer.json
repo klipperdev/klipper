@@ -17,7 +17,7 @@
     },
     "require-dev": {
         "klipper/doctrine-extensions-extra-bundle": "^2.0.0",
-        "klipper/security-bundle": "^2.0.0",
+        "klipper/security-extra-bundle": "^2.0.0",
         "symfony/security-bundle": "^5.2.0"
     },
     "autoload": {

@@ -15,6 +15,8 @@ use Doctrine\Persistence\ManagerRegistry;
 use Klipper\Component\DoctrineExtra\Util\RepositoryUtils;
 use Klipper\Component\Portal\Entity\Repository\PortalUserRepositoryInterface;
 use Klipper\Component\Portal\Model\PortalUserInterface;
+use Klipper\Component\Security\Model\Traits\OrganizationalInterface;
+use Klipper\Component\SecurityExtra\Helper\OrganizationalContextHelper;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
@@ -36,6 +38,8 @@ class PortalContextHelper
 
     protected PortalUserRepositoryInterface $portalUserRepository;
 
+    protected ?OrganizationalContextHelper $orgContextHelper;
+
     protected string $permissionName;
 
     protected ?string $routeParameterName = null;
@@ -45,7 +49,8 @@ class PortalContextHelper
         ManagerRegistry $doctrine,
         PortalContextInterface $context,
         AuthorizationCheckerInterface $authChecker,
-        string $permissionName = 'back-office'
+        string $permissionName = 'back-office',
+        ?OrganizationalContextHelper $orgContextHelper = null
     ) {
         $this->tokenStorage = $tokenStorage;
         /** @var PortalUserRepositoryInterface $portalUserRepo */
@@ -54,6 +59,7 @@ class PortalContextHelper
         $this->context = $context;
         $this->authChecker = $authChecker;
         $this->permissionName = $permissionName;
+        $this->orgContextHelper = $orgContextHelper;
     }
 
     public function setRouteParameterName(string $name): void
@@ -85,6 +91,13 @@ class PortalContextHelper
                 && (($portalContext && null === $this->context->getCurrentPortalUser())
                     || (!$portalContext && !$this->authChecker->isGranted('perm:'.$this->permissionName)))) {
             throw new NotFoundHttpException();
+        }
+
+        if (null !== $this->orgContextHelper && null !== $portalUser = $this->context->getCurrentPortalUser()) {
+            if ($portalUser instanceof OrganizationalInterface && null !== $org = $portalUser->getOrganization()) {
+                $request->attributes->set('_organizational_name', $org->getName());
+                $this->orgContextHelper->injectContext($request);
+            }
         }
     }
 
