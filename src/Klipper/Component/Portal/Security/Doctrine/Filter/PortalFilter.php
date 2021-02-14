@@ -13,8 +13,8 @@ namespace Klipper\Component\Portal\Security\Doctrine\Filter;
 
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Klipper\Component\DoctrineExtensions\Filter\AbstractFilter;
-use Klipper\Component\Object\Util\ClassUtil;
 use Klipper\Component\Portal\Model\Traits\PortalableInterface;
+use Klipper\Component\Security\Doctrine\DoctrineUtils;
 
 /**
  * Doctrine Portal Filter.
@@ -30,7 +30,6 @@ class PortalFilter extends AbstractFilter
     {
         return $this->hasParameter('portal_id')
             && $this->hasParameter('portal_user_id')
-            && ClassUtil::isInstanceOf($targetEntity->reflClass, PortalableInterface::class)
         ;
     }
 
@@ -42,7 +41,9 @@ class PortalFilter extends AbstractFilter
         $class = $targetEntity->getName();
 
         if (!is_a($class, PortalableInterface::class, true)) {
-            return '';
+            $mockId = DoctrineUtils::getMockZeroId($this->getEntityManager()->getClassMetadata($class));
+
+            return "{$targetTableAlias}.id = {$mockId}";
         }
 
         $columnMapping = $targetEntity->getAssociationMapping($class::getPortalAssociationName());
