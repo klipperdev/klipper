@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <!-- Portal Query Helper -->
+        <service id="klipper_portal.doctrine.query_helper" class="Klipper\Component\Portal\Doctrine\Query\PortalQueryHelper" public="true">
+            <argument type="service" id="klipper_doctrine_extensions_extra.filterable_query" />
+            <argument type="service" id="klipper_portal.portal_context" />
+        </service>
+
+        <service id="Klipper\Component\Portal\Doctrine\Query\PortalQueryHelper" alias="klipper_portal.doctrine.query_helper" />
+    </services>
+</container>

@@ -11,6 +11,8 @@
 
 namespace Klipper\Bundle\PortalBundle\DependencyInjection;
 
+use Klipper\Bundle\DoctrineExtensionsExtraBundle\KlipperDoctrineExtensionsExtraBundle;
+use Klipper\Bundle\MetadataBundle\KlipperMetadataBundle;
 use Klipper\Component\DoctrineExtensionsExtra\Filter\Listener\AbstractFilterSubscriber;
 use Klipper\Component\Security\Identity\SecurityIdentityInterface;
 use Symfony\Component\Config\FileLocator;
@@ -35,6 +37,12 @@ class KlipperPortalExtension extends Extension
         $config = $this->processConfiguration($configuration, $configs);
 
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+
+        if (class_exists(KlipperDoctrineExtensionsExtraBundle::class)
+            && class_exists(KlipperMetadataBundle::class)
+        ) {
+            $loader->load('portal_doctrine.xml');
+        }
 
         $this->configPortalContext($container, $loader, $config['context']);
     }
