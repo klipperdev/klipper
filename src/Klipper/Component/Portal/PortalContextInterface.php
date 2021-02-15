@@ -32,6 +32,13 @@ interface PortalContextInterface
     public function getCurrentPortal(): ?PortalInterface;
 
     /**
+     * Get the id of current used portal.
+     *
+     * @return null|int|string
+     */
+    public function getCurrentPortalId();
+
+    /**
      * Set the current used portal user.
      *
      * @param null|PortalUserInterface $portalUser The current portal user

@@ -64,6 +64,11 @@ class PortalContext implements PortalContextInterface
         return $this->portal;
     }
 
+    public function getCurrentPortalId()
+    {
+        return null !== $this->portal ? $this->portal->getId() : null;
+    }
+
     public function setCurrentPortalUser(?PortalUserInterface $portalUser): void
     {
         $token = $this->getToken('portal user', $portalUser instanceof PortalUserInterface);
