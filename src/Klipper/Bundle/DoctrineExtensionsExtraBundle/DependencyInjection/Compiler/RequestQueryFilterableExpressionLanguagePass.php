@@ -22,7 +22,7 @@ class RequestQueryFilterableExpressionLanguagePass extends AbstractExpressionLan
 {
     protected function getExpressionLanguageId(): string
     {
-        return 'klipper_doctrine_extensions_extra.request_query.filterable.expression_language';
+        return 'klipper_doctrine_extensions_extra.filterable_query.expression_language';
     }
 
     protected function getProviderTagName(): string

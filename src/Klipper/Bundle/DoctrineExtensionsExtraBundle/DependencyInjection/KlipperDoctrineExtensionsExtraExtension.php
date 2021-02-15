@@ -68,6 +68,7 @@ class KlipperDoctrineExtensionsExtraExtension extends Extension
         }
 
         if (class_exists(KlipperMetadataBundle::class)) {
+            $loader->load('filterable_query.xml');
             $loader->load('request_query_metadata.xml');
         }
 
@@ -202,8 +203,6 @@ class KlipperDoctrineExtensionsExtraExtension extends Extension
                 || !class_exists(RequestStack::class)) {
             $container->removeDefinition('klipper_doctrine_extensions_extra.request_query.searchable');
             $container->removeDefinition('klipper_doctrine_extensions_extra.request_query.filterable');
-            $container->removeDefinition('klipper_doctrine_extensions_extra.request_query.filterable.parser');
-            $container->removeDefinition('klipper_doctrine_extensions_extra.request_query.filterable.expression_language');
         }
     }
 }

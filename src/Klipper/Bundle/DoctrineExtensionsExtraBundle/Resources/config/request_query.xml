@@ -5,17 +5,6 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <!-- Filter Validator -->
-        <service id="klipper_doctrine_extensions_extra.request_query.filterable.filter_validator" class="Klipper\Component\DoctrineExtensionsExtra\Filterable\FilterValidator" public="true">
-            <argument type="service" id="klipper_metadata.manager" />
-            <argument type="service" id="klipper_doctrine_extensions_extra.request_query.filterable.parser" />
-            <argument type="service" id="form.factory" />
-            <argument type="service" id="translator" />
-            <argument type="service" id="klipper_doctrine_extensions_extra.request_query.filterable.expression_language" />
-        </service>
-
-        <service id="Klipper\Component\DoctrineExtensionsExtra\Filterable\FilterValidator" alias="klipper_doctrine_extensions_extra.request_query.filterable.filter_validator" />
-
         <!-- Request Pagination Query -->
         <service id="klipper_doctrine_extensions_extra.request_query.pagination" class="Klipper\Component\DoctrineExtensionsExtra\Pagination\RequestPaginationQuery" public="true">
             <argument type="service" id="request_stack" />

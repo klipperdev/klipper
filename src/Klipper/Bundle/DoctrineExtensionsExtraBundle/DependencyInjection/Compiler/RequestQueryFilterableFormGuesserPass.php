@@ -27,15 +27,15 @@ class RequestQueryFilterableFormGuesserPass implements CompilerPassInterface
 
     public function process(ContainerBuilder $container): void
     {
-        if ($container->hasDefinition('klipper_doctrine_extensions_extra.request_query.filterable')) {
-            $def = $container->getDefinition('klipper_doctrine_extensions_extra.request_query.filterable');
+        if ($container->hasDefinition('klipper_doctrine_extensions_extra.filterable_query')) {
+            $def = $container->getDefinition('klipper_doctrine_extensions_extra.filterable_query');
 
             $guessers = $this->findTags(
                 $container,
-                'klipper_doctrine_extensions_extra.request_query.filterable.form_guesser',
-                $def->getArgument(7)
+                'klipper_doctrine_extensions_extra.filterable_query.form_guesser',
+                $def->getArgument(6)
             );
-            $def->replaceArgument(7, $guessers);
+            $def->replaceArgument(6, $guessers);
         }
     }
 

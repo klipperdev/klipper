@@ -9,7 +9,7 @@
                  class="Klipper\Component\DoctrineExtensionsExtra\Validator\Constraints\RequestQueryFilterValidator"
                  public="true">
             <tag name="validator.constraint_validator" alias="klipper_doctrine_extensions_extra.orm.validator.request_query_filter" />
-            <argument type="service" id="klipper_doctrine_extensions_extra.request_query.filterable.filter_validator" />
+            <argument type="service" id="klipper_doctrine_extensions_extra.filterable_query" />
             <argument type="service" id="property_accessor" />
         </service>
     </services>

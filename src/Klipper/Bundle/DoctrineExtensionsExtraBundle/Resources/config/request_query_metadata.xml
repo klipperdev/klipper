@@ -22,36 +22,7 @@
         <!-- Request Filterable Query -->
         <service id="klipper_doctrine_extensions_extra.request_query.filterable" class="Klipper\Component\DoctrineExtensionsExtra\Filterable\RequestFilterableQuery" public="true">
             <argument type="service" id="request_stack" />
-            <argument type="service" id="klipper_metadata.manager" />
-            <argument type="service" id="klipper_doctrine_extensions_extra.request_query.filterable.parser" />
-            <argument type="service" id="form.factory" />
-            <argument type="service" id="translator" />
-            <argument type="service" id="klipper_doctrine_extensions_extra.request_query.filterable.expression_language"  on-invalid="null"/>
-            <argument type="service" id="security.authorization_checker" on-invalid="null" />
-            <argument type="collection"/>
-        </service>
-
-        <service id="klipper_doctrine_extensions_extra.request_query.filter_manager" class="Klipper\Component\DoctrineExtensionsExtra\Filterable\FilterManager" public="true">
-            <argument type="service" id="klipper_metadata.manager" />
-            <argument type="service" id="security.authorization_checker" />
-            <argument type="service" id="translator" />
-        </service>
-
-        <service id="klipper_doctrine_extensions_extra.request_query.filterable.parser" class="Klipper\Component\DoctrineExtensionsExtra\Filterable\Parser\TranslatableParser">
-            <call method="setTranslator">
-                <argument type="service" id="translator" />
-            </call>
-        </service>
-
-        <service id="klipper_doctrine_extensions_extra.request_query.filterable.expression_language" class="Klipper\Component\DoctrineExtensionsExtra\Filterable\ExpressionLanguage">
-            <argument type="service" id="translator" />
-        </service>
-
-        <service id="Klipper\Component\DoctrineExtensionsExtra\Filterable\FilterManager" alias="klipper_doctrine_extensions_extra.request_query.filter_manager" />
-
-        <!-- Metadata Form Config Guesser -->
-        <service id="klipper_doctrine_extensions_extra.request_query.filterable.form_guesser.metadata" class="Klipper\Component\DoctrineExtensionsExtra\Filterable\Guesser\MetadataFormConfigGuesser">
-            <tag name="klipper_doctrine_extensions_extra.request_query.filterable.form_guesser"/>
+            <argument type="service" id="klipper_doctrine_extensions_extra.filterable_query" />
         </service>
     </services>
 </container>

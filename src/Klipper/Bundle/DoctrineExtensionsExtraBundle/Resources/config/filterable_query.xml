@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="klipper_doctrine_extensions_extra.filterable_query" class="Klipper\Component\DoctrineExtensionsExtra\Filterable\FilterableQuery" public="true">
+            <argument type="service" id="klipper_metadata.manager" />
+            <argument type="service" id="klipper_doctrine_extensions_extra.filterable_query.parser" />
+            <argument type="service" id="form.factory" />
+            <argument type="service" id="translator" />
+            <argument type="service" id="klipper_doctrine_extensions_extra.filterable_query.expression_language"  on-invalid="null"/>
+            <argument type="service" id="security.authorization_checker" on-invalid="null" />
+            <argument type="collection"/>
+        </service>
+
+        <service id="klipper_doctrine_extensions_extra.filterable_query.filter_manager" class="Klipper\Component\DoctrineExtensionsExtra\Filterable\FilterManager" public="true">
+            <argument type="service" id="klipper_metadata.manager" />
+            <argument type="service" id="security.authorization_checker" />
+            <argument type="service" id="translator" />
+        </service>
+
+        <service id="Klipper\Component\DoctrineExtensionsExtra\Filterable\FilterManager" alias="klipper_doctrine_extensions_extra.filterable_query.filter_manager" />
+
+        <service id="klipper_doctrine_extensions_extra.filterable_query.parser" class="Klipper\Component\DoctrineExtensionsExtra\Filterable\Parser\TranslatableParser">
+            <call method="setTranslator">
+                <argument type="service" id="translator" />
+            </call>
+        </service>
+
+        <service id="Klipper\Component\DoctrineExtensionsExtra\Filterable\Parser\Parser" alias="klipper_doctrine_extensions_extra.filterable_query.parser" />
+
+        <service id="klipper_doctrine_extensions_extra.filterable_query.expression_language" class="Klipper\Component\DoctrineExtensionsExtra\Filterable\ExpressionLanguage">
+            <argument type="service" id="translator" />
+        </service>
+
+        <!-- Metadata Form Config Guesser -->
+        <service id="klipper_doctrine_extensions_extra.filterable_query.form_guesser.metadata" class="Klipper\Component\DoctrineExtensionsExtra\Filterable\Guesser\MetadataFormConfigGuesser">
+            <tag name="klipper_doctrine_extensions_extra.filterable_query.form_guesser"/>
+        </service>
+    </services>
+</container>
