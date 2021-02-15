@@ -15,6 +15,10 @@
             <argument type="collection"/>
         </service>
 
+        <service id="Klipper\Component\DoctrineExtensionsExtra\Filterable\FilterableQuery" alias="klipper_doctrine_extensions_extra.filterable_query" />
+
+        <service id="Klipper\Component\DoctrineExtensionsExtra\Filterable\FilterableQueryInterface" alias="klipper_doctrine_extensions_extra.filterable_query" />
+
         <service id="klipper_doctrine_extensions_extra.filterable_query.filter_manager" class="Klipper\Component\DoctrineExtensionsExtra\Filterable\FilterManager" public="true">
             <argument type="service" id="klipper_metadata.manager" />
             <argument type="service" id="security.authorization_checker" />
