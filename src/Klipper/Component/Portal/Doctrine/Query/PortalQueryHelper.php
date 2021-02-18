@@ -153,6 +153,8 @@ class PortalQueryHelper
             } else {
                 $disabledFilters = [];
             }
+        } else {
+            $disabledFilters = [];
         }
 
         return $query;
