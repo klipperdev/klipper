@@ -75,6 +75,10 @@ class KlipperPortalExtension extends Extension
             if (class_exists(AbstractFilterSubscriber::class)) {
                 $loader->load('security_portal_orm_filter_listener.xml');
             }
+
+            if (class_exists(KlipperDoctrineExtensionsExtraBundle::class)) {
+                $loader->load('portal_manager.xml');
+            }
         }
 
         $container->getDefinition('klipper_portal.portal_context.helper')
