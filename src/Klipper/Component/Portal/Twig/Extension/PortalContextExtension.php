@@ -11,6 +11,7 @@
 
 namespace Klipper\Component\Portal\Twig\Extension;
 
+use Klipper\Component\Portal\Model\PortalInterface;
 use Klipper\Component\Portal\PortalContextInterface;
 use Klipper\Component\Portal\PortalManagerInterface;
 use Twig\Extension\AbstractExtension;
@@ -36,10 +37,16 @@ class PortalContextExtension extends AbstractExtension
     public function getFunctions(): array
     {
         return [
+            new TwigFunction('current_portal', [$this, 'getCurrentPortal']),
             new TwigFunction('current_portal_name', [$this, 'getCurrentPortalName']),
             new TwigFunction('current_portal_unique_name', [$this, 'getCurrentPortalUniqueName']),
             new TwigFunction('available_portals', [$this, 'getAvailablePortals']),
         ];
+    }
+
+    public function getCurrentPortal(): ?PortalInterface
+    {
+        return null !== $this->portalContext ? $this->portalContext->getCurrentPortal() : null;
     }
 
     public function getCurrentPortalName(): ?string
