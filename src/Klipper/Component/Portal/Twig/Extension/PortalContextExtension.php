@@ -37,6 +37,7 @@ class PortalContextExtension extends AbstractExtension
     {
         return [
             new TwigFunction('current_portal_name', [$this, 'getCurrentPortalName']),
+            new TwigFunction('current_portal_unique_name', [$this, 'getCurrentPortalUniqueName']),
             new TwigFunction('available_portals', [$this, 'getAvailablePortals']),
         ];
     }
@@ -52,6 +53,17 @@ class PortalContextExtension extends AbstractExtension
         if (\is_object($portal) && method_exists($portal, 'getName')) {
             return $portal->getName();
         }
+
+        return null !== $portal ? $portal->getPortalName() : null;
+    }
+
+    public function getCurrentPortalUniqueName(): ?string
+    {
+        if (null === $this->portalContext) {
+            return null;
+        }
+
+        $portal = $this->portalContext->getCurrentPortal();
 
         return null !== $portal ? $portal->getPortalName() : null;
     }
