@@ -25,5 +25,14 @@
             </argument>
             <argument>portal/</argument>
         </service>
+
+        <!-- Portal Context Extension -->
+        <service id="klipper_portal.twig.extension.portal_context"
+                 class="Klipper\Component\Portal\Twig\Extension\PortalContextExtension"
+        >
+            <tag name="twig.extension"/>
+            <argument type="service" id="klipper_portal.portal_context" on-invalid="null"/>
+            <argument type="service" id="klipper_portal.manager" on-invalid="null"/>
+        </service>
     </services>
 </container>
