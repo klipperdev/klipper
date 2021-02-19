@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <!-- Error Renderer -->
+        <service id="klipper_portal.twig.error_renderer.html"
+                 class="Klipper\Component\Portal\Twig\ErrorRenderer\PortalTwigErrorRenderer"
+                 decorates="twig.error_renderer.html"
+        >
+            <argument type="service" id="klipper_portal.twig.error_renderer.html.inner" />
+            <argument type="service" id="twig" />
+            <argument type="service" id="error_handler.error_renderer.html" />
+            <argument type="service">
+                <service>
+                    <factory
+                            class="Klipper\Component\Portal\Twig\ErrorRenderer\PortalTwigErrorRenderer"
+                            method="isDebug"
+                    />
+                    <argument type="service" id="request_stack"/>
+                    <argument>%kernel.debug%</argument>
+                </service>
+            </argument>
+            <argument>portal/</argument>
+        </service>
+    </services>
+</container>

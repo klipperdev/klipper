@@ -15,6 +15,7 @@ use Klipper\Bundle\DoctrineExtensionsExtraBundle\KlipperDoctrineExtensionsExtraB
 use Klipper\Bundle\MetadataBundle\KlipperMetadataBundle;
 use Klipper\Component\DoctrineExtensionsExtra\Filter\Listener\AbstractFilterSubscriber;
 use Klipper\Component\Security\Identity\SecurityIdentityInterface;
+use Symfony\Bundle\TwigBundle\TwigBundle;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -45,6 +46,7 @@ class KlipperPortalExtension extends Extension
         }
 
         $this->configPortalContext($container, $loader, $config['context']);
+        $this->configTwig($container, $loader, $config['twig']);
     }
 
     /**
@@ -71,5 +73,18 @@ class KlipperPortalExtension extends Extension
         $container->getDefinition('klipper_portal.portal_context.helper')
             ->replaceArgument(4, $config['security']['permission_name'])
         ;
+    }
+
+    /**
+     * @throws
+     */
+    protected function configTwig(ContainerBuilder $container, LoaderInterface $loader, array $config): void
+    {
+        if (class_exists(TwigBundle::class)) {
+            $loader->load('portal_twig.xml');
+
+            $def = $container->getDefinition('klipper_portal.twig.error_renderer.html');
+            $def->replaceArgument(4, $config['template_base_path']);
+        }
     }
 }

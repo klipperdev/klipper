@@ -33,6 +33,7 @@ class Configuration implements ConfigurationInterface
             ->addDefaultsIfNotSet()
             ->children()
             ->append($this->getContextNode())
+            ->append($this->getTwigNode())
             ->end()
         ;
 
@@ -66,6 +67,16 @@ class Configuration implements ConfigurationInterface
             ->scalarNode('is_portal')->defaultFalse()->end()
             ->end()
             ->end()
+            ->end()
+        ;
+    }
+
+    private function getTwigNode(): NodeDefinition
+    {
+        return NodeUtils::createArrayNode('twig')
+            ->addDefaultsIfNotSet()
+            ->children()
+            ->scalarNode('template_base_path')->defaultValue('portal/')->end()
             ->end()
         ;
     }
