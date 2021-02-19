@@ -39,14 +39,21 @@ class KlipperPortalExtension extends Extension
 
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
 
+        $this->configPortalDoctrine($loader);
+        $this->configPortalContext($container, $loader, $config['context']);
+        $this->configTwig($container, $loader, $config['twig']);
+    }
+
+    /**
+     * @throws
+     */
+    protected function configPortalDoctrine(LoaderInterface $loader): void
+    {
         if (class_exists(KlipperDoctrineExtensionsExtraBundle::class)
             && class_exists(KlipperMetadataBundle::class)
         ) {
             $loader->load('portal_doctrine.xml');
         }
-
-        $this->configPortalContext($container, $loader, $config['context']);
-        $this->configTwig($container, $loader, $config['twig']);
     }
 
     /**
