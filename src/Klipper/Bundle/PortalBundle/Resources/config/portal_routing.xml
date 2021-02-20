@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="klipper_portal.routing"
+                 class="Klipper\Component\Portal\Routing\PortalRouting" public="true">
+            <argument type="service" id="router" />
+            <argument type="service" id="request_stack" />
+            <argument type="service" id="klipper_portal.portal_context" />
+        </service>
+
+        <service id="Klipper\Component\Portal\Routing\PortalRouting" alias="klipper_portal.routing" />
+        <service id="Klipper\Component\Portal\Routing\PortalRoutingInterface" alias="klipper_portal.routing" />
+    </services>
+</container>

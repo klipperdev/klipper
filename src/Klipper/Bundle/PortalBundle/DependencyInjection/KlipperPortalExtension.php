@@ -108,6 +108,10 @@ class KlipperPortalExtension extends Extension
 
             $def = $container->getDefinition('klipper_portal.twig.error_renderer.html');
             $def->replaceArgument(4, $config['template_base_path']);
+
+            if (interface_exists(RoutingInterface::class)) {
+                $loader->load('portal_routing_twig.xml');
+            }
         }
     }
 }
