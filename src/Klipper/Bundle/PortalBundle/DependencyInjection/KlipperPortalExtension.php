@@ -14,6 +14,7 @@ namespace Klipper\Bundle\PortalBundle\DependencyInjection;
 use Klipper\Bundle\DoctrineExtensionsExtraBundle\KlipperDoctrineExtensionsExtraBundle;
 use Klipper\Bundle\MetadataBundle\KlipperMetadataBundle;
 use Klipper\Component\DoctrineExtensionsExtra\Filter\Listener\AbstractFilterSubscriber;
+use Klipper\Component\Routing\RoutingInterface;
 use Klipper\Component\Security\Identity\SecurityIdentityInterface;
 use Symfony\Bundle\TwigBundle\TwigBundle;
 use Symfony\Component\Config\FileLocator;
@@ -40,6 +41,7 @@ class KlipperPortalExtension extends Extension
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
 
         $this->configPortalDoctrine($loader);
+        $this->configPortalRouting($loader);
         $this->configPortalContext($container, $loader, $config['context']);
         $this->configTwig($container, $loader, $config['twig']);
     }
@@ -53,6 +55,16 @@ class KlipperPortalExtension extends Extension
             && class_exists(KlipperMetadataBundle::class)
         ) {
             $loader->load('portal_doctrine.xml');
+        }
+    }
+
+    /**
+     * @throws
+     */
+    protected function configPortalRouting(LoaderInterface $loader): void
+    {
+        if (interface_exists(RoutingInterface::class)) {
+            $loader->load('portal_routing.xml');
         }
     }
 

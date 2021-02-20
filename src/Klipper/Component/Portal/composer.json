@@ -17,6 +17,7 @@
         "doctrine/event-manager": "^1.0.0",
         "doctrine/persistence": "^1.0.0",
         "klipper/model-contracts": "^2.0.0",
+        "klipper/routing": "^2.0.0",
         "symfony/security-core": "^5.2.0",
         "symfony/security-http": "^5.2.0"
     },
