@@ -14,7 +14,6 @@ namespace Klipper\Component\Portal\Routing;
 use Klipper\Component\Portal\PortalContextInterface;
 use Klipper\Component\Routing\TranslatableRouting;
 use Symfony\Component\HttpFoundation\RequestStack;
-use Symfony\Component\Routing\Exception\MissingMandatoryParametersException;
 use Symfony\Component\Routing\RouterInterface;
 
 /**
@@ -79,7 +78,7 @@ class PortalRouting extends TranslatableRouting implements PortalRoutingInterfac
             if ($this->context->isPortal() && null !== $this->context->getCurrentPortal()) {
                 $mergedParams[$portalParamName] = $this->context->getCurrentPortal()->getPortalName();
             } else {
-                throw new MissingMandatoryParametersException(sprintf('Some mandatory parameters are missing ("%s") to generate a URL for route "%s".', $portalParamName, $name));
+                $mergedParams[$portalParamName] = '_';
             }
         }
 
