@@ -18,7 +18,6 @@ use Doctrine\Persistence\Mapping\ClassMetadata;
 use Klipper\Component\DoctrineExtensions\Util\SqlFilterUtil;
 use Klipper\Component\DoctrineExtensionsExtra\Filterable\FilterableQueryInterface;
 use Klipper\Component\DoctrineExtensionsExtra\Filterable\Parser\FilterRule;
-use Klipper\Component\Portal\Model\Traits\PortalableInterface;
 use Klipper\Component\Portal\PortalContextInterface;
 use Klipper\Component\Security\Doctrine\DoctrineUtils;
 
@@ -141,18 +140,13 @@ class PortalQueryHelper
     {
         if (null !== $masterPath) {
             $metadata = $this->getRootClassMetadata($query);
+            $disabledFilters = SqlFilterUtil::disableFilters($query->getEntityManager(), ['portal']);
 
-            if (!is_a($metadata->getName(), PortalableInterface::class, true)) {
-                $disabledFilters = SqlFilterUtil::disableFilters($query->getEntityManager(), ['portal']);
-
-                $this->filterableQuery->filter($query, FilterRule::create(
-                    $masterPath,
-                    'equal',
-                    $this->getPortalId($query, $metadata)
-                ));
-            } else {
-                $disabledFilters = [];
-            }
+            $this->filterableQuery->filter($query, FilterRule::create(
+                $masterPath,
+                'equal',
+                $this->getPortalId($query, $metadata)
+            ));
         } else {
             $disabledFilters = [];
         }
