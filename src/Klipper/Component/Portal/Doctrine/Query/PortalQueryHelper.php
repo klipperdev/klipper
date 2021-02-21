@@ -137,7 +137,7 @@ class PortalQueryHelper
         return $res;
     }
 
-    private function filterQuery(Query $query, ?string $masterPath = null, ?array &$disabledFilters = []): Query
+    public function filterQuery(Query $query, ?string $masterPath = null, ?array &$disabledFilters = []): Query
     {
         if (null !== $masterPath) {
             $metadata = $this->getRootClassMetadata($query);
