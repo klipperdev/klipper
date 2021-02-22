@@ -47,7 +47,7 @@ class PortalQueryHelper
      *
      * @return mixed
      */
-    public function getResult(Query $query, ?string $masterPath = null, $hydrationMode = Query::HYDRATE_OBJECT)
+    public function getResult(Query $query, ?string $masterPath = null, $hydrationMode = Query::HYDRATE_OBJECT, ?array &$filters = [])
     {
         $res = $this->filterQuery($query, $masterPath, $filters)->getResult($hydrationMode);
         SqlFilterUtil::enableFilters($query->getEntityManager(), $filters);
@@ -60,7 +60,7 @@ class PortalQueryHelper
      *
      * Alias for execute(null, HYDRATE_ARRAY).
      */
-    public function getArrayResult(Query $query, ?string $masterPath = null): array
+    public function getArrayResult(Query $query, ?string $masterPath = null, ?array &$filters = []): array
     {
         $res = $this->filterQuery($query, $masterPath, $filters)->getArrayResult();
         SqlFilterUtil::enableFilters($query->getEntityManager(), $filters);
@@ -73,7 +73,7 @@ class PortalQueryHelper
      *
      * Alias for execute(null, HYDRATE_SCALAR).
      */
-    public function getScalarResult(Query $query, ?string $masterPath = null): array
+    public function getScalarResult(Query $query, ?string $masterPath = null, ?array &$filters = []): array
     {
         $res = $this->filterQuery($query, $masterPath, $filters)->getScalarResult();
         SqlFilterUtil::enableFilters($query->getEntityManager(), $filters);
@@ -90,7 +90,7 @@ class PortalQueryHelper
      *
      * @return mixed
      */
-    public function getOneOrNullResult(Query $query, ?string $masterPath = null, $hydrationMode = null)
+    public function getOneOrNullResult(Query $query, ?string $masterPath = null, $hydrationMode = null, ?array &$filters = [])
     {
         $res = $this->filterQuery($query, $masterPath, $filters)->getOneOrNullResult($hydrationMode);
         SqlFilterUtil::enableFilters($query->getEntityManager(), $filters);
@@ -110,7 +110,7 @@ class PortalQueryHelper
      *
      * @return mixed
      */
-    public function getSingleResult(Query $query, ?string $masterPath = null, $hydrationMode = null)
+    public function getSingleResult(Query $query, ?string $masterPath = null, $hydrationMode = null, ?array &$filters = [])
     {
         $res = $this->filterQuery($query, $masterPath, $filters)->getSingleResult($hydrationMode);
         SqlFilterUtil::enableFilters($query->getEntityManager(), $filters);
@@ -128,7 +128,7 @@ class PortalQueryHelper
      *
      * @return mixed the scalar result
      */
-    public function getSingleScalarResult(Query $query, ?string $masterPath = null)
+    public function getSingleScalarResult(Query $query, ?string $masterPath = null, ?array &$filters = [])
     {
         $res = $this->filterQuery($query, $masterPath, $filters)->getSingleScalarResult();
         SqlFilterUtil::enableFilters($query->getEntityManager(), $filters);
