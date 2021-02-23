@@ -52,7 +52,7 @@ class FilesystemTemplateLoader extends FilesystemLoader
             return null;
         }
 
-        list($templateName) = $this->getLocalizedTemplate($name);
+        [$templateName] = $this->getLocalizedTemplate($name);
 
         foreach ([null, $this->fallback] as $locale) {
             $template = $this->findLocalizedTemplate($templateName, $locale, null !== $locale);
@@ -80,12 +80,12 @@ class FilesystemTemplateLoader extends FilesystemLoader
      */
     private function findLocalizedTemplate(string $name, ?string $locale, bool $replace = false): ?string
     {
-        list($templateName, $locale) = $this->getLocalizedTemplate($name, $locale, $replace);
+        [$templateName, $locale] = $this->getLocalizedTemplate($name, $locale, $replace);
         $template = parent::findTemplate($templateName, false);
 
         if (!\is_string($template) && false !== strpos($locale, '_')) {
             $locale = explode('_', $locale)[0];
-            list($templateName) = $this->getLocalizedTemplate($name, $locale, true);
+            [$templateName] = $this->getLocalizedTemplate($name, $locale, true);
             $template = parent::findTemplate($templateName, false);
 
             if (\is_string($template)) {

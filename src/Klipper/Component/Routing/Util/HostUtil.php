@@ -25,7 +25,7 @@ abstract class HostUtil
      */
     public static function isRouteValid(string $pattern, string $host, string $path): bool
     {
-        list($hostPattern, $pathPattern) = self::getHostPathPatterns($pattern);
+        [$hostPattern, $pathPattern] = self::getHostPathPatterns($pattern);
 
         if ($hostPattern && 0 === strpos($hostPattern, '/')) {
             $hostValid = (bool) preg_match($hostPattern, $host);

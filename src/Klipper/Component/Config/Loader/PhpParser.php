@@ -62,7 +62,7 @@ class PhpParser
         $res = null;
 
         while ($token = current($tokens)) {
-            list($token, $s) = \is_array($token) ? $token : [$token, $token];
+            [$token, $s] = \is_array($token) ? $token : [$token, $token];
 
             if (\in_array($token, $requiredTypes, true)) {
                 $res .= $s;
