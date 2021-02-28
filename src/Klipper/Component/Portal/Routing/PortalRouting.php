@@ -45,7 +45,7 @@ class PortalRouting extends TranslatableRouting implements PortalRoutingInterfac
     {
         $parameters = $this->getPortalParameters($name, $parameters);
 
-        return $this->getPath($name, $parameters, $relative);
+        return $this->getPath($name, $parameters, $relative) ?: ($relative ? '' : '/');
     }
 
     public function getLangPortalPath(string $name, array $parameters = [], bool $relative = false): string
@@ -57,7 +57,7 @@ class PortalRouting extends TranslatableRouting implements PortalRoutingInterfac
     {
         $parameters = $this->getPortalParameters($name, $parameters);
 
-        return $this->getUrl($name, $parameters, $schemeRelative);
+        return $this->getUrl($name, $parameters, $schemeRelative) ?: ($schemeRelative ? '' : '/');
     }
 
     public function getLangPortalUrl(string $name, array $parameters = [], bool $schemeRelative = false): string
