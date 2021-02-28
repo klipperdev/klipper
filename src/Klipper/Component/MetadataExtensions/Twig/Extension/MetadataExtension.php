@@ -13,7 +13,9 @@ namespace Klipper\Component\MetadataExtensions\Twig\Extension;
 
 use Klipper\Component\Metadata\MetadataManagerInterface;
 use Klipper\Component\Metadata\ObjectMetadataInterface;
+use Klipper\Component\Metadata\Util\ChoiceUtil;
 use Klipper\Component\Metadata\Util\MetadataUtil;
+use Klipper\Component\Metadata\View\ViewChoice;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
@@ -45,10 +47,14 @@ class MetadataExtension extends AbstractExtension
             new TwigFunction('metadataPluralLabel', [$this, 'getMetadataPluralLabel']),
             new TwigFunction('metadataFieldLabel', [$this, 'getMetadataFieldLabel']),
             new TwigFunction('metadataAssociationLabel', [$this, 'getMetadataAssociationLabel']),
+            new TwigFunction('systemChoice', [$this, 'getSystemChoice']),
+            new TwigFunction('systemChoiceLabel', [$this, 'getSystemChoiceLabel']),
             new TwigFunction('ml', [$this, 'getMetadataLabel']),
             new TwigFunction('mpl', [$this, 'getMetadataPluralLabel']),
             new TwigFunction('mfl', [$this, 'getMetadataFieldLabel']),
             new TwigFunction('mal', [$this, 'getMetadataAssociationLabel']),
+            new TwigFunction('sc', [$this, 'getSystemChoice']),
+            new TwigFunction('scl', [$this, 'getSystemChoiceLabel']),
         ];
     }
 
@@ -99,5 +105,27 @@ class MetadataExtension extends AbstractExtension
         $assoMeta = $metadata->getAssociationByName($association);
 
         return MetadataUtil::getTrans($this->translator, $assoMeta->getLabel(), $assoMeta->getTranslationDomain(), $assoMeta->getName());
+    }
+
+    public function getSystemChoice(string $type): ViewChoice
+    {
+        $choice = $this->metadataManager->getChoice($type);
+
+        return new ViewChoice(
+            $choice->getName(),
+            ChoiceUtil::getTrans($this->translator, $choice->getListIdentifiers(), $choice->getTranslationDomain()),
+            ChoiceUtil::getTransPlaceholder($this->translator, $choice->getPlaceholder(), $choice->getTranslationDomain())
+        );
+    }
+
+    public function getSystemChoiceLabel(string $type, ?string $value, ?string $defaultValue = null): ?string
+    {
+        $identifiers = $this->getSystemChoice($type)->getIdentifiers();
+
+        if (isset($identifiers[$value])) {
+            return $identifiers[$value];
+        }
+
+        return $defaultValue ?? $value;
     }
 }
