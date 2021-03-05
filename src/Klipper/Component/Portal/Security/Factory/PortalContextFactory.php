@@ -42,7 +42,7 @@ class PortalContextFactory implements SecurityFactoryInterface
 
     public function getPosition(): string
     {
-        return 'http';
+        return 'remember_me';
     }
 
     public function getKey(): string
