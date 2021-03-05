@@ -24,6 +24,7 @@
     "require-dev": {
         "doctrine/annotations": "^1.6.0",
         "doctrine/orm": "^2.6.0",
+        "gedmo/doctrine-extensions": "^2.4.0",
         "klipper/doctrine-extensions-extra": "^2.0.0",
         "klipper/model": "^2.0.0",
         "klipper/security-extra": "^2.0.0",
