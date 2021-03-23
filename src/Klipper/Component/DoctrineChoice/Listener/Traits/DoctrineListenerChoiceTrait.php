@@ -23,13 +23,13 @@ trait DoctrineListenerChoiceTrait
 {
     protected array $doctrineChoices = [];
 
-    protected function getChoice(EntityManagerInterface $em, string $type, ?string $value): ?ChoiceInterface
+    protected function getChoice(EntityManagerInterface $em, string $type, ?string $value, ?array $orderBy = null): ?ChoiceInterface
     {
         if (!isset($this->doctrineChoices[$type])) {
             $this->doctrineChoices[$type] = [];
             $res = $em->getRepository(ChoiceInterface::class)->findBy([
                 'type' => $type,
-            ]);
+            ], $orderBy ?? ['position' => 'asc', 'value' => 'asc']);
 
             /** @var ChoiceInterface $item */
             foreach ($res as $item) {
