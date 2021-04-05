@@ -11,8 +11,6 @@
 
 namespace Klipper\Component\DoctrineExtra\Util;
 
-use Doctrine\Common\Persistence\Proxy;
-
 /**
  * Class related functionality for objects that might or not be proxy objects at the moment.
  *
@@ -21,17 +19,27 @@ use Doctrine\Common\Persistence\Proxy;
 class ClassUtils
 {
     /**
+     * Marker for Proxy class names.
+     */
+    public const MARKER = '__CG__';
+
+    /**
+     * Length of the proxy marker.
+     */
+    public const MARKER_LENGTH = 6;
+
+    /**
      * Gets the real class name of a class name that could be a proxy.
      *
      * @param string $class The class name
      */
     public static function getRealClass(string $class): string
     {
-        if (false === $pos = strrpos($class, '\\'.Proxy::MARKER.'\\')) {
+        if (false === $pos = strrpos($class, '\\'.static::MARKER.'\\')) {
             return $class;
         }
 
-        return substr($class, $pos + Proxy::MARKER_LENGTH + 2);
+        return substr($class, $pos + static::MARKER_LENGTH + 2);
     }
 
     /**

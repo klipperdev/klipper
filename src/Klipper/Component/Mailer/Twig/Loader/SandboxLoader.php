@@ -14,13 +14,12 @@ namespace Klipper\Component\Mailer\Twig\Loader;
 use Klipper\Component\Mailer\Mime\SandboxTemplaterInterface;
 use Twig\Error\LoaderError;
 use Twig\Loader\LoaderInterface;
-use Twig\Loader\SourceContextLoaderInterface;
 use Twig\Source;
 
 /**
  * @author François Pluchino <francois.pluchino@klipper.dev>
  */
-class SandboxLoader implements LoaderInterface, SourceContextLoaderInterface
+class SandboxLoader implements LoaderInterface
 {
     /**
      * @var string[]

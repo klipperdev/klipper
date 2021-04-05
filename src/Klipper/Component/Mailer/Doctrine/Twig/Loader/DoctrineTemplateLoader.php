@@ -18,13 +18,12 @@ use Klipper\Component\Mailer\Model\TemplateMessageInterface;
 use Symfony\Component\Intl\Locales;
 use Twig\Error\LoaderError;
 use Twig\Loader\LoaderInterface;
-use Twig\Loader\SourceContextLoaderInterface;
 use Twig\Source;
 
 /**
  * @author François Pluchino <francois.pluchino@klipper.dev>
  */
-class DoctrineTemplateLoader implements LoaderInterface, SourceContextLoaderInterface
+class DoctrineTemplateLoader implements LoaderInterface
 {
     private ManagerRegistry $doctrine;
 

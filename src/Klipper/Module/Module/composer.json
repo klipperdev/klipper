@@ -14,7 +14,7 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "ext-json": "*",
-        "doctrine/orm": "^2.7.0",
+        "doctrine/orm": "^2.8.0",
         "doctrine/doctrine-bundle": "^2.1.0",
         "klipper/api-bundle": "^2.0.0",
         "klipper/choice-bundle": "^2.0.0",

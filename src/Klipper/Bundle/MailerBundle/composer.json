@@ -20,7 +20,7 @@
     },
     "require-dev": {
         "doctrine/doctrine-bundle": "^2.0.0",
-        "doctrine/orm": "^2.6.0",
+        "doctrine/orm": "^2.8.0",
         "klipper/sms-sender-bundle": "^2.0.0",
         "klipper/twig-sms-sender": "^2.0.0",
         "symfony/mailer": "^5.2.0",

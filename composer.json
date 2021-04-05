@@ -61,6 +61,7 @@
         "klipper/api-portal-bundle": "self.version",
         "klipper/api-search-bundle": "self.version",
         "klipper/api-security-bundle": "self.version",
+        "klipper/api-user-bundle": "self.version",
         "klipper/batch": "self.version",
         "klipper/cache": "self.version",
         "klipper/cache-bundle": "self.version",

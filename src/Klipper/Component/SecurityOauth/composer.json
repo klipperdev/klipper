@@ -13,7 +13,7 @@
     "prefer-stable": true,
     "require": {
         "php": "^7.4.0|^8.0.0",
-        "doctrine/orm": "^2.6.0",
+        "doctrine/orm": "^2.8.0",
         "klipper/config": "^2.0.0",
         "klipper/model": "^2.0.0",
         "league/oauth2-server": "^8.1.0",
