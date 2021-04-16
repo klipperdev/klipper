@@ -25,6 +25,8 @@
         "doctrine/annotations": "^1.6.0",
         "doctrine/orm": "^2.8.0",
         "gedmo/doctrine-extensions": "^3.0.0",
+        "jms/serializer": "^3.8.0",
+        "klipper/doctrine-choice": "^2.0.0",
         "klipper/doctrine-extensions-extra": "^2.0.0",
         "klipper/model": "^2.0.0",
         "klipper/security-extra": "^2.0.0",

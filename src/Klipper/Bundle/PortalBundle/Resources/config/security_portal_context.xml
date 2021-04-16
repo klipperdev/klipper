@@ -20,5 +20,13 @@
             <tag name="security.voter" priority="240"/>
             <argument type="service" id="klipper_security.security_identity_manager"/>
         </service>
+
+        <!-- Portal Feature Security Voter -->
+        <service id="security.access.portal_security_voter"
+                 class="Klipper\Component\Portal\Security\Authorization\Voter\PortalFeatureVoter"
+                 public="false">
+            <tag name="security.voter" priority="200"/>
+            <argument type="service" id="klipper_portal.portal_context"/>
+        </service>
     </services>
 </container>

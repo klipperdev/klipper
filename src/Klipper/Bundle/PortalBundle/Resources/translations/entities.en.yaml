@@ -5,3 +5,5 @@ portal.name.plural: Portals
 # Portal user
 portal_user.name: Portal user
 portal_user.name.plural: Portal users
+
+standard.associations.portal_features: Portal features

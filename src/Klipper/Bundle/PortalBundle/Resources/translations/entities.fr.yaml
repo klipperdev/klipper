@@ -5,3 +5,5 @@ portal.name.plural: Portails clients
 # Portal user
 portal_user.name: Utilisateur du portail
 portal_user.name.plural: Utilisateurs du portail
+
+standard.associations.portal_features: Fonctionnalités du portail
