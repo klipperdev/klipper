@@ -31,9 +31,36 @@ class EntityDoctrineChoice extends EntityChoice
      */
     public ?string $type = null;
 
-    public function __construct($options = null)
-    {
-        parent::__construct($options);
+    public function __construct(
+        $choices = null,
+        $callback = null,
+        bool $multiple = null,
+        bool $strict = null,
+        int $min = null,
+        int $max = null,
+        string $message = null,
+        string $multipleMessage = null,
+        string $minMessage = null,
+        string $maxMessage = null,
+        $groups = null,
+        $payload = null,
+        array $options = []
+    ) {
+        parent::__construct(
+            $choices,
+            $callback,
+            $multiple,
+            $strict,
+            $min,
+            $max,
+            $message,
+            $multipleMessage,
+            $minMessage,
+            $maxMessage,
+            $groups,
+            $payload,
+            $options
+        );
 
         $this->criteria = array_merge($this->criteria, [
             'type' => $this->type,
