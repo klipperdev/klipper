@@ -27,6 +27,7 @@ trait PortalTrait
      *
      * @Assert\Type(type="string")
      * @Assert\Length(max=255)
+     * @Assert\Regex(pattern="/^[a-z0-9\_\-\.]+$/")
      * @Assert\Expression(
      *     expression="!(!value && this.isPortalEnabled())",
      *     message="This value should not be blank."
