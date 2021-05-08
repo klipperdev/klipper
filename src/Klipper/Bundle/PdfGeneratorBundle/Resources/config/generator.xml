@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <!-- PDF -->
+        <service id="klipper_pdf_generator.pdf"
+                 class="Klipper\Component\PdfGenerator\Pdf"
+                 public="true"
+        >
+            <argument type="service" id="klipper_pdf_generator.generator.google_chrome"/>
+            <argument/>
+            <argument type="service" id="filesystem"/>
+        </service>
+
+        <service id="Klipper\Component\PdfGenerator\Pdf" alias="klipper_pdf_generator.pdf" />
+        <service id="Klipper\Component\PdfGenerator\PdfInterface" alias="klipper_pdf_generator.pdf" />
+
+        <!-- Generator -->
+        <service id="klipper_pdf_generator.generator.google_chrome"
+                 class="Klipper\Component\PdfGenerator\Generator\ChromeGenerator"
+        >
+            <argument/>
+            <argument/>
+            <argument type="collection"/>
+        </service>
+    </services>
+</container>
