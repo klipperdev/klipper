@@ -116,6 +116,7 @@
         "klipper/model-contracts": "self.version",
         "klipper/module": "self.version",
         "klipper/object": "self.version",
+        "klipper/pdf-generator": "self.version",
         "klipper/phone": "self.version",
         "klipper/phone-bundle": "self.version",
         "klipper/portal": "self.version",
