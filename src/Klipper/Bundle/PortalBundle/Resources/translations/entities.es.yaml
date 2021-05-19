@@ -1,0 +1,9 @@
+# Portal
+portal.name: Portal cliente
+portal.name.plural: Portales clientes
+
+# Portal user
+portal_user.name: Usuario del portal
+portal_user.name.plural: Usuarios del portal
+
+standard.associations.portal_features: Funcionalidades del portal

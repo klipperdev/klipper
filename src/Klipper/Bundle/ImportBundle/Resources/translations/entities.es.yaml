@@ -1,0 +1,12 @@
+# Import
+import.name: Importación
+import.name.plural: Importaciones
+import.fields.adapter: Adaptador
+import.fields.error_count: Importado por error
+import.fields.file_path: Camino del fichero original
+import.fields.metadata: Metadata
+import.fields.result_file_path: Camino del fichero de resultado
+import.fields.status: Estado
+import.fields.status_code: Cód. del estado
+import.fields.success_count: Importado con éxito
+import.fields.total_count: Total importado
