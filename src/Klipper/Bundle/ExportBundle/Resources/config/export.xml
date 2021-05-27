@@ -18,5 +18,12 @@
 
         <service id="Klipper\Component\Export\ExportManager" alias="klipper_export.manager"/>
         <service id="Klipper\Component\Export\ExportManagerInterface" alias="klipper_export.manager"/>
+
+        <!-- Date View Transformer -->
+        <service id="klipper_export.view_transformer.date"
+                 class="Klipper\Component\Export\ViewTransformer\DateViewTransformer"
+        >
+            <tag name="klipper_export.view_transformer"/>
+        </service>
     </services>
 </container>
