@@ -25,11 +25,11 @@ class ExportViewTransformerPass implements CompilerPassInterface
 
     public function process(ContainerBuilder $container): void
     {
-        if (!$container->hasDefinition('klipper_metadata.manager')) {
+        if (!$container->hasDefinition('klipper_export.manager')) {
             return;
         }
 
-        $def = $container->getDefinition('klipper_metadata.manager');
+        $def = $container->getDefinition('klipper_export.manager');
 
         foreach ($this->findAndSortTaggedServices('klipper_export.view_transformer', $container) as $service) {
             $serviceDef = $container->getDefinition((string) $service);
