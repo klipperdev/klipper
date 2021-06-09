@@ -14,6 +14,7 @@ namespace Klipper\Component\Portal\Security\Doctrine\Filter;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Gedmo\Translatable\Entity\MappedSuperclass\AbstractPersonalTranslation;
 use Klipper\Component\DoctrineExtensions\Filter\AbstractFilter;
+use Klipper\Component\Portal\Model\AllowedPortalableInterface;
 use Klipper\Component\Portal\Model\Traits\PortalableInterface;
 use Klipper\Component\Security\Doctrine\DoctrineUtils;
 
@@ -31,6 +32,7 @@ class PortalFilter extends AbstractFilter
     {
         return $this->hasParameter('portal_id')
             && $this->hasParameter('portal_user_id')
+            && !is_a($targetEntity->getName(), AllowedPortalableInterface::class, true)
             && (!class_exists(AbstractPersonalTranslation::class)
                 || (
                     class_exists(AbstractPersonalTranslation::class)
