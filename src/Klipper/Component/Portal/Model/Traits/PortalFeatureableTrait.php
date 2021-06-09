@@ -30,7 +30,7 @@ trait PortalFeatureableTrait
      *
      * @ORM\ManyToMany(
      *     targetEntity="Klipper\Component\DoctrineChoice\Model\ChoiceInterface",
-     *     fetch="EAGER",
+     *     fetch="EXTRA_LAZY",
      *     cascade={"persist"}
      * )
      * @ORM\JoinTable(
