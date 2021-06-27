@@ -21,14 +21,14 @@ interface SortableInterface
     /**
      * Set the position.
      *
-     * @param int $position The position
+     * @param null|int $position The position
      *
      * @return static
      */
-    public function setPosition(int $position);
+    public function setPosition(?int $position);
 
     /**
      * Get the position.
      */
-    public function getPosition(): int;
+    public function getPosition(): ?int;
 }

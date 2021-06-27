@@ -24,7 +24,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 trait SortableTrait
 {
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      *
      * @Gedmo\SortablePosition
      *
@@ -32,17 +32,17 @@ trait SortableTrait
      *
      * @Serializer\Expose
      */
-    protected int $position = -1;
+    protected ?int $position = null;
 
-    public function setPosition(int $position): self
+    public function setPosition(?int $position): self
     {
         $this->position = $position;
 
         return $this;
     }
 
-    public function getPosition(): int
+    public function getPosition(): ?int
     {
-        return $this->position;
+        return $this->position ?? -1;
     }
 }
