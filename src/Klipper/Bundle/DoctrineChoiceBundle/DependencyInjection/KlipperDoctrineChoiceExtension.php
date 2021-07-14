@@ -32,5 +32,7 @@ class KlipperDoctrineChoiceExtension extends Extension
         if (interface_exists(DataLoaderInterface::class)) {
             $loader->load('data_loader_command.xml');
         }
+
+        $loader->load('choice_manager.xml');
     }
 }
