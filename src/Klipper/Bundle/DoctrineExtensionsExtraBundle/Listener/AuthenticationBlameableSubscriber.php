@@ -15,6 +15,7 @@ use Gedmo\Blameable\BlameableListener;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Security\Core\AuthenticationEvents;
 use Symfony\Component\Security\Core\Event\AuthenticationSuccessEvent;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 use Symfony\Component\Security\Http\SecurityEvents;
 
@@ -40,11 +41,19 @@ class AuthenticationBlameableSubscriber implements EventSubscriberInterface
 
     public function onSecurityInteractiveLogin(InteractiveLoginEvent $event): void
     {
-        $this->blameableListener->setUserValue($event->getAuthenticationToken()->getUser());
+        $user = $event->getAuthenticationToken()->getUser();
+
+        if ($user instanceof UserInterface) {
+            $this->blameableListener->setUserValue($user);
+        }
     }
 
     public function onAuthenticationSuccess(AuthenticationSuccessEvent $event): void
     {
-        $this->blameableListener->setUserValue($event->getAuthenticationToken()->getUser());
+        $user = $event->getAuthenticationToken()->getUser();
+
+        if ($user instanceof UserInterface) {
+            $this->blameableListener->setUserValue($user);
+        }
     }
 }
