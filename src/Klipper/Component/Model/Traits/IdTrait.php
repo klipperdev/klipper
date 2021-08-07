@@ -27,7 +27,7 @@ trait IdTrait
      * @ORM\Column(type="integer")
      *
      * @Serializer\Expose
-     * @Serializer\ReadOnly
+     * @Serializer\ReadOnlyProperty
      */
     protected ?int $id = null;
 

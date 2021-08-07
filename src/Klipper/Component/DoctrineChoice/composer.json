@@ -15,7 +15,7 @@
         "doctrine/orm": "^2.8.0",
         "gedmo/doctrine-extensions": "^3.0.0",
         "klipper/model": "^2.0.0",
-        "jms/serializer": "^3.8.0",
+        "jms/serializer": "^3.14.0",
         "symfony/validator": "^5.2.0"
     },
     "require-dev": {

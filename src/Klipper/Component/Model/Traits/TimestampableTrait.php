@@ -31,7 +31,7 @@ trait TimestampableTrait
      * @Gedmo\Timestampable(on="create")
      *
      * @Serializer\Expose
-     * @Serializer\ReadOnly
+     * @Serializer\ReadOnlyProperty
      */
     protected ?\DateTimeInterface $createdAt = null;
 
@@ -41,7 +41,7 @@ trait TimestampableTrait
      * @Gedmo\Timestampable(on="update")
      *
      * @Serializer\Expose
-     * @Serializer\ReadOnly
+     * @Serializer\ReadOnlyProperty
      */
     protected ?\DateTimeInterface $updatedAt = null;
 }

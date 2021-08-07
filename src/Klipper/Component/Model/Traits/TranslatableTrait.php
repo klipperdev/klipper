@@ -30,7 +30,7 @@ trait TranslatableTrait
      * @ORM\Column(type="json", nullable=true)
      *
      * @Serializer\Expose
-     * @Serializer\ReadOnly
+     * @Serializer\ReadOnlyProperty
      */
     protected ?array $availableLocales = null;
 }

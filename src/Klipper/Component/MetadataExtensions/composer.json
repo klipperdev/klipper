@@ -21,7 +21,7 @@
         "klipper/choice": "^2.0.0",
         "klipper/doctrine-extensions-extra": "^2.0.0",
         "klipper/security": "^2.0.0",
-        "jms/serializer": "^3.8.0",
+        "jms/serializer": "^3.14.0",
         "symfony/event-dispatcher": "^5.2.0",
         "symfony/form": "^5.2.0",
         "symfony/translation": "^5.2.0",

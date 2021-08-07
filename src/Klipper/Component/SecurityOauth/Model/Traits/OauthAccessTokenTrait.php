@@ -33,7 +33,7 @@ trait OauthAccessTokenTrait
      *
      * @Serializer\Type("AssociationId")
      * @Serializer\Expose
-     * @Serializer\ReadOnly
+     * @Serializer\ReadOnlyProperty
      */
     protected ?OauthClientInterface $client = null;
 

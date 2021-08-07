@@ -20,7 +20,7 @@
         "symfony/intl": "^5.2.0"
     },
     "require-dev": {
-        "jms/serializer": "^3.8.0"
+        "jms/serializer": "^3.14.0"
     },
     "autoload": {
         "psr-4": { "Klipper\\Component\\User\\": "" },

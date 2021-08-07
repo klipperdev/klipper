@@ -29,7 +29,7 @@ trait FilePathTrait
      * @Assert\Length(max=255)
      *
      * @Serializer\Expose
-     * @Serializer\ReadOnly
+     * @Serializer\ReadOnlyProperty
      */
     protected ?string $filePath = null;
 

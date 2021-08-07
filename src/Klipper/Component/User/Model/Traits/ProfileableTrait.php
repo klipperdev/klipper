@@ -46,7 +46,7 @@ trait ProfileableTrait
      * @Assert\Length(max=5)
      *
      * @Serializer\Expose
-     * @Serializer\ReadOnly
+     * @Serializer\ReadOnlyProperty
      */
     protected ?string $initial = null;
 

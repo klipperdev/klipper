@@ -27,7 +27,7 @@ trait UuidIdTrait
      * @ORM\Column(type="guid")
      *
      * @Serializer\Expose
-     * @Serializer\ReadOnly
+     * @Serializer\ReadOnlyProperty
      */
     protected ?string $id = null;
 

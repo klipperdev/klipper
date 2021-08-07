@@ -31,7 +31,7 @@ trait OauthRefreshTokenTrait
      * @ORM\JoinColumn(onDelete="SET NULL")
      *
      * @Serializer\Expose
-     * @Serializer\ReadOnly
+     * @Serializer\ReadOnlyProperty
      */
     protected ?OauthAccessTokenInterface $accessToken = null;
 

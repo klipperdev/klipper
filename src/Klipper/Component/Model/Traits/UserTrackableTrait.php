@@ -31,7 +31,7 @@ trait UserTrackableTrait
      *
      * @Serializer\Expose
      * @Serializer\MaxDepth(1)
-     * @Serializer\ReadOnly
+     * @Serializer\ReadOnlyProperty
      */
     protected ?UserInterface $createdBy = null;
 
@@ -43,7 +43,7 @@ trait UserTrackableTrait
      *
      * @Serializer\Expose
      * @Serializer\MaxDepth(1)
-     * @Serializer\ReadOnly
+     * @Serializer\ReadOnlyProperty
      */
     protected ?UserInterface $updatedBy = null;
 

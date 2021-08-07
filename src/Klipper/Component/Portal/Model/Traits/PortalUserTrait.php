@@ -42,7 +42,7 @@ trait PortalUserTrait
      *
      * @Serializer\Type("AssociationId")
      * @Serializer\Expose
-     * @Serializer\ReadOnly
+     * @Serializer\ReadOnlyProperty
      */
     protected ?PortalInterface $portal = null;
 
@@ -55,7 +55,7 @@ trait PortalUserTrait
      * @ORM\JoinColumn(onDelete="CASCADE")
      *
      * @Serializer\Expose
-     * @Serializer\ReadOnly
+     * @Serializer\ReadOnlyProperty
      */
     protected ?UserInterface $user = null;
 
