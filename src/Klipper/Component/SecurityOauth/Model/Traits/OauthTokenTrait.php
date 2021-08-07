@@ -31,7 +31,7 @@ trait OauthTokenTrait
      * @\Symfony\Component\Validator\Constraints\NotBlank
      *
      * @Serializer\Expose
-     * @Serializer\Groups(groups={"Details"})
+     * @Serializer\Groups({"Details"})
      */
     protected ?string $token = null;
 

@@ -38,7 +38,7 @@ trait OauthClientTrait
      * @Assert\Length(max=255)
      *
      * @Serializer\Expose
-     * @Serializer\Groups(groups={"Details"})
+     * @Serializer\Groups({"Details"})
      */
     protected ?string $secret = null;
 

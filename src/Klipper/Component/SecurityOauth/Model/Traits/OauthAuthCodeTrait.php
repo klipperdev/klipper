@@ -58,7 +58,7 @@ trait OauthAuthCodeTrait
      * @Assert\NotBlank
      *
      * @Serializer\Expose
-     * @Serializer\Groups(groups={"Details"})
+     * @Serializer\Groups({"Details"})
      */
     protected ?string $redirectUri = null;
 
