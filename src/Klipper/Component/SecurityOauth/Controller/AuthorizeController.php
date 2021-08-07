@@ -53,7 +53,7 @@ class AuthorizeController
 
             $authRequest = $this->authServer->validateAuthorizationRequest($psr7Request);
 
-            $authRequest->setUser(new User($token->getUsername()));
+            $authRequest->setUser(new User(method_exists($token, 'getUserIdentifier') ? $token->getUserIdentifier() : $token->getUsername()));
             $authRequest->setAuthorizationApproved(true);
 
             $this->authServer->completeAuthorizationRequest($authRequest, $psr7Response);

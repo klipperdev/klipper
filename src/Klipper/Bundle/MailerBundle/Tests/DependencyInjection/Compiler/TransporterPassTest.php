@@ -42,7 +42,7 @@ final class TransporterPassTest extends KernelTestCase
 
     public function testProcessWithoutService(): void
     {
-        $container = $this->getContainer();
+        $container = $this->getContainerBuilder();
 
         $this->pass->process($container);
         static::assertFalse($container->has('klipper_mailer.mailer'));
@@ -50,7 +50,7 @@ final class TransporterPassTest extends KernelTestCase
 
     public function testProcessWithAddTransporters(): void
     {
-        $container = $this->getContainer();
+        $container = $this->getContainerBuilder();
         $mailerDef = new Definition(Mailer::class);
         $mailerDef->setArguments([[]]);
 
@@ -73,7 +73,7 @@ final class TransporterPassTest extends KernelTestCase
     /**
      * Gets the container.
      */
-    protected function getContainer(): ContainerBuilder
+    protected function getContainerBuilder(): ContainerBuilder
     {
         return new ContainerBuilder(new ParameterBag([
             'kernel.debug' => false,

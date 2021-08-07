@@ -62,7 +62,7 @@ class OauthProvider implements AuthenticationProviderInterface
         } else {
             /** @var OauthToken $token */
             $accessToken = $token->getToken();
-            $user = $this->getAuthenticatedUser($token->getUsername());
+            $user = $this->getAuthenticatedUser(method_exists($token, 'getUserIdentifier') ? $token->getUserIdentifier() : $token->getUsername());
             $scopes = $token->getScopes();
         }
 

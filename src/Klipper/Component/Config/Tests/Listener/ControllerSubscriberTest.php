@@ -174,7 +174,7 @@ final class ControllerSubscriberTest extends TestCase
     private function getControllerEvent($controller, Request $request): ControllerEvent
     {
         /** @var Kernel $mockKernel */
-        $mockKernel = $this->getMockForAbstractClass(Kernel::class, ['', '']);
+        $mockKernel = $this->getMockForAbstractClass(Kernel::class, ['test', '']);
 
         return new ControllerEvent($mockKernel, $controller, $request, HttpKernelInterface::MASTER_REQUEST);
     }

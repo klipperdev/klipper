@@ -125,6 +125,6 @@ class PortalContext implements PortalContextInterface
     private function isSameUser(UserInterface $user, PortalUserInterface $portalUser): bool
     {
         return null !== $portalUser->getUser()
-            && $user->getUsername() === $portalUser->getUser()->getUsername();
+            && $user->getUserIdentifier() === $portalUser->getUser()->getUserIdentifier();
     }
 }

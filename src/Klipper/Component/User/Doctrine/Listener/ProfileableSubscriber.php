@@ -68,7 +68,7 @@ class ProfileableSubscriber implements EventSubscriber
         }
 
         if (null === $initial && $entity instanceof UserInterface) {
-            $initial = substr($entity->getUsername(), 0, 1);
+            $initial = substr($entity->getUserIdentifier(), 0, 1);
         }
 
         return strtoupper($initial);

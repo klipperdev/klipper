@@ -84,7 +84,7 @@ final class ResolvedObjectTypeTest extends TestCase
         $rType->finishObject($builder, $builder->getOptions());
 
         static::assertInstanceOf($rType->getClass(), $instance);
-        static::assertEquals('test', $instance->getUsername());
+        static::assertEquals('test', $instance->getUserIdentifier());
         static::assertEquals('password', $instance->getPassword());
     }
 

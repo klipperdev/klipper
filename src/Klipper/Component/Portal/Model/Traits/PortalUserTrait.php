@@ -61,7 +61,7 @@ trait PortalUserTrait
 
     public function __toString(): string
     {
-        return $this->portal->getPortalName().':'.$this->user->getUsername();
+        return $this->portal->getPortalName().':'.$this->user->getUserIdentifier();
     }
 
     public function setUser(?UserInterface $user): self
