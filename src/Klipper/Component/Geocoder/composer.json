@@ -13,9 +13,9 @@
     "prefer-stable": true,
     "require": {
         "php": "^7.4.0|^8.0.0",
-        "symfony/form": "^5.2.0",
-        "symfony/property-access": "^5.2.0",
-        "symfony/options-resolver": "^5.2.0",
+        "symfony/form": "^5.3.0",
+        "symfony/property-access": "^5.3.0",
+        "symfony/options-resolver": "^5.3.0",
         "creof/doctrine2-spatial": "^1.2.0"
     },
     "autoload": {

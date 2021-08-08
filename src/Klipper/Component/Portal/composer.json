@@ -18,8 +18,8 @@
         "doctrine/persistence": "^2.0.0",
         "klipper/model-contracts": "^2.0.0",
         "klipper/routing": "^2.0.0",
-        "symfony/security-core": "^5.2.0",
-        "symfony/security-http": "^5.2.0"
+        "symfony/security-core": "^5.3.0",
+        "symfony/security-http": "^5.3.0"
     },
     "require-dev": {
         "doctrine/annotations": "^1.6.0",

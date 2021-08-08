@@ -13,7 +13,7 @@
     "prefer-stable": true,
     "require": {
         "klipper/model": "^2.0.0",
-        "symfony/framework-bundle": "^5.2.0"
+        "symfony/framework-bundle": "^5.3.0"
     },
     "require-dev": {
         "doctrine/orm": "^2.8.0",

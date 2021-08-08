@@ -12,7 +12,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "symfony/framework-bundle": "^5.2.0",
+        "symfony/framework-bundle": "^5.3.0",
         "doctrine/doctrine-migrations-bundle": "^2.0.0"
     },
     "require-dev": {

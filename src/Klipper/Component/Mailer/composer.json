@@ -15,17 +15,17 @@
     "prefer-stable": true,
     "require": {
         "php": "^7.4.0|^8.0.0",
-        "symfony/intl": "^5.2.0",
-        "symfony/mime": "^5.2.0",
+        "symfony/intl": "^5.3.0",
+        "symfony/mime": "^5.3.0",
         "twig/twig": "^3.3.0"
     },
     "require-dev": {
         "doctrine/orm": "^2.8.0",
         "klipper/twig-sms-sender": "^2.0.0",
         "gedmo/doctrine-extensions": "^3.0.0",
-        "symfony/filesystem": "^5.2.0",
-        "symfony/mailer": "^5.2.0",
-        "symfony/twig-bridge": "^5.2.0"
+        "symfony/filesystem": "^5.3.0",
+        "symfony/mailer": "^5.3.0",
+        "symfony/twig-bridge": "^5.3.0"
 
     },
     "autoload": {
