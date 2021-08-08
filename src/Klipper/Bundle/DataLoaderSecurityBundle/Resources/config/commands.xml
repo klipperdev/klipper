@@ -11,7 +11,7 @@
             <argument type="service" id="doctrine.orm.entity_manager" />
             <argument type="service" id="klipper_resource.domain_manager" />
             <argument type="service" id="validator" />
-            <argument type="service" id="security.password_encoder" />
+            <argument type="service" id="security.password_hasher" />
         </service>
 
         <service id="klipper_data_loader_security.command.init_permissions"
