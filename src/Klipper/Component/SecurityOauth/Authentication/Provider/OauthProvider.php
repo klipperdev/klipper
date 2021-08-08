@@ -84,6 +84,6 @@ class OauthProvider implements AuthenticationProviderInterface
     {
         return empty($userIdentifier)
             ? null
-            : $this->userProvider->loadUserByUsername($userIdentifier);
+            : $this->userProvider->loadUserByIdentifier($userIdentifier);
     }
 }
