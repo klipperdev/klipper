@@ -75,7 +75,7 @@ final class DependencyInjectionExtensionTest extends TestCase
     public function testGetInvalidType(): void
     {
         $this->expectException(\Klipper\Component\DefaultValue\Exception\InvalidArgumentException::class);
-        $this->expectExceptionMessageRegExp('/The object default value type "([\\w\\\\]+)" is not registered with the service container./');
+        $this->expectExceptionMessageMatches('/The object default value type "([\\w\\\\]+)" is not registered with the service container./');
 
         $this->ext->getType(\stdClass::class);
     }
@@ -83,7 +83,7 @@ final class DependencyInjectionExtensionTest extends TestCase
     public function testGetInvalidClass(): void
     {
         $this->expectException(\Klipper\Component\DefaultValue\Exception\InvalidArgumentException::class);
-        $this->expectExceptionMessageRegExp('/The object default value type class name specified for the service "([\\w\\.\\_]+)" does not match the actual class name. Expected "([\\w\\\\]+)", given "([\\w\\\\]+)"/');
+        $this->expectExceptionMessageMatches('/The object default value type class name specified for the service "([\\w\\.\\_]+)" does not match the actual class name. Expected "([\\w\\\\]+)", given "([\\w\\\\]+)"/');
 
         $this->container->expects(static::once())
             ->method('get')

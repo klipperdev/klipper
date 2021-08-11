@@ -40,17 +40,21 @@ final class TemplateMessageRepositoryTraitTest extends TestCase
             'getOneOrNullResult',
         ]);
 
-        $query->expects(static::at(0))
+        $checkSetHintCustomOutputWalker = false;
+        $checkSetHintTranslatableLocale = false;
+        $checkSetHintFallback = false;
+
+        $query->expects(static::atLeast(3))
             ->method('setHint')
-            ->with(Query::HINT_CUSTOM_OUTPUT_WALKER, TranslationWalker::class)
-        ;
-        $query->expects(static::at(1))
-            ->method('setHint')
-            ->with(TranslatableListener::HINT_TRANSLATABLE_LOCALE, 'fr_FR')
-        ;
-        $query->expects(static::at(2))
-            ->method('setHint')
-            ->with(TranslatableListener::HINT_FALLBACK, 1)
+            ->willReturnCallback(static function ($name, $value) use (&$checkSetHintCustomOutputWalker, &$checkSetHintTranslatableLocale, &$checkSetHintFallback): void {
+                if (Query::HINT_CUSTOM_OUTPUT_WALKER === $name && TranslationWalker::class === $value) {
+                    $checkSetHintCustomOutputWalker = true;
+                } elseif (TranslatableListener::HINT_TRANSLATABLE_LOCALE === $name && 'fr_FR' === $value) {
+                    $checkSetHintTranslatableLocale = true;
+                } elseif (TranslatableListener::HINT_FALLBACK === $name && 1 === $value) {
+                    $checkSetHintFallback = true;
+                }
+            })
         ;
 
         $query->expects(static::once())
@@ -60,32 +64,20 @@ final class TemplateMessageRepositoryTraitTest extends TestCase
 
         $qb = $this->getMockBuilder(QueryBuilder::class)->disableOriginalConstructor()->getMock();
 
-        $qb->expects(static::at(0))
+        $qb->expects(static::once())
             ->method('where')
             ->with('t.name = :name')
             ->willReturn($qb)
         ;
-        $qb->expects(static::at(1))
+        $qb->expects(static::atLeast(2))
             ->method('andWhere')
-            ->with('t.enabled = true')
             ->willReturn($qb)
         ;
-        $qb->expects(static::at(2))
+        $qb->expects(static::atLeast(2))
             ->method('setParameter')
-            ->with('name', 'template_name')
             ->willReturn($qb)
         ;
-        $qb->expects(static::at(3))
-            ->method('andWhere')
-            ->with('t.type = :type')
-            ->willReturn($qb)
-        ;
-        $qb->expects(static::at(4))
-            ->method('setParameter')
-            ->with('type', 'template_type')
-            ->willReturn($qb)
-        ;
-        $qb->expects(static::at(5))
+        $qb->expects(static::once())
             ->method('getQuery')
             ->willReturn($query)
         ;
@@ -108,6 +100,10 @@ final class TemplateMessageRepositoryTraitTest extends TestCase
         ;
 
         $res = $trait->findTemplate('template_name', 'template_type', 'fr_FR');
+
+        static::assertTrue($checkSetHintCustomOutputWalker);
+        static::assertTrue($checkSetHintTranslatableLocale);
+        static::assertTrue($checkSetHintFallback);
 
         static::assertSame($expectedTemplateMessage, $res);
     }

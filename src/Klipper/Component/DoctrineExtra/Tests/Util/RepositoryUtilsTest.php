@@ -79,7 +79,7 @@ final class RepositoryUtilsTest extends TestCase
         $expectedRepoClass = \get_class($mockRepo);
 
         $this->expectException(\Klipper\Component\DoctrineExtra\Exception\UnexpectedRepositoryException::class);
-        $this->expectExceptionMessageRegExp('/The doctrine repository of the "stdClass" class is not an instance of the "(\w+)"/');
+        $this->expectExceptionMessageMatches('/The doctrine repository of the "stdClass" class is not an instance of the "(\w+)"/');
 
         /** @var MockObject|ObjectManager $om */
         $om = $this->getMockBuilder(ObjectManager::class)->getMock();

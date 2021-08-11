@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/8.5/phpunit.xsd"
-         backupGlobals="false"
+<phpunit backupGlobals="false"
+         backupStaticAttributes="false"
          colors="true"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         stopOnFailure="false"
          bootstrap="vendor/autoload.php"
          failOnRisky="true"
          failOnWarning="true"
@@ -24,20 +26,22 @@
         </testsuite>
     </testsuites>
 
-    <filter>
-        <whitelist>
+    <coverage>
+        <include>
             <directory>./src/Klipper/</directory>
-            <exclude>
-                <directory>./src/Klipper/Bridge/*/*/Tests</directory>
-                <directory>./src/Klipper/Component/*/Tests</directory>
-                <directory>./src/Klipper/Bundle/*/Tests</directory>
-                <directory>./src/Klipper/Component/*/Resources</directory>
-                <directory>./src/Klipper/Bundle/*/Resources</directory>
-                <directory>./src/Klipper/Component/*/vendor</directory>
-                <directory>./src/Klipper/Bundle/*/vendor</directory>
-            </exclude>
-        </whitelist>
-    </filter>
+        </include>
+
+        <exclude>
+            <file>.php-cs-fixer.dist.php</file>
+            <directory>./src/Klipper/Bridge/*/*/Tests</directory>
+            <directory>./src/Klipper/Component/*/Tests</directory>
+            <directory>./src/Klipper/Bundle/*/Tests</directory>
+            <directory>./src/Klipper/Component/*/Resources</directory>
+            <directory>./src/Klipper/Bundle/*/Resources</directory>
+            <directory>./src/Klipper/Component/*/vendor</directory>
+            <directory>./src/Klipper/Bundle/*/vendor</directory>
+        </exclude>
+    </coverage>
 
     <listeners>
         <listener class="Symfony\Bridge\PhpUnit\SymfonyTestsListener"/>
