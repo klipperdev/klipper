@@ -15,8 +15,6 @@ namespace Klipper\Component\Cache\Adapter;
  * Adapter Trait for clear by prefixes.
  *
  * @author François Pluchino <francois.pluchino@klipper.dev>
- *
- * @method bool clearByPrefixes(array $prefixes)
  */
 trait AdapterPrefixesTrait
 {
