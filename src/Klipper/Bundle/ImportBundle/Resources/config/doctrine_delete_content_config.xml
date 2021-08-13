@@ -5,10 +5,10 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <service id="klipper_import.doctrine.subscriber.result_file_path"
-                 class="Klipper\Component\Model\Doctrine\Listener\ContentPathSubscriber">
-            <tag name="doctrine.event_subscriber" />
-            <argument type="service" id="klipper_content.manager"/>
+        <service id="klipper_import.doctrine_delete_content_config.import_result_file"
+                 class="Klipper\Component\Content\Doctrine\DeleteContentConfig">
+            <tag name="klipper_content.doctrine_delete_config" />
+            <argument>import</argument>
             <argument>Klipper\Component\Import\Model\ImportInterface</argument>
             <argument>getResultFilePath</argument>
         </service>

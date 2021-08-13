@@ -15,6 +15,7 @@
         "php": "^7.4.0|^8.0.0",
         "klipper/choice-bundle": "^2.0.0",
         "klipper/content-bundle": "^2.0.0",
+        "klipper/batch": "^2.0.0",
         "klipper/import": "^2.0.0",
         "klipper/metadata-bundle": "^2.0.0",
         "klipper/resource-bundle": "^2.0.0",

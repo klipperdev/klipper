@@ -21,8 +21,12 @@
     },
     "require-dev": {
         "ankitpokhrel/tus-php": "^2.0.0",
+        "doctrine/orm": "^2.8.0",
+        "klipper/batch": "^2.0.0",
         "klipper/routing": "^2.0.0",
-        "jms/serializer": "^3.14.0"
+        "jms/serializer": "^3.14.0",
+        "symfony/messenger": "^5.3.0",
+        "symfony/property-access": "^5.3.0"
     },
     "autoload": {
         "psr-4": { "Klipper\\Component\\Content\\": "" },
