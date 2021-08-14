@@ -106,7 +106,7 @@ class PortalContextHelper
      *
      * @param string $portalName The current portal name
      */
-    public function getCurrentPortalUser(string $portalName): ?PortalUserInterface
+    public function getCurrentPortalUser(?string $portalName): ?PortalUserInterface
     {
         $portalUser = null;
 
@@ -126,7 +126,7 @@ class PortalContextHelper
      *
      * @param string $portalName The current portal name
      */
-    public function setCurrentPortalUser(string $portalName): void
+    public function setCurrentPortalUser(?string $portalName): void
     {
         $this->context->setCurrentPortalUser($this->getCurrentPortalUser($portalName));
     }
