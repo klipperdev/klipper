@@ -29,7 +29,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  *
  * @see PortalUserRepositoryInterface
  *
- * @method QueryBuilder           createQueryBuilder(string $alias)
+ * @method QueryBuilder           createQueryBuilder(string $alias, $indexBy = null)
  * @method ClassMetadata          getClassMetadata()
  * @method EntityManagerInterface getEntityManager()
  */
