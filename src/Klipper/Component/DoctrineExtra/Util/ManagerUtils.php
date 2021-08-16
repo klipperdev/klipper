@@ -37,8 +37,10 @@ class ManagerUtils
         if (null === $manager) {
             foreach ($or->getManagers() as $objectManager) {
                 try {
+                    $metaFactory = $objectManager->getMetadataFactory();
+
                     if (self::isValidManager($objectManager, $class)
-                        && $objectManager->getMetadataFactory()->hasMetadataFor($class)) {
+                        && $metaFactory->hasMetadataFor($class) || $metaFactory->isTransient($class)) {
                         $manager = $objectManager;
 
                         break;
