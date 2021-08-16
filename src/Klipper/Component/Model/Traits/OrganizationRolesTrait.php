@@ -31,8 +31,8 @@ trait OrganizationRolesTrait
      *
      * @ORM\OneToMany(
      *     targetEntity="Klipper\Component\Security\Model\RoleInterface",
-     *     mappedBy="organization",
      *     fetch="EXTRA_LAZY",
+     *     mappedBy="organization",
      *     cascade={"persist", "remove"}
      * )
      *

@@ -25,8 +25,7 @@ trait OauthRefreshTokenTrait
 
     /**
      * @ORM\ManyToOne(
-     *     targetEntity="Klipper\Component\SecurityOauth\Model\OauthAccessTokenInterface",
-     *     fetch="EAGER"
+     *     targetEntity="Klipper\Component\SecurityOauth\Model\OauthAccessTokenInterface"
      * )
      * @ORM\JoinColumn(onDelete="SET NULL")
      *

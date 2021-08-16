@@ -24,7 +24,9 @@ use Klipper\Component\Security\Model\UserInterface;
 trait UserTrackableTrait
 {
     /**
-     * @ORM\ManyToOne(targetEntity="Klipper\Component\Security\Model\UserInterface", fetch="EAGER")
+     * @ORM\ManyToOne(
+     *     targetEntity="Klipper\Component\Security\Model\UserInterface"
+     * )
      * @ORM\JoinColumn(onDelete="SET NULL", nullable=true)
      *
      * @Gedmo\Blameable(on="create")
@@ -36,7 +38,9 @@ trait UserTrackableTrait
     protected ?UserInterface $createdBy = null;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Klipper\Component\Security\Model\UserInterface", fetch="EAGER")
+     * @ORM\ManyToOne(
+     *     targetEntity="Klipper\Component\Security\Model\UserInterface"
+     * )
      * @ORM\JoinColumn(onDelete="SET NULL", nullable=true)
      *
      * @Gedmo\Blameable(on="update")

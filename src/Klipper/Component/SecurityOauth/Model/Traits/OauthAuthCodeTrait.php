@@ -26,8 +26,7 @@ trait OauthAuthCodeTrait
 
     /**
      * @ORM\ManyToOne(
-     *     targetEntity="Klipper\Component\SecurityOauth\Model\OauthClientInterface",
-     *     fetch="EXTRA_LAZY"
+     *     targetEntity="Klipper\Component\SecurityOauth\Model\OauthClientInterface"
      * )
      * @ORM\JoinColumn(onDelete="CASCADE")
      *

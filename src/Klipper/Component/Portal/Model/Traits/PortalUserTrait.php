@@ -30,8 +30,7 @@ trait PortalUserTrait
 
     /**
      * @ORM\ManyToOne(
-     *     targetEntity="Klipper\Component\Portal\Model\PortalInterface",
-     *     fetch="EXTRA_LAZY"
+     *     targetEntity="Klipper\Component\Portal\Model\PortalInterface"
      * )
      * @ORM\JoinColumn(onDelete="CASCADE", nullable=false)
      *
@@ -49,7 +48,6 @@ trait PortalUserTrait
     /**
      * @ORM\ManyToOne(
      *     targetEntity="Symfony\Component\Security\Core\User\UserInterface",
-     *     fetch="EAGER",
      *     cascade={"persist"}
      * )
      * @ORM\JoinColumn(onDelete="CASCADE")

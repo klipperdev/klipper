@@ -27,8 +27,7 @@ trait OrganizationalRequiredTrait
 
     /**
      * @ORM\ManyToOne(
-     *     targetEntity="Klipper\Component\Security\Model\OrganizationInterface",
-     *     fetch="EXTRA_LAZY"
+     *     targetEntity="Klipper\Component\Security\Model\OrganizationInterface"
      * )
      * @ORM\JoinColumn(onDelete="CASCADE")
      *
