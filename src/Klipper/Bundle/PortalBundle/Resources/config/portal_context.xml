@@ -18,6 +18,7 @@
         <service id="klipper_portal.portal_context.helper" class="Klipper\Component\Portal\PortalContextHelper" public="true">
             <argument type="service" id="security.token_storage" />
             <argument type="service" id="doctrine" />
+            <argument type="service" id="klipper_portal.manager" />
             <argument type="service" id="klipper_portal.portal_context" />
             <argument type="service" id="security.authorization_checker" />
             <argument />

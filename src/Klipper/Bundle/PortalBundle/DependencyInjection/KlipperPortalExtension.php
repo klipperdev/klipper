@@ -94,7 +94,7 @@ class KlipperPortalExtension extends Extension
         }
 
         $container->getDefinition('klipper_portal.portal_context.helper')
-            ->replaceArgument(4, $config['security']['permission_name'])
+            ->replaceArgument(5, $config['security']['permission_name'])
         ;
     }
 

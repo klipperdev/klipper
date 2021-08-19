@@ -32,6 +32,8 @@ class PortalContextHelper
 {
     protected TokenStorageInterface $tokenStorage;
 
+    protected PortalManagerInterface $portalManager;
+
     protected PortalContextInterface $context;
 
     protected AuthorizationCheckerInterface $authChecker;
@@ -47,6 +49,7 @@ class PortalContextHelper
     public function __construct(
         TokenStorageInterface $tokenStorage,
         ManagerRegistry $doctrine,
+        PortalManagerInterface $portalManager,
         PortalContextInterface $context,
         AuthorizationCheckerInterface $authChecker,
         string $permissionName = 'back-office',
@@ -56,6 +59,7 @@ class PortalContextHelper
         /** @var PortalUserRepositoryInterface $portalUserRepo */
         $portalUserRepo = RepositoryUtils::getRepository($doctrine, PortalUserInterface::class, PortalUserRepositoryInterface::class);
         $this->portalUserRepository = $portalUserRepo;
+        $this->portalManager = $portalManager;
         $this->context = $context;
         $this->authChecker = $authChecker;
         $this->permissionName = $permissionName;
@@ -67,14 +71,13 @@ class PortalContextHelper
         $this->routeParameterName = $name;
     }
 
-    public function injectContext(Request $request): void
+    public function injectContext(Request $request, bool $isPortalContext = false): void
     {
         if (null === $this->routeParameterName) {
             return;
         }
 
         $attr = $request->attributes;
-        $portalContext = $attr->has($this->routeParameterName);
         $portalName = $attr->get($this->routeParameterName.'_name');
         $portal = $attr->get($this->routeParameterName, $portalName);
 
@@ -83,13 +86,17 @@ class PortalContextHelper
             $portalName = $routeParams[$portal] ?? false;
         }
 
+        if ($isPortalContext && false === $portalName && !empty($portals = $this->portalManager->getAvailablePortals())) {
+            $portalName = $portals[0]->getName();
+        }
+
         if (false !== $portalName && null !== $this->tokenStorage->getToken()) {
             $this->setCurrentPortalUser($portalName);
         }
 
         if (null !== $this->tokenStorage->getToken()
-                && (($portalContext && null === $this->context->getCurrentPortalUser())
-                    || (!$portalContext && !$this->authChecker->isGranted('perm:'.$this->permissionName)))) {
+                && (($isPortalContext && null === $this->context->getCurrentPortalUser())
+                    || (!$isPortalContext && !$this->authChecker->isGranted('perm:'.$this->permissionName)))) {
             throw new NotFoundHttpException();
         }
 

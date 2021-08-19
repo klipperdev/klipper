@@ -38,6 +38,6 @@ class PortalContextListener
     public function __invoke(RequestEvent $event): void
     {
         $this->helper->setRouteParameterName($this->config['route_parameter_name']);
-        $this->helper->injectContext($event->getRequest());
+        $this->helper->injectContext($event->getRequest(), $this->config['is_portal']);
     }
 }

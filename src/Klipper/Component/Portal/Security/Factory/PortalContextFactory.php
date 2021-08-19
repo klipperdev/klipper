@@ -54,8 +54,17 @@ class PortalContextFactory implements SecurityFactoryInterface
     {
         /* @var ArrayNodeDefinition $builder */
         $builder
+            ->beforeNormalization()
+            ->ifTrue(static function ($v) {
+                return \is_bool($v) && $v;
+            })
+            ->then(static function ($v) {
+                return ['is_portal' => $v];
+            })
+            ->end()
             ->children()
             ->scalarNode('route_parameter_name')->defaultValue('_portal')->end()
+            ->booleanNode('is_portal')->defaultFalse()->end()
             ->end()
         ;
 
