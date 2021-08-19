@@ -94,7 +94,8 @@ class PortalContextHelper
             $this->setCurrentPortalUser($portalName);
         }
 
-        if (null !== $this->tokenStorage->getToken()
+        if (0 !== strpos(($attr->get('_route', '')), '_')
+                && null !== $this->tokenStorage->getToken()
                 && (($isPortalContext && null === $this->context->getCurrentPortalUser())
                     || (!$isPortalContext && !$this->authChecker->isGranted('perm:'.$this->permissionName)))) {
             throw new NotFoundHttpException();
