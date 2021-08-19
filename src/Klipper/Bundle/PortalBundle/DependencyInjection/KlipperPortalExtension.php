@@ -13,6 +13,7 @@ namespace Klipper\Bundle\PortalBundle\DependencyInjection;
 
 use Klipper\Bundle\DoctrineExtensionsExtraBundle\KlipperDoctrineExtensionsExtraBundle;
 use Klipper\Bundle\MetadataBundle\KlipperMetadataBundle;
+use Klipper\Bundle\SecurityBundle\KlipperSecurityBundle;
 use Klipper\Component\DoctrineExtensionsExtra\Filter\Listener\AbstractFilterSubscriber;
 use Klipper\Component\Routing\RoutingInterface;
 use Klipper\Component\Security\Identity\SecurityIdentityInterface;
@@ -55,6 +56,10 @@ class KlipperPortalExtension extends Extension
             && class_exists(KlipperMetadataBundle::class)
         ) {
             $loader->load('portal_doctrine.xml');
+        }
+
+        if (class_exists(KlipperSecurityBundle::class)) {
+            $loader->load('security_organizational_orm_listener.xml');
         }
     }
 
