@@ -42,6 +42,9 @@ trait PortalUserRepositoryTrait
     {
         $userPortal = null;
 
+        $em = $this->getEntityManager();
+        $filters = SqlFilterUtil::findFilters($em, [], true);
+
         if ($user instanceof UserInterface) {
             if (is_a($this->getClassMetadata()->getReflectionClass()->getName(), OrganizationalInterface::class, true)) {
                 $result = $this->createQueryBuilder('pu')
@@ -76,6 +79,8 @@ trait PortalUserRepositoryTrait
 
             $userPortal = \count($result) > 0 ? $result[0] : null;
         }
+
+        SqlFilterUtil::enableFilters($em, $filters);
 
         return $userPortal;
     }
