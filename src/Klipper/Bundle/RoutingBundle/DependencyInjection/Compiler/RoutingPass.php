@@ -12,7 +12,6 @@
 namespace Klipper\Bundle\RoutingBundle\DependencyInjection\Compiler;
 
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
-use Symfony\Component\DependencyInjection\Compiler\PriorityTaggedServiceTrait;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 /**
@@ -20,16 +19,10 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
  */
 class RoutingPass implements CompilerPassInterface
 {
-    use PriorityTaggedServiceTrait;
-
     public function process(ContainerBuilder $container): void
     {
         $translatableId = 'klipper_routing.translatable_routing';
         $organizationalId = 'klipper_routing.organizational_routing';
-
-        if (!$translatableId && !$organizationalId) {
-            return;
-        }
 
         if ($container->has($organizationalId)) {
             if ($container->has('klipper_security.organizational_context')) {
