@@ -1,7 +1,7 @@
 {
     "name": "klipper/http-kernel",
     "type": "library",
-    "description": "System component of Klipper",
+    "description": "HTTP Kernel component of Klipper",
     "license": "MIT",
     "authors": [
         {
