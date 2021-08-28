@@ -31,8 +31,8 @@ class RoutingPass implements CompilerPassInterface
             return;
         }
 
-        if ($container->has($organizationalId)) {
-            if ($container->has('klipper_security.organizational_context')) {
+        if ($container->hasDefinition($organizationalId)) {
+            if ($container->hasDefinition('klipper_security.organizational_context')) {
                 $container->removeDefinition($translatableId);
                 $container->setAlias($translatableId, $organizationalId);
                 $container->setAlias('Klipper\Component\Routing\TranslatableRouting', $organizationalId);
