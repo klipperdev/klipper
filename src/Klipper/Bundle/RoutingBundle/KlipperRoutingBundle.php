@@ -14,6 +14,7 @@ namespace Klipper\Bundle\RoutingBundle;
 use Klipper\Bundle\RoutingBundle\DependencyInjection\Compiler\FakeHostRoutingPass;
 use Klipper\Bundle\RoutingBundle\DependencyInjection\Compiler\RouteMainResourcePass;
 use Klipper\Bundle\RoutingBundle\DependencyInjection\Compiler\RoutingPass;
+use Klipper\Bundle\RoutingBundle\DependencyInjection\Compiler\TwigPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
@@ -27,6 +28,7 @@ class KlipperRoutingBundle extends Bundle
         parent::build($container);
         $container->addCompilerPass(new RouteMainResourcePass());
         $container->addCompilerPass(new RoutingPass());
+        $container->addCompilerPass(new TwigPass());
         $container->addCompilerPass(new FakeHostRoutingPass());
     }
 }

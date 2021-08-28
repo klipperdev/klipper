@@ -42,6 +42,10 @@ class KlipperRoutingExtension extends Extension
 
         if (class_exists(Environment::class)) {
             $loader->load('twig.xml');
+
+            if (class_exists(KlipperSecurityBundle::class)) {
+                $loader->load('twig_security.xml');
+            }
         }
 
         if ($container->getParameterBag()->resolveValue($config['fake_host'])) {

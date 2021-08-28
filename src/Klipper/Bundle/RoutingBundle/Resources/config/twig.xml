@@ -9,5 +9,10 @@
             <tag name="twig.extension" />
             <argument type="service" id="request_stack" />
         </service>
+
+        <service id="klipper_routing.twig.extension.translatable_routing" class="Klipper\Component\Routing\Twig\Extension\TranslatableRoutingExtension">
+            <tag name="twig.extension" />
+            <argument type="service" id="klipper_routing.translatable_routing" />
+        </service>
     </services>
 </container>

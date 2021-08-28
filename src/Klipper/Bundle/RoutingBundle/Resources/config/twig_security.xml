@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="klipper_routing.twig.extension.organizational_routing" class="Klipper\Component\Routing\Twig\Extension\OrganizationalRoutingExtension">
+            <tag name="twig.extension" />
+            <argument type="service" id="klipper_routing.organizational_routing" />
+        </service>
+    </services>
+</container>
