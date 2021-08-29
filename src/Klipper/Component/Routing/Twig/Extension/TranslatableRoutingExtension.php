@@ -12,6 +12,7 @@
 namespace Klipper\Component\Routing\Twig\Extension;
 
 use Klipper\Component\Routing\TranslatableRoutingInterface;
+use Klipper\Component\Routing\Twig\Extension\Traits\UrlGenerationTrait;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
@@ -20,6 +21,8 @@ use Twig\TwigFunction;
  */
 class TranslatableRoutingExtension extends AbstractExtension
 {
+    use UrlGenerationTrait;
+
     protected TranslatableRoutingInterface $routing;
 
     public function __construct(TranslatableRoutingInterface $routing)
