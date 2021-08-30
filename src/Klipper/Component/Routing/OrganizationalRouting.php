@@ -71,9 +71,11 @@ class OrganizationalRouting extends TranslatableRouting implements Organizationa
         $route = $this->router->getRouteCollection()->get($name);
 
         if (null !== $route && $route->hasDefault('_organizational')
-                && !isset($parameters[$route->getDefault('_organizational')])) {
+            && !isset($parameters[$route->getDefault('_organizational')])
+        ) {
+            $orgKey = $route->getDefault('_organizational');
             $parameters = array_merge($parameters, [
-                'organization' => $this->context->isOrganization() && null !== $this->context->getCurrentOrganization()
+                $orgKey => $this->context->isOrganization() && null !== $this->context->getCurrentOrganization()
                     ? $this->context->getCurrentOrganization()->getName()
                     : 'user',
             ]);
