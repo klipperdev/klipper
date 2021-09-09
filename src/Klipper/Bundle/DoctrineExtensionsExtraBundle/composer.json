@@ -19,6 +19,7 @@
     },
     "require-dev": {
         "klipper/expression-language": "^2.0.0",
+        "klipper/doctrine-choice-bundle": "^2.0.0",
         "klipper/http-foundation": "^2.0.0",
         "klipper/metadata-bundle": "^2.0.0",
         "klipper/default-value-bundle": "^2.0.0",
