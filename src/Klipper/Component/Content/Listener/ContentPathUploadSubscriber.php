@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Klipper\Bundle\ApiBundle\Listener;
+namespace Klipper\Component\Content\Listener;
 
 use Klipper\Component\Content\ContentManagerInterface;
 use Klipper\Component\Content\Uploader\Event\UploadFileCompletedEvent;

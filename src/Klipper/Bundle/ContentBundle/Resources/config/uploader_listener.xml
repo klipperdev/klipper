@@ -5,16 +5,16 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <service id="klipper_api.listener.image_path_upload_subscriber"
-                 class="Klipper\Bundle\ApiBundle\Listener\ImagePathUploadSubscriber"
+        <service id="klipper_content.listener.image_path_upload_subscriber"
+                 class="Klipper\Component\Content\Listener\ImagePathUploadSubscriber"
                  public="false">
             <tag name="kernel.event_subscriber" />
             <argument type="service" id="klipper_resource.domain_manager" />
             <argument type="service" id="klipper_content.manager" />
         </service>
 
-        <service id="klipper_api.listener.file_path_upload_subscriber"
-                 class="Klipper\Bundle\ApiBundle\Listener\FilePathUploadSubscriber"
+        <service id="klipper_content.listener.file_path_upload_subscriber"
+                 class="Klipper\Component\Content\Listener\FilePathUploadSubscriber"
                  public="false">
             <tag name="kernel.event_subscriber" />
             <argument type="service" id="klipper_resource.domain_manager" />

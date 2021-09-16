@@ -9,17 +9,17 @@
  * file that was distributed with this source code.
  */
 
-namespace Klipper\Bundle\ApiBundle\Listener;
+namespace Klipper\Component\Content\Listener;
 
 use Klipper\Component\Content\ContentManagerInterface;
 use Klipper\Component\Resource\Domain\DomainManagerInterface;
-use Klipper\Contracts\Model\ImagePathInterface;
+use Klipper\Contracts\Model\FilePathInterface;
 use Symfony\Component\PropertyAccess\PropertyAccessor;
 
 /**
  * @author François Pluchino <francois.pluchino@klipper.dev>
  */
-class ImagePathUploadSubscriber extends ContentPathUploadSubscriber
+class FilePathUploadSubscriber extends ContentPathUploadSubscriber
 {
     public function __construct(
         DomainManagerInterface $domainManager,
@@ -29,8 +29,8 @@ class ImagePathUploadSubscriber extends ContentPathUploadSubscriber
         parent::__construct(
             $domainManager,
             $contentManager,
-            ImagePathInterface::class,
-            'imagePath',
+            FilePathInterface::class,
+            'filePath',
             $accessor
         );
     }
