@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Klipper\Bundle\ApiBundle\Listener;
+namespace Klipper\Component\Resource\Listener;
 
 use Klipper\Component\Resource\Exception\ConstraintViolationException;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
