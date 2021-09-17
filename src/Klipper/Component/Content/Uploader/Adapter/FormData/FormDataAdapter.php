@@ -72,17 +72,18 @@ class FormDataAdapter implements AdapterInterface
         }
 
         $file = new FilesystemFile($files[0]);
+        $originalName = $file->getClientOriginalName();
         $this->dispatcher->dispatch(new UploadFileCreatedEvent($uploader, $request, $file, $payload));
 
         $namer = $this->namerManager->get($uploader->getNamer());
         $name = null !== $namer
             ? $namer->name($file)
-            : ($file->getClientOriginalName() ?? uniqid('', false).'.'.$file->getExtension());
+            : ($originalName ?? uniqid('', false).'.'.$file->getExtension());
 
         $this->dispatcher->dispatch(new UploadFileMoveEvent($uploader, $request, $file, $name, $payload));
 
         $movedFile = $file->move($uploader->getPath(), $name);
-        $newFile = new FilesystemFile($movedFile);
+        $newFile = new FilesystemFile($movedFile, $originalName);
 
         $this->dispatcher->dispatch(new UploadFileCompleteEvent($uploader, $request, $newFile, $payload));
         $this->dispatcher->dispatch(new UploadFileCompletedEvent($uploader, $request, $newFile, $payload));

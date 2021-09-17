@@ -19,14 +19,14 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  */
 class FilesystemFile extends UploadedFile implements FileInterface
 {
-    public function __construct(\SplFileInfo $file)
+    public function __construct(\SplFileInfo $file, ?string $originalName = null)
     {
         if ($file instanceof UploadedFile) {
-            parent::__construct($file->getPathname(), $file->getClientOriginalName(), $file->getClientMimeType(), $file->getError(), true);
+            parent::__construct($file->getPathname(), $originalName ?? $file->getClientOriginalName(), $file->getClientMimeType(), $file->getError(), true);
         } elseif ($file instanceof File) {
-            parent::__construct($file->getPathname(), $file->getBasename(), $file->getMimeType(), 0, true);
+            parent::__construct($file->getPathname(), $originalName ?? $file->getBasename(), $file->getMimeType(), 0, true);
         } else {
-            parent::__construct($file->getPathname(), $file->getBasename(), mime_content_type($file->getPath()), 0, true);
+            parent::__construct($file->getPathname(), $originalName ?? $file->getBasename(), mime_content_type($file->getPath()), 0, true);
         }
     }
 
