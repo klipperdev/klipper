@@ -213,6 +213,10 @@ class GuessDoctrineMetadata extends AbstractGuessDoctrine implements
         $multiple = \in_array($type, [OrmClassMetadata::ONE_TO_MANY, OrmClassMetadata::MANY_TO_MANY], true);
         $joins = $mapping['joinColumns'] ?? [];
 
+        if (null === $builder->isReadOnly() && !$mapping['isCascadePersist'] && !$mapping['isCascadeMerge'] && !$mapping['isCascadeRemove'] && !$mapping['isCascadeDetach']) {
+            $builder->setReadOnly(true);
+        }
+
         if (null === $builder->getType()) {
             $builder->setType($this->getAssociationType($assoName, $type, $class));
         }
