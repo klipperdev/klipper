@@ -73,7 +73,7 @@ class Downloader implements DownloaderInterface
                 } else {
                     $callback = $image->getCallback();
                 }
-            } catch (FileNotFoundException | ImageManipulatorInvalidArgumentException $e) {
+            } catch (FileNotFoundException|ImageManipulatorInvalidArgumentException $e) {
                 throw new NotFoundHttpException(Response::$statusTexts[Response::HTTP_NOT_FOUND], $e);
             } catch (InvalidArgumentException $e) {
                 throw new UnsupportedMediaTypeHttpException(Response::$statusTexts[Response::HTTP_UNSUPPORTED_MEDIA_TYPE], $e);
