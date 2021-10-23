@@ -104,6 +104,7 @@
         "klipper/importer-database": "self.version",
         "klipper/intl": "self.version",
         "klipper/kanban-view": "self.version",
+        "klipper/kanban-view-bundle": "self.version",
         "klipper/list-view": "self.version",
         "klipper/lock-bundle": "self.version",
         "klipper/mailer": "self.version",
