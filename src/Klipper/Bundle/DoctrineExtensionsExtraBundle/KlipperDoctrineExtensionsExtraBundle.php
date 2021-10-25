@@ -11,7 +11,6 @@
 
 namespace Klipper\Bundle\DoctrineExtensionsExtraBundle;
 
-use Doctrine\Bundle\DoctrineBundle\DependencyInjection\Compiler\DoctrineOrmMappingsPass;
 use Klipper\Bundle\DoctrineExtensionsExtraBundle\DependencyInjection\Compiler\DefaultValueExpressionLanguagePass;
 use Klipper\Bundle\DoctrineExtensionsExtraBundle\DependencyInjection\Compiler\DefaultValueLoadersPass;
 use Klipper\Bundle\DoctrineExtensionsExtraBundle\DependencyInjection\Compiler\DoctrineBlameablePass;
@@ -42,23 +41,5 @@ class KlipperDoctrineExtensionsExtraBundle extends Bundle
             $container->addCompilerPass(new RequestQueryFilterableExpressionLanguagePass());
             $container->addCompilerPass(new DefaultValueExpressionLanguagePass());
         }
-
-        $this->registerMappingsPass($container);
-    }
-
-    /**
-     * Register the doctrine mapping.
-     *
-     * @param ContainerBuilder $container The container
-     */
-    private function registerMappingsPass(ContainerBuilder $container): void
-    {
-        $container->addCompilerPass(
-            DoctrineOrmMappingsPass::createXmlMappingDriver(
-                [
-                    realpath(__DIR__.'/Resources/config/doctrine/model/auto_numberable') => 'Klipper\Component\DoctrineExtensionsExtra\AutoNumberable\Model',
-                ]
-            )
-        );
     }
 }
