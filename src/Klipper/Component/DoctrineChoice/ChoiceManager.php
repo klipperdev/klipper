@@ -52,8 +52,14 @@ class ChoiceManager implements ChoiceManagerInterface
     {
         $choices = $this->getChoices($type);
 
-        // Select the first choice
+        // Select the default choice or the first choice
         if (null === $value) {
+            foreach ($choices as $choice) {
+                if ($choice->isDefault()) {
+                    return $choice;
+                }
+            }
+
             $values = array_keys($choices);
 
             if (\count($values) > 0) {

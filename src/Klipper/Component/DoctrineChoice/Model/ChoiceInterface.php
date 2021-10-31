@@ -51,6 +51,13 @@ interface ChoiceInterface extends LabelableInterface
     /**
      * @return static
      */
+    public function setDefault(bool $default);
+
+    public function isDefault(): bool;
+
+    /**
+     * @return static
+     */
     public function setPosition(?int $position);
 
     public function getPosition(): ?int;

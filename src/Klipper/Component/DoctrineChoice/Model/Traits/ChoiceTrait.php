@@ -82,6 +82,15 @@ trait ChoiceTrait
      */
     protected ?int $position = -1;
 
+    /**
+     * @ORM\Column(type="boolean", name="is_default", options={"default": 0})
+     *
+     * @Assert\Type(type="boolean")
+     *
+     * @Serializer\Expose
+     */
+    private bool $default = false;
+
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -128,6 +137,18 @@ trait ChoiceTrait
     public function getIcon(): ?string
     {
         return $this->icon;
+    }
+
+    public function setDefault(bool $default): self
+    {
+        $this->default = $default;
+
+        return $this;
+    }
+
+    public function isDefault(): bool
+    {
+        return $this->default;
     }
 
     public function getPosition(): ?int
