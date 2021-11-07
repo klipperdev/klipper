@@ -47,6 +47,7 @@
                  class="Klipper\Component\Routing\Loader\Pass\PriorityPassLoader"
                  public="false">
             <tag name="klipper_routing.pass_loader" />
+            <argument type="service" id="parameter_bag" />
         </service>
 
         <!-- Translatable routing -->

@@ -12,6 +12,7 @@
 namespace Klipper\Component\Routing\Loader\Pass;
 
 use Klipper\Component\Routing\Loader\PassLoaderInterface;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\Routing\RouteCollection;
 
 /**
@@ -19,6 +20,13 @@ use Symfony\Component\Routing\RouteCollection;
  */
 class PriorityPassLoader implements PassLoaderInterface
 {
+    private ParameterBagInterface $parameterBag;
+
+    public function __construct(ParameterBagInterface $parameterBag)
+    {
+        $this->parameterBag = $parameterBag;
+    }
+
     public function load(RouteCollection $collection): RouteCollection
     {
         $routes = [];
@@ -38,7 +46,7 @@ class PriorityPassLoader implements PassLoaderInterface
             if (0 === strpos($name, '_')) {
                 $systemRoutes[] = [$name, $route];
             } else {
-                $routes[$host][$priority][] = [$name, $route];
+                $routes[$this->parameterBag->resolveValue($host)][$priority][] = [$name, $route];
             }
 
             $collection->remove($name);
