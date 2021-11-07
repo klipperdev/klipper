@@ -34,7 +34,15 @@ class PriorityPassLoader implements PassLoaderInterface
 
         foreach ($collection->all() as $name => $route) {
             $host = $route->getHost();
+            $hostPriority = 0;
             $priority = 0;
+
+            if ($route->hasDefault('_host_priority')) {
+                $hostPriority = (int) $route->getDefault('_host_priority');
+                $defaults = $route->getDefaults();
+                unset($defaults['_host_priority']);
+                $route->setDefaults($defaults);
+            }
 
             if ($route->hasDefault('_priority')) {
                 $priority = (int) $route->getDefault('_priority');
@@ -46,7 +54,7 @@ class PriorityPassLoader implements PassLoaderInterface
             if (0 === strpos($name, '_')) {
                 $systemRoutes[] = [$name, $route];
             } else {
-                $routes[$this->parameterBag->resolveValue($host)][$priority][] = [$name, $route];
+                $routes[$hostPriority][$this->parameterBag->resolveValue($host)][$priority][] = [$name, $route];
             }
 
             $collection->remove($name);
@@ -57,12 +65,17 @@ class PriorityPassLoader implements PassLoaderInterface
         }
 
         if ($routes) {
-            foreach ($routes as $host => $hostRoutes) {
-                krsort($hostRoutes);
-                $hostRoutes = array_merge(...$hostRoutes);
+            $priorityRoutes = array_keys($routes);
+            krsort($priorityRoutes);
 
-                foreach ($hostRoutes as $route) {
-                    $collection->add($route[0], $route[1]);
+            foreach ($priorityRoutes as $hostPriority) {
+                foreach ($routes[$hostPriority] as $hostRoutes) {
+                    krsort($hostRoutes);
+                    $hostRoutes = array_merge(...$hostRoutes);
+
+                    foreach ($hostRoutes as $route) {
+                        $collection->add($route[0], $route[1]);
+                    }
                 }
             }
         }
