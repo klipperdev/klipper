@@ -12,6 +12,7 @@
 namespace Klipper\Component\Portal\Entity\Repository;
 
 use Doctrine\Persistence\ObjectRepository;
+use Klipper\Component\Portal\AvailablePortal;
 use Klipper\Component\Portal\Model\PortalUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -32,4 +33,9 @@ interface PortalUserRepositoryInterface extends ObjectRepository
      * @param int|string $id The user id
      */
     public function findPortalUserById($id): ?PortalUserInterface;
+
+    /**
+     * @return AvailablePortal[]
+     */
+    public function getAvailablePortals(UserInterface $user): array;
 }

@@ -16,6 +16,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\ORM\QueryBuilder;
 use Klipper\Component\DoctrineExtensions\Util\SqlFilterUtil;
+use Klipper\Component\Portal\AvailablePortal;
 use Klipper\Component\Portal\Entity\Repository\PortalUserRepositoryInterface;
 use Klipper\Component\Portal\Model\PortalUserInterface;
 use Klipper\Component\Portal\Model\Traits\PortalableInterface;
@@ -111,6 +112,44 @@ trait PortalUserRepositoryTrait
         SqlFilterUtil::enableFilters($em, $filters);
 
         return \count($result) > 0 ? $result[0] : null;
+    }
+
+    public function getAvailablePortals(UserInterface $user): array
+    {
+        /** @var PortalUserInterface $class */
+        $class = $this->getClassName();
+        $em = $this->getEntityManager();
+        $availablePortals = [];
+
+        $filters = SqlFilterUtil::disableFilters($em, [], true);
+        /** @var PortalUserInterface[] $res */
+        $res = $this->createQueryBuilder('pu')
+            ->addSelect('p')
+            ->leftJoin('pu.'.$class::getPortalAssociationName(), 'p')
+            ->where('pu.user = :user')
+            ->andWhere('pu.enabled = true')
+            ->andWhere('p.portalEnabled = true')
+            ->orderBy('p.name', 'asc')
+            ->setParameter('user', $user)
+            ->getQuery()
+            ->getResult()
+        ;
+
+        foreach ($res as $item) {
+            $portal = $item->getPortal();
+
+            if (null !== $portal) {
+                $availablePortals[] = new AvailablePortal(
+                    $portal->getId(),
+                    $portal->getPortalName(),
+                    method_exists($portal, 'getName') ? $portal->getName() : $portal->getPortalName()
+                );
+            }
+        }
+
+        SqlFilterUtil::enableFilters($em, $filters);
+
+        return $availablePortals;
     }
 
     protected function getPortalAssociationName(): string
