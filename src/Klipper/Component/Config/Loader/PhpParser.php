@@ -36,7 +36,7 @@ class PhpParser
 
             switch ($tokenType) {
                 case T_NAMESPACE:
-                    $namespace = ltrim(self::fetch($tokens, [T_STRING, T_NS_SEPARATOR]).'\\', '\\');
+                    $namespace = ltrim(self::fetch($tokens, [T_STRING, T_NS_SEPARATOR, \defined('T_NAME_QUALIFIED') ? T_NAME_QUALIFIED : 0]).'\\', '\\');
 
                     break;
 
