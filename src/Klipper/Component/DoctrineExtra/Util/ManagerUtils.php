@@ -40,7 +40,8 @@ class ManagerUtils
                     $metaFactory = $objectManager->getMetadataFactory();
 
                     if (self::isValidManager($objectManager, $class)
-                        && $metaFactory->hasMetadataFor($class) || $metaFactory->isTransient($class)) {
+                        && ($metaFactory->hasMetadataFor($class) || $metaFactory->isTransient($class))
+                    ) {
                         $manager = $objectManager;
 
                         break;
