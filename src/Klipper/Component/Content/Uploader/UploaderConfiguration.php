@@ -29,20 +29,24 @@ class UploaderConfiguration implements UploaderConfigurationInterface
 
     private ?string $namer;
 
+    private ?string $attachmentClass;
+
     /**
      * @param string      $name             The uploader name
      * @param string      $path             The path of the upload directory
      * @param int         $maxSize          The max size of the uploaded file
      * @param string[]    $allowedTypeMimes The allowed type mimes
      * @param null|string $namer            The namer file name
+     * @param null|string $attachmentClass  The classname of attachment model
      */
-    public function __construct(string $name, string $path, int $maxSize = 0, array $allowedTypeMimes = [], ?string $namer = null)
+    public function __construct(string $name, string $path, int $maxSize = 0, array $allowedTypeMimes = [], ?string $namer = null, ?string $attachmentClass = null)
     {
         $this->name = $name;
         $this->path = $path;
         $this->maxSize = $maxSize;
         $this->allowedTypeMimes = $allowedTypeMimes;
         $this->namer = $namer;
+        $this->attachmentClass = $attachmentClass;
     }
 
     public function getName(): string
@@ -68,5 +72,15 @@ class UploaderConfiguration implements UploaderConfigurationInterface
     public function getNamer(): ?string
     {
         return $this->namer;
+    }
+
+    public function getAttachmentClass(): ?string
+    {
+        return $this->attachmentClass;
+    }
+
+    public function isAttachment(): bool
+    {
+        return null !== $this->attachmentClass;
     }
 }

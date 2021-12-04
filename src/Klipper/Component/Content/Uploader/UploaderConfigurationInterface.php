@@ -42,4 +42,14 @@ interface UploaderConfigurationInterface
      * Get the namer file name.
      */
     public function getNamer(): ?string;
+
+    /**
+     * Get the classname of attachment model.
+     */
+    public function getAttachmentClass(): ?string;
+
+    /**
+     * Check if the uploader configuration is for the attachment model.
+     */
+    public function isAttachment(): bool;
 }
