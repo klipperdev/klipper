@@ -35,9 +35,6 @@ trait PortalUserTrait
      * @ORM\JoinColumn(onDelete="CASCADE", nullable=false)
      *
      * @Assert\NotBlank
-     * @Assert\Expression(
-     *     expression="value && value.isPortalEnabled()"
-     * )
      *
      * @Serializer\Type("AssociationId")
      * @Serializer\Expose
