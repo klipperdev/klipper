@@ -36,6 +36,7 @@ final class ObjectBuilderTest extends TestCase
         $options = [
             'bar' => 'hello world',
         ];
+
         /** @var ObjectFactoryInterface $factory */
         $factory = $this->getMockBuilder('Klipper\Component\DefaultValue\ObjectFactoryInterface')->getMock();
         $type = new FooCompletType();
@@ -68,6 +69,7 @@ final class ObjectBuilderTest extends TestCase
         $options = [
             'bar' => 'the answer to life, the universe, and everything',
         ];
+
         /** @var ObjectFactoryInterface $factory */
         $factory = $this->getMockBuilder('Klipper\Component\DefaultValue\ObjectFactoryInterface')->getMock();
         $type = new FooCompletType();

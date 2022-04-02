@@ -143,6 +143,7 @@ abstract class AbstractInitSessionPdoCommandTest extends TestCase
 
         /** @var ContainerInterface $container */
         $container = $this->container;
+
         /** @var MockObject $pdoMock */
         $pdoMock = $container->get('klipper_session.handler.pdo');
         $pdoMock->expects(static::any())
@@ -164,6 +165,7 @@ abstract class AbstractInitSessionPdoCommandTest extends TestCase
 
         /** @var ContainerInterface $container */
         $container = $this->container;
+
         /** @var MockObject $pdoMock */
         $pdoMock = $container->get('klipper_session.handler.pdo');
         $pdoMock->expects(static::any())

@@ -25,6 +25,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder(): TreeBuilder
     {
         $treeBuilder = new TreeBuilder('klipper_session');
+
         /** @var ArrayNodeDefinition $rootNode */
         $rootNode = $treeBuilder->getRootNode();
         $rootNode->append($this->getSessionNode());
@@ -38,6 +39,7 @@ class Configuration implements ConfigurationInterface
     private function getSessionNode(): ArrayNodeDefinition
     {
         $treeBuilder = new TreeBuilder('pdo');
+
         /** @var ArrayNodeDefinition $node */
         $node = $treeBuilder->getRootNode();
 

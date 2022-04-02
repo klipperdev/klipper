@@ -31,6 +31,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder(): TreeBuilder
     {
         $treeBuilder = new TreeBuilder('klipper_doctrine_extensions_extra');
+
         /** @var ArrayNodeDefinition $rootNode */
         $rootNode = $treeBuilder->getRootNode();
         $rootNode
@@ -59,6 +60,7 @@ class Configuration implements ConfigurationInterface
     private function getVendorNode(string $name): ArrayNodeDefinition
     {
         $treeBuilder = new TreeBuilder($name);
+
         /** @var ArrayNodeDefinition $node */
         $node = $treeBuilder->getRootNode();
 
@@ -89,6 +91,7 @@ class Configuration implements ConfigurationInterface
     private function getClassNode(): ArrayNodeDefinition
     {
         $treeBuilder = new TreeBuilder('class');
+
         /** @var ArrayNodeDefinition $node */
         $node = $treeBuilder->getRootNode();
 

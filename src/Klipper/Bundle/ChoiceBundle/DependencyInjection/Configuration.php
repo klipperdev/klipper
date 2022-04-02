@@ -25,6 +25,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder(): TreeBuilder
     {
         $treeBuilder = new TreeBuilder('klipper_choice');
+
         /** @var ArrayNodeDefinition $rootNode */
         $rootNode = $treeBuilder->getRootNode();
         $rootNode
@@ -40,6 +41,7 @@ class Configuration implements ConfigurationInterface
     protected function getExtendableChoicesNode(): ArrayNodeDefinition
     {
         $treeBuilder = new TreeBuilder('extendable_choices');
+
         /** @var ArrayNodeDefinition $node */
         $node = $treeBuilder->getRootNode();
         $node

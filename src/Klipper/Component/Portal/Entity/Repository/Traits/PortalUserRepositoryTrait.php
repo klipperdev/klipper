@@ -122,6 +122,7 @@ trait PortalUserRepositoryTrait
         $availablePortals = [];
 
         $filters = SqlFilterUtil::disableFilters($em, [], true);
+
         /** @var PortalUserInterface[] $res */
         $res = $this->createQueryBuilder('pu')
             ->addSelect('p')

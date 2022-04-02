@@ -106,6 +106,7 @@ class OrganizationUserSubscriber implements EventSubscriber
     {
         $uow = $em->getUnitOfWork();
         $orgUserMeta = $em->getMetadataFactory()->getMetadataFor(OrganizationUserInterface::class);
+
         /** @var UserInterface[] $users */
         $users = [];
 
@@ -137,6 +138,7 @@ class OrganizationUserSubscriber implements EventSubscriber
 
         /** @var OrganizationUserInterface[] $orgUsersMap */
         $orgUsersMap = [];
+
         /** @var OrganizationUserInterface[] $orgUsers */
         $orgUsers = $em->createQueryBuilder()
             ->select('ou')

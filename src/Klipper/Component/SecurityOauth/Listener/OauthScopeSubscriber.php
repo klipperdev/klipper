@@ -33,6 +33,7 @@ class OauthScopeSubscriber implements EventSubscriberInterface
     {
         $request = $event->getRequest();
         $userScopes = (array) $request->attributes->get('oauth_scopes', []);
+
         /** @var array[]|OauthScope[] $requiredScopes */
         $requiredScopes = (array) $request->attributes->get('_required_oauth_scopes', []);
 

@@ -56,6 +56,7 @@ class PortalContextHelper
         ?OrganizationalContextHelper $orgContextHelper = null
     ) {
         $this->tokenStorage = $tokenStorage;
+
         /** @var PortalUserRepositoryInterface $portalUserRepo */
         $portalUserRepo = RepositoryUtils::getRepository($doctrine, PortalUserInterface::class, PortalUserRepositoryInterface::class);
         $this->portalUserRepository = $portalUserRepo;

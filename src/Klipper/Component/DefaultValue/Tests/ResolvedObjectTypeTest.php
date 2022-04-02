@@ -71,6 +71,7 @@ final class ResolvedObjectTypeTest extends TestCase
     public function testInstanceBuilder(): void
     {
         $rType = $this->getResolvedType();
+
         /** @var ObjectFactoryInterface $factory */
         $factory = $this->getMockBuilder('Klipper\Component\DefaultValue\ObjectFactoryInterface')->getMock();
         $builder = $rType->createBuilder($factory, []);

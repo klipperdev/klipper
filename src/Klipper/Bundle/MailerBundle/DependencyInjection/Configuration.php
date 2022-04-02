@@ -25,6 +25,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder(): TreeBuilder
     {
         $treeBuilder = new TreeBuilder('klipper_mailer');
+
         /** @var ArrayNodeDefinition $rootNode */
         $rootNode = $treeBuilder->getRootNode();
 
@@ -42,6 +43,7 @@ class Configuration implements ConfigurationInterface
     protected function getSmsSenderNode(): ArrayNodeDefinition
     {
         $treeBuilder = new TreeBuilder('sms_sender');
+
         /** @var ArrayNodeDefinition $node */
         $node = $treeBuilder->getRootNode();
         $node
@@ -57,6 +59,7 @@ class Configuration implements ConfigurationInterface
     protected function getTwigNode(): ArrayNodeDefinition
     {
         $treeBuilder = new TreeBuilder('twig');
+
         /** @var ArrayNodeDefinition $node */
         $node = $treeBuilder->getRootNode();
         $node
@@ -75,6 +78,7 @@ class Configuration implements ConfigurationInterface
     protected function getTwigSandboxNode(): ArrayNodeDefinition
     {
         $treeBuilder = new TreeBuilder('sandbox');
+
         /** @var ArrayNodeDefinition $node */
         $node = $treeBuilder->getRootNode();
         $node
@@ -94,6 +98,7 @@ class Configuration implements ConfigurationInterface
     protected function getTwigSandboxSecurityPolicyNode(): ArrayNodeDefinition
     {
         $treeBuilder = new TreeBuilder('security_policy');
+
         /** @var ArrayNodeDefinition $node */
         $node = $treeBuilder->getRootNode();
         $node
@@ -128,6 +133,7 @@ class Configuration implements ConfigurationInterface
     protected function getTwigLoaderNode(): ArrayNodeDefinition
     {
         $treeBuilder = new TreeBuilder('loaders');
+
         /** @var ArrayNodeDefinition $node */
         $node = $treeBuilder->getRootNode();
         $node

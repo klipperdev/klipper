@@ -57,6 +57,7 @@ final class TemplatedSmsTest extends TestCase
         $sms->context($context);
 
         $serializedSms = serialize($sms);
+
         /** @var TemplatedSms $unserialiedSms */
         $unserialiedSms = unserialize($serializedSms);
 

@@ -32,6 +32,7 @@ trait ChoiceRepositoryTrait
     public function findChoices(array $types): array
     {
         $filters = SqlFilterUtil::disableFilters($this->getEntityManager(), ['organizational']);
+
         /** @var ChoiceInterface[] $res */
         $res = $this->createQueryBuilder('c')
             ->where('c.type in (:types)')
