@@ -11,6 +11,7 @@
 
 namespace Klipper\Component\Metadata\CacheWarmer;
 
+use Klipper\Component\Metadata\Listener\ConfigurationsInterface;
 use Klipper\Component\Metadata\MetadataFactoryInterface;
 use Psr\Container\ContainerInterface;
 use Symfony\Component\HttpKernel\CacheWarmer\CacheWarmerInterface;
@@ -22,15 +23,11 @@ use Symfony\Contracts\Service\ServiceSubscriberInterface;
  */
 class MetadatasCacheWarmer implements CacheWarmerInterface, ServiceSubscriberInterface
 {
-    /**
-     * @var ContainerInterface
-     */
-    private $container;
+    private ContainerInterface $container;
 
-    /**
-     * @var null|MetadataFactoryInterface
-     */
-    private $metadataFactory;
+    private ?MetadataFactoryInterface $metadataFactory = null;
+
+    private ?ConfigurationsInterface $subscriberConfigurations = null;
 
     public function __construct(ContainerInterface $container)
     {
@@ -39,6 +36,8 @@ class MetadatasCacheWarmer implements CacheWarmerInterface, ServiceSubscriberInt
 
     /**
      * @param mixed $cacheDir
+     *
+     * @throws
      */
     public function warmUp($cacheDir): void
     {
@@ -46,8 +45,16 @@ class MetadatasCacheWarmer implements CacheWarmerInterface, ServiceSubscriberInt
             $this->metadataFactory = $this->container->get('klipper_metadata.factory');
         }
 
+        if (null === $this->subscriberConfigurations) {
+            $this->subscriberConfigurations = $this->container->get('klipper_metadata.subscriber.configurations');
+        }
+
         if ($this->metadataFactory instanceof WarmableInterface) {
             $this->metadataFactory->warmUp($cacheDir);
+        }
+
+        if ($this->subscriberConfigurations instanceof WarmableInterface) {
+            $this->subscriberConfigurations->warmUp($cacheDir);
         }
     }
 
@@ -60,6 +67,7 @@ class MetadatasCacheWarmer implements CacheWarmerInterface, ServiceSubscriberInt
     {
         return [
             'klipper_metadata.factory' => MetadataFactoryInterface::class,
+            'klipper_metadata.subscriber.configurations' => ConfigurationsInterface::class,
         ];
     }
 }
