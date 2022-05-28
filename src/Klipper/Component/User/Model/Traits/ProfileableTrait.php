@@ -28,6 +28,7 @@ trait ProfileableTrait
      * @Assert\Length(max=255)
      *
      * @Serializer\Expose
+     * @Serializer\Groups({"Default", "Public"})
      */
     protected ?string $firstName = null;
 
@@ -37,6 +38,7 @@ trait ProfileableTrait
      * @Assert\Length(max=255)
      *
      * @Serializer\Expose
+     * @Serializer\Groups({"Default", "Public"})
      */
     protected ?string $lastName = null;
 
@@ -47,6 +49,7 @@ trait ProfileableTrait
      *
      * @Serializer\Expose
      * @Serializer\ReadOnlyProperty
+     * @Serializer\Groups({"Default", "Public"})
      */
     protected ?string $initial = null;
 
@@ -109,6 +112,7 @@ trait ProfileableTrait
      *
      * @Serializer\SerializedName("full_name")
      * @Serializer\VirtualProperty
+     * @Serializer\Groups({"Default", "Public"})
      */
     public function getFullName(string $format = '{firstName} {lastName}'): ?string
     {

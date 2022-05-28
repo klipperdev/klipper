@@ -32,6 +32,7 @@ trait UserTrait
      * @Assert\Regex(pattern="/^[A-Za-z0-9\_\-.]+$/")
      *
      * @Serializer\Expose
+     * @Serializer\Groups({"Default", "Public"})
      */
     protected ?string $username = null;
 
