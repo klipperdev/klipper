@@ -28,6 +28,7 @@ trait IdTrait
      *
      * @Serializer\Expose
      * @Serializer\ReadOnlyProperty
+     * @Serializer\Groups({"Default", "Public"})
      */
     protected ?int $id = null;
 

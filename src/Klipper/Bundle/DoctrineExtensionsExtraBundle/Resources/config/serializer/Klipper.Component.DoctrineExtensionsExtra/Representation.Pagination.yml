@@ -2,12 +2,12 @@ Klipper\Component\DoctrineExtensionsExtra\Representation\Pagination:
     exclusion_policy: all
     properties:
         page:
-            groups: [Default]
+            groups: [Default, Public]
         limit:
-            groups: [Default]
+            groups: [Default, Public]
         pages:
-            groups: [Default]
+            groups: [Default, Public]
         total:
-            groups: [Default]
+            groups: [Default, Public]
         results:
-            groups: [Default]
+            groups: [Default, Public]
