@@ -86,13 +86,22 @@ class FormDataAdapter implements AdapterInterface
         $newFile = new FilesystemFile($movedFile, $originalName);
 
         $this->dispatcher->dispatch(new UploadFileCompleteEvent($uploader, $request, $newFile, $payload));
-        $this->dispatcher->dispatch(new UploadFileCompletedEvent($uploader, $request, $newFile, $payload));
+
+        $completedEvent = new UploadFileCompletedEvent($uploader, $request, $newFile, $payload);
+        $this->dispatcher->dispatch($completedEvent);
 
         foreach ($request->getAcceptableContentTypes() as $contentType) {
             if ('json' === $request->getFormat($contentType)) {
-                return new JsonResponse([
+                $resPayload = $completedEvent->getResponsePayload();
+                $res = [
                     'success' => true,
-                ]);
+                ];
+
+                if (!empty($resPayload)) {
+                    $res['payload'] = $resPayload;
+                }
+
+                return new JsonResponse($res);
             }
         }
 

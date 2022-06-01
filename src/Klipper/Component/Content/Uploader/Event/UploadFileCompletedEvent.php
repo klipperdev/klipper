@@ -16,4 +16,17 @@ namespace Klipper\Component\Content\Uploader\Event;
  */
 class UploadFileCompletedEvent extends AbstractUploadFileEvent
 {
+    private array $responsePayload = [];
+
+    public function getResponsePayload(): array
+    {
+        return $this->responsePayload;
+    }
+
+    public function setResponsePayload(array $responsePayload): static
+    {
+        $this->responsePayload = $responsePayload;
+
+        return $this;
+    }
 }
