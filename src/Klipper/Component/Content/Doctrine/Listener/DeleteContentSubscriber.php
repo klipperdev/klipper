@@ -66,6 +66,20 @@ class DeleteContentSubscriber implements EventSubscriber
         $uow = $em->getUnitOfWork();
         $deleteTypes = [];
 
+        foreach ($uow->getScheduledEntityUpdates() as $entity) {
+            $changeSet = $uow->getEntityChangeSet($entity);
+
+            foreach ($this->configs as $config) {
+                if (is_a($entity, $config->getClassname())) {
+                    $propertyPath = $config->getPropertyPath();
+
+                    if (isset($changeSet[$propertyPath])) {
+                        $deleteTypes[$config->getUploaderName()][] = $changeSet[$propertyPath][0];
+                    }
+                }
+            }
+        }
+
         foreach ($uow->getScheduledEntityDeletions() as $entity) {
             foreach ($this->configs as $config) {
                 if (is_a($entity, $config->getClassname())) {
