@@ -10,7 +10,7 @@
             <tag name="klipper_content.doctrine_delete_config" />
             <argument>import</argument>
             <argument>Klipper\Component\Import\Model\ImportInterface</argument>
-            <argument>getResultFilePath</argument>
+            <argument>resultFilePath</argument>
         </service>
     </services>
 </container>
