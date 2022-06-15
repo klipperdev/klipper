@@ -219,6 +219,7 @@ class GuessDoctrineMetadata extends AbstractGuessDoctrine implements
             && !$mapping['isCascadeMerge']
             && !$mapping['isCascadeRemove']
             && !$mapping['isCascadeDetach']
+            && !(OrmClassMetadata::MANY_TO_MANY === $type && (bool) $mapping['inversedBy'])
         ) {
             $builder->setReadOnly(true);
         }
