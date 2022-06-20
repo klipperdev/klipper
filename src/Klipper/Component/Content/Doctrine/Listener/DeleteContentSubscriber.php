@@ -73,7 +73,7 @@ class DeleteContentSubscriber implements EventSubscriber
                 if (is_a($entity, $config->getClassname())) {
                     $propertyPath = $config->getPropertyPath();
 
-                    if (isset($changeSet[$propertyPath])) {
+                    if (isset($changeSet[$propertyPath]) && null !== $changeSet[$propertyPath][0]) {
                         $deleteTypes[$config->getUploaderName()][] = $changeSet[$propertyPath][0];
                     }
                 }
