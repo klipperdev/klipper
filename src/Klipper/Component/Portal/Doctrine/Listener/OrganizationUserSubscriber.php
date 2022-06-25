@@ -115,7 +115,7 @@ class OrganizationUserSubscriber implements EventSubscriber
                 $user = $entity->getUser();
 
                 if ($user instanceof UserInterface) {
-                    $users[$user->getId()] = $user;
+                    $users[$user->getUserIdentifier()] = $user;
                 }
             }
         }
@@ -125,7 +125,7 @@ class OrganizationUserSubscriber implements EventSubscriber
                 $user = $entity->getUser();
 
                 if ($user instanceof UserInterface) {
-                    $users[$user->getId()] = $user;
+                    $users[$user->getUserIdentifier()] = $user;
                 }
             }
         }
@@ -138,12 +138,13 @@ class OrganizationUserSubscriber implements EventSubscriber
 
         /** @var OrganizationUserInterface[] $orgUsersMap */
         $orgUsersMap = [];
+        $userIds = $this->getUserIds($users);
 
         /** @var OrganizationUserInterface[] $orgUsers */
-        $orgUsers = $em->createQueryBuilder()
+        $orgUsers = empty($userIds) ? $userIds : $em->createQueryBuilder()
             ->select('ou')
             ->from(OrganizationUserInterface::class, 'ou')
-            ->where('ou.user IN(:users)')
+            ->where('ou.user IN (:users)')
             ->andWhere('ou.organization = :org')
             ->setParameter('users', array_values($users))
             ->setParameter('org', $org)
@@ -152,12 +153,12 @@ class OrganizationUserSubscriber implements EventSubscriber
         ;
 
         foreach ($orgUsers as $orgUser) {
-            $orgUsersMap[$orgUser->getUser()->getId()] = $orgUser;
+            $orgUsersMap[$orgUser->getUser()->getUserIdentifier()] = $orgUser;
         }
 
         foreach ($users as $user) {
-            if (isset($orgUsersMap[$user->getId()])) {
-                $orgUser = $orgUsersMap[$user->getId()];
+            if (isset($orgUsersMap[$user->getUserIdentifier()])) {
+                $orgUser = $orgUsersMap[$user->getUserIdentifier()];
 
                 if (method_exists($orgUser, 'isEnabled')
                     && method_exists($orgUser, 'setEnabled')
@@ -182,5 +183,23 @@ class OrganizationUserSubscriber implements EventSubscriber
         }
 
         SqlFilterUtil::enableFilters($em, $filters);
+    }
+
+    /**
+     * @param UserInterface[] $users
+     *
+     * @return int[]|string[]
+     */
+    private function getUserIds(array $users): array
+    {
+        $ids = [];
+
+        foreach ($users as $user) {
+            if (!empty($user->getId())) {
+                $ids[] = $user->getId();
+            }
+        }
+
+        return $ids;
     }
 }
