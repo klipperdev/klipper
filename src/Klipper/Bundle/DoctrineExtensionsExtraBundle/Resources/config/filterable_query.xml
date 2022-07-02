@@ -6,6 +6,7 @@
 
     <services>
         <service id="klipper_doctrine_extensions_extra.filterable_query" class="Klipper\Component\DoctrineExtensionsExtra\Filterable\FilterableQuery" public="true">
+            <argument type="service" id="doctrine.orm.entity_manager"/>
             <argument type="service" id="klipper_metadata.manager" />
             <argument type="service" id="klipper_doctrine_extensions_extra.filterable_query.parser" />
             <argument type="service" id="form.factory" />

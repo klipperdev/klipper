@@ -33,9 +33,9 @@ class RequestQueryFilterableFormGuesserPass implements CompilerPassInterface
             $guessers = $this->findTags(
                 $container,
                 'klipper_doctrine_extensions_extra.filterable_query.form_guesser',
-                $def->getArgument(6)
+                $def->getArgument(7)
             );
-            $def->replaceArgument(6, $guessers);
+            $def->replaceArgument(7, $guessers);
         }
     }
 
