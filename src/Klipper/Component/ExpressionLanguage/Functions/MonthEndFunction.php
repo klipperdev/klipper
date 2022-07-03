@@ -18,10 +18,10 @@ namespace Klipper\Component\ExpressionLanguage\Functions;
  */
 class MonthEndFunction extends BaseFunction
 {
-    public function __construct()
+    public function __construct(?\IntlDateFormatter $dateFormatter = null)
     {
-        parent::__construct('month_end', static function () {
-            return DateFunctionUtil::getFormatter()->format(strtotime(date('Y-m-t 23:59:59')));
+        parent::__construct('month_end', static function () use ($dateFormatter) {
+            return DateFunctionUtil::getFormatter($dateFormatter)->format(strtotime(date('Y-m-t 23:59:59')));
         });
     }
 }

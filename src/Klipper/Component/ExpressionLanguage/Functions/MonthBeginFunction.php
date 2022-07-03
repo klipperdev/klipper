@@ -18,10 +18,10 @@ namespace Klipper\Component\ExpressionLanguage\Functions;
  */
 class MonthBeginFunction extends BaseFunction
 {
-    public function __construct()
+    public function __construct(?\IntlDateFormatter $dateFormatter = null)
     {
-        parent::__construct('month_begin', static function () {
-            return DateFunctionUtil::getFormatter()->format(strtotime(date('Y-m-01')));
+        parent::__construct('month_begin', static function () use ($dateFormatter) {
+            return DateFunctionUtil::getFormatter($dateFormatter)->format(strtotime(date('Y-m-01')));
         });
     }
 }

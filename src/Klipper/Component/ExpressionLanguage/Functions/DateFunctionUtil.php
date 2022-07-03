@@ -18,6 +18,8 @@ namespace Klipper\Component\ExpressionLanguage\Functions;
  */
 abstract class DateFunctionUtil
 {
+    public static ?string $DEFAULT_PATTERN = null;
+
     /**
      * Create and format the datetime from a string.
      *
@@ -72,7 +74,7 @@ abstract class DateFunctionUtil
                 \IntlDateFormatter::MEDIUM,
                 date_default_timezone_get(),
                 \IntlDateFormatter::GREGORIAN,
-                null
+                static::$DEFAULT_PATTERN
             );
         }
 
@@ -97,7 +99,7 @@ abstract class DateFunctionUtil
                 \IntlDateFormatter::NONE,
                 $formatter->getTimeZoneId(),
                 $formatter->getCalendar(),
-                null
+                static::$DEFAULT_PATTERN
             );
         }
 

@@ -18,10 +18,10 @@ namespace Klipper\Component\ExpressionLanguage\Functions;
  */
 class NowFunction extends BaseFunction
 {
-    public function __construct()
+    public function __construct(?\IntlDateFormatter $dateFormatter = null)
     {
-        parent::__construct('now', static function () {
-            return DateFunctionUtil::create('now');
+        parent::__construct('now', static function () use ($dateFormatter) {
+            return DateFunctionUtil::create('now', $dateFormatter);
         });
     }
 }

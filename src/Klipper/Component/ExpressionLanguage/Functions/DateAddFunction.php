@@ -18,10 +18,10 @@ namespace Klipper\Component\ExpressionLanguage\Functions;
  */
 class DateAddFunction extends BaseFunction
 {
-    public function __construct()
+    public function __construct(?\IntlDateFormatter $dateFormatter = null)
     {
-        parent::__construct('date_add', static function ($arguments, $datetime = 'now', $diff = '1day') {
-            $formatter = DateFunctionUtil::getFormatter();
+        parent::__construct('date_add', static function ($arguments, $datetime = 'now', $diff = '1day') use ($dateFormatter) {
+            $formatter = DateFunctionUtil::getFormatter($dateFormatter);
             $value = DateFunctionUtil::createDateTime($datetime, $formatter);
 
             if ($value instanceof \DateTime) {

@@ -20,12 +20,12 @@ use Klipper\Component\Intl\CalendarUtil;
  */
 class WeekBeginFunction extends BaseFunction
 {
-    public function __construct()
+    public function __construct(?\IntlDateFormatter $dateFormatter = null)
     {
-        parent::__construct('week_begin', static function () {
+        parent::__construct('week_begin', static function () use ($dateFormatter) {
             $value = date_create('previous '.CalendarUtil::getFirstDayOfWeekName());
 
-            return DateFunctionUtil::getFormatter()->format($value);
+            return DateFunctionUtil::getFormatter($dateFormatter)->format($value);
         });
     }
 }

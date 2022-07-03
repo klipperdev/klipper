@@ -20,16 +20,16 @@ use Klipper\Component\Intl\CalendarUtil;
  */
 class WeekEndFunction extends BaseFunction
 {
-    public function __construct()
+    public function __construct(?\IntlDateFormatter $dateFormatter = null)
     {
-        parent::__construct('week_end', static function () {
+        parent::__construct('week_end', static function () use ($dateFormatter) {
             $value = date_create('this '.CalendarUtil::getLastDayOfWeekName());
 
             if (false !== $value) {
                 $value->setTime(23, 59, 59);
             }
 
-            return DateFunctionUtil::getFormatter()->format($value);
+            return DateFunctionUtil::getFormatter($dateFormatter)->format($value);
         });
     }
 }
