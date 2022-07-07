@@ -222,7 +222,7 @@ class Downloader implements DownloaderInterface
         if (null !== $contentDisposition) {
             $defaultHeaders = array_merge($defaultHeaders, [
                 'Content-Transfer-Encoding', 'binary',
-                'Content-Disposition' => sprintf('attachment; filename="%s"', $contentDisposition),
+                'Content-Disposition' => sprintf('attachment; filename="%s"', utf8_decode(htmlspecialchars_decode($contentDisposition))),
             ]);
         }
 
