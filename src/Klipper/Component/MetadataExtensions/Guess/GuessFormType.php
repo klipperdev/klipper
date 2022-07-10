@@ -29,6 +29,7 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TimeType;
 
 /**
  * @author François Pluchino <francois.pluchino@klipper.dev>
@@ -62,7 +63,7 @@ class GuessFormType implements
         'text' => TextType::class,
         'textarea' => TextareaType::class,
         'rich_textarea' => TextareaType::class,
-        'time' => TextType::class,
+        'time' => TimeType::class,
         'url' => TextType::class,
         'uuid' => TextType::class,
     ];
@@ -76,6 +77,9 @@ class GuessFormType implements
             'widget' => 'single_text',
         ],
         'datetime' => [
+            'widget' => 'single_text',
+        ],
+        'time' => [
             'widget' => 'single_text',
         ],
     ];
