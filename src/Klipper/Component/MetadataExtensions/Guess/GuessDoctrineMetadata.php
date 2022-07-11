@@ -61,6 +61,7 @@ class GuessDoctrineMetadata extends AbstractGuessDoctrine implements
         'object' => 'object',
         'date' => 'date',
         'datetime' => 'datetime',
+        'time' => 'time',
     ];
 
     public const ASSOCIATION_TYPES = [

@@ -81,6 +81,7 @@ class GuessFormType implements
         ],
         'time' => [
             'widget' => 'single_text',
+            'input_format' => 'H:i',
         ],
     ];
 
