@@ -17,6 +17,8 @@ use Symfony\Component\Cache\Adapter\DoctrineAdapter as BaseDoctrineAdapter;
  * Doctrine Cache Adapter.
  *
  * @author François Pluchino <francois.pluchino@klipper.dev>
+ *
+ * @deprecated Since Symfony 5.4, use Doctrine\Common\Cache\Psr6\CacheAdapter instead
  */
 class DoctrineAdapter extends BaseDoctrineAdapter implements AdapterInterface
 {
