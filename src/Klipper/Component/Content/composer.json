@@ -16,9 +16,9 @@
         "ext-fileinfo": "*",
         "imagine/imagine": "^1.2.0",
         "klipper/doctrine-extra": "^2.0.0",
-        "symfony/http-kernel": "^5.3.0",
-        "symfony/filesystem": "^5.3.0",
-        "symfony/mime": "^5.3.0"
+        "symfony/http-kernel": "^5.4.0",
+        "symfony/filesystem": "^5.4.0",
+        "symfony/mime": "^5.4.0"
     },
     "require-dev": {
         "ankitpokhrel/tus-php": "^2.0.0",
@@ -28,9 +28,9 @@
         "klipper/resource": "^2.0.0",
         "klipper/routing": "^2.0.0",
         "jms/serializer": "^3.14.0",
-        "symfony/event-dispatcher": "^5.3.0",
-        "symfony/messenger": "^5.3.0",
-        "symfony/property-access": "^5.3.0"
+        "symfony/event-dispatcher": "^5.4.0",
+        "symfony/messenger": "^5.4.0",
+        "symfony/property-access": "^5.4.0"
     },
     "autoload": {
         "psr-4": { "Klipper\\Component\\Content\\": "" },

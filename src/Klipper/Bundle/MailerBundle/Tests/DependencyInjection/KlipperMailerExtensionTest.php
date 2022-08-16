@@ -152,7 +152,10 @@ final class KlipperMailerExtensionTest extends TestCase
                 'FrameworkBundle' => FrameworkBundle::class,
                 'KlipperMailerBundle' => KlipperMailerBundle::class,
             ],
-            'kernel.bundles_metadata' => [],
+            'kernel.bundles_metadata' => [
+                'FrameworkBundle' => ['path' => (new \ReflectionClass(FrameworkBundle::class))->getFileName(),],
+                'KlipperMailerBundle' => ['path' => (new \ReflectionClass(KlipperMailerBundle::class))->getFileName(),],
+            ],
             'kernel.cache_dir' => sys_get_temp_dir().'/klipper_mailer_bundle',
             'kernel.debug' => false,
             'kernel.environment' => 'test',

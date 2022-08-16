@@ -24,7 +24,7 @@ trait AdapterTrait
     public function clearByPrefixes(array $prefixes): bool
     {
         $this->clearDeferredByPrefixes($prefixes);
-        $namespace = AdapterUtil::getPropertyValue($this, 'namespace');
+        $namespace = (string) AdapterUtil::getPropertyValue($this, 'namespace');
         $ok = true;
 
         foreach ($prefixes as $prefix) {
