@@ -30,6 +30,11 @@
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
+    "config": {
+        "allow-plugins": {
+            "wikimedia/composer-merge-plugin": true
+        }
+    },
     "extra": {
         "merge-plugin": {
             "recurse": true,
