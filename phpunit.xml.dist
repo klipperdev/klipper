@@ -19,10 +19,168 @@
     </php>
 
     <testsuites>
-        <testsuite name="Klipper Test Suite">
+        <!-- Global Tests -->
+        <testsuite name="bridges">
             <directory>./src/Klipper/Bridge/*/*/Tests/</directory>
-            <directory>./src/Klipper/Component/*/Tests/</directory>
+        </testsuite>
+
+        <testsuite name="importer-bridges">
+            <directory>./src/Klipper/Bridge/Importer/*/Tests/</directory>
+        </testsuite>
+
+        <testsuite name="sms-sender-bridges">
+            <directory>./src/Klipper/Bridge/SmsSender/*/Tests/</directory>
+        </testsuite>
+
+        <testsuite name="bundles">
             <directory>./src/Klipper/Bundle/*/Tests/</directory>
+        </testsuite>
+
+        <testsuite name="components">
+            <directory>./src/Klipper/Component/*/Tests/</directory>
+        </testsuite>
+
+        <testsuite name="contracts">
+            <directory>./src/Klipper/Contracts/*/Tests/</directory>
+        </testsuite>
+
+        <testsuite name="modules">
+            <directory>./src/Klipper/Module/*/Tests/</directory>
+        </testsuite>
+
+        <!-- Bridge Tests -->
+        <testsuite name="amazon-sms-sender-bridge">
+            <directory>./src/Klipper/Bridge/SmsSender/Amazon/Tests/</directory>
+        </testsuite>
+
+        <testsuite name="twig-sms-sender-bridge">
+            <directory>./src/Klipper/Bridge/SmsSender/Twig/Tests/</directory>
+        </testsuite>
+
+        <testsuite name="twilio-sms-sender-bridge">
+            <directory>./src/Klipper/Bridge/SmsSender/Twilio/Tests/</directory>
+        </testsuite>
+
+        <!-- Bundle Tests -->
+        <testsuite name="cache-bundle">
+            <directory>./src/Klipper/Bundle/CacheBundle/Tests/</directory>
+        </testsuite>
+
+        <testsuite name="default-value-bundle">
+            <directory>./src/Klipper/Bundle/DefaultValueBundle/Tests/</directory>
+        </testsuite>
+
+        <testsuite name="doctrine-extensions-bundle">
+            <directory>./src/Klipper/Bundle/DoctrineExtensionsBundle/Tests/</directory>
+        </testsuite>
+
+        <testsuite name="doctrine-migrations-bundle">
+            <directory>./src/Klipper/Bundle/DoctrineMigrationsBundle/Tests/</directory>
+        </testsuite>
+
+        <testsuite name="mailer-bundle">
+            <directory>./src/Klipper/Bundle/MailerBundle/Tests/</directory>
+        </testsuite>
+
+        <testsuite name="resource-bundle">
+            <directory>./src/Klipper/Bundle/ResourceBundle/Tests/</directory>
+        </testsuite>
+
+        <testsuite name="routing-extra-bundle">
+            <directory>./src/Klipper/Bundle/RoutingExtraBundle/Tests/</directory>
+        </testsuite>
+
+        <testsuite name="security-bundle">
+            <directory>./src/Klipper/Bundle/SecurityBundle/Tests/</directory>
+        </testsuite>
+
+        <testsuite name="session-bundle">
+            <directory>./src/Klipper/Bundle/SessionBundle/Tests/</directory>
+        </testsuite>
+
+        <testsuite name="sms-sender-bundle">
+            <directory>./src/Klipper/Bundle/SmsSenderBundle/Tests/</directory>
+        </testsuite>
+
+        <!-- Component Tests -->
+        <testsuite name="cache">
+            <directory>./src/Klipper/Component/Cache/Tests/</directory>
+        </testsuite>
+
+        <testsuite name="config">
+            <directory>./src/Klipper/Component/Config/Tests/</directory>
+        </testsuite>
+
+        <testsuite name="default-value">
+            <directory>./src/Klipper/Component/DefaultValue/Tests/</directory>
+        </testsuite>
+
+        <testsuite name="doctrine-extensions">
+            <directory>./src/Klipper/Component/DoctrineExtensions/Tests/</directory>
+        </testsuite>
+
+        <testsuite name="doctrine-extensions-extra">
+            <directory>./src/Klipper/Component/DoctrineExtensionsExtra/Tests/</directory>
+        </testsuite>
+
+        <testsuite name="doctrine-extra">
+            <directory>./src/Klipper/Component/DoctrineExtra/Tests/</directory>
+        </testsuite>
+
+        <testsuite name="form">
+            <directory>./src/Klipper/Component/Form/Tests/</directory>
+        </testsuite>
+
+        <testsuite name="http-foundation">
+            <directory>./src/Klipper/Component/HttpFoundation/Tests/</directory>
+        </testsuite>
+
+        <testsuite name="intl">
+            <directory>./src/Klipper/Component/Intl/Tests/</directory>
+        </testsuite>
+
+        <testsuite name="mailer">
+            <directory>./src/Klipper/Component/Mailer/Tests/</directory>
+        </testsuite>
+
+        <testsuite name="metadata">
+            <directory>./src/Klipper/Component/Metadata/Tests/</directory>
+        </testsuite>
+
+        <testsuite name="resource">
+            <directory>./src/Klipper/Component/Resource/Tests/</directory>
+        </testsuite>
+
+        <testsuite name="routing">
+            <directory>./src/Klipper/Component/Routing/Tests/</directory>
+        </testsuite>
+
+        <testsuite name="routing-extra">
+            <directory>./src/Klipper/Component/RoutingExtra/Tests/</directory>
+        </testsuite>
+
+        <testsuite name="security">
+            <directory>./src/Klipper/Component/Security/Tests/</directory>
+        </testsuite>
+
+        <testsuite name="security-extra">
+            <directory>./src/Klipper/Component/SecurityExtra/Tests/</directory>
+        </testsuite>
+
+        <testsuite name="security-oauth">
+            <directory>./src/Klipper/Component/SecurityOauth/Tests/</directory>
+        </testsuite>
+
+        <testsuite name="sms-sender">
+            <directory>./src/Klipper/Component/SmsSender/Tests/</directory>
+        </testsuite>
+
+        <testsuite name="system">
+            <directory>./src/Klipper/Component/System/Tests/</directory>
+        </testsuite>
+
+        <testsuite name="uuid">
+            <directory>./src/Klipper/Component/Uuid/Tests/</directory>
         </testsuite>
     </testsuites>
 
@@ -34,12 +192,20 @@
         <exclude>
             <file>.php-cs-fixer.dist.php</file>
             <directory>./src/Klipper/Bridge/*/*/Tests</directory>
-            <directory>./src/Klipper/Component/*/Tests</directory>
             <directory>./src/Klipper/Bundle/*/Tests</directory>
-            <directory>./src/Klipper/Component/*/Resources</directory>
+            <directory>./src/Klipper/Component/*/Tests</directory>
+            <directory>./src/Klipper/Contracts/*/Tests</directory>
+            <directory>./src/Klipper/Module/*/Tests</directory>
+            <directory>./src/Klipper/Bridge/*/Resources</directory>
             <directory>./src/Klipper/Bundle/*/Resources</directory>
-            <directory>./src/Klipper/Component/*/vendor</directory>
+            <directory>./src/Klipper/Component/*/Resources</directory>
+            <directory>./src/Klipper/Contracts/*/Resources</directory>
+            <directory>./src/Klipper/Module/*/Resources</directory>
+            <directory>./src/Klipper/Bridge/*/*/vendor</directory>
             <directory>./src/Klipper/Bundle/*/vendor</directory>
+            <directory>./src/Klipper/Component/*/vendor</directory>
+            <directory>./src/Klipper/Contracts/*/vendor</directory>
+            <directory>./src/Klipper/Module/*/vendor</directory>
         </exclude>
     </coverage>
 

@@ -20,9 +20,6 @@ use Ramsey\Uuid\Uuid;
  *
  * @author François Pluchino <francois.pluchino@klipper.dev>
  *
- * @group klipper
- * @group klipper-uuid
- *
  * @internal
  */
 final class UuidUtilTest extends TestCase
