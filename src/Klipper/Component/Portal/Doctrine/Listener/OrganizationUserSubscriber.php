@@ -53,7 +53,7 @@ class OrganizationUserSubscriber implements EventSubscriber
      */
     public function onFlush(OnFlushEventArgs $args): void
     {
-        $em = $args->getEntityManager();
+        $em = $args->getObjectManager();
         $uow = $em->getUnitOfWork();
         $metaFactory = $em->getMetadataFactory();
         $org = $this->orgContext->getCurrentOrganization();
@@ -82,7 +82,7 @@ class OrganizationUserSubscriber implements EventSubscriber
     public function postFlush(PostFlushEventArgs $args): void
     {
         if (!empty($this->deletePortalUserIds)) {
-            $em = $args->getEntityManager();
+            $em = $args->getObjectManager();
 
             $filters = SqlFilterUtil::disableFilters($em, [], true);
             $em->createQueryBuilder()
