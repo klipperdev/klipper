@@ -46,12 +46,12 @@ final class User implements UserInterface
         $this->foo = false;
     }
 
-    public function getRoles()
+    public function getRoles(): array
     {
         return $this->roles;
     }
 
-    public function getPassword()
+    public function getPassword(): ?string
     {
         return $this->password;
     }
@@ -61,7 +61,7 @@ final class User implements UserInterface
         return null;
     }
 
-    public function getUsername()
+    public function getUsername(): string
     {
         return $this->username;
     }
