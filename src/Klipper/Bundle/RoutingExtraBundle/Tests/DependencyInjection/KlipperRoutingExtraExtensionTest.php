@@ -65,6 +65,9 @@ final class KlipperRoutingExtraExtensionTest extends TestCase
         $container->registerExtension($extension);
 
         $sfExt->load([[
+            'messenger' => [
+                'reset_on_message' => true,
+            ],
             'router' => [
                 'utf8' => true,
                 'resource' => '.',

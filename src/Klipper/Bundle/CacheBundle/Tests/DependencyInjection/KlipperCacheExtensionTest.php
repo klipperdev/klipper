@@ -78,7 +78,13 @@ final class KlipperCacheExtensionTest extends TestCase
             $container->setDefinition($id, $definition);
         }
 
-        $sfExt->load([], $container);
+        $sfExt->load([
+            [
+                'messenger' => [
+                    'reset_on_message' => true,
+                ],
+            ],
+        ], $container);
         $extension->load($configs, $container);
 
         $bundle = new KlipperCacheBundle();

@@ -76,7 +76,13 @@ final class KlipperSmsSenderExtensionTest extends TestCase
         $container->registerExtension($sfExt);
         $container->registerExtension($extension);
 
-        $sfExt->load([[]], $container);
+        $sfExt->load([
+            [
+                'messenger' => [
+                    'reset_on_message' => true,
+                ],
+            ],
+        ], $container);
         $extension->load($configs, $container);
 
         $bundle = new KlipperSmsSenderBundle();

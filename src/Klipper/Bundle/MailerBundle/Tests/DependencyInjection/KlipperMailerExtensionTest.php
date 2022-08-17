@@ -178,7 +178,13 @@ final class KlipperMailerExtensionTest extends TestCase
         $container->registerExtension($smsSenderExt);
         $container->registerExtension($extension);
 
-        $sfExt->load([[]], $container);
+        $sfExt->load([
+            [
+                'messenger' => [
+                    'reset_on_message' => true,
+                ],
+            ],
+        ], $container);
         $doctrineExt->load([$this->getDoctrineConfig()], $container);
         $smsSenderExt->load($smsSenderConfigs, $container);
         $extension->load($configs, $container);
