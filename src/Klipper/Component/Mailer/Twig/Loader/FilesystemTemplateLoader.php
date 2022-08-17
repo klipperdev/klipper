@@ -46,7 +46,7 @@ class FilesystemTemplateLoader extends FilesystemLoader
      *
      * @throws
      */
-    protected function findTemplate($name, $throw = true)
+    protected function findTemplate($name, $throw = true): ?string
     {
         if (0 !== strpos($name, '@'.$this->getNamespaces()[0])) {
             return null;
