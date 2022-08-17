@@ -44,7 +44,7 @@ class ProfileableSubscriber implements EventSubscriber
 
     public function prePersist(LifecycleEventArgs $args): void
     {
-        $entity = $args->getEntity();
+        $entity = $args->getObject();
 
         if ($entity instanceof ProfileableInterface) {
             $entity->setInitial($this->getInitial($entity));
