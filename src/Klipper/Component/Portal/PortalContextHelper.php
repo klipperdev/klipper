@@ -95,7 +95,7 @@ class PortalContextHelper
             $this->setCurrentPortalUser($portalName);
         }
 
-        if (0 !== strpos(($attr->get('_route', '')), '_')
+        if (0 !== strpos($attr->get('_route', ''), '_')
                 && null !== $this->tokenStorage->getToken()
                 && (($isPortalContext && null === $this->context->getCurrentPortalUser())
                     || (!$isPortalContext && !$this->authChecker->isGranted('perm:'.$this->permissionName)))) {

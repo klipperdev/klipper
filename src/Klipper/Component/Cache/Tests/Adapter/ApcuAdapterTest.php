@@ -24,7 +24,7 @@ final class ApcuAdapterTest extends AbstractAdapterTest
 {
     protected function setUp(): void
     {
-        if (!\function_exists('apcu_fetch') || !ini_get('apc.enabled') || ('cli' === \PHP_SAPI && !ini_get('apc.enable_cli'))) {
+        if (!\function_exists('apcu_fetch') || !\ini_get('apc.enabled') || ('cli' === \PHP_SAPI && !\ini_get('apc.enable_cli'))) {
             static::markTestSkipped('APCu extension is required.');
         }
 

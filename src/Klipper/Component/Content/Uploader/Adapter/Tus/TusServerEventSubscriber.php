@@ -113,7 +113,7 @@ class TusServerEventSubscriber implements EventSubscriberInterface
             $this->payload
         ));
 
-        //TODO move temp dir to final dir
+        // TODO move temp dir to final dir
 
         $this->dispatch($event, UploadFileCompleteEvent::class);
         $this->dispatch($event, UploadFileCompletedEvent::class);

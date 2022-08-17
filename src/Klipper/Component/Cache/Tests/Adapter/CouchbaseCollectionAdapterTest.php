@@ -32,7 +32,8 @@ final class CouchbaseCollectionAdapterTest extends AbstractAdapterTest
 
     protected function setUp(): void
     {
-        $couchbase = CouchbaseCollectionAdapter::createConnection('couchbase://'.getenv('COUCHBASE_HOST').'/cache',
+        $couchbase = CouchbaseCollectionAdapter::createConnection(
+            'couchbase://'.getenv('COUCHBASE_HOST').'/cache',
             ['username' => getenv('COUCHBASE_USER'), 'password' => getenv('COUCHBASE_PASS')]
         );
 

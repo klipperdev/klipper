@@ -11,7 +11,6 @@
 
 namespace Klipper\Component\Cache\Tests\Adapter;
 
-use Doctrine\DBAL\DriverManager;
 use Klipper\Component\Cache\Adapter\PdoAdapter;
 
 /**

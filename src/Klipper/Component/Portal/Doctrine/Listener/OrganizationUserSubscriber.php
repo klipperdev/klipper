@@ -121,7 +121,7 @@ class OrganizationUserSubscriber implements EventSubscriber
         }
 
         foreach ($uow->getScheduledEntityUpdates() as $entity) {
-            if ($entity instanceof PortalUserInterface && (!method_exists($entity, 'isEnabled') || ($entity->isEnabled()))) {
+            if ($entity instanceof PortalUserInterface && (!method_exists($entity, 'isEnabled') || $entity->isEnabled())) {
                 $user = $entity->getUser();
 
                 if ($user instanceof UserInterface) {
