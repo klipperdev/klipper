@@ -22,7 +22,7 @@
     },
     "require-dev": {
         "ankitpokhrel/tus-php": "^2.0.0",
-        "doctrine/orm": "^2.8.0",
+        "doctrine/orm": "^2.13.0",
         "klipper/batch": "^2.0.0",
         "klipper/model-contracts": "^2.0.0",
         "klipper/resource": "^2.0.0",
