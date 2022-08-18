@@ -16,7 +16,7 @@
         "symfony/framework-bundle": "^5.4.0"
     },
     "require-dev": {
-        "jms/serializer": "^3.14.0",
+        "jms/serializer": "^3.18.0",
         "klipper/doctrine-choice-bundle": "^2.0.0",
         "klipper/doctrine-extensions-extra-bundle": "^2.0.0",
         "klipper/security-bundle": "^2.0.0",

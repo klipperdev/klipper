@@ -19,7 +19,7 @@
     "require-dev": {
         "klipper/metadata-extensions": "^2.0.0",
         "twig/twig": "^3.3.0",
-        "jms/serializer": "^3.14.0",
+        "jms/serializer": "^3.18.0",
         "symfony/form": "^5.4.0",
         "symfony/validator": "^5.4.0"
     },
