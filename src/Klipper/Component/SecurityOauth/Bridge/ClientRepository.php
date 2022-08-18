@@ -51,7 +51,7 @@ class ClientRepository implements ClientRepositoryInterface
         return new Client($clientIdentifier, $appClient->getName(), $appClient->getRedirectUri());
     }
 
-    public function validateClient($clientIdentifier, $clientSecret, $grantType)
+    public function validateClient($clientIdentifier, $clientSecret, $grantType): bool
     {
         $appClient = $this->repository->findEnabled($clientIdentifier);
 
