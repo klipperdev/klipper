@@ -14,26 +14,14 @@ namespace Klipper\Component\User\Doctrine\Listener;
 use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Events;
-use Klipper\Component\Resource\Domain\DomainManagerInterface;
 use Klipper\Component\Security\Model\UserInterface;
 use Klipper\Component\User\Model\Traits\ProfileableInterface;
-use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
  * @author François Pluchino <francois.pluchino@klipper.dev>
  */
 class ProfileableSubscriber implements EventSubscriber
 {
-    private DomainManagerInterface $domainManager;
-
-    private ValidatorInterface $validator;
-
-    public function __construct(DomainManagerInterface $domainManager, ValidatorInterface $validator)
-    {
-        $this->domainManager = $domainManager;
-        $this->validator = $validator;
-    }
-
     public function getSubscribedEvents(): array
     {
         return [

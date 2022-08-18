@@ -8,8 +8,6 @@
         <service id="klipper_user.doctrine.subscriber.profileable"
                  class="Klipper\Component\User\Doctrine\Listener\ProfileableSubscriber">
             <tag name="doctrine.event_subscriber" />
-            <argument type="service" id="klipper_resource.domain_manager" />
-            <argument type="service" id="validator" />
         </service>
     </services>
 </container>
