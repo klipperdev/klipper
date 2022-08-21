@@ -27,13 +27,10 @@
 
         <service id="Klipper\Component\Portal\PortalContextHelper" alias="klipper_portal.portal_context.helper" />
 
-        <!-- Portal Context Security -->
-        <service id="klipper_portal.portal_context.authentication.provider"
-                 class="Klipper\Component\Portal\Security\Authentication\Provider\PortalContextProvider">
-        </service>
-
-        <service id="klipper_portal.portal_context.authentication.listener"
-                 class="Klipper\Component\Portal\Security\Http\Firewall\PortalContextListener">
+        <!-- Portal Context Security Firewall -->
+        <service id="klipper_portal.authenticator.portal_context.firewall_listener"
+                 class="Klipper\Component\Portal\Security\Firewall\PortalContextFirewallListener"
+                 abstract="true">
             <argument type="service" id="klipper_portal.portal_context.helper" />
             <argument type="collection"/>
         </service>

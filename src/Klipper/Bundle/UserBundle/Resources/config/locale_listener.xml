@@ -11,12 +11,9 @@
             <argument type="service" id="translator" />
         </service>
 
-        <service id="klipper_user.authentication.locale_session.provider"
-                 class="Klipper\Component\User\Security\Authentication\Provider\LocaleSessionProvider">
-        </service>
-
-        <service id="klipper_user.authentication.locale_session.listener"
-                 class="Klipper\Component\User\Security\Http\Firewall\LocaleSessionListener">
+        <service id="klipper_user.authenticator.locale_session.firewall_listener"
+                 class="Klipper\Component\User\Security\Firewall\LocaleSessionFirewallListener"
+                 abstract="true">
             <argument type="service" id="klipper_user.subscriber.locale" />
             <argument type="collection"/>
         </service>

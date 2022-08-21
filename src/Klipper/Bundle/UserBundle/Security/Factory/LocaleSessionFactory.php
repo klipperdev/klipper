@@ -11,7 +11,8 @@
 
 namespace Klipper\Bundle\UserBundle\Security\Factory;
 
-use Symfony\Bundle\SecurityBundle\DependencyInjection\Security\Factory\SecurityFactoryInterface;
+use Symfony\Bundle\SecurityBundle\DependencyInjection\Security\Factory\AuthenticatorFactoryInterface;
+use Symfony\Bundle\SecurityBundle\DependencyInjection\Security\Factory\FirewallListenerFactoryInterface;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\NodeDefinition;
 use Symfony\Component\DependencyInjection\ChildDefinition;
@@ -22,27 +23,16 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
  *
  * @author François Pluchino <francois.pluchino@klipper.dev>
  */
-class LocaleSessionFactory implements SecurityFactoryInterface
+class LocaleSessionFactory implements AuthenticatorFactoryInterface, FirewallListenerFactoryInterface
 {
-    public function create(ContainerBuilder $container, string $id, array $config, string $userProvider, ?string $defaultEntryPoint): array
+    public function getPriority(): int
     {
-        $providerId = 'klipper_user.authentication.locale_session.provider.'.$id;
-        $container
-            ->setDefinition($providerId, new ChildDefinition('klipper_user.authentication.locale_session.provider'))
-        ;
-
-        $listenerId = 'klipper_user.authentication.locale_session.listener.'.$id;
-        $container
-            ->setDefinition($listenerId, new ChildDefinition('klipper_user.authentication.locale_session.listener'))
-            ->replaceArgument(1, $config)
-        ;
-
-        return [$providerId, $listenerId, $defaultEntryPoint];
+        return -40;
     }
 
-    public function getPosition(): string
+    public function createAuthenticator(ContainerBuilder $container, string $firewallName, array $config, string $userProviderId): array
     {
-        return 'http';
+        return [];
     }
 
     public function getKey(): string
@@ -56,5 +46,16 @@ class LocaleSessionFactory implements SecurityFactoryInterface
         $builder
             ->canBeEnabled()
         ;
+    }
+
+    public function createListeners(ContainerBuilder $container, string $firewallName, array $config): array
+    {
+        $listenerId = 'klipper_user.authenticator.locale_session.firewall_listener.'.$firewallName;
+        $container
+            ->setDefinition($listenerId, new ChildDefinition('klipper_user.authenticator.locale_session.firewall_listener'))
+            ->replaceArgument(1, $config)
+        ;
+
+        return [$listenerId];
     }
 }

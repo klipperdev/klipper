@@ -26,13 +26,12 @@ class OauthToken extends AbstractToken
     private array $scopes;
 
     /**
-     * @param null|string|UserInterface $user
-     * @param string[]                  $roles
-     * @param string[]                  $scopes
+     * @param string[] $roles
+     * @param string[] $scopes
      */
     public function __construct(
         string $token,
-        $user,
+        UserInterface $user,
         string $firewallName,
         array $roles = [],
         array $scopes = []
@@ -42,33 +41,20 @@ class OauthToken extends AbstractToken
         $this->token = $token;
         $this->firewallName = $firewallName;
         $this->scopes = $scopes;
-
-        if (null !== $user) {
-            $this->setUser($user);
-        }
-
-        parent::setAuthenticated(\count($roles) > 0);
+        $this->setUser($user);
+        $this->setAuthenticated(true, false);
     }
 
     public function __serialize(): array
     {
-        return [$this->firewallName, parent::__serialize()];
+        return [$this->token, $this->firewallName, $this->scopes, parent::__serialize()];
     }
 
     public function __unserialize(array $data): void
     {
-        [$this->firewallName, $parentData] = $data;
+        [$this->token, $this->firewallName, $this->scopes, $parentData] = $data;
 
         parent::__unserialize($parentData);
-    }
-
-    public function setAuthenticated($isAuthenticated): void
-    {
-        if ($isAuthenticated) {
-            throw new \LogicException('Cannot set this token to trusted after instantiation.');
-        }
-
-        parent::setAuthenticated(false);
     }
 
     public function getCredentials(): string

@@ -11,22 +11,21 @@
 
 namespace Klipper\Component\SecurityOauth\Bridge;
 
-use Klipper\Component\SecurityOauth\Authentication\AuthenticationManagerInterface;
+use Klipper\Component\SecurityOauth\Authenticator\UserAuthenticatorInterface;
 use League\OAuth2\Server\Entities\ClientEntityInterface;
 use League\OAuth2\Server\Entities\UserEntityInterface;
 use League\OAuth2\Server\Repositories\UserRepositoryInterface;
-use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
 /**
  * @author François Pluchino <francois.pluchino@klipper.dev>
  */
 class UserRepository implements UserRepositoryInterface
 {
-    private AuthenticationManagerInterface $authManager;
+    private UserAuthenticatorInterface $userAuthenticator;
 
-    public function __construct(AuthenticationManagerInterface $authManager)
+    public function __construct(UserAuthenticatorInterface $userAuthenticator)
     {
-        $this->authManager = $authManager;
+        $this->userAuthenticator = $userAuthenticator;
     }
 
     public function getUserEntityByUserCredentials(
@@ -35,12 +34,8 @@ class UserRepository implements UserRepositoryInterface
         $grantType,
         ClientEntityInterface $clientEntity
     ): ?UserEntityInterface {
-        $token = $this->authManager->authenticate(new UsernamePasswordToken(
-            $username,
-            $password,
-            $this->authManager->getFirewallName()
-        ));
+        $user = $this->userAuthenticator->authenticateUserByCredentials($username, $password);
 
-        return null !== $token ? new User($username) : null;
+        return null !== $user ? new User($user->getUserIdentifier()) : null;
     }
 }

@@ -11,7 +11,7 @@
 
 namespace Klipper\Bundle\PortalBundle;
 
-use Klipper\Component\Portal\Security\Factory\PortalContextFactory;
+use Klipper\Bundle\PortalBundle\Security\Factory\PortalContextFactory;
 use Symfony\Bundle\SecurityBundle\DependencyInjection\SecurityExtension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
@@ -26,7 +26,7 @@ class KlipperPortalBundle extends Bundle
         if ($container->hasExtension('security')) {
             /** @var SecurityExtension $extension */
             $extension = $container->getExtension('security');
-            $extension->addSecurityListenerFactory(new PortalContextFactory());
+            $extension->addAuthenticatorFactory(new PortalContextFactory());
         }
     }
 }

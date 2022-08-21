@@ -19,7 +19,6 @@ use League\OAuth2\Server\AuthorizationServer;
 use League\OAuth2\Server\Exception\OAuthServerException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Security\Core\Authentication\Token\AnonymousToken;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 /**
@@ -47,7 +46,7 @@ class AuthorizeController
         try {
             $token = $this->tokenStorage->getToken();
 
-            if (null === $token || $token instanceof AnonymousToken) {
+            if (null === $token) {
                 throw new RuntimeException('The oauth authorize controller must have a authenticated user');
             }
 

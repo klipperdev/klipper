@@ -27,7 +27,7 @@ class KlipperUserBundle extends Bundle
                 && $container->hasExtension('security')) {
             /** @var SecurityExtension $extension */
             $extension = $container->getExtension('security');
-            $extension->addSecurityListenerFactory(new LocaleSessionFactory());
+            $extension->addAuthenticatorFactory(new LocaleSessionFactory());
         }
     }
 }

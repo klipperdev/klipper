@@ -26,6 +26,10 @@ class Scope implements ScopeEntityInterface
         $this->setIdentifier($name);
     }
 
+    /**
+     * @return mixed
+     */
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return $this->getIdentifier();

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <!-- Security Firewall -->
+        <service id="klipper_security.authenticator.public_role.firewall_listener"
+                 class="Klipper\Component\Security\Firewall\PublicRoleFirewallListener"
+                 abstract="true">
+            <argument type="service" id="klipper_security.security_identity_manager"/>
+            <argument type="collection"/>
+            <argument type="service" id="security.authentication.trust_resolver"/>
+            <argument type="service" id="security.token_storage"/>
+        </service>
+    </services>
+</container>

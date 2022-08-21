@@ -11,12 +11,10 @@
 
 namespace Klipper\Component\SecurityOauth\Bridge;
 
-use Klipper\Component\SecurityOauth\Authentication\AuthenticationManagerInterface;
-use Klipper\Component\SecurityOauth\Authentication\Token\OauthToken;
+use Klipper\Component\SecurityOauth\Authenticator\UserAuthenticatorInterface;
 use Klipper\Component\SecurityOauth\Repository\OauthAccessTokenRepositoryInterface;
 use League\OAuth2\Server\Entities\AccessTokenEntityInterface;
 use League\OAuth2\Server\Entities\ClientEntityInterface;
-use League\OAuth2\Server\Entities\ScopeEntityInterface;
 use League\OAuth2\Server\Repositories\AccessTokenRepositoryInterface;
 
 /**
@@ -26,14 +24,14 @@ class AccessTokenRepository implements AccessTokenRepositoryInterface
 {
     private OauthAccessTokenRepositoryInterface $repository;
 
-    private AuthenticationManagerInterface $authManager;
+    private UserAuthenticatorInterface $userAuthenticator;
 
     public function __construct(
         OauthAccessTokenRepositoryInterface $repository,
-        AuthenticationManagerInterface $authManager
+        UserAuthenticatorInterface $userAuthenticator
     ) {
         $this->repository = $repository;
-        $this->authManager = $authManager;
+        $this->userAuthenticator = $userAuthenticator;
     }
 
     public function getNewToken(ClientEntityInterface $clientEntity, array $scopes, $userIdentifier = null): AccessTokenEntityInterface
@@ -46,15 +44,7 @@ class AccessTokenRepository implements AccessTokenRepositoryInterface
 
     public function persistNewAccessToken(AccessTokenEntityInterface $accessTokenEntity): void
     {
-        $this->authManager->authenticate(new OauthToken(
-            $accessTokenEntity->getIdentifier(),
-            $accessTokenEntity->getUserIdentifier(),
-            $this->authManager->getFirewallName(),
-            [],
-            array_map(static function (ScopeEntityInterface $scope) {
-                return $scope->getIdentifier();
-            }, $accessTokenEntity->getScopes())
-        ));
+        $this->userAuthenticator->authenticateUser($accessTokenEntity->getUserIdentifier());
 
         $this->repository->createAccessToken(
             $accessTokenEntity->getIdentifier(),
