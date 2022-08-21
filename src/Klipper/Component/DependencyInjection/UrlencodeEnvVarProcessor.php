@@ -18,7 +18,7 @@ use Symfony\Component\DependencyInjection\EnvVarProcessorInterface;
  */
 class UrlencodeEnvVarProcessor implements EnvVarProcessorInterface
 {
-    public function getEnv(string $prefix, string $name, \Closure $getEnv)
+    public function getEnv(string $prefix, string $name, \Closure $getEnv): string
     {
         $env = $getEnv($name);
 

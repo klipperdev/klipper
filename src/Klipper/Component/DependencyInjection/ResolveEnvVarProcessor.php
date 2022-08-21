@@ -18,6 +18,9 @@ use Symfony\Component\DependencyInjection\EnvVarProcessorInterface;
  */
 class ResolveEnvVarProcessor implements EnvVarProcessorInterface
 {
+    /**
+     * @return null|array|string|string[]
+     */
     public function getEnv(string $prefix, string $name, \Closure $getEnv)
     {
         return preg_replace_callback('/%env\(([^%\s]+)\)%/', static function ($match) use ($getEnv) {
