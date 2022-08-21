@@ -31,7 +31,7 @@ class Choice extends BaseChoice
     /**
      * {@inheritdoc}
      */
-    public function validatedBy()
+    public function validatedBy(): string
     {
         return ChoiceValidator::class;
     }
