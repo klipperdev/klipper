@@ -24,10 +24,8 @@ trait SingleExternalableTrait
 {
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     *
      * @Assert\Type(type="string")
      * @Assert\Length(max=255)
-     *
      * @Serializer\Expose
      */
     protected ?string $externalId = null;

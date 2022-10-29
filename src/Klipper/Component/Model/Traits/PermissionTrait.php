@@ -28,14 +28,12 @@ trait PermissionTrait
      * @var string[]
      *
      * @ORM\Column(type="json", nullable=true)
-     *
      * @Assert\Choice(multiple=true, callback={"Klipper\Component\SecurityExtra\Choice\PermissionContext", "getValues"})
      */
     protected array $contexts = [];
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     *
      * @Assert\Type(type="string")
      * @Assert\Length(max=255)
      */
@@ -43,7 +41,6 @@ trait PermissionTrait
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     *
      * @Assert\Type(type="string")
      * @Assert\Length(max=255)
      */
@@ -51,7 +48,6 @@ trait PermissionTrait
 
     /**
      * @ORM\Column(type="string", length=255)
-     *
      * @Assert\Type(type="string")
      * @Assert\Length(max=255)
      * @Assert\NotBlank

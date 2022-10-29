@@ -28,9 +28,7 @@ trait UserTrackableTrait
      *     targetEntity="Klipper\Component\Security\Model\UserInterface"
      * )
      * @ORM\JoinColumn(onDelete="SET NULL", nullable=true)
-     *
      * @Gedmo\Blameable(on="create")
-     *
      * @Serializer\Expose
      * @Serializer\MaxDepth(1)
      * @Serializer\ReadOnlyProperty
@@ -42,9 +40,7 @@ trait UserTrackableTrait
      *     targetEntity="Klipper\Component\Security\Model\UserInterface"
      * )
      * @ORM\JoinColumn(onDelete="SET NULL", nullable=true)
-     *
      * @Gedmo\Blameable(on="update")
-     *
      * @Serializer\Expose
      * @Serializer\MaxDepth(1)
      * @Serializer\ReadOnlyProperty

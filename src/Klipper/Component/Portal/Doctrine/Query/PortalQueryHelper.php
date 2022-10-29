@@ -86,9 +86,9 @@ class PortalQueryHelper
      *
      * @param int|string $hydrationMode
      *
-     * @throws NonUniqueResultException
-     *
      * @return mixed
+     *
+     * @throws NonUniqueResultException
      */
     public function getOneOrNullResult(Query $query, ?string $masterPath = null, $hydrationMode = null, ?array &$filters = [])
     {
@@ -105,10 +105,10 @@ class PortalQueryHelper
      *
      * @param int|string $hydrationMode
      *
+     * @return mixed
+     *
      * @throws NonUniqueResultException If the query result is not unique
      * @throws NoResultException        If the query returned no result and hydration mode is not HYDRATE_SINGLE_SCALAR
-     *
-     * @return mixed
      */
     public function getSingleResult(Query $query, ?string $masterPath = null, $hydrationMode = null, ?array &$filters = [])
     {
@@ -123,10 +123,10 @@ class PortalQueryHelper
      *
      * Alias for getSingleResult(HYDRATE_SINGLE_SCALAR).
      *
+     * @return mixed the scalar result
+     *
      * @throws NoResultException        If the query returned no result
      * @throws NonUniqueResultException If the query result is not unique
-     *
-     * @return mixed the scalar result
      */
     public function getSingleScalarResult(Query $query, ?string $masterPath = null, ?array &$filters = [])
     {

@@ -27,9 +27,7 @@ trait TimestampableTrait
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
-     *
      * @Gedmo\Timestampable(on="create")
-     *
      * @Serializer\Expose
      * @Serializer\ReadOnlyProperty
      */
@@ -37,9 +35,7 @@ trait TimestampableTrait
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
-     *
      * @Gedmo\Timestampable(on="update")
-     *
      * @Serializer\Expose
      * @Serializer\ReadOnlyProperty
      */

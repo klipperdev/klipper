@@ -29,7 +29,6 @@ trait OauthAuthCodeTrait
      *     targetEntity="Klipper\Component\SecurityOauth\Model\OauthClientInterface"
      * )
      * @ORM\JoinColumn(onDelete="CASCADE")
-     *
      * @Serializer\Type("AssociationId")
      * @Serializer\Expose
      * @Serializer\ReadOnlyProperty
@@ -38,24 +37,20 @@ trait OauthAuthCodeTrait
 
     /**
      * @ORM\Column(type="json")
-     *
      * @Assert\All({
      *     @Assert\Type(type="string"),
      *     @Assert\Length(max=255),
      *     @Assert\NotBlank
      * })
-     *
      * @Serializer\Expose
      */
     protected array $scopes = [];
 
     /**
      * @ORM\Column(type="string", length=255)
-     *
      * @Assert\Type(type="string")
      * @Assert\Length(max=255)
      * @Assert\NotBlank
-     *
      * @Serializer\Expose
      * @Serializer\Groups({"Details"})
      */

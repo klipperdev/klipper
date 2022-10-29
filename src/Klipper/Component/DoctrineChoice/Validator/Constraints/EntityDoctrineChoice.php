@@ -18,6 +18,7 @@ use Klipper\Component\DoctrineExtensionsExtra\Validator\Constraints\EntityChoice
  * @author François Pluchino <francois.pluchino@klipper.dev>
  *
  * @Annotation
+ *
  * @Target({"PROPERTY", "METHOD", "ANNOTATION"})
  */
 class EntityDoctrineChoice extends EntityChoice

@@ -27,14 +27,12 @@ trait GroupTrait
 
     /**
      * @ORM\Column(type="string", length=255, unique=true)
-     *
      * @Assert\Type(type="string")
      * @Assert\Length(min=3, max=255)
      * @Assert\Regex(pattern="/^[A-Za-z0-9\_]+$/")
      * @Assert\Regex(pattern="/__/", match=false, message="group.name.not_use_double_underscore")
      * @Assert\Regex(pattern="/_$/", match=false, message="group.name.not_use_special_character_at_end")
      * @Assert\NotBlank
-     *
      * @Serializer\Expose
      */
     protected ?string $name = null;
@@ -43,7 +41,6 @@ trait GroupTrait
      * @var string[]
      *
      * @ORM\Column(type="json")
-     *
      * @Serializer\Expose
      */
     protected array $roles = [];

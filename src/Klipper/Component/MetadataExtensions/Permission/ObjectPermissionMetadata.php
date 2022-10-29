@@ -20,9 +20,6 @@ use Klipper\Component\Metadata\View\ViewMetadataInterface;
  */
 class ObjectPermissionMetadata implements ObjectPermissionMetadataInterface
 {
-    /**
-     * @var
-     */
     protected ViewMetadataInterface $metadata;
 
     /**

@@ -67,9 +67,9 @@ class PhoneHandler
      * @param \SimpleXMLElement         $data    The data
      * @param array                     $type    The type
      *
-     * @throws
-     *
      * @return null|PhoneNumber
+     *
+     * @throws
      */
     public function deserializePhoneNumberFromXml(XmlDeserializationVisitor $visitor, $data, array $type)
     {

@@ -29,12 +29,10 @@ trait OrganizationTrait
 
     /**
      * @ORM\Column(type="string", length=255, unique=true)
-     *
      * @Assert\Type(type="string")
      * @Assert\NotBlank
      * @Assert\Regex(pattern="/^[A-Za-z0-9\_\-.]+$/")
      * @Assert\Length(max=255)
-     *
      * @Serializer\Expose
      */
     protected ?string $name = null;
@@ -48,7 +46,6 @@ trait OrganizationTrait
      *     mappedBy="organization",
      *     cascade={"persist", "remove"}
      * )
-     *
      * @Assert\Valid(traverse=false)
      */
     protected ?Collection $organizationUsers = null;

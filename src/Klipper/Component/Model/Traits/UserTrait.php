@@ -27,10 +27,8 @@ trait UserTrait
 
     /**
      * @ORM\Column(type="string", length=50, unique=true)
-     *
      * @Assert\Length(max=50)
      * @Assert\Regex(pattern="/^[A-Za-z0-9\_\-.]+$/")
-     *
      * @Serializer\Expose
      * @Serializer\Groups({"Default", "Public"})
      */
@@ -40,7 +38,6 @@ trait UserTrait
      * The hashed password.
      *
      * @ORM\Column(type="string")
-     *
      * @Assert\NotBlank(groups={"edit"})
      */
     protected ?string $password = null;

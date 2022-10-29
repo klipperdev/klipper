@@ -33,9 +33,7 @@ trait PortalUserTrait
      *     targetEntity="Klipper\Component\Portal\Model\PortalInterface"
      * )
      * @ORM\JoinColumn(onDelete="CASCADE", nullable=false)
-     *
      * @Assert\NotBlank
-     *
      * @Serializer\Type("AssociationId")
      * @Serializer\Expose
      * @Serializer\ReadOnlyProperty
@@ -48,7 +46,6 @@ trait PortalUserTrait
      *     cascade={"persist"}
      * )
      * @ORM\JoinColumn(onDelete="CASCADE")
-     *
      * @Serializer\Expose
      * @Serializer\ReadOnlyProperty
      */

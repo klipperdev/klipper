@@ -24,9 +24,7 @@ trait EnableTrait
 {
     /**
      * @ORM\Column(type="boolean")
-     *
      * @Assert\Type(type="boolean")
-     *
      * @Serializer\Expose
      */
     protected bool $enabled = true;

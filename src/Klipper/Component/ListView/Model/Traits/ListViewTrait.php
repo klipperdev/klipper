@@ -30,11 +30,9 @@ trait ListViewTrait
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     *
      * @Assert\Type(type="string")
      * @Assert\Length(max=255)
      * @Assert\NotBlank
-     *
      * @Serializer\Expose
      */
     protected ?string $type = null;
@@ -43,8 +41,8 @@ trait ListViewTrait
      * @ORM\Column(type="json", nullable=true)
      *
      * @RequestQueryFilter
-     * @Assert\NotBlank
      *
+     * @Assert\NotBlank
      * @Serializer\Expose
      */
     protected ?array $filters = null;

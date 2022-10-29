@@ -15,6 +15,7 @@ use Klipper\Component\Config\Annotation\AbstractAnnotation;
 
 /**
  * @author François Pluchino <francois.pluchino@klipper.dev>
+ *
  * @Annotation
  */
 class MockAnnotation extends AbstractAnnotation

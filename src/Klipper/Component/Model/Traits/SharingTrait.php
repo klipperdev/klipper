@@ -26,7 +26,6 @@ trait SharingTrait
 
     /**
      * @ORM\Column(type="string", length=244)
-     *
      * @Assert\Type(type="string")
      * @Assert\Length(max=244)
      * @Assert\NotBlank
@@ -35,7 +34,6 @@ trait SharingTrait
 
     /**
      * @ORM\Column(type="string", length=36)
-     *
      * @Assert\Type(type="string")
      * @Assert\Length(max=36)
      * @Assert\NotBlank
@@ -44,7 +42,6 @@ trait SharingTrait
 
     /**
      * @ORM\Column(type="string", length=244)
-     *
      * @Assert\Type(type="string")
      * @Assert\Length(max=244)
      * @Assert\NotBlank
@@ -53,7 +50,6 @@ trait SharingTrait
 
     /**
      * @ORM\Column(type="string", length=244)
-     *
      * @Assert\Type(type="string")
      * @Assert\Length(max=244)
      * @Assert\NotBlank
@@ -62,21 +58,18 @@ trait SharingTrait
 
     /**
      * @ORM\Column(type="boolean")
-     *
      * @Assert\Type("boolean")
      */
     protected bool $enabled = true;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
-     *
      * @Assert\Type(type="datetime")
      */
     protected ?\DateTimeInterface $startedAt = null;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
-     *
      * @Assert\Type(type="datetime")
      */
     protected ?\DateTimeInterface $endedAt = null;

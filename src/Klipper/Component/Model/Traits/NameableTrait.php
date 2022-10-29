@@ -24,11 +24,9 @@ trait NameableTrait
 {
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     *
      * @Assert\Type(type="string")
      * @Assert\Length(max=255)
      * @Assert\NotBlank
-     *
      * @Serializer\Expose
      */
     protected ?string $name = null;

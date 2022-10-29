@@ -23,20 +23,16 @@ trait OauthClientTrait
 {
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     *
      * @Assert\Type(type="string")
      * @Assert\Length(max=255)
-     *
      * @Serializer\Expose
      */
     protected ?string $clientId = null;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     *
      * @Assert\Type(type="string")
      * @Assert\Length(max=255)
-     *
      * @Serializer\Expose
      * @Serializer\Groups({"Details"})
      */
@@ -44,20 +40,17 @@ trait OauthClientTrait
 
     /**
      * @ORM\Column(type="json")
-     *
      * @Assert\All({
      *     @Assert\Url,
      *     @Assert\Length(max=255),
      *     @Assert\NotBlank
      * })
-     *
      * @Serializer\Expose
      */
     protected array $redirectUri = [];
 
     /**
      * @ORM\Column(type="json")
-     *
      * @Assert\Choice(
      *     multiple=true,
      *     min=1,
@@ -69,7 +62,6 @@ trait OauthClientTrait
      *         "refresh_token"
      *     }
      * )
-     *
      * @Serializer\Expose
      */
     protected array $grantTypes = [];

@@ -32,11 +32,8 @@ trait OwnerableTrait
      *     targetEntity="Klipper\Component\Security\Model\UserInterface"
      * )
      * @ORM\JoinColumn(onDelete="SET NULL", nullable=true)
-     *
      * @Gedmo\Blameable(on="create")
-     *
      * @Assert\NotNull
-     *
      * @Serializer\Expose
      * @Serializer\MaxDepth(1)
      */

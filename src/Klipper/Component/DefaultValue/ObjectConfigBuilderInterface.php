@@ -42,9 +42,9 @@ interface ObjectConfigBuilderInterface extends ObjectConfigInterface
      * @param string $name  The name of the property
      * @param mixed  $value The value of the property
      *
-     * @throws BadMethodCallException When the data is empty
-     *
      * @return static
+     *
+     * @throws BadMethodCallException When the data is empty
      */
     public function setProperty(string $name, $value);
 
@@ -53,9 +53,9 @@ interface ObjectConfigBuilderInterface extends ObjectConfigInterface
      *
      * @param array $properties The properties
      *
-     * @throws BadMethodCallException When the data is empty
-     *
      * @return static
+     *
+     * @throws BadMethodCallException When the data is empty
      */
     public function setProperties(array $properties);
 

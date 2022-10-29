@@ -24,7 +24,6 @@ trait PortalTrait
 {
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     *
      * @Assert\Type(type="string")
      * @Assert\Length(max=255)
      * @Assert\Regex(pattern="/^[a-z0-9\_\-\.]+$/")
@@ -32,16 +31,13 @@ trait PortalTrait
      *     expression="!(!value && this.isPortalEnabled())",
      *     message="This value should not be blank."
      * )
-     *
      * @Serializer\Expose
      */
     protected ?string $portalName = null;
 
     /**
      * @ORM\Column(type="boolean")
-     *
      * @Assert\Type(type="boolean")
-     *
      * @Serializer\Expose
      */
     protected bool $portalEnabled = false;

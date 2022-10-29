@@ -24,11 +24,9 @@ trait EmailableTrait
 {
     /**
      * @ORM\Column(type="string", length=180, unique=true, nullable=true)
-     *
      * @Assert\Email
      * @Assert\Type(type="string")
      * @Assert\Length(max=180)
-     *
      * @Serializer\Expose
      */
     protected ?string $email = null;

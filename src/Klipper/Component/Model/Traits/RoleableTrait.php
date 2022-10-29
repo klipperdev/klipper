@@ -28,7 +28,6 @@ trait RoleableTrait
      * @var string[]
      *
      * @ORM\Column(type="json")
-     *
      * @Serializer\Expose
      */
     protected array $roles = [];

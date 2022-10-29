@@ -26,12 +26,10 @@ trait EmailableRequiredTrait
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
-     *
      * @Assert\Email
      * @Assert\Type(type="string")
      * @Assert\Length(max=180)
      * @Assert\NotBlank
-     *
      * @Serializer\Expose
      */
     protected ?string $email = null;

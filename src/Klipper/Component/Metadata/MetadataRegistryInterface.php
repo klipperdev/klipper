@@ -73,9 +73,9 @@ interface MetadataRegistryInterface
      *
      * @param ChoiceBuilderInterface $choiceBuilder The choice builder
      *
-     * @throws InvalidArgumentException If the choice class does not implement the ChoiceInterface
-     *
      * @return static
+     *
+     * @throws InvalidArgumentException If the choice class does not implement the ChoiceInterface
      */
     public function addChoice(ChoiceBuilderInterface $choiceBuilder);
 

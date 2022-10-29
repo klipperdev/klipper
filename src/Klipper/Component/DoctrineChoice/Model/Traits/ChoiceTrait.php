@@ -28,65 +28,51 @@ trait ChoiceTrait
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     *
      * @Assert\Type(type="string")
      * @Assert\Length(max=255)
      * @Assert\NotBlank
-     *
      * @Gedmo\SortableGroup
-     *
      * @Serializer\Expose
      */
     protected ?string $type = null;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     *
      * @Assert\Type(type="string")
      * @Assert\Length(max=255)
      * @Assert\NotBlank
-     *
      * @Serializer\Expose
      */
     protected ?string $value = null;
 
     /**
      * @ORM\Column(type="string", length=9, nullable=true)
-     *
      * @Assert\Type(type="string")
      * @Assert\Length(min="0", max="9")
      * @Assert\Regex(pattern="/^#[0-9a-f]{6,8}$/i")
-     *
      * @Serializer\Expose
      */
     protected ?string $color = null;
 
     /**
      * @ORM\Column(type="string", length=30, nullable=true)
-     *
      * @Assert\Type(type="string")
      * @Assert\Length(max=30)
-     *
      * @Serializer\Expose
      */
     protected ?string $icon = null;
 
     /**
      * @ORM\Column(type="integer")
-     *
      * @Gedmo\SortablePosition
-     *
      * @Assert\Type(type="integer")
-     *
      * @Serializer\Expose
      */
     protected ?int $position = -1;
 
     /**
      * @ORM\Column(type="boolean", name="is_default", options={"default": 0})
-     *
      * @Assert\Type(type="boolean")
-     *
      * @Serializer\Expose
      */
     private bool $default = false;

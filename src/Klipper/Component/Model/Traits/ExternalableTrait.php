@@ -23,7 +23,6 @@ trait ExternalableTrait
 {
     /**
      * @ORM\Column(type="json")
-     *
      * @Serializer\Expose
      */
     protected ?array $externalIds = [];

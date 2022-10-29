@@ -24,7 +24,6 @@ trait SoftDeletableTrait
 {
     /**
      * @ORM\Column(type="datetime", nullable=true)
-     *
      * @Assert\Type(type="datetime")
      */
     protected ?\DateTimeInterface $deletedAt = null;

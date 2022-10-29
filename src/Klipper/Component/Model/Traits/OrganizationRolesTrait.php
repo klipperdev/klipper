@@ -35,7 +35,6 @@ trait OrganizationRolesTrait
      *     mappedBy="organization",
      *     cascade={"persist", "remove"}
      * )
-     *
      * @Assert\Valid
      */
     protected ?Collection $organizationRoles = null;

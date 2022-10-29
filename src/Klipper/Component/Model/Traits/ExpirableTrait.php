@@ -23,10 +23,8 @@ trait ExpirableTrait
 {
     /**
      * @ORM\Column(type="datetime")
-     *
      * @\Symfony\Component\Validator\Constraints\Type(type="datetime")
      * @\Symfony\Component\Validator\Constraints\NotBlank
-     *
      * @Serializer\Expose
      */
     protected ?\DateTimeInterface $expiresAt = null;

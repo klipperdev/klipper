@@ -65,36 +65,36 @@ final class DoctrineTemplateLoaderTest extends TestCase
     public function getExistsArguments(): array
     {
         return [
-            [false, 'mail',       null,    null,    'mail.html.twig'],
-            [false, 'mail',       null,    null,    'mail.fr.html.twig'],
-            [true,  'mail',       null,    null,    '@user_templates/mail'],
-            [true,  'mail',       null,    'fr_FR', '@user_templates/fr_FR/mail'],
-            [true,  'mail',       null,    'fr',    '@user_templates/fr/mail'],
-            [true,  'mail',       null,    'en_US', '@user_templates/en_US/mail'],
-            [true,  'mail',       null,    'en',    '@user_templates/en/mail'],
-            [true,  'mail',       null,    'it_IT', '@user_templates/it_IT/mail'],
-            [true,  'mail',       null,    'it',    '@user_templates/it/mail'],
+            [false, 'mail', null, null, 'mail.html.twig'],
+            [false, 'mail', null, null, 'mail.fr.html.twig'],
+            [true, 'mail', null, null, '@user_templates/mail'],
+            [true, 'mail', null, 'fr_FR', '@user_templates/fr_FR/mail'],
+            [true, 'mail', null, 'fr', '@user_templates/fr/mail'],
+            [true, 'mail', null, 'en_US', '@user_templates/en_US/mail'],
+            [true, 'mail', null, 'en', '@user_templates/en/mail'],
+            [true, 'mail', null, 'it_IT', '@user_templates/it_IT/mail'],
+            [true, 'mail', null, 'it', '@user_templates/it/mail'],
 
-            [true,  'mail',       'email', null,    '@user_templates/email/mail'],
-            [true,  'mail',       'email', 'fr_FR', '@user_templates/email/fr_FR/mail'],
-            [true,  'mail',       'email', 'fr',    '@user_templates/email/fr/mail'],
-            [true,  'mail',       'email', 'en_US', '@user_templates/email/en_US/mail'],
-            [true,  'mail',       'email', 'en',    '@user_templates/email/en/mail'],
-            [true,  'mail',       'email', 'it_IT', '@user_templates/email/it_IT/mail'],
-            [true,  'mail',       'email', 'it',    '@user_templates/email/it/mail'],
+            [true, 'mail', 'email', null, '@user_templates/email/mail'],
+            [true, 'mail', 'email', 'fr_FR', '@user_templates/email/fr_FR/mail'],
+            [true, 'mail', 'email', 'fr', '@user_templates/email/fr/mail'],
+            [true, 'mail', 'email', 'en_US', '@user_templates/email/en_US/mail'],
+            [true, 'mail', 'email', 'en', '@user_templates/email/en/mail'],
+            [true, 'mail', 'email', 'it_IT', '@user_templates/email/it_IT/mail'],
+            [true, 'mail', 'email', 'it', '@user_templates/email/it/mail'],
 
-            [true,  'mail',       'email', 'fr_FR', '@user_templates/fr_FR/email/mail'],
-            [true,  'mail',       'email', 'fr',    '@user_templates/fr/email/mail'],
-            [true,  'mail',       'email', 'en_US', '@user_templates/en_US/email/mail'],
-            [true,  'mail',       'email', 'en',    '@user_templates/en/email/mail'],
-            [true,  'mail',       'email', 'it_IT', '@user_templates/it_IT/email/mail'],
-            [true,  'mail',       'email', 'it',    '@user_templates/it/email/mail'],
+            [true, 'mail', 'email', 'fr_FR', '@user_templates/fr_FR/email/mail'],
+            [true, 'mail', 'email', 'fr', '@user_templates/fr/email/mail'],
+            [true, 'mail', 'email', 'en_US', '@user_templates/en_US/email/mail'],
+            [true, 'mail', 'email', 'en', '@user_templates/en/email/mail'],
+            [true, 'mail', 'email', 'it_IT', '@user_templates/it_IT/email/mail'],
+            [true, 'mail', 'email', 'it', '@user_templates/it/email/mail'],
 
-            [false, 'mail',       'aa_AA', null,    '@user_templates/aa_AA/mail'],
-            [false, 'mail',       'aa',    null,    '@user_templates/aa/mail'],
+            [false, 'mail', 'aa_AA', null, '@user_templates/aa_AA/mail'],
+            [false, 'mail', 'aa', null, '@user_templates/aa/mail'],
 
-            [false, 'aa_AA/mail', 'email', null,    '@user_templates/email/aa_AA/mail'],
-            [false, 'aa/mail',    'email', null,    '@user_templates/email/aa/mail'],
+            [false, 'aa_AA/mail', 'email', null, '@user_templates/email/aa_AA/mail'],
+            [false, 'aa/mail', 'email', null, '@user_templates/email/aa/mail'],
         ];
     }
 
@@ -234,9 +234,9 @@ final class DoctrineTemplateLoaderTest extends TestCase
     }
 
     /**
-     * @throws
-     *
      * @return MockObject|TemplateMessageInterface
+     *
+     * @throws
      */
     private function getTemplateMessage()
     {

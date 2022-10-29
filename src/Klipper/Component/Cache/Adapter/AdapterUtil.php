@@ -42,9 +42,9 @@ abstract class AdapterUtil
      * @param object $object   The object
      * @param string $property The property name
      *
-     * @throws
-     *
      * @return mixed
+     *
+     * @throws
      */
     public static function getPropertyValue($object, string $property)
     {

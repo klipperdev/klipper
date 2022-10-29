@@ -25,7 +25,6 @@ trait IdTrait
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(type="integer")
-     *
      * @Serializer\Expose
      * @Serializer\ReadOnlyProperty
      * @Serializer\Groups({"Default", "Public"})

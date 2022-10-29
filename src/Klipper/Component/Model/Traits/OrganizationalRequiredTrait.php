@@ -30,7 +30,6 @@ trait OrganizationalRequiredTrait
      *     targetEntity="Klipper\Component\Security\Model\OrganizationInterface"
      * )
      * @ORM\JoinColumn(onDelete="CASCADE")
-     *
      * @Serializer\Type("AssociationId")
      * @Serializer\Expose
      * @Serializer\ReadOnlyProperty

@@ -133,9 +133,9 @@ class DoctrineTemplateLoader implements LoaderInterface
      * @param string $name  The template message name
      * @param bool   $throw Check if the exception must be thrown
      *
-     * @throws LoaderError
-     *
      * @return null|bool
+     *
+     * @throws LoaderError
      */
     protected function validateAndSkip(string $name, bool $throw = true): bool
     {

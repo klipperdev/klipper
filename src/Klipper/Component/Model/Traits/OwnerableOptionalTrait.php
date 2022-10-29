@@ -31,9 +31,7 @@ trait OwnerableOptionalTrait
      *     targetEntity="Klipper\Component\Security\Model\UserInterface"
      * )
      * @ORM\JoinColumn(onDelete="SET NULL", nullable=true)
-     *
      * @Gedmo\Blameable(on="create")
-     *
      * @Serializer\Expose
      * @Serializer\MaxDepth(1)
      */

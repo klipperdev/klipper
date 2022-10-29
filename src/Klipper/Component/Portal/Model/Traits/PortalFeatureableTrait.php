@@ -42,9 +42,7 @@ trait PortalFeatureableTrait
      *         @ORM\JoinColumn(onDelete="CASCADE", name="choice_id")
      *     }
      * )
-     *
      * @EntityDoctrineChoice("portal_feature", multiple=true)
-     *
      * @Serializer\Expose
      */
     private ?Collection $portalFeatures = null;

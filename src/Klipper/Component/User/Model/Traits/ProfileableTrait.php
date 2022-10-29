@@ -24,9 +24,7 @@ trait ProfileableTrait
 {
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     *
      * @Assert\Length(max=255)
-     *
      * @Serializer\Expose
      * @Serializer\Groups({"Default", "Public"})
      */
@@ -34,9 +32,7 @@ trait ProfileableTrait
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     *
      * @Assert\Length(max=255)
-     *
      * @Serializer\Expose
      * @Serializer\Groups({"Default", "Public"})
      */
@@ -44,9 +40,7 @@ trait ProfileableTrait
 
     /**
      * @ORM\Column(type="string", length=5, nullable=true)
-     *
      * @Assert\Length(max=5)
-     *
      * @Serializer\Expose
      * @Serializer\ReadOnlyProperty
      * @Serializer\Groups({"Default", "Public"})

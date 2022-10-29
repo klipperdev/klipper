@@ -32,9 +32,7 @@ trait UserableTrait
      *     cascade={"persist", "remove"}
      * )
      * @ORM\JoinColumn(onDelete="CASCADE", nullable=false)
-     *
      * @Assert\NotNull
-     *
      * @Serializer\Expose
      * @Serializer\MaxDepth(1)
      */

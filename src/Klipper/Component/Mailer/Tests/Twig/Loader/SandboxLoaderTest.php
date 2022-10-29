@@ -30,9 +30,6 @@ final class SandboxLoaderTest extends TestCase
      */
     protected $sandboxTemplater;
 
-    /**
-     * @var
-     */
     protected ?SandboxLoader $loader = null;
 
     protected function setUp(): void

@@ -108,9 +108,9 @@ class Router implements RouterInterface, RequestMatcherInterface
      *
      * @param string $key The key
      *
-     * @throws \InvalidArgumentException
-     *
      * @return mixed The value
+     *
+     * @throws \InvalidArgumentException
      */
     public function getOption(string $key)
     {

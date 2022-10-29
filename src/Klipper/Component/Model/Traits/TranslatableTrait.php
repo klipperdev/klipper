@@ -28,7 +28,6 @@ trait TranslatableTrait
      * @var string[]
      *
      * @ORM\Column(type="json", nullable=true)
-     *
      * @Serializer\Expose
      * @Serializer\ReadOnlyProperty
      */

@@ -25,11 +25,8 @@ trait SortableTrait
 {
     /**
      * @ORM\Column(type="integer", nullable=true)
-     *
      * @Gedmo\SortablePosition
-     *
      * @Assert\Type(type="integer")
-     *
      * @Serializer\Expose
      */
     protected ?int $position = null;

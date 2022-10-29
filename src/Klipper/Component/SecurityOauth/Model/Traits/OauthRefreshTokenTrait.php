@@ -28,7 +28,6 @@ trait OauthRefreshTokenTrait
      *     targetEntity="Klipper\Component\SecurityOauth\Model\OauthAccessTokenInterface"
      * )
      * @ORM\JoinColumn(onDelete="SET NULL")
-     *
      * @Serializer\Expose
      * @Serializer\ReadOnlyProperty
      */

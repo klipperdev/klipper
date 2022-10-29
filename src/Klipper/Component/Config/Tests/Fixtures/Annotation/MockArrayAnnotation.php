@@ -13,6 +13,7 @@ namespace Klipper\Component\Config\Tests\Fixtures\Annotation;
 
 /**
  * @author François Pluchino <francois.pluchino@klipper.dev>
+ *
  * @Annotation
  */
 class MockArrayAnnotation extends MockAnnotation

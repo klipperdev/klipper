@@ -27,9 +27,9 @@ class ArrayToPointTransformer implements DataTransformerInterface
      *
      * @param null|Point $value The point value
      *
-     * @throws TransformationFailedException If the given value is not a string
-     *
      * @return null|array Array value
+     *
+     * @throws TransformationFailedException If the given value is not a string
      */
     public function transform($value): ?array
     {

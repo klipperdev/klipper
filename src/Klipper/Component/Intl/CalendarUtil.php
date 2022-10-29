@@ -75,9 +75,9 @@ abstract class CalendarUtil
      * @param null|string $locale   The locale of IntlDateFormatter
      * @param null|string $timezone The timezone of IntlDateFormatter
      *
-     * @throws
-     *
      * @return array The day number and the localized day name
+     *
+     * @throws
      */
     public static function getLocalizedWeekDays(?string $locale = null, ?string $timezone = null): array
     {

@@ -25,7 +25,6 @@ trait UuidIdTrait
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="UUID")
      * @ORM\Column(type="guid")
-     *
      * @Serializer\Expose
      * @Serializer\ReadOnlyProperty
      */

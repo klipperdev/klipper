@@ -24,10 +24,8 @@ trait CurrencyableTrait
 {
     /**
      * @ORM\Column(type="string", length=3, nullable=true)
-     *
      * @Assert\Length(max=3)
      * @Assert\Choice(callback={"Klipper\Component\User\Choice\CurrencyAvailable", "getValues"})
-     *
      * @Serializer\Expose
      */
     protected ?string $currency = null;

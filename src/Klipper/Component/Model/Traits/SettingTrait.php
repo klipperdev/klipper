@@ -24,27 +24,21 @@ trait SettingTrait
 {
     /**
      * @ORM\Column(type="string", nullable=true)
-     *
      * @Assert\Choice(callback={"DateTimeZone", "listIdentifiers"})
-     *
      * @Serializer\Expose
      */
     protected ?string $timezone = null;
 
     /**
      * @ORM\Column(type="string", length=5, nullable=true)
-     *
      * @Assert\Choice(callback={"Klipper\Component\User\Choice\LocaleAvailable", "getValues"})
-     *
      * @Serializer\Expose
      */
     protected ?string $locale = null;
 
     /**
      * @ORM\Column(type="string", length=3, nullable=true)
-     *
      * @Assert\Choice(callback={"Klipper\Component\User\Choice\CurrencyAvailable", "getValues"})
-     *
      * @Serializer\Expose
      */
     protected ?string $currency = null;

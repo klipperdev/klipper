@@ -24,10 +24,10 @@ interface ObjectFactoryInterface
      * @param mixed $data    The object instance
      * @param array $options The options
      *
+     * @return object The object instance defined by the type
+     *
      * @throws Exception\UnexpectedTypeException if any given option is not applicable to the given type or data is not
      *                                           an object
-     *
-     * @return object The object instance defined by the type
      */
     public function inject($data, array $options = []): object;
 
@@ -40,9 +40,9 @@ interface ObjectFactoryInterface
      * @param null|object                $data    The object instance
      * @param array                      $options The options
      *
-     * @throws Exception\UnexpectedTypeException if any given option is not applicable to the given type
-     *
      * @return object The object instance defined by the type
+     *
+     * @throws Exception\UnexpectedTypeException if any given option is not applicable to the given type
      */
     public function create($type, ?object $data = null, array $options = []): object;
 
@@ -53,9 +53,9 @@ interface ObjectFactoryInterface
      * @param null|object                $data    The object instance
      * @param array                      $options The options
      *
-     * @throws Exception\UnexpectedTypeException if any given option is not applicable to the given type
-     *
      * @return ObjectBuilderInterface The object default value builder
+     *
+     * @throws Exception\UnexpectedTypeException if any given option is not applicable to the given type
      */
     public function createBuilder($type, ?object $data = null, array $options = []): ObjectBuilderInterface;
 }

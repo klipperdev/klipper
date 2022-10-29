@@ -25,11 +25,9 @@ trait OauthTokenTrait
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     *
      * @\Symfony\Component\Validator\Constraints\Type(type="string")
      * @\Symfony\Component\Validator\Constraints\Length(max=255)
      * @\Symfony\Component\Validator\Constraints\NotBlank
-     *
      * @Serializer\Expose
      * @Serializer\Groups({"Details"})
      */
