@@ -13,11 +13,14 @@ namespace Klipper\Component\Metadata\Guess;
 
 use Klipper\Component\Metadata\MetadataRegistryInterface;
 use Klipper\Component\Metadata\ObjectMetadataBuilderInterface;
+use Klipper\Component\Metadata\Util\MetadataUtil;
 
 /**
  * @author François Pluchino <francois.pluchino@klipper.dev>
  */
-class GuessFinalDeepSearch implements GuessRegistryAwareInterface, GuessObjectConfigInterface
+class GuessFinalDeepSearch implements
+    GuessRegistryAwareInterface,
+    GuessPostConfigInterface
 {
     protected ?MetadataRegistryInterface $metadataRegistry = null;
 
@@ -26,7 +29,7 @@ class GuessFinalDeepSearch implements GuessRegistryAwareInterface, GuessObjectCo
         $this->metadataRegistry = $registry;
     }
 
-    public function guessObjectConfig(ObjectMetadataBuilderInterface $builder): void
+    public function guessPostConfig(ObjectMetadataBuilderInterface $builder): void
     {
         $deepSearchPaths = $builder->getDeepSearchPaths();
 
@@ -42,8 +45,10 @@ class GuessFinalDeepSearch implements GuessRegistryAwareInterface, GuessObjectCo
             $finalBuilder = null;
 
             foreach ($associationNames as $associationName) {
-                if (isset($names[$associationName])) {
-                    $finalBuilder = $this->metadataRegistry->getBuilder($names[$associationName]);
+                $associationTarget = $this->getAssociationTarget($builder, $associationName);
+
+                if (isset($names[$associationTarget])) {
+                    $finalBuilder = $this->metadataRegistry->getBuilder($names[$associationTarget]);
                 } else {
                     $finalBuilder = null;
 
@@ -63,5 +68,16 @@ class GuessFinalDeepSearch implements GuessRegistryAwareInterface, GuessObjectCo
         }
 
         $builder->setDeepSearchPaths($validDeepSearchPaths);
+    }
+
+    private function getAssociationTarget(ObjectMetadataBuilderInterface $builder, string $association): ?string
+    {
+        foreach ($builder->getAssociations() as $assoMeta) {
+            if ($association === MetadataUtil::getName($assoMeta->getAssociation())) {
+                return $assoMeta->getTarget();
+            }
+        }
+
+        return null;
     }
 }
