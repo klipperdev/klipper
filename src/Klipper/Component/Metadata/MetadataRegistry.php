@@ -17,6 +17,7 @@ use Klipper\Component\Metadata\Guess\GuessAssociationConfigInterface;
 use Klipper\Component\Metadata\Guess\GuessConfigInterface;
 use Klipper\Component\Metadata\Guess\GuessFieldConfigInterface;
 use Klipper\Component\Metadata\Guess\GuessObjectConfigInterface;
+use Klipper\Component\Metadata\Guess\GuessPostConfigInterface;
 use Klipper\Component\Metadata\Guess\GuessRegistryAwareInterface;
 use Klipper\Component\Metadata\Loader\ChoiceNameCollection;
 use Klipper\Component\Metadata\Loader\MetadataCompleteLoaderInterface;
@@ -118,6 +119,10 @@ class MetadataRegistry implements MetadataRegistryInterface
             $this->guesserConfigs[GuessAssociationConfigInterface::class][] = $guessConfig;
         }
 
+        if ($guessConfig instanceof GuessPostConfigInterface) {
+            $this->guesserConfigs[GuessPostConfigInterface::class][] = $guessConfig;
+        }
+
         if ($guessConfig instanceof GuessRegistryAwareInterface) {
             $guessConfig->setRegistry($this);
         }
@@ -216,6 +221,14 @@ class MetadataRegistry implements MetadataRegistryInterface
                     if ($guessConfig instanceof GuessActionConfigInterface) {
                         $guessConfig->guessActionConfig($actionBuilder);
                     }
+                }
+            }
+        }
+
+        if (\count($this->guesserConfigs[GuessPostConfigInterface::class] ?? []) > 0) {
+            foreach ($this->guesserConfigs[GuessPostConfigInterface::class] as $guessConfig) {
+                if ($guessConfig instanceof GuessPostConfigInterface) {
+                    $guessConfig->guessPostConfig($builder);
                 }
             }
         }
