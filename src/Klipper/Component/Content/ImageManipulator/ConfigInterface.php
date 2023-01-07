@@ -20,6 +20,8 @@ interface ConfigInterface
 
     public const MODE_COVER = 'cover';
 
+    public const MODE_COVER_MAX = 'cover_max';
+
     /**
      * Set the mode.
      *

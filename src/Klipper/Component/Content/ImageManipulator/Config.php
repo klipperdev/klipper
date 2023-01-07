@@ -56,7 +56,7 @@ class Config implements ConfigInterface
     {
         $this->mode = (string) $mode;
 
-        if (!\in_array($this->mode, [self::MODE_CONTAINER, self::MODE_COVER], true)) {
+        if (!\in_array($this->mode, [self::MODE_CONTAINER, self::MODE_COVER, self::MODE_COVER_MAX], true)) {
             $this->mode = self::MODE_CONTAINER;
         }
 

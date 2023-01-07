@@ -218,6 +218,7 @@ class ImageManipulator implements ImageManipulatorInterface
 
         switch ($config->getMode()) {
             case ConfigInterface::MODE_COVER:
+            case ConfigInterface::MODE_COVER_MAX:
                 $width = $width ?? $height;
                 $height = $height ?? $width;
 
@@ -227,6 +228,11 @@ class ImageManipulator implements ImageManipulatorInterface
                 } else {
                     $width = $imgWidth;
                     $height = $imgHeight;
+                }
+
+                if (ConfigInterface::MODE_COVER_MAX === $config->getMode()) {
+                    $width = max($width, $height);
+                    $height = round($width * ($width/$height));
                 }
 
                 if ($width > $imgWidth) {
@@ -247,8 +253,8 @@ class ImageManipulator implements ImageManipulatorInterface
             default:
                 $width = ($width ?? $imgWidth) * $scale;
                 $height = ($height ?? $imgHeight) * $scale;
-                $width = $width <= $imgWidth ? $width : $imgWidth;
-                $height = $height <= $imgHeight ? $height : $imgHeight;
+                $width = min($width, $imgWidth);
+                $height = min($height, $imgHeight);
 
                 break;
         }
