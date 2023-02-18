@@ -12,6 +12,8 @@
             <argument type="service" id="security.authorization_checker" on-invalid="ignore"/>
         </service>
 
+        <service id="Klipper\Component\DoctrineExtensionsExtra\Sortable\RequestSortableQuery" alias="klipper_doctrine_extensions_extra.request_query.sortable" />
+
         <!-- Request Searchable Query -->
         <service id="klipper_doctrine_extensions_extra.request_query.searchable" class="Klipper\Component\DoctrineExtensionsExtra\Searchable\RequestSearchableQuery" public="true">
             <argument type="service" id="request_stack" />
@@ -19,10 +21,14 @@
             <argument type="service" id="security.authorization_checker" on-invalid="null" />
         </service>
 
+        <service id="Klipper\Component\DoctrineExtensionsExtra\Searchable\RequestSearchableQuery" alias="klipper_doctrine_extensions_extra.request_query.searchable"/>
+
         <!-- Request Filterable Query -->
         <service id="klipper_doctrine_extensions_extra.request_query.filterable" class="Klipper\Component\DoctrineExtensionsExtra\Filterable\RequestFilterableQuery" public="true">
             <argument type="service" id="request_stack" />
             <argument type="service" id="klipper_doctrine_extensions_extra.filterable_query" />
         </service>
+
+        <service id="Klipper\Component\DoctrineExtensionsExtra\Filterable\RequestFilterableQuery" alias="klipper_doctrine_extensions_extra.request_query.filterable"/>
     </services>
 </container>

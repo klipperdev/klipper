@@ -12,5 +12,7 @@
             <argument type="service" id="klipper_doctrine_extensions_extra.filterable_query" />
             <argument type="service" id="property_accessor" />
         </service>
+
+        <service id="Klipper\Component\DoctrineExtensionsExtra\Validator\Constraints\RequestQueryFilterValidator" alias="klipper_doctrine_extensions_extra.orm.validator.request_query_filter"/>
     </services>
 </container>
