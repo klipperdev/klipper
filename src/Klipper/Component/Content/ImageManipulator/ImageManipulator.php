@@ -232,7 +232,7 @@ class ImageManipulator implements ImageManipulatorInterface
 
                 if (ConfigInterface::MODE_COVER_MAX === $config->getMode()) {
                     $width = max($width, $height);
-                    $height = round($width * ($width/$height));
+                    $height = round($width * ($width / $height));
                 }
 
                 if ($width > $imgWidth) {
